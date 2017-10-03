@@ -123,8 +123,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Iesi.Collections">
-      <HintPath>..\..\Cattle\code\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\External Libs\NHibernate-3.3.3\Required_Bins\Iesi.Collections.dll</HintPath>
     </Reference>
     <Reference Include="Infralution.Localization">
       <HintPath>..\..\External Libs\Infralution.Localization\bin\Infralution.Localization.dll</HintPath>
