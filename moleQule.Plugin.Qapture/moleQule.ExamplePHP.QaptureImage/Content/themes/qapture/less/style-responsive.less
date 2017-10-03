@@ -1,0 +1,439 @@
+// Responsive.less
+// For phone and tablet devices
+// -------------------------------------------------------------
+
+
+// REPEAT VARIABLES & MIXINS
+// -------------------------
+// Required since we compile the responsive stuff separately
+
+@import "variables.less"; // Modify this for custom colors, font-sizes, etc
+@import "../../../less/mixins.less";
+
+
+// RESPONSIVE CLASSES
+// ------------------
+
+@import "../../../less/responsive-utilities.less";
+
+
+// MEDIA QUERIES
+// ------------------
+
+// Large desktops
+@import "../../../less/responsive-1200px-min.less";
+
+// Tablets to regular desktops
+@import "../../../less/responsive-768px-979px.less";
+
+// Phones to portrait tablets and narrow desktops
+@import "../../../less/responsive-767px-max.less";
+
+
+// RESPONSIVE NAVBAR
+// ------------------
+
+// From 979px and below, show a button to toggle navbar contents
+@import "../../../less/responsive-navbar.less";
+
+@media (max-width: 767px) {
+	.presentation { 
+		height: 475px;
+	}
+}
+
+@media (min-width: 798px) and (max-width: 1024px) {
+	.presentation { 
+		height: 550px;
+	}
+}
+
+@media only screen and (min-width: 1300px) {
+  .nav-collapse_ {
+    margin: 10px 0 0 0;
+  }
+  .box-slogan figure {
+    display: block;
+  }
+  
+  .start-price {
+    margin-right: -40px;
+  }
+  .coll-1,
+  .coll-2,
+  .coll-3 {
+    width: 250px;
+  }
+  #contact-form label {
+    display: inline-block;
+  }
+  #search input {
+    width: 541px;
+  }
+  .buttons a {
+    width: 259px;
+    margin-left: 60px;
+	margin-right: 60px;
+  }
+  .buttons {
+    padding-top: 20px;
+	padding-left:23px;
+	padding-bottom: 20px;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .nav-collapse_ {
+	padding-top: 6px;
+  }
+}
+@media only screen and (max-width: 979px) {
+  
+  body {
+	padding:0;
+  }
+  #mainMenu, #mainMenu .nav {
+	float: none;
+  }
+  .nav-collapse .nav>li>a {
+	text-align: left;
+  }
+  .iphone2 {
+    display: block;
+  }
+  .box-slogan .slogans {
+    width: 100%;
+  }
+  #contact-form label {
+    display: block;
+  }
+  #contact-form input,
+  #contact-form textarea {
+    width: 100%;
+  }
+  .navbar_ .nav-collapse_ {
+    overflow: inherit;
+  }
+  .block-404 .img-404 {
+    float: none;
+    margin: 0;
+  }
+  .block-404 {
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .block-404 .box-404 {
+    text-align: left;
+  }
+  #search input {
+    width: 100%;
+    margin: 0 0 10px;
+  }
+  #search a {
+    float: right;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1280px) {
+  .buttons {
+	float: none;
+    padding-top: 20px;
+	margin: 0 auto;
+	width: 720px;
+  }
+  .buttons a {
+    width: 200px;
+	margin-left: 20px;
+	margin-right: 20px;
+  }
+  .map {
+	height: 500px;
+  }
+  .nav-collapse_ {
+    clear: none;
+  }
+  .navbar_ .brand a {
+    width: 200px;
+  }
+  .nav-collapse_ .nav > li > a {
+    padding: 11px 20px 12px;
+  }
+  .nav-collapse_ .nav ul {
+    left: -19px;
+  }
+  .img-indent {
+    width: 100%;
+  }
+  h3 {
+    font-size: 30px;
+  }
+  .navbar_ .btn-navbar {
+    display: none;
+  }
+  .nav-collapse_ .nav > li {
+    float: left;
+  }
+  .coll-1,
+  .coll-2,
+  .coll-3 {
+    width: 152px;
+  }
+  #contact-form input,
+  #contact-form textarea {
+    width: 100%;
+  }
+  .address-1 span {
+    display: block;
+  }
+}
+@media (max-width: 979px) {
+  body {
+    padding:0;
+  }
+}
+@media only screen and (max-width: 767px) {
+  header {
+    padding-bottom: 0;
+  }
+  body {
+    padding: 0 !important;
+  }
+  .sf-menu {
+    display: none !important;
+  }
+  header .container,
+  #content .container {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .navbar_ .brand {
+    float: none;
+  }
+  .navbar_ {
+    float: none;
+  }
+  .navbar_ .nav-collapse_ {
+  }
+  .navbar_ .btn-navbar {
+    display: none;
+  }
+  .select-menu {
+    display: block !important;
+    color: #ffffff;
+    border: 1px solid #313131;
+    background: #131313 !important;
+    .box-shadow(none);
+    width: 100%;
+    margin: 18px 0;
+  }
+  .select-menu option {
+    padding-bottom: 4px;
+  }
+  .box-slogan .slogans {
+    padding: 50px 20px;
+    width: auto;
+  }
+  .box-btn {
+    padding: 0 20px;
+  }
+  .img-indent1 {
+    float: left;
+    margin-right: 20px;
+  }
+  .glow {
+    background: none;
+  }
+  .box-slogan strong {
+    font-size: 70px;
+    line-height: 72px;
+  }
+  .list-staff {
+    margin-left: -20px;
+  }
+  .list-staff li {
+    width: 28%;
+    float: left;
+    margin-left: 20px;
+  }
+  .list-staff li img {
+    width: 100%;
+  }
+  .list-clients {
+    margin-left: -20px;
+  }
+  .list-clients li {
+    float: left;
+    margin-left: 20px;
+    width: 45%;
+  }
+  .list-clients li figure img {
+    width: 100%;
+  }
+  .list-services li figure {
+    float: left;
+    margin: 0 20px 12px 0;
+  }
+  .list-services li h4 {
+    padding-top: 0;
+  }
+  .coll-1,
+  .coll-2,
+  .coll-3 {
+    width: 100%;
+    float: none;
+  }
+  .policy .pull-right {
+    float: none;
+  }
+  footer {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .block-404 {
+    margin: 0 0 27px;
+  }
+  .buttons a {
+	margin-left: 12px;
+	margin-right: 12px;	
+  }
+  .buttons {
+	float: none;
+    padding-top: 20px;
+	margin: 0 auto;
+	width: 573px;
+  }
+  .form legend {
+	background: #efefef;
+	padding-left: 5px;
+	margin-top: 10px;
+  }
+}
+@media only screen and (max-width: 560px) {
+  .img-indent1 {
+    float: none;
+    margin-right: 0px;
+  }
+  .img-indent1 img {
+    width: 100%;
+  }
+  footer .pull-right {
+    float: none;
+    width: auto;
+    text-align: left;
+  }
+  .box-slogan {
+	display: none;
+    height: auto;
+  }
+  .box-phone {
+    text-align: left;
+  }
+  .list-soc {
+    text-align: left;
+    padding: 20px 0;
+  }
+  .privacy {
+    float: none;
+    width: auto;
+  }
+  .buttons a {
+	margin-left: 8px;
+	margin-right: 8px;	
+  }
+  .buttons {
+	float: none;
+    padding-top: 20px;
+	margin: 0 auto;
+	width: 573px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .box-slogan p {
+    display: none;
+  }
+  .img-indent2 {
+    float: none;
+    margin: 7px 0 12px 0;
+  }
+  .img-indent2 img {
+    width: 100%;
+  }
+    .buttons a {
+	margin-left: 10px;
+	margin-right: 10px;	
+  }
+  .buttons {
+	float: none;
+    padding-top: 20px;
+	margin: 0 auto;
+	width: 187px;
+  }
+}
+@media only screen and (max-width: 655px) {
+  .box-btn {
+    text-align: center;
+  }
+  .iphone {
+    display: none;
+  }
+  .start-price {
+    padding: 18px 0;
+    background: none;
+    margin: 0;
+    float: none;
+  }
+  .buttons {
+    padding: 0;
+    float: none;
+  }
+  .buttons a {
+    float: none;
+    margin: 12px 0 12px;
+    display: inline-block;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .btn_ {
+    font-size: 20px;
+    padding: 18px 16px;
+  }
+  .img-indent {
+    float: none;
+    width: 100%;
+    margin: 0 0 18px 0;
+    display: block;
+  }
+  .img-indent img,
+  .img-indent1 img {
+    width: 100%;
+  }
+  .list-clients {
+    margin-left: 0px;
+  }
+  .list-clients li {
+    float: none;
+    margin-left: 0px;
+    width: 100%;
+  }
+  .list-clients li figure img {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 420px) {
+    .list-staff {
+        margin-left: 0;
+    }
+    .list-staff li {
+        float: none;
+        width: 100%;
+        margin-left: 0;
+    }
+    .list-staff li img {
+        width: 100%;
+    }
+    .privacy img {
+        width: 46%;
+    }
+    .navbar_ .brand a {
+        width: 301px;
+    }
+}

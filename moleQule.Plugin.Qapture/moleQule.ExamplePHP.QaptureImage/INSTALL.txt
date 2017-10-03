@@ -1,0 +1,12 @@
+REQUIREMENTS
+------------
+
+- Apache.
+- PHP 5.2 or higher.
+- Qapture plguin installed.
+
+1.- Copy folder demoqapturephp to public Apache folder.
+2.- Install Qapture plugin.
+3.- Navigate to http://localhost/demoqapturephp
+
+Click scan. All scanned files are uploaded to folder Files.

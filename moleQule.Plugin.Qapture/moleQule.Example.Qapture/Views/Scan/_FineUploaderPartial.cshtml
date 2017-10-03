@@ -1,0 +1,64 @@
+﻿@using Resources
+@{
+    ViewBag.Capture = Labels.ACTION_CAPTURE;
+    ViewBag.Cancel = Labels.ACTION_CANCEL;
+    ViewBag.Retry = Labels.ACTION_RETRY;
+    ViewBag.FailUpload = Labels.FAIL_UPLOAD;
+    ViewBag.WaitingForResponse = Labels.WAITING_UPLOAD_RESPONSE;
+    ViewBag.TypeError = Labels.TYPE_ERROR;
+    ViewBag.SizeError = Labels.SIZE_ERROR;
+}
+<script type="text/javascript">    
+    function FineUploader(fineUploaderClass, extraButtons) {
+        $('.' + fineUploaderClass).fineUploader({
+            request: {
+                endpoint: '@Url.Action("Upload","Scan")'
+            },
+            text: {
+                uploadButton: '',
+                cancelButton: '@ViewBag.Cancel',
+                retryButton: '@ViewBag.Retry',
+                failUpload: '@ViewBag.FailUpload',
+                waitingForResponse: '@ViewBag.WaitingForResponse'
+            },
+            messages: {
+                typeError: "@ViewBag.TypeError",
+                sizeError: "@ViewBag.SizeError"
+            },
+            validation: {
+                allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+                sizeLimit: 20971520
+            },
+            template: '<div class="qq-uploader">' +
+                      '<pre class="qq-upload-drop-area span4"><span>{dragZoneText}</span></pre>' +
+                      '<div class="qq-upload-button btn btn-inverse" style="width: auto;">{uploadButtonText}</div>' +
+                      extraButtons +
+                      '<span class="qq-drop-processing"><span></span><span class="qq-drop-processing-spinner"></span></span>' +
+                      '<ul class="qq-upload-list" style="margin-top: 10px; margin-left: 0px; text-align: center;"></ul>' +
+                    '</div>',
+            fileTemplate: '<li>' +
+                    '<div class="qq-progress-bar"></div>' +
+                    '<span class="qq-upload-spinner"></span>' +
+                    '<span class="qq-upload-finished"></span>' +
+                    '<span class="qq-upload-file"></span>' +
+                    '<span class="qq-upload-size"></span>' +
+                    '<a class="qq-upload-cancel" href="#">{cancelButtonText}</a>' +
+                    '<a class="qq-upload-retry" href="#">{retryButtonText}</a>' +
+                    '<span class="qq-upload-status-text">{statusText}</span>' +
+                    '</li>',
+            classes: {
+                success: 'alert alert-success',
+                fail: 'alert alert-error'
+            },
+            debug: true
+        });
+
+        $('.' + fineUploaderClass)
+            .on('complete', function (event, id, name, response) {
+                $(this).closest('.form').replaceWith(response.html);
+            })
+            .on('submit', function (event, id, filename) {
+                $(this).fineUploader('setParams', {});
+            });
+    };
+</script>

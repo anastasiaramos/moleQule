@@ -1,0 +1,12 @@
+/* UPDATE 3.7.0.0*/
+
+SET SEARCH_PATH = "COMMON";
+
+
+SET SEARCH_PATH = "0001";
+
+ALTER TABLE "Registro" ADD COLUMN "OID_USUARIO" bigint;
+ALTER TABLE "LineaRegistro" ADD COLUMN "ID_EXPORTACION" varchar(255);
+
+
+

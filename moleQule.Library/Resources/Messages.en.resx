@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AVISO_CAPTION" xml:space="preserve">
+    <value>Aviso</value>
+  </data>
+  <data name="CHILD_SAVE_NOT_ALLOWED" xml:space="preserve">
+    <value>Para insertar o actualizar objetos hijo debe utilizar las funciones Insert o Update.</value>
+  </data>
+  <data name="CLOSE_SESSIONS_1" xml:space="preserve">
+    <value>Existen conexiones abiertas desde las diferentes direcciones:</value>
+  </data>
+  <data name="CLOSE_SESSIONS_2" xml:space="preserve">
+    <value>&#x1E;Si continúa, las conexiones existentes se cerrarán perdiendo toda la información.
+¿Desea cerrarlas antes de continuar?</value>
+  </data>
+  <data name="DO_HISTORICO" xml:space="preserve">
+    <value>Se va a proceder al cálculo de las bases de cálculo y cotización de los empleados de alta en la empresa.
+
+                                              ¿Desea continuar con el proceso?</value>
+  </data>
+  <data name="DUAL_CODE" xml:space="preserve">
+    <value>Revise que no haya códigos duplicados.</value>
+  </data>
+  <data name="DUPLICATED_CODE" xml:space="preserve">
+    <value>Existe otro elemento con ese códígo.</value>
+  </data>
+  <data name="GENERIC_VALIDATION_ERROR" xml:space="preserve">
+    <value>Error en los datos del formulario.
+
+Los campos marcados con * necesitan un valor.</value>
+  </data>
+  <data name="IMP_EXCEPTION" xml:space="preserve">
+    <value>La declaración de la clase no define el método heredado: {0}</value>
+  </data>
+  <data name="LOCK_ERROR" xml:space="preserve">
+    <value>Impossible blocking selected item.
+Another user is editing it at this moment. </value>
+  </data>
+  <data name="NO_CRITERIA" xml:space="preserve">
+    <value>You must insert any search criteria</value>
+  </data>
+  <data name="NO_NULL_VALIDATION_ERROR" xml:space="preserve">
+    <value>Null value not allowed</value>
+  </data>
+  <data name="NO_RESULTS" xml:space="preserve">
+    <value>No matches</value>
+  </data>
+  <data name="NOT_FTP_PARAMS" xml:space="preserve">
+    <value>No se han definido los parámetros de acceso al servidor FTP. Debe sobrecargar las propiedades necesarias de PrincipalBase en su fichero Principal</value>
+  </data>
+  <data name="OK_UPDATE" xml:space="preserve">
+    <value>Update complete</value>
+  </data>
+  <data name="REMOVE_NOT_ALLOWED" xml:space="preserve">
+    <value>No está permitido el uso de esta función Remove. Utilice en su lugar la sobrecarga en que el objeto padre es un parámetro.</value>
+  </data>
+  <data name="SQL_INYECTION" xml:space="preserve">
+    <value>El nombre de usuario y la contraseña no pueden contener espacios en blanco.</value>
+  </data>
+  <data name="USER_NOT_ALLOWED" xml:space="preserve">
+    <value>User not allowed</value>
+  </data>
+  <data name="USER_NOT_AUTHENTIFICATED" xml:space="preserve">
+    <value>The user name or password provided is incorrect.</value>
+  </data>
+  <data name="USER_VALIDATION_MSG" xml:space="preserve">
+    <value>Checking permissions...</value>
+  </data>
+  <data name="LOADING_DATA_SCHEMA" xml:space="preserve">
+    <value>Initializing data schema...</value>
+  </data>
+  <data name="VALIDATING_USER" xml:space="preserve">
+    <value>Connecting server and validating user...</value>
+  </data>
+  <data name="SECURE_ITEM_NAME_EMPTY" xml:space="preserve">
+    <value>No se ha establecido un nombre para el elemento seguro.</value>
+  </data>
+  <data name="SECURE_ITEM_TIPO_NULL" xml:space="preserve">
+    <value>No se ha establecido un tipo para el elemento seguro.</value>
+  </data>
+  <data name="DB_VERSION_HIGHER" xml:space="preserve">
+    <value>La versión instalada de la base de datos ({0}) para {2} es superior a la versión requerida por la aplicación ({1}). Es necesario actualizar la aplicación a una versión compatible.</value>
+  </data>
+  <data name="DB_VERSION_LOWER" xml:space="preserve">
+    <value>La versión instalada de la base de datos ({0}) para {2} es inferior a la versión requerida por la aplicación ({1}). Es necesario actualizar la base de datos a una versión compatible.</value>
+  </data>
+  <data name="NO_VALUE_SELECTED" xml:space="preserve">
+    <value>No ha introducido ningún valor para el campo '{0}'</value>
+  </data>
+  <data name="DELETE_USER_NOT_ALLOWED" xml:space="preserve">
+    <value>No está permitido eliminar el usuario {0}</value>
+  </data>
+  <data name="EDIT_USER_NOT_ALLOWED" xml:space="preserve">
+    <value>No está permitido editar el usuario {0}</value>
+  </data>
+  <data name="MASK_INPUT_REJECTED" xml:space="preserve">
+    <value>{0} doesn't meet mask requisites</value>
+  </data>
+  <data name="NOR_ALLOWED_CODE_EXCEPTION" xml:space="preserve">
+    <value>El uso del método {0} no está permitido para este objeto</value>
+  </data>
+  <data name="NO_FIELD_FILLED" xml:space="preserve">
+    <value>Please, input a value for  '{0}'</value>
+  </data>
+  <data name="NO_FIELD_SELECTED" xml:space="preserve">
+    <value>Please, select a value for '{0}'</value>
+  </data>
+  <data name="NO_ID_SELECTED" xml:space="preserve">
+    <value>Please, input a valid ID</value>
+  </data>
+  <data name="ACTION_NOT_ALLOWED" xml:space="preserve">
+    <value>No está permitido realizar esa acción.</value>
+  </data>
+  <data name="NO_BACKUP_POLICY" xml:space="preserve">
+    <value>No procede la copia. Ultima copia realizada el {0}
+
+Para modificar las opciones de configuración de copias de seguridad acceda al formulario de opciones de la aplicacion.</value>
+  </data>
+  <data name="SCHEMA_NOT_ALLOWED" xml:space="preserve">
+    <value>User not allowed to access this data schema</value>
+  </data>
+  <data name="DELETE_CONFIRM" xml:space="preserve">
+    <value>Are you sure you want to delete this?</value>
+  </data>
+  <data name="LOG_STARTED" xml:space="preserve">
+    <value>LOG STARTED {0}</value>
+  </data>
+  <data name="FORGOT_PASSWORD" xml:space="preserve">
+    <value>Forgot your password</value>
+  </data>
+  <data name="CHANGE_PIN_SUCCESS" xml:space="preserve">
+    <value>PIN code updated</value>
+  </data>
+  <data name="CHANGE_PASSWORD_SUCCESS" xml:space="preserve">
+    <value>Password updated</value>
+  </data>
+  <data name="PIN_CODE_VALIDATION" xml:space="preserve">
+    <value>The pin code must be a 4 digits number</value>
+  </data>
+  <data name="SMS_SENT_ERROR" xml:space="preserve">
+    <value>SMS sending error</value>
+  </data>
+  <data name="SMS_SENT_OK" xml:space="preserve">
+    <value>SMS sent successfuly</value>
+  </data>
+  <data name="USER_DELETED" xml:space="preserve">
+    <value>User deleted</value>
+  </data>
+  <data name="NO_NAME_SELECTED" xml:space="preserve">
+    <value>Please, type a name</value>
+  </data>
+  <data name="NO_PASSWORD_SELECTED" xml:space="preserve">
+    <value>Please, type a password</value>
+  </data>
+  <data name="DATA_SAVED" xml:space="preserve">
+    <value>Data saved successfully</value>
+  </data>
+  <data name="LOADING_DATA" xml:space="preserve">
+    <value>Loading data...</value>
+  </data>
+</root>

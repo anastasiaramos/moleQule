@@ -1,0 +1,21 @@
+/* UPDATE 4.6.0.0*/
+
+SET SEARCH_PATH = "COMMON";
+
+UPDATE "Variable" SET "VALUE" = '4.6.0.0' WHERE "NAME" = 'COMMON_DB_VERSION';
+
+SET SEARCH_PATH = "0001";
+
+ALTER TABLE "CuentaBancaria" ADD COLUMN "OID_ASOCIADA" bigint DEFAULT 0;
+ALTER TABLE "CuentaBancaria" ADD COLUMN "TIPO" bigint DEFAULT 1;
+ALTER TABLE "CuentaBancaria" DROP COLUMN "PROPIA";
+
+UPDATE "CuentaBancaria" SET "OID_ASOCIADA" = 0, "TIPO" = 1;
+
+ALTER TABLE "MovimientoBanco" ADD COLUMN "TIPO_CUENTA" bigint DEFAULT 1;
+ALTER TABLE "MovimientoBanco" ADD COLUMN "OID_CUENTA" bigint DEFAULT 0;
+
+UPDATE "MovimientoBanco" SET "TIPO_CUENTA" = 1;
+UPDATE "MovimientoBanco" SET "OID_CUENTA" = 0;
+
+

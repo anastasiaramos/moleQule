@@ -1,0 +1,54 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="moleQule.WebFace.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="API_ACTION_MONITOR" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">update</Value>
+    </Setting>
+    <Setting Name="PRODUCTION_DOMAIN" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">www.alquilermotosporhora.com</Value>
+    </Setting>
+    <Setting Name="STAGING_DOMAIN" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">staging.alquilermotosporhora.com</Value>
+    </Setting>
+    <Setting Name="TEST_DOMAIN" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">develop.alquilermotosporhora.com</Value>
+    </Setting>
+    <Setting Name="ALPHA_DOMAIN" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">preproduction.alquilermotosporhora.com</Value>
+    </Setting>
+    <Setting Name="DEVELOPMENT_DOMAIN" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">develop.alquilermotosporhora.com</Value>
+    </Setting>
+    <Setting Name="PROTOCOL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://</Value>
+    </Setting>
+    <Setting Name="API_KEY" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">tW310AKKatOpvVb58FFHiBfFss0lft5u</Value>
+    </Setting>
+    <Setting Name="SECRET_KEY" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">7D8IXAKpQXhfUvejnwnhsJtDrGYO7Tm</Value>
+    </Setting>
+    <Setting Name="API_URL_MONITOR" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/argos/monitor/</Value>
+    </Setting>
+    <Setting Name="API_SERVICE_MONITOR" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">monitor.html</Value>
+    </Setting>
+    <Setting Name="REPORT_DEBUG_EMAIL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">debug@iqingenieros.com;</Value>
+    </Setting>
+    <Setting Name="REPORT_SUPPORT_EMAIL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">support@iqingenieros.com;</Value>
+    </Setting>
+    <Setting Name="REPORT_ADMIN_EMAIL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">motorent@iqingenieros.com;josecelano@gmail.com</Value>
+    </Setting>
+    <Setting Name="PublicIPWebServicUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://checkip.dyndns.org</Value>
+    </Setting>
+    <Setting Name="API_BASE_SUBDOMAIN" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">gwaihir</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

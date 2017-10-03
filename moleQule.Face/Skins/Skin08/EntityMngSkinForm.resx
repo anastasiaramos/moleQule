@@ -1,0 +1,1206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="HelpProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>258, 17</value>
+  </metadata>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Main_Panel.Panel1.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;Main_Panel.Panel1.Name" xml:space="preserve">
+    <value>Main_Panel.Panel1</value>
+  </data>
+  <data name="&gt;&gt;Main_Panel.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Main_Panel.Panel1.Parent" xml:space="preserve">
+    <value>Main_Panel</value>
+  </data>
+  <data name="&gt;&gt;Main_Panel.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="Main_Panel.Panel2.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;Main_Panel.Panel2.Name" xml:space="preserve">
+    <value>Main_Panel.Panel2</value>
+  </data>
+  <data name="&gt;&gt;Main_Panel.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Main_Panel.Panel2.Parent" xml:space="preserve">
+    <value>Main_Panel</value>
+  </data>
+  <data name="&gt;&gt;Main_Panel.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="Main_Panel.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;Main_Panel.Name" xml:space="preserve">
+    <value>Main_Panel</value>
+  </data>
+  <data name="&gt;&gt;Main_Panel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Main_Panel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Main_Panel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="Letras_Panel.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;Letras_Panel.Name" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;Letras_Panel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Letras_Panel.Parent" xml:space="preserve">
+    <value>Search_Panel.Panel1</value>
+  </data>
+  <data name="&gt;&gt;Letras_Panel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label1.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="Search_TB.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;Search_TB.Name" xml:space="preserve">
+    <value>Search_TB</value>
+  </data>
+  <data name="&gt;&gt;Search_TB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Search_TB.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;Search_TB.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="NUEVE_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;NUEVE_BT.Name" xml:space="preserve">
+    <value>NUEVE_BT</value>
+  </data>
+  <data name="&gt;&gt;NUEVE_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NUEVE_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;NUEVE_BT.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="OCHO_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;OCHO_BT.Name" xml:space="preserve">
+    <value>OCHO_BT</value>
+  </data>
+  <data name="&gt;&gt;OCHO_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;OCHO_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;OCHO_BT.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="SIETE_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;SIETE_BT.Name" xml:space="preserve">
+    <value>SIETE_BT</value>
+  </data>
+  <data name="&gt;&gt;SIETE_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SIETE_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;SIETE_BT.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="SEIS_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;SEIS_BT.Name" xml:space="preserve">
+    <value>SEIS_BT</value>
+  </data>
+  <data name="&gt;&gt;SEIS_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SEIS_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;SEIS_BT.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="CINCO_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;CINCO_BT.Name" xml:space="preserve">
+    <value>CINCO_BT</value>
+  </data>
+  <data name="&gt;&gt;CINCO_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CINCO_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;CINCO_BT.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="CUATRO_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;CUATRO_BT.Name" xml:space="preserve">
+    <value>CUATRO_BT</value>
+  </data>
+  <data name="&gt;&gt;CUATRO_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CUATRO_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;CUATRO_BT.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="TRES_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;TRES_BT.Name" xml:space="preserve">
+    <value>TRES_BT</value>
+  </data>
+  <data name="&gt;&gt;TRES_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TRES_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;TRES_BT.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="DOS_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;DOS_BT.Name" xml:space="preserve">
+    <value>DOS_BT</value>
+  </data>
+  <data name="&gt;&gt;DOS_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;DOS_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;DOS_BT.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="UNO_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;UNO_BT.Name" xml:space="preserve">
+    <value>UNO_BT</value>
+  </data>
+  <data name="&gt;&gt;UNO_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;UNO_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;UNO_BT.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="CERO_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;CERO_BT.Name" xml:space="preserve">
+    <value>CERO_BT</value>
+  </data>
+  <data name="&gt;&gt;CERO_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CERO_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;CERO_BT.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="Z_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;Z_BT.Name" xml:space="preserve">
+    <value>Z_BT</value>
+  </data>
+  <data name="&gt;&gt;Z_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Z_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;Z_BT.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="Y_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;Y_BT.Name" xml:space="preserve">
+    <value>Y_BT</value>
+  </data>
+  <data name="&gt;&gt;Y_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Y_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;Y_BT.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="X_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;X_BT.Name" xml:space="preserve">
+    <value>X_BT</value>
+  </data>
+  <data name="&gt;&gt;X_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;X_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;X_BT.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="W_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;W_BT.Name" xml:space="preserve">
+    <value>W_BT</value>
+  </data>
+  <data name="&gt;&gt;W_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;W_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;W_BT.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="V_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;V_BT.Name" xml:space="preserve">
+    <value>V_BT</value>
+  </data>
+  <data name="&gt;&gt;V_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;V_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;V_BT.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="U_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;U_BT.Name" xml:space="preserve">
+    <value>U_BT</value>
+  </data>
+  <data name="&gt;&gt;U_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;U_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;U_BT.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="T_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;T_BT.Name" xml:space="preserve">
+    <value>T_BT</value>
+  </data>
+  <data name="&gt;&gt;T_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;T_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;T_BT.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="S_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;S_BT.Name" xml:space="preserve">
+    <value>S_BT</value>
+  </data>
+  <data name="&gt;&gt;S_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;S_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;S_BT.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="R_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;R_BT.Name" xml:space="preserve">
+    <value>R_BT</value>
+  </data>
+  <data name="&gt;&gt;R_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;R_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;R_BT.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="Q_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;Q_BT.Name" xml:space="preserve">
+    <value>Q_BT</value>
+  </data>
+  <data name="&gt;&gt;Q_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Q_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;Q_BT.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="P_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;P_BT.Name" xml:space="preserve">
+    <value>P_BT</value>
+  </data>
+  <data name="&gt;&gt;P_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;P_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;P_BT.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="O_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;O_BT.Name" xml:space="preserve">
+    <value>O_BT</value>
+  </data>
+  <data name="&gt;&gt;O_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;O_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;O_BT.ZOrder" xml:space="preserve">
+    <value>24</value>
+  </data>
+  <data name="GN_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;GN_BT.Name" xml:space="preserve">
+    <value>GN_BT</value>
+  </data>
+  <data name="&gt;&gt;GN_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GN_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;GN_BT.ZOrder" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="N_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;N_BT.Name" xml:space="preserve">
+    <value>N_BT</value>
+  </data>
+  <data name="&gt;&gt;N_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;N_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;N_BT.ZOrder" xml:space="preserve">
+    <value>26</value>
+  </data>
+  <data name="M_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;M_BT.Name" xml:space="preserve">
+    <value>M_BT</value>
+  </data>
+  <data name="&gt;&gt;M_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;M_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;M_BT.ZOrder" xml:space="preserve">
+    <value>27</value>
+  </data>
+  <data name="L_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;L_BT.Name" xml:space="preserve">
+    <value>L_BT</value>
+  </data>
+  <data name="&gt;&gt;L_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;L_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;L_BT.ZOrder" xml:space="preserve">
+    <value>28</value>
+  </data>
+  <data name="K_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;K_BT.Name" xml:space="preserve">
+    <value>K_BT</value>
+  </data>
+  <data name="&gt;&gt;K_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;K_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;K_BT.ZOrder" xml:space="preserve">
+    <value>29</value>
+  </data>
+  <data name="J_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;J_BT.Name" xml:space="preserve">
+    <value>J_BT</value>
+  </data>
+  <data name="&gt;&gt;J_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;J_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;J_BT.ZOrder" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="I_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;I_BT.Name" xml:space="preserve">
+    <value>I_BT</value>
+  </data>
+  <data name="&gt;&gt;I_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;I_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;I_BT.ZOrder" xml:space="preserve">
+    <value>31</value>
+  </data>
+  <data name="H_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;H_BT.Name" xml:space="preserve">
+    <value>H_BT</value>
+  </data>
+  <data name="&gt;&gt;H_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;H_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;H_BT.ZOrder" xml:space="preserve">
+    <value>32</value>
+  </data>
+  <data name="G_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;G_BT.Name" xml:space="preserve">
+    <value>G_BT</value>
+  </data>
+  <data name="&gt;&gt;G_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;G_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;G_BT.ZOrder" xml:space="preserve">
+    <value>33</value>
+  </data>
+  <data name="F_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;F_BT.Name" xml:space="preserve">
+    <value>F_BT</value>
+  </data>
+  <data name="&gt;&gt;F_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;F_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;F_BT.ZOrder" xml:space="preserve">
+    <value>34</value>
+  </data>
+  <data name="E_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;E_BT.Name" xml:space="preserve">
+    <value>E_BT</value>
+  </data>
+  <data name="&gt;&gt;E_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;E_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;E_BT.ZOrder" xml:space="preserve">
+    <value>35</value>
+  </data>
+  <data name="FilterOffTop_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;FilterOffTop_BT.Name" xml:space="preserve">
+    <value>FilterOffTop_BT</value>
+  </data>
+  <data name="&gt;&gt;FilterOffTop_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;FilterOffTop_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;FilterOffTop_BT.ZOrder" xml:space="preserve">
+    <value>36</value>
+  </data>
+  <data name="D_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;D_BT.Name" xml:space="preserve">
+    <value>D_BT</value>
+  </data>
+  <data name="&gt;&gt;D_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;D_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;D_BT.ZOrder" xml:space="preserve">
+    <value>37</value>
+  </data>
+  <data name="C_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;C_BT.Name" xml:space="preserve">
+    <value>C_BT</value>
+  </data>
+  <data name="&gt;&gt;C_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;C_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;C_BT.ZOrder" xml:space="preserve">
+    <value>38</value>
+  </data>
+  <data name="B_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;B_BT.Name" xml:space="preserve">
+    <value>B_BT</value>
+  </data>
+  <data name="&gt;&gt;B_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;B_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;B_BT.ZOrder" xml:space="preserve">
+    <value>39</value>
+  </data>
+  <data name="A_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;A_BT.Name" xml:space="preserve">
+    <value>A_BT</value>
+  </data>
+  <data name="&gt;&gt;A_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;A_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;A_BT.ZOrder" xml:space="preserve">
+    <value>40</value>
+  </data>
+  <data name="Campos_Panel.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;Campos_Panel.Name" xml:space="preserve">
+    <value>Campos_Panel</value>
+  </data>
+  <data name="&gt;&gt;Campos_Panel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Campos_Panel.Parent" xml:space="preserve">
+    <value>Search_Panel.Panel2</value>
+  </data>
+  <data name="&gt;&gt;Campos_Panel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="BuscarPor_LB.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;BuscarPor_LB.Name" xml:space="preserve">
+    <value>BuscarPor_LB</value>
+  </data>
+  <data name="&gt;&gt;BuscarPor_LB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BuscarPor_LB.Parent" xml:space="preserve">
+    <value>Campos_Panel</value>
+  </data>
+  <data name="&gt;&gt;BuscarPor_LB.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="FilterOn_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;FilterOn_BT.Name" xml:space="preserve">
+    <value>FilterOn_BT</value>
+  </data>
+  <data name="&gt;&gt;FilterOn_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;FilterOn_BT.Parent" xml:space="preserve">
+    <value>Campos_Panel</value>
+  </data>
+  <data name="&gt;&gt;FilterOn_BT.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="FilterOff_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;FilterOff_BT.Name" xml:space="preserve">
+    <value>FilterOff_BT</value>
+  </data>
+  <data name="&gt;&gt;FilterOff_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;FilterOff_BT.Parent" xml:space="preserve">
+    <value>Campos_Panel</value>
+  </data>
+  <data name="&gt;&gt;FilterOff_BT.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="Operador_CB.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;Operador_CB.Name" xml:space="preserve">
+    <value>Operador_CB</value>
+  </data>
+  <data name="&gt;&gt;Operador_CB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Operador_CB.Parent" xml:space="preserve">
+    <value>Campos_Panel</value>
+  </data>
+  <data name="&gt;&gt;Operador_CB.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="Fields_CB.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;Fields_CB.Name" xml:space="preserve">
+    <value>Fields_CB</value>
+  </data>
+  <data name="&gt;&gt;Fields_CB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Fields_CB.Parent" xml:space="preserve">
+    <value>Campos_Panel</value>
+  </data>
+  <data name="&gt;&gt;Fields_CB.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="Valor_TB.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;Valor_TB.Name" xml:space="preserve">
+    <value>Valor_TB</value>
+  </data>
+  <data name="&gt;&gt;Valor_TB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Valor_TB.Parent" xml:space="preserve">
+    <value>Campos_Panel</value>
+  </data>
+  <data name="&gt;&gt;Valor_TB.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="Content_Panel.Panel1.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;Content_Panel.Panel1.Name" xml:space="preserve">
+    <value>Content_Panel.Panel1</value>
+  </data>
+  <data name="&gt;&gt;Content_Panel.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Content_Panel.Panel1.Parent" xml:space="preserve">
+    <value>Content_Panel</value>
+  </data>
+  <data name="&gt;&gt;Content_Panel.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="Content_Panel.Panel2.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;Content_Panel.Panel2.Name" xml:space="preserve">
+    <value>Content_Panel.Panel2</value>
+  </data>
+  <data name="&gt;&gt;Content_Panel.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Content_Panel.Panel2.Parent" xml:space="preserve">
+    <value>Content_Panel</value>
+  </data>
+  <data name="&gt;&gt;Content_Panel.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="Content_Panel.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;Content_Panel.Name" xml:space="preserve">
+    <value>Content_Panel</value>
+  </data>
+  <data name="&gt;&gt;Content_Panel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Content_Panel.Parent" xml:space="preserve">
+    <value>Main_Panel.Panel2</value>
+  </data>
+  <data name="&gt;&gt;Content_Panel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="AdvSearch_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;AdvSearch_BT.Name" xml:space="preserve">
+    <value>AdvSearch_BT</value>
+  </data>
+  <data name="&gt;&gt;AdvSearch_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AdvSearch_BT.Parent" xml:space="preserve">
+    <value>Letras_Panel</value>
+  </data>
+  <data name="&gt;&gt;AdvSearch_BT.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="Search_Panel.Panel1.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;Search_Panel.Panel1.Name" xml:space="preserve">
+    <value>Search_Panel.Panel1</value>
+  </data>
+  <data name="&gt;&gt;Search_Panel.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Search_Panel.Panel1.Parent" xml:space="preserve">
+    <value>Search_Panel</value>
+  </data>
+  <data name="&gt;&gt;Search_Panel.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="Search_Panel.Panel2.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;Search_Panel.Panel2.Name" xml:space="preserve">
+    <value>Search_Panel.Panel2</value>
+  </data>
+  <data name="&gt;&gt;Search_Panel.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Search_Panel.Panel2.Parent" xml:space="preserve">
+    <value>Search_Panel</value>
+  </data>
+  <data name="&gt;&gt;Search_Panel.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="Search_Panel.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;Search_Panel.Name" xml:space="preserve">
+    <value>Search_Panel</value>
+  </data>
+  <data name="&gt;&gt;Search_Panel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Search_Panel.Parent" xml:space="preserve">
+    <value>Main_Panel.Panel1</value>
+  </data>
+  <data name="&gt;&gt;Search_Panel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="Filters_LB.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;Filters_LB.Name" xml:space="preserve">
+    <value>Filters_LB</value>
+  </data>
+  <data name="&gt;&gt;Filters_LB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Filters_LB.Parent" xml:space="preserve">
+    <value>Search_Panel.Panel2</value>
+  </data>
+  <data name="&gt;&gt;Filters_LB.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="ValorIni_TB.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;ValorIni_TB.Name" xml:space="preserve">
+    <value>ValorIni_TB</value>
+  </data>
+  <data name="&gt;&gt;ValorIni_TB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ValorIni_TB.Parent" xml:space="preserve">
+    <value>Campos_Panel</value>
+  </data>
+  <data name="&gt;&gt;ValorIni_TB.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="ValorFin_TB.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;ValorFin_TB.Name" xml:space="preserve">
+    <value>ValorFin_TB</value>
+  </data>
+  <data name="&gt;&gt;ValorFin_TB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ValorFin_TB.Parent" xml:space="preserve">
+    <value>Campos_Panel</value>
+  </data>
+  <data name="&gt;&gt;ValorFin_TB.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="Datos.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>502, 17</value>
+  </metadata>
+  <metadata name="DatosSearch.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>139, 17</value>
+  </metadata>
+  <metadata name="SaveFile_SFD.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="ErrorMng_EP.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>380, 17</value>
+  </metadata>
+  <data name="&gt;&gt;Animation.Name" xml:space="preserve">
+    <value>Animation</value>
+  </data>
+  <data name="&gt;&gt;Animation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Animation.Parent" xml:space="preserve">
+    <value>Progress_Panel</value>
+  </data>
+  <data name="&gt;&gt;Animation.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;CancelBkJob_BT.Name" xml:space="preserve">
+    <value>CancelBkJob_BT</value>
+  </data>
+  <data name="&gt;&gt;CancelBkJob_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CancelBkJob_BT.Parent" xml:space="preserve">
+    <value>Progress_Panel</value>
+  </data>
+  <data name="&gt;&gt;CancelBkJob_BT.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;ProgressMsg_LB.Name" xml:space="preserve">
+    <value>ProgressMsg_LB</value>
+  </data>
+  <data name="&gt;&gt;ProgressMsg_LB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ProgressMsg_LB.Parent" xml:space="preserve">
+    <value>Progress_Panel</value>
+  </data>
+  <data name="&gt;&gt;ProgressMsg_LB.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;Title_LB.Name" xml:space="preserve">
+    <value>Title_LB</value>
+  </data>
+  <data name="&gt;&gt;Title_LB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Title_LB.Parent" xml:space="preserve">
+    <value>Progress_Panel</value>
+  </data>
+  <data name="&gt;&gt;Title_LB.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;Progress_Panel.Name" xml:space="preserve">
+    <value>Progress_Panel</value>
+  </data>
+  <data name="&gt;&gt;Progress_Panel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Progress_Panel.Parent" xml:space="preserve">
+    <value>ProgressBK_Panel</value>
+  </data>
+  <data name="&gt;&gt;Progress_Panel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;ProgressBK_Panel.Name" xml:space="preserve">
+    <value>ProgressBK_Panel</value>
+  </data>
+  <data name="&gt;&gt;ProgressBK_Panel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ProgressBK_Panel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ProgressBK_Panel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;ProgressInfo_PB.Name" xml:space="preserve">
+    <value>ProgressInfo_PB</value>
+  </data>
+  <data name="&gt;&gt;ProgressInfo_PB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ProgressBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ProgressInfo_PB.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ProgressInfo_PB.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;Progress_PB.Name" xml:space="preserve">
+    <value>Progress_PB</value>
+  </data>
+  <data name="&gt;&gt;Progress_PB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Progress_PB.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Progress_PB.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>1008, 562</value>
+  </data>
+  <data name="$this.HelpKeyword" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>TopicId</value>
+  </data>
+  <data name="$this.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Skin08.EntityMngSkinForm</value>
+  </data>
+  <data name="&gt;&gt;Datos.Name" xml:space="preserve">
+    <value>Datos</value>
+  </data>
+  <data name="&gt;&gt;Datos.Type" xml:space="preserve">
+    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;DatosSearch.Name" xml:space="preserve">
+    <value>DatosSearch</value>
+  </data>
+  <data name="&gt;&gt;DatosSearch.Type" xml:space="preserve">
+    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SaveFile_SFD.Name" xml:space="preserve">
+    <value>SaveFile_SFD</value>
+  </data>
+  <data name="&gt;&gt;SaveFile_SFD.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ErrorMng_EP.Name" xml:space="preserve">
+    <value>ErrorMng_EP</value>
+  </data>
+  <data name="&gt;&gt;ErrorMng_EP.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ErrorProvider, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;HelpProvider.Name" xml:space="preserve">
+    <value>HelpProvider</value>
+  </data>
+  <data name="&gt;&gt;HelpProvider.Type" xml:space="preserve">
+    <value>System.Windows.Forms.HelpProvider, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>EntityMngSkinForm</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>moleQule.Face.Skin04.EntityMngSkinForm, moleQule.Face, Version=2.5.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+</root>

@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ACTION_APPLY" xml:space="preserve">
+    <value>Aplicar</value>
+  </data>
+  <data name="ACTION_BACK" xml:space="preserve">
+    <value>Atrás</value>
+  </data>
+  <data name="ACTION_CLOSE" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="ACTION_CREATE" xml:space="preserve">
+    <value>Crear</value>
+  </data>
+  <data name="ACTION_DELETE" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="ACTION_DETAILS" xml:space="preserve">
+    <value>Detalle</value>
+  </data>
+  <data name="ACTION_LOGIN" xml:space="preserve">
+    <value>Iniciar Sesión</value>
+  </data>
+  <data name="ACTION_OK" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="ACTION_PRINT" xml:space="preserve">
+    <value>Imprimir</value>
+  </data>
+  <data name="ACTION_REGISTER" xml:space="preserve">
+    <value>Regístrate</value>
+  </data>
+  <data name="ACTION_SAVE" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="ACTION_SEARCH" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="ACTION_UPDATE" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="ADMIN" xml:space="preserve">
+    <value>Administrador</value>
+  </data>
+  <data name="ADMIN_GROUP_TITLE" xml:space="preserve">
+    <value>Administración</value>
+  </data>
+  <data name="ANY_FIELD" xml:space="preserve">
+    <value>Cualquier columna</value>
+  </data>
+  <data name="CHANGE_PASSWORD_TITLE" xml:space="preserve">
+    <value>Cambiar Contraseña</value>
+  </data>
+  <data name="CHANGE_PIN_TITLE" xml:space="preserve">
+    <value>Cambiar Pin</value>
+  </data>
+  <data name="CLIENTS_GROUP_TITLE" xml:space="preserve">
+    <value>Atención al Cliente</value>
+  </data>
+  <data name="CODE" xml:space="preserve">
+    <value>Código</value>
+  </data>
+  <data name="CONTACT" xml:space="preserve">
+    <value>Contacto</value>
+  </data>
+  <data name="CONTACTS" xml:space="preserve">
+    <value>Contactos</value>
+  </data>
+  <data name="DAY" xml:space="preserve">
+    <value>Día</value>
+  </data>
+  <data name="EMAIL" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="ERROR_CODE" xml:space="preserve">
+    <value>Código de Error</value>
+  </data>
+  <data name="EVERY" xml:space="preserve">
+    <value>Cada</value>
+  </data>
+  <data name="FROM" xml:space="preserve">
+    <value>Desde</value>
+  </data>
+  <data name="GENERAL_DATA" xml:space="preserve">
+    <value>Datos Generales</value>
+  </data>
+  <data name="HOUR" xml:space="preserve">
+    <value>Hora</value>
+  </data>
+  <data name="ID_GROUP_TITLE" xml:space="preserve">
+    <value>Identificación</value>
+  </data>
+  <data name="LOCATION_GROUP_TITLE" xml:space="preserve">
+    <value>Localización y Contacto</value>
+  </data>
+  <data name="LOGGED_AS" xml:space="preserve">
+    <value>Estás registrado como </value>
+  </data>
+  <data name="MAIN_DATA" xml:space="preserve">
+    <value>Datos Generales</value>
+  </data>
+  <data name="MANAGE_ACCOUNT_TITLE" xml:space="preserve">
+    <value>Administración de cuenta</value>
+  </data>
+  <data name="MESSAGE" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="MOBILE_PHONE" xml:space="preserve">
+    <value>Móvil</value>
+  </data>
+  <data name="MONTH" xml:space="preserve">
+    <value>Mes</value>
+  </data>
+  <data name="NEXT" xml:space="preserve">
+    <value>Siguiente</value>
+  </data>
+  <data name="PROFILE_GROUP_TITLE" xml:space="preserve">
+    <value>Perfil</value>
+  </data>
+  <data name="SAVE" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="SEARCH" xml:space="preserve">
+    <value>buscar</value>
+  </data>
+  <data name="SETTINGS" xml:space="preserve">
+    <value>Opciones</value>
+  </data>
+  <data name="SMS_GATEWAY_ACCOUNT" xml:space="preserve">
+    <value>Cuenta</value>
+  </data>
+  <data name="SMS_GATEWAY_CODE" xml:space="preserve">
+    <value>Código</value>
+  </data>
+  <data name="SMS_GATEWAY_GROUP_TITLE" xml:space="preserve">
+    <value>Pasarela de SMS </value>
+  </data>
+  <data name="SMS_GATEWAY_NAME" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="SMS_GATEWAY_PWD" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="SMS_GATEWAY_USER" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="SMTP_EMAIL" xml:space="preserve">
+    <value>email</value>
+  </data>
+  <data name="SMTP_ENABLE_SSL" xml:space="preserve">
+    <value>Activar SSL</value>
+  </data>
+  <data name="SMTP_GROUP_TITLE" xml:space="preserve">
+    <value>SMTP</value>
+  </data>
+  <data name="SMTP_HOST" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="SMTP_PORT" xml:space="preserve">
+    <value>Puerto</value>
+  </data>
+  <data name="SMTP_PWD" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="SMTP_USER" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="SUBTITLE_ERROR" xml:space="preserve">
+    <value>Ha ocurrido un error con su petición</value>
+  </data>
+  <data name="SUPER_USER" xml:space="preserve">
+    <value>Superusuario</value>
+  </data>
+  <data name="SUPPORT_GROUP_TITLE" xml:space="preserve">
+    <value>Soporte Técnico</value>
+  </data>
+  <data name="SYSTEM_ACCESS" xml:space="preserve">
+    <value>Acceso al Sistema</value>
+  </data>
+  <data name="SYSTEM_MESSAGE" xml:space="preserve">
+    <value>Mensaje del Sistema</value>
+  </data>
+  <data name="TITLE_CREATE" xml:space="preserve">
+    <value>Crear {0}</value>
+  </data>
+  <data name="TITLE_DELETE" xml:space="preserve">
+    <value>Eliminar {0}</value>
+  </data>
+  <data name="TITLE_DETAILS" xml:space="preserve">
+    <value>Detalle de {0}</value>
+  </data>
+  <data name="TITLE_ERROR" xml:space="preserve">
+    <value>Upssss... ¡¡Lo sentimos!!</value>
+  </data>
+  <data name="TITLE_UPDATE" xml:space="preserve">
+    <value>Editar {0}</value>
+  </data>
+  <data name="TO" xml:space="preserve">
+    <value>Hasta</value>
+  </data>
+  <data name="USERS_CONTROL" xml:space="preserve">
+    <value>Control de Usuarios</value>
+  </data>
+  <data name="USER_ACCESS_DATA" xml:space="preserve">
+    <value>Datos de Acceso</value>
+  </data>
+  <data name="USER_DOCUMENTATION" xml:space="preserve">
+    <value>Documentación</value>
+  </data>
+  <data name="USER_LIST" xml:space="preserve">
+    <value>Usuarios</value>
+  </data>
+  <data name="USER_PERSONAL_DATA" xml:space="preserve">
+    <value>Datos Personales</value>
+  </data>
+  <data name="USER_PROFILE" xml:space="preserve">
+    <value>Perfil de Usuario</value>
+  </data>
+  <data name="WEEK" xml:space="preserve">
+    <value>Semana</value>
+  </data>
+</root>

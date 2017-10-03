@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='utf-8'?>
+<hibernate-configuration xmlns="urn:nhibernate-configuration-2.0">
+
+  <!-- an ISessionFactory instance -->
+  <session-factory>
+
+    <!-- properties -->
+    <property name="connection.provider">NHibernate.Connection.DriverConnectionProvider</property>
+    <property name="connection.driver_class">NHibernate.Driver.NpgsqlDriver</property>
+    <property name="connection.connection_string">Server=remote.igcan.com;User Id=moladmin;Password=******;Database=CATTLE;Encoding=UNICODE;</property>
+    <property name="hibernate.command_timeout">0</property>
+    <property name="default_schema">COMMON</property>
+    <property name="show_sql">false</property>
+    <property name="dialect">NHibernate.Dialect.PostgreSQLDialect</property>
+    <property name="use_outer_join">true</property>
+    <property name="use_direct_sql">true</property>
+
+    <!-- moleQule -->
+
+    <mapping resource="moleQule.Library.Asm.Common.ItemMap.hbm.xml" assembly="moleQule.Library" />
+    <mapping resource="moleQule.Library.Asm.Common.SchemaUser.hbm.xml" assembly="moleQule.Library" />
+    <mapping resource="moleQule.Library.Asm.Common.SecureItem.hbm.xml" assembly="moleQule.Library" />
+    <mapping resource="moleQule.Library.Asm.Common.SettingItem.hbm.xml" assembly="moleQule.Library" />
+    <mapping resource="moleQule.Library.Asm.Common.User.hbm.xml" assembly="moleQule.Library" />
+    <mapping resource="moleQule.Library.Asm.Common.UserSetting.hbm.xml" assembly="moleQule.Library" />
+    <mapping resource="moleQule.Library.Asm.Common.Variable.hbm.xml" assembly="moleQule.Library" />
+
+    <mapping resource="moleQule.Library.Asm.nh0005.ItemLicences.hbm.xml" assembly="moleQule.Library" />
+    <mapping resource="moleQule.Library.Asm.nh0005.Setting.hbm.xml" assembly="moleQule.Library" />
+
+    <!-- moleQule.Common -->
+
+    <mapping resource="moleQule.Library.Common.Asm.Common.Cargo.hbm.xml" assembly="moleQule.Library.Common" />
+    <mapping resource="moleQule.Library.Common.Asm.Common.ContactoEmpresa.hbm.xml" assembly="moleQule.Library.Common" />
+    <mapping resource="moleQule.Library.Common.Asm.Common.Empresa.hbm.xml" assembly="moleQule.Library.Common" />
+    <mapping resource="moleQule.Library.Common.Asm.Common.Idioma.hbm.xml" assembly="moleQule.Library.Common" />
+    <mapping resource="moleQule.Library.Common.Asm.Common.Municipio.hbm.xml" assembly="moleQule.Library.Common" />
+    <mapping resource="moleQule.Library.Common.Asm.Common.Schema.hbm.xml" assembly="moleQule.Library.Common" />
+    <mapping resource="moleQule.Library.Common.Asm.Common.SubtipoFactura.hbm.xml" assembly="moleQule.Library.Common" />
+
+    <mapping resource="moleQule.Library.Common.Asm.nh0005.Ayuda.hbm.xml" assembly="moleQule.Library.Common" />
+    <mapping resource="moleQule.Library.Common.Asm.nh0005.AyudaPeriodo.hbm.xml" assembly="moleQule.Library.Common" />
+    <mapping resource="moleQule.Library.Common.Asm.nh0005.CuentaBancaria.hbm.xml" assembly="moleQule.Library.Common" />
+    <mapping resource="moleQule.Library.Common.Asm.nh0005.Impuesto.hbm.xml" assembly="moleQule.Library.Common" />
+    <mapping resource="moleQule.Library.Common.Asm.nh0005.IRPF.hbm.xml" assembly="moleQule.Library.Common" />
+    <mapping resource="moleQule.Library.Common.Asm.nh0005.LineaRegistro.hbm.xml" assembly="moleQule.Library.Common" />
+    <mapping resource="moleQule.Library.Common.Asm.nh0005.Registro.hbm.xml" assembly="moleQule.Library.Common" />
+    <mapping resource="moleQule.Library.Common.Asm.nh0005.Pesaje.hbm.xml" assembly="moleQule.Library.Common" />
+    <mapping resource="moleQule.Library.Common.Asm.nh0005.TarjetaCredito.hbm.xml" assembly="moleQule.Library.Common" />
+    <mapping resource="moleQule.Library.Common.Asm.nh0005.TPV.hbm.xml" assembly="moleQule.Library.Common" />
+
+    <!-- moleQule.Hipatia -->
+
+    <mapping resource="moleQule.Library.Hipatia.Asm.Common.Entidad.hbm.xml" assembly="moleQule.Library.Hipatia" />
+    <mapping resource="moleQule.Library.Hipatia.Asm.Common.TipoEntidad.hbm.xml" assembly="moleQule.Library.Hipatia" />
+    <mapping resource="moleQule.Library.Hipatia.Asm.Common.Tipodocumento.hbm.xml" assembly="moleQule.Library.Hipatia" />
+
+    <mapping resource="moleQule.Library.Hipatia.Asm.nh0005.Agente.hbm.xml" assembly="moleQule.Library.Hipatia" />
+    <mapping resource="moleQule.Library.Hipatia.Asm.nh0005.Documento.hbm.xml" assembly="moleQule.Library.Hipatia" />
+    <mapping resource="moleQule.Library.Hipatia.Asm.nh0005.AgenteDocumento.hbm.xml" assembly="moleQule.Library.Hipatia" />
+
+    <!-- moleQule.Invoice -->
+
+    <mapping resource="moleQule.Library.Invoice.Asm.Common.TipoCliente.hbm.xml" assembly="moleQule.Library.Invoice" />
+
+    <mapping resource="moleQule.Library.Invoice.Asm.nh0005.Albaran.hbm.xml" assembly="moleQule.Library.Invoice" />
+    <mapping resource="moleQule.Library.Invoice.Asm.nh0005.Albaran_Factura.hbm.xml" assembly="moleQule.Library.Invoice" />
+    <mapping resource="moleQule.Library.Invoice.Asm.nh0005.Albaran_Ticket.hbm.xml" assembly="moleQule.Library.Invoice" />
+    <mapping resource="moleQule.Library.Invoice.Asm.nh0005.Caja.hbm.xml" assembly="moleQule.Library.Invoice" />
+    <mapping resource="moleQule.Library.Invoice.Asm.nh0005.CierreCaja.hbm.xml" assembly="moleQule.Library.Invoice" />
+    <mapping resource="moleQule.Library.Invoice.Asm.nh0005.Cliente.hbm.xml" assembly="moleQule.Library.Invoice" />
+    <mapping resource="moleQule.Library.Invoice.Asm.nh0005.Cobro.hbm.xml" assembly="moleQule.Library.Invoice" />
+    <mapping resource="moleQule.Library.Invoice.Asm.nh0005.CobroFactura.hbm.xml" assembly="moleQule.Library.Invoice" />
+    <mapping resource="moleQule.Library.Invoice.Asm.nh0005.CobroREA.hbm.xml" assembly="moleQule.Library.Invoice" />
+    <mapping resource="moleQule.Library.Invoice.Asm.nh0005.ConceptoAlbaran.hbm.xml" assembly="moleQule.Library.Invoice" />
+    <mapping resource="moleQule.Library.Invoice.Asm.nh0005.ConceptoFactura.hbm.xml" assembly="moleQule.Library.Invoice" />
+    <mapping resource="moleQule.Library.Invoice.Asm.nh0005.ConceptoProforma.hbm.xml" assembly="moleQule.Library.Invoice" />
+    <mapping resource="moleQule.Library.Invoice.Asm.nh0005.ConceptoTicket.hbm.xml" assembly="moleQule.Library.Invoice" />
+    <mapping resource="moleQule.Library.Invoice.Asm.nh0005.Factura.hbm.xml" assembly="moleQule.Library.Invoice" />
+    <mapping resource="moleQule.Library.Invoice.Asm.nh0005.LineaCaja.hbm.xml" assembly="moleQule.Library.Invoice" />
+    <mapping resource="moleQule.Library.Invoice.Asm.nh0005.LineaPedido.hbm.xml" assembly="moleQule.Library.Invoice" />
+    <mapping resource="moleQule.Library.Invoice.Asm.nh0005.MovimientoBanco.hbm.xml" assembly="moleQule.Library.Invoice" />
+    <mapping resource="moleQule.Library.Invoice.Asm.nh0005.Pedido.hbm.xml" assembly="moleQule.Library.Invoice" />
+    <mapping resource="moleQule.Library.Invoice.Asm.nh0005.Prestamo.hbm.xml" assembly="moleQule.Library.Invoice" />
+    <mapping resource="moleQule.Library.Invoice.Asm.nh0005.ProductoCliente.hbm.xml" assembly="moleQule.Library.Invoice" />
+    <mapping resource="moleQule.Library.Invoice.Asm.nh0005.Proforma.hbm.xml" assembly="moleQule.Library.Invoice" />
+    <mapping resource="moleQule.Library.Invoice.Asm.nh0005.Ticket.hbm.xml" assembly="moleQule.Library.Invoice" />
+    <mapping resource="moleQule.Library.Invoice.Asm.nh0005.TipoInteres.hbm.xml" assembly="moleQule.Library.Invoice" />
+    <mapping resource="moleQule.Library.Invoice.Asm.nh0005.Traspaso.hbm.xml" assembly="moleQule.Library.Invoice" />
+
+    <!-- moleQule.Store -->
+
+    <mapping resource="moleQule.Library.Store.Asm.Common.Puerto.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.Common.RazaAnimal.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.Common.TipoGanado.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.Common.TipoAnimal.hbm.xml" assembly="moleQule.Library.Store" />
+
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.AlbaranProveedor.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.Albaran_FacturaProveedor.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.Almacen.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.Cabeza.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.ConceptoAlbaranProveedor.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.ConceptoFacturaRecibida.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.Despachante.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.Empleado.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.ExpedienteREA.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.Expediente.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.Familia.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.FacturaRecibida.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.Gasto.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.LibroGanadero.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.LineaFomento.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.LineaLibroGanadero.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.LineaPedidoProveedor.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.Maquinaria.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.Naviera.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.Nomina.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.Pago.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.PagoFactura.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.Partida.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.PedidoProveedor.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.PrecioTrayecto.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.PrecioOrigen.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.PrecioDestino.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.Producto.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.ProductoProveedor.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.Proveedor.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.PuertoDespachante.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.RemesaNomina.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.Serie.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.SerieFamilia.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.Stock.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.TipoGasto.hbm.xml" assembly="moleQule.Library.Store" />
+    <mapping resource="moleQule.Library.Store.Asm.nh0005.Transportista.hbm.xml" assembly="moleQule.Library.Store" />
+
+    <!-- moleQule.Applicaction -->
+
+  </session-factory>
+
+</hibernate-configuration>

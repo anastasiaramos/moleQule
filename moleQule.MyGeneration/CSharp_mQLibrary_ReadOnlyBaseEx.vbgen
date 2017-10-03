@@ -1,0 +1,654 @@
+﻿##|TYPE Template
+##|UNIQUEID 97e5f35d-ef93-4f77-abb9-244884aa55da
+##|TITLE ViewModel
+##|NAMESPACE moleQule.WebFace
+##|SOURCE_TYPE Source
+##|OUTPUT_LANGUAGE C#
+##|COMMENTS_BEGIN
+From a Table, MS SQL, MS Access, Firebird, PostgreSQL, Oracle with aggregate support.
+##|COMMENTS_END
+##|GUI_ENGINE Microsoft Script
+##|GUI_LANGUAGE VBScript
+##|GUI_BEGIN
+Dim cmbDatabases
+Dim lstTables
+Dim lstChilds
+Dim txtNamespace
+Dim chk
+
+Sub setup()
+
+	If context.Objects.ContainsKey("DnpUtils") Then
+		DnpUtils.ReadInputFromCache(context)
+	End if
+
+	ui.Title = "C# moleQule ViewModel Template"
+	ui.Width  = 400
+	ui.Height = 650
+
+	' Grab default output path
+	Dim sOutputPath
+	sOutputPath = ""
+	If input.Contains("defaultOutputPath") Then 
+		sOutputPath = input.Item("defaultOutputPath")
+	End If
+
+	ui.AddLabel "lblPath", "Output file path: ",  "Select the output path."
+	ui.AddTextBox "txtPath", sOutputPath, "Select the Output Path."
+	ui.AddFilePicker "btnPath", "Select Path", "Select the Output Path.", "txtPath", true
+	
+	ui.AddLabel "lblModule", "Module: ",  "Provide your view model module."
+	Set txtNamespace = ui.AddTextBox("txtModule", "Module", "Provide your view object module")			
+
+	' List Databases in a ComboBox
+	ui.AddLabel "lblDatabases", "Select a database:", "Select a database in the dropdown below."
+	Set cmbDatabases = ui.AddComboBox("cmbDatabase", "Select a database.")
+
+	' List Tables in a listbox
+	ui.AddLabel "lblTables", "Select tables:", "Select tables from the listbox below."
+	Set lstTables = ui.AddListBox ("lstTables", "Select tables:")
+	'lstTables.IsMultiSelect = false
+	lstTables.Height = 120
+	
+	ui.AddLabel "lblChilds", "Select childs:", "Select tables from the listbox below."
+	Set lstChilds = ui.AddListBox ("lstChilds", "Select childs:")
+	lstTables.IsMultiSelect = true
+	lstChilds.Height = 120
+	
+	Set chkRoot = ui.AddCheckBox ("chkRoot", "Objeto ROOT", true, "")
+	Set chkAux = ui.AddCheckBox ("chkAux", "Tabla Auxiliar", false, "")
+	'Set prefix = ui.AddCheckBox("print", "Generar objeto Print", false, "If checked, an EntityPrint.cs will be created")
+	'Set trimName = ui.AddCheckBox("trimName", "Trim spaces from output filename?", false, "If checked, the file on disk will have spaces trimmed from the name.")
+	
+	If MyMeta.DriverString = "FIREBIRD" Then
+		ui.Height = ui.Height + 20
+		Set chk = ui.AddCheckBox("ckDialect3", "DIALECT 3", false, "If checked, the stored procedure will use dialect 3 syntax")
+		chk.forecolor = "red"
+	End If
+
+	' Attach the onchange event to the cmbDatabases control.
+	setupDatabaseDropdown cmbDatabases
+	cmbDatabases.AttachEvent "onchange", "cmbDatabases_onchange"
+	
+	ui.ShowGUI = true
+
+End Sub
+
+Sub setupDatabaseDropdown(cmbDatabases)
+	cmbDatabases.BindData MyMeta.Databases
+
+	If Not MyMeta.DefaultDatabase Is Nothing Then
+		cmbDatabases.SelectedValue = MyMeta.DefaultDatabase.Name
+		bindTables cmbDatabases.SelectedValue
+	End If
+End Sub
+
+Sub bindTables(sDatabase)
+	Set db = MyMeta.Databases(sDatabase)
+	lstTables.BindData(db.Tables)
+	lstChilds.BindData(db.Tables)
+End Sub
+
+' Event Handler
+Sub cmbDatabases_onchange(control)
+	Set cmbDatabases = ui.item("cmbDatabase")
+	bindTables cmbDatabases.SelectedText
+	txtNamespace.Text = UFirst(cmbDatabases.SelectedValue) + ".Library"
+End Sub
+
+Function UFirst(name)
+	Dim tname
+	Dim str
+	Dim char
+	Dim l
+
+	str =  UCase(Mid(name, 1, 1)) + LCase(Mid(name, 2))
+	
+	Ufirst = str
+	
+End Function
+##|GUI_END
+##|BODY_MODE Markup
+##|BODY_ENGINE Microsoft Script
+##|BODY_LANGUAGE VBScript
+##|BODY_TAG_START <%
+##|BODY_TAG_END %>
+##|BODY_BEGIN
+<%
+'------------------------------------------------------------------------------
+' Copyright 2013 by iQ Ingenieros
+' All Rights Reserved 
+'
+' Permission to use, copy, modify, and distribute this software and its 
+' documentation for any purpose and without fee is hereby granted, 
+' provided that the above copyright notice appear in all copies and that 
+' both that copyright notice and this permission notice appear in 
+' supporting documentation. 
+'
+' MYGENERATION SOFTWARE DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS 
+' SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY 
+' AND FITNESS, IN NO EVENT SHALL MYGENERATION SOFTWARE BE LIABLE FOR ANY 
+' SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES 
+' WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, 
+' WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER 
+' TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE 
+' OR PERFORMANCE OF THIS SOFTWARE. 
+'------------------------------------------------------------------------------
+' ViewModel.vbgen
+' Creation Update : 29/07/2013
+' Last Update : 08/11/2013
+'------------------------------------------------------------------------------
+
+If context.Objects.ContainsKey("DnpUtils") Then
+	DnpUtils.SaveInputToCache(context)
+End if
+
+Dim bFirst
+Dim name
+Dim pname
+Dim buffer
+Dim objTable
+Dim objColumn
+Dim objectNames
+Dim language
+Dim databaseName
+Dim database
+Dim namespace
+Dim props
+Dim prefix
+Dim trimName
+Dim isRoot
+Dim isChild
+Dim isParent
+Dim print
+Dim Foto
+
+Dim IDbCommand
+Dim IDataParameter
+Dim ParameterPrefix
+
+Dim dialect
+
+dialect = 1
+If input.Item("ckDialect3") Then
+	dialect = 3
+End If
+
+prefix = input.Item("prefix")
+trimName = input.Item("trimName")
+noIsRoot = input.Item("noIsRoot")
+
+' Grab the namespace
+module = input.Item("txtModule")
+
+' Grab the choices the user made in our UI Script (see Interface Code tab)
+Set objectNames = input.Item("lstTables")
+Set childNames = input.Item("lstChilds")
+
+databaseName  = input.Item("cmbDatabase")
+Set database = MyMeta.Databases(databaseName)
+
+' Loop through the tables the user selected and generate the business entities
+For intLp = 0 To objectNames.Count - 1
+
+	Set objTable = database.Tables(objectNames.item(intLp))
+	Set props = objTable.Properties
+	
+	objectName = ToClassName(objTable.Alias)
+	
+	isRoot = input.Item("chkRoot")
+	isParent = (childNames.Count > 0)
+	isChild = true
+	isAux = input.Item("chkAux")
+	'print = input.Item("print")
+		
+	Foto = false
+	
+	For i = 0 to objTable.Columns.Count-1 
+		Set objColumn = objTable.Columns(i)
+		if UCase(objColumn.Alias) = "FOTO" then Foto = true	End If
+		if UCase(objColumn.Alias) = "LOGO" then Foto = true	End If
+	Next
+	
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' Now we have the table that we desire to build a Business Object From, let us begin.
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Web;
+using System.Web.Mvc;
+
+using moleQule.Library;
+using moleQule.Library.Common;
+using moleQule.Library.<%=module%>;
+using moleQule.WebFace.Models;
+
+namespace moleQule.WebFace.<%=module%>.Models
+{
+	/// <summary>
+	/// ViewModel
+	/// </summary>
+	[Serializable()]
+	public class <%=objectName%>ViewModel : ViewModelBase<<%=objectName%>, <%=objectName%>Info>, IViewModel
+	{
+		#region Attributes
+
+		protected <%=objectName%>Base _base = new <%=objectName%>Base();
+
+		<%For each childName in childNames
+		%>public <%=ToClassName(childName)%> _<%=LCase(Plural(childName))%>;
+		<%Next%>
+		
+		#endregion	
+	
+		#region Properties		
+		
+		[HiddenInput]
+		public long Oid { get { return _base.Record.Oid; } set { _base.Record.Oid = value; } }
+		
+		[HiddenInput]
+		public long <%=objectName%>ViewModelID { get { return _base.Record.Oid; } set { _base.Record.Oid = value; } }		
+		<%For i = 0 to objTable.Columns.Count-1
+			Set column = objTable.Columns(i) 
+				If column.Name <> "OID" Then
+					name = LCase(column.Name)
+					tipo = GetDataType(column.DataTypeName)
+		%>
+		<%If IsOID(column.Name) or column.Name = "STATUS" Then
+		%>[HiddenInput]<%Else
+		%>[Display(ResourceType = typeof(Resources.Labels), Name = "<%=UCase(column.Name)%>")]<%
+		End If%>
+		<%If tipo = "DateTime" Then%>[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]<% 	End if
+		%>public <%= tipo %> <%=ToProperty(column.Name)%> { get { return _base.Record.<%=ToProperty(column.Name)%>; } set { _base.Record.<%=ToProperty(column.Name)%> = value; } }
+		<%		End If
+		  Next %>
+		<%For each childName in childNames
+		%>public <%=ToClassName(childName)%>List <%=Plural(ToClassName(childName))%> { get { return _<%=LCase(Plural(childName))%>; } }
+		<%Next 
+		%>
+		//UNLINKED PROPERTIES
+		public virtual EEstado EStatus { get { return _base.EStatus; } set { _base.Record.Status = (long)value; } }
+		
+		[Display(ResourceType = typeof(Resources.Labels), Name = "STATUS")]
+		public virtual string StatusLabel { get { return _base.StatusLabel; } set { } }
+		
+		#endregion
+		
+		#region Business Methods
+		
+		public new void CopyFrom(<%=objectName%> source)
+		{
+			if (source == null) return;
+			_base.CopyValues(source);
+		}
+		public new void CopyFrom(<%=objectName%>Info source)
+		{
+			if (source == null) return;
+			_base.CopyValues(source);
+		}
+		public new void CopyTo(<%=objectName%> dest, HttpRequestBase request = null)
+		{
+			if (dest == null) return;
+
+			base.CopyTo(dest, request);
+		}
+			
+		#endregion		
+		
+		#region Factory Methods
+
+		public <%=objectName%>ViewModel() { }
+
+		public static <%=objectName%>ViewModel New() 
+		{
+			<%=objectName%>ViewModel obj = new <%=objectName%>ViewModel();
+			obj.CopyFrom(<%=objectName%>Info.New());
+			return obj;
+		}
+		public static <%=objectName%>ViewModel New(<%=objectName%>  source) { return New(source.GetInfo(false)); }
+		public static <%=objectName%>ViewModel New(<%=objectName%>Info source)
+		{
+			<%=objectName%>ViewModel obj = new <%=objectName%>ViewModel();
+			obj.CopyFrom(source);
+			return obj;
+		}
+		
+		public static <%=objectName%>ViewModel Get(long oid)
+		{
+			<%=objectName%>ViewModel obj = new <%=objectName%>ViewModel();
+			obj.CopyFrom(<%=objectName%>Info.Get(oid, false));
+			return obj;
+		}
+
+		public static void Add(<%=objectName%>ViewModel item)
+		{
+			<%=objectName%> newItem = <%=objectName%>.New();
+			item.CopyTo(newItem);
+			newItem.Save();
+			item.CopyFrom(newItem);
+		}
+		public static void Edit(<%=objectName%>ViewModel source, HttpRequestBase request = null)
+		{
+			<%=objectName%> item = <%=objectName%>.Get(source.Oid);
+			source.CopyTo(item, request);
+			item.Save();
+		}
+		public static void Remove(long oid)
+		{
+			<%=objectName%>.Delete(oid);
+		}
+		
+		#endregion
+	}	
+	
+		/// <summary>
+	/// ViewModel List
+	/// </summary>
+	[Serializable()]
+	public class <%=objectName%>ListViewModel : List<<%=objectName%>ViewModel>
+	{
+		#region Business Objects
+
+		#endregion
+
+		#region Factory Methods
+
+		public <%=objectName%>ListViewModel() { }
+
+		public static <%=objectName%>ListViewModel Get()
+		{
+			<%=objectName%>ListViewModel list = new <%=objectName%>ListViewModel();
+
+			<%=objectName%>List sourceList = <%=objectName%>List.GetList();
+
+			foreach (<%=objectName%>Info item in sourceList)
+				list.Add(<%=objectName%>ViewModel.New(item));
+
+			return list;
+		}
+		public static <%=objectName%>ListViewModel Get(<%=objectName%>List sourceList)
+		{
+			<%=objectName%>ListViewModel list = new <%=objectName%>ListViewModel();
+
+			foreach (<%=objectName%>Info item in sourceList)
+				list.Add(<%=objectName%>ViewModel.New(item));
+
+			return list;
+		}
+
+		#endregion
+	}
+}
+<% 
+' Save the output file for this Table
+SaveAs("ViewModel.cs")
+
+Next 'objectName
+
+output.write buffer
+
+Function SaveAs (name)
+	
+	' Save the output file for this Table
+	Dim filename
+	filename = input.item("txtPath")
+
+	Dim length
+	Dim pos
+	length = Len(filename)
+	pos = InStrRev(filename, "\") 
+
+	If Not pos = length Then
+		filename = filename & "\"
+	End If
+	
+	If prefix = True Then 
+		If trimName = True Then
+			filename = filename & "_" & ToProperty(TrimSpaces(objectName)) & name
+		Else
+			filename = filename & "_" & objectName & name
+		End If
+	Else 
+		If trimName = True Then
+			filename = filename & objectName & name
+		Else
+			filename = filename & objectName & name
+		End If
+	End If
+
+	output.save filename, false
+	buffer = buffer + output.text
+	output.clear
+
+End Function	
+
+'===========================================================================
+' These are support routines called by the above scirpt
+'===========================================================================
+Function GetAlias(objColumn)
+	Dim name
+	name = TrimSpaces(objColumn.Alias)
+	GetAlias = UCase(Left(name, 1)) & Right(name, Len(name) -1)
+End Function
+
+Function GetName(objColumn)
+	Dim name
+	name = objColumn.Name
+	GetName = UCase(Left(name, 1)) & Right(name, Len(name) -1)
+End Function
+
+Function TrimSpaces(str)
+
+	Dim tname
+	Dim name
+	Dim char
+	Dim l
+
+	name = ""
+	tname = str
+	l = Len(tname)
+
+	For j = 1 To l
+		char = Mid(tname, j, 1)
+		If Not char = " " And Not Char = "." Then
+			name = name & char
+		End If
+	Next
+
+	TrimSpaces = name
+End Function
+
+Function GetDataType (tipo)
+	Dim retVal
+	Select Case tipo 
+		Case "varchar"
+			GetDataType = "string"
+		Case "text"
+			GetDataType = "string"
+		Case "date"
+			GetDataType = "DateTime"
+		Case "bool"
+			GetDataType = "bool"
+		Case "char"
+			GetDataType = "Char"
+		Case "date"
+			GetDataType = "DateTime"
+		Case "float4"
+			GetDataType = "float"
+		Case "float8"
+			GetDataType = "double"
+		Case "int2"
+			GetDataType = "short"
+		Case "int4"
+			GetDataType = "int"
+		Case "int8"
+			GetDataType = "long"
+		Case "numeric"
+			GetDataType = "Decimal"
+		Case "money"
+			GetDataType = "Decimal"
+		Case "time"
+			GetDataType = "DateTime"
+		Case "timestamp"
+			GetDataType = "DateTime"
+		Case "bigint"
+			GetDataType = "long"
+		Case "decimal"
+			GetDataType = "Decimal"
+		Case Else
+			GetDataType = ""
+	End Select
+End Function
+
+Function ToProperty (name)
+	
+	Dim tname
+	Dim str
+	Dim char
+	Dim l
+	
+	str = ""
+	tname = TrimSpaces(name)
+	l = Len(tname)
+	upper = 1
+
+	For j = 1 To l			
+		char = Mid(tname, j, 1)
+		If (char = "_") Then 
+			upper = 1
+		Else
+			If (upper = 1) Then
+				str = str & UCase(char)
+				upper = 0
+			Else 
+				str = str & LCase(char)
+			End If
+		End If
+	Next
+	ToProperty = str
+	
+End Function
+
+Function ToClassName (name)
+	Dim tname
+	Dim str
+	Dim char
+	Dim l
+	
+	str = ""
+	tname = name
+	l = Len(tname)
+	j = 3
+
+	While j <= l
+		char = Mid(tname, j, 1)
+		If (char = "_") Then 
+			j = j + 1
+			char = Mid(tname, j, 1)
+		End If
+		str = str & char
+		j = j + 1 
+	Wend
+	
+	ToClassName = str
+	
+End Function
+
+Function Plural(Nombre)
+	
+	Dim ultima
+	Dim penultima
+	
+	ultima = Mid(Nombre, Len(Nombre), 1)
+	
+	'Si acaba en Mayusculas
+	if (ultima = UCase(ultima)) then
+		penultima = Mid(Nombre, Len(Nombre)-1, 1)
+		if not (LCase(penultima) = "a" or _
+			LCase(penultima) = "e" or _
+			LCase(penultima) = "i" or _
+			LCase(penultima) = "o" or _
+			LCase(penultima) = "u") then
+			Plural = Mid(Nombre, 1, Len(Nombre) - 1) + "es" + ultima
+		else
+			Plural = Mid(Nombre, 1, Len(Nombre) - 1) + "s" + ultima
+		end if
+	else
+		if not (LCase(ultima) = "a" or _
+				LCase(ultima) = "e" or _
+				LCase(ultima) = "i" or _
+				LCase(ultima) = "o" or _
+				LCase(ultima) = "u") then
+			Plural = Nombre + "es"
+		else
+			Plural = Nombre + "s"
+		end if
+	end if
+
+end function
+
+Function CropName(name)
+	Dim tname
+	Dim str
+	Dim char
+	Dim l
+	Dim continue
+	
+	tname = ToClassName(name)
+	str = Mid(tname, 1, 1)
+	l = Len(tname)
+	j = 2
+	continue = true
+
+	While j <= l And continue
+		char = Mid(tname, j, 1)
+		If (char <> UCase(char)  And char <> "_") Then 
+			char = Mid(tname, j, 1)
+			str = str & char
+		else
+			continue = false
+		End If
+		j = j + 1 
+	Wend
+	
+	CropName = str
+	
+End Function
+
+Function UFirst(name)
+	Dim tname
+	Dim str
+	Dim char
+	Dim l
+
+	str =  UCase(Mid(name, 1, 1)) + LCase(Mid(name, 2))
+	
+	Ufirst = str
+	
+End Function
+
+Function IsOID(name)
+	
+	Dim tname
+	Dim prefix
+		
+	tname = TrimSpaces(name)
+
+	If Len(tname) >= 4 Then
+		prefix = Mid(tname, 1, 4)
+		If (prefix = "OID_") Then
+			IsOID = true
+		Else
+			IsOID = false
+		End If
+	Else
+		IsOID = false
+	End If
+	
+End Function
+
+%>
+##|BODY_END

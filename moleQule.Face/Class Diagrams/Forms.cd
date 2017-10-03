@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Comment CommentText="Clase Base para Formularios de Selección de Elementos de una Lista">
+    <Position X="9.428" Y="2.417" Height="0.532" Width="1.554" />
+  </Comment>
+  <Comment CommentText="Clases Base para Selección de Datos de un informe">
+    <Position X="11.146" Y="2.393" Height="0.576" Width="1.429" />
+  </Comment>
+  <Comment CommentText="Clase Base para cualquier formulario hijo del formulario principal de la Aplicacion.&#xD;&#xA;- Apariencia&#xD;&#xA;- Segundo Plano&#xD;&#xA;- Ayuda&#xD;&#xA;- Refresco de datos">
+    <Position X="5.344" Y="0.5" Height="1.052" Width="2.45" />
+  </Comment>
+  <Comment CommentText="Clase Base asociada al Manejo de un Elemento de una Entidad:&#xD;&#xA;- OID de la entidad&#xD;&#xA;- Validación y Formato">
+    <Position X="3.822" Y="2.26" Height="0.708" Width="1.867" />
+  </Comment>
+  <Comment CommentText="Clase Base para Gestión de un Tipo de Entidad en General:&#xD;&#xA;- Gestión de forms derivados&#xD;&#xA;- Botones">
+    <Position X="0.5" Y="2.26" Height="0.698" Width="2.054" />
+  </Comment>
+  <Comment CommentText="Clase Base para Búsqueda y Filtrado de Elementos de un Tipo de Entidad">
+    <Position X="2.948" Y="4.521" Height="0.5" Width="1.554" />
+  </Comment>
+  <Comment CommentText="Clase Base para Formularios de Consulta, Edición y Borrado de un Elemento de una Entidad o lista de Entidades">
+    <Position X="4.896" Y="4.375" Height="0.615" Width="1.971" />
+  </Comment>
+  <Comment CommentText="Clase Base para la Gestión de la Entidad Principal (Schema) de la Aplicación">
+    <Position X="0.698" Y="4.531" Height="0.552" Width="1.585" />
+  </Comment>
+  <Comment CommentText="Clase Base para Formularios de Consulta, Edición y Borrado de una lista hija de un Elemento de una Entidad">
+    <Position X="5.521" Y="7.261" Height="0.615" Width="1.773" />
+  </Comment>
+  <Comment CommentText="DIAGRAMA DE INTERFAZ&#xD;&#xA;MOLEQULE.FACE">
+    <Position X="0.5" Y="0.5" Height="0.573" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Clases Base para Selección de Datos y Tipo de Impresión para un Informe en un ManagerForm">
+    <Position X="10.907" Y="4.458" Height="0.604" Width="2.158" />
+  </Comment>
+  <Comment CommentText="Clase Base para Formularios de Consulta, Edición y Borrado de una lista de Entidades">
+    <Position X="8.563" Y="5.938" Height="0.615" Width="1.773" />
+  </Comment>
+  <Comment CommentText="Clase Base para Formularios de Consulta, Edición y Borrado de un Elemento de una Entidad">
+    <Position X="2.688" Y="7.26" Height="0.615" Width="1.741" />
+  </Comment>
+  <Comment CommentText="Clase Base para Formularios de Entrada de Datos">
+    <Position X="7.581" Y="2.438" Height="0.532" Width="1.554" />
+  </Comment>
+  <Class Name="moleQule.Face.ChildForm" Collapsed="true">
+    <Position X="6" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\ChildForm.cs</FileName>
+      <HashCode>AkAAAECAAGggAAEQQgCAAAACAAAAARAAAAAIAAAEAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="moleQule.Face.DriverEntityForm" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\DriverEntityForm.cs</FileName>
+      <HashCode>ACAAAAAAASAAAAAAAACAAAACACCAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="moleQule.Face.EntityMngForm" Collapsed="true">
+    <Position X="0.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\EntityMngForm.cs</FileName>
+      <HashCode>JBAAAgIAISghCAAkAAKAQAICkhCCgAsQHAAMwAEIAQY=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="moleQule.Face.LocalizeForm" Collapsed="true">
+    <Position X="3" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\LocalizeForm.cs</FileName>
+      <HashCode>AAAAAAIAIiACAAAQAgCAAAAKIBAIAACAEABSgEAAAAA=</HashCode>
+    </TypeIdentifier>
+    <InheritanceLine Type="moleQule.Face.DriverEntityForm" ManuallyRouted="true">
+      <Path>
+        <Point X="4.75" Y="4.13" />
+        <Point X="4.75" Y="5.125" />
+        <Point X="3.75" Y="5.125" />
+        <Point X="3.75" Y="5.5" />
+      </Path>
+    </InheritanceLine>
+  </Class>
+  <Class Name="moleQule.Face.ManagerForm" Collapsed="true">
+    <Position X="5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\ManagerForm.cs</FileName>
+      <HashCode>EEAAgAACACgQACAACGiRACAiACAAAAEAEgBIgABAAgA=</HashCode>
+    </TypeIdentifier>
+    <InheritanceLine Type="moleQule.Face.DriverEntityForm" ManuallyRouted="true">
+      <Path>
+        <Point X="4.75" Y="4.13" />
+        <Point X="4.75" Y="5.125" />
+        <Point X="5.75" Y="5.125" />
+        <Point X="5.75" Y="5.5" />
+      </Path>
+    </InheritanceLine>
+  </Class>
+  <Class Name="moleQule.Face.SchemaMngForm" Collapsed="true">
+    <Position X="0.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Entities\Schema\SchemaMngForm.cs</FileName>
+      <HashCode>AAAAAAAAACACgAAAAACAAAACAAAAAAAAAQAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="moleQule.Face.PrintSelectForm" Collapsed="true">
+    <Position X="11.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\PrintSelectForm.cs</FileName>
+      <HashCode>AAAAAAAAACAACAQAAACAAAACAAAAAAAAAQAAAABAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="moleQule.Face.ReportSelectForm" Collapsed="true">
+    <Position X="11.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\ReportSelectForm.cs</FileName>
+      <HashCode>CAAAAAAAAmAACAAAAACQAAACAAAAAAAAAAAAgABAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="moleQule.Face.SelectForm" Collapsed="true">
+    <Position X="9.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\SelectForm.cs</FileName>
+      <HashCode>CAABAAAAASAAAAAAQACAAAACABCAAAEAAAAAgABAAAI=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="moleQule.Face.ManagerListForm" Collapsed="true">
+    <Position X="8.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\ManagerListForm.cs</FileName>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="moleQule.Face.ManagerEntityForm" Collapsed="true">
+    <Position X="2.5" Y="8" Width="1.75" />
+    <TypeIdentifier>
+      <FileName>Forms\ManagerEntityForm.cs</FileName>
+      <HashCode>AAABAAAAACAgAAAAQACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <InheritanceLine Type="moleQule.Face.ManagerForm" ManuallyRouted="true">
+      <Path>
+        <Point X="5.75" Y="6.13" />
+        <Point X="5.75" Y="6.875" />
+        <Point X="3.375" Y="6.875" />
+        <Point X="3.375" Y="8" />
+      </Path>
+    </InheritanceLine>
+  </Class>
+  <Class Name="moleQule.Face.ManagerChildListForm" Collapsed="true">
+    <Position X="5.5" Y="8" Width="1.75" />
+    <TypeIdentifier>
+      <FileName>Forms\ManagerChildListForm.cs</FileName>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="moleQule.Face.Skin01.ManagerEntitySkinForm" Collapsed="true">
+    <Position X="2.25" Y="9.25" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>Forms\Skin01\ManagerEntitySkinForm.cs</FileName>
+      <HashCode>AEEAEAAAAKIAAAAAAQCCAAACAAAAIAAAMEIAIEAACAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="moleQule.Face.Skin01.ManagerListSkinForm" Collapsed="true">
+    <Position X="8.5" Y="9.25" Width="2" />
+    <TypeIdentifier>
+      <FileName>Forms\Skin01\ManagerListSkinForm.cs</FileName>
+      <HashCode>AEAAEAAAAKIAAAAAEACCAAACAAAAIAAAMEIAIEAACAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="moleQule.Face.Skin01.ManagerChildListSkinForm" Collapsed="true">
+    <Position X="5.25" Y="9.25" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>Forms\Skin01\ManagerChildListSkinForm.cs</FileName>
+      <HashCode>AAAAEAAAAKIAAAAAAACCAAACAAAAIAAAIEIAIEAACAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="moleQule.Face.InputForm" Collapsed="true">
+    <Position X="7.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\InputForm.cs</FileName>
+      <HashCode>CAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAgAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="moleQule.Face.ActionForm" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Forms\ActionForm.cs</FileName>
+      <HashCode>AAACAAAgAaIAAAAAAACAACACAJCAAAAAAIAAAABAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+</ClassDiagram>

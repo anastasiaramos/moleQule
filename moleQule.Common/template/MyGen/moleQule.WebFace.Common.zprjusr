@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project name="moleQule.WebFace.Invoice">
+  <modules>
+    <module name="Company" />
+    <module name="Invoice" />
+    <module name="Monitor" />
+  </modules>
+</project>

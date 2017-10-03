@@ -1,0 +1,17 @@
+﻿@using Resources;
+@using System.Globalization;
+@{
+    string locale = "_" + CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+}
+<div class="heading-buttons">
+	<h1>@Labels.TUTORIALS_TITLE</h1>
+</div>
+<br /><br />
+@Html.Partial("_TutorialsBrowser")
+<br /><br />
+@Html.Partial(locale + "/_HowToUsePlugin")
+<br /><br />
+@Html.Partial(locale + "/_HowToUsePluginUpload")
+<br /><br />
+@Html.Partial(locale + "/_HowToInstallPlugin")
+@Scripts.Render("~/bundles/admin/wizards/js")

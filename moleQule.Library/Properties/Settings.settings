@@ -1,0 +1,162 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="moleQule.Library.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SETTING_NAME_USER_CULTURE" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CULTURE</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_DEFAULT_SCHEMA" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DEFAULT_SCHEMA</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_BACKUPS_DAYS" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">BACKUPS_DAYS</Value>
+    </Setting>
+    <Setting Name="DB_USER" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">moladmin</Value>
+    </Setting>
+    <Setting Name="DB_PWD" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">iQi_1998</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_SHOW_AUTOPILOT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SHOW_AUTOPILOT</Value>
+    </Setting>
+    <Setting Name="DB_VERSION_VARIABLE" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DB_VERSION</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_LINK_SEED" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">LINK_SEED</Value>
+    </Setting>
+    <Setting Name="BACKUP_EXTENSION_FILTER" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Backup (*.backup)|*.backup</Value>
+    </Setting>
+    <Setting Name="ADMIN_USER" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">moladmin</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_FILES_HOST" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">FILES_HOST</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_FORMAT_GRIDS" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">FORMAT_GRIDS</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_PDF_PRINTS_FOLDER" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">PDF_PRINTS_FOLDER</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_MOLEQULE_DB_VERSION" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">MOLEQULE_DB_VERSION</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_SMTP_HOST" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SMTP_HOST</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_SMTP_PORT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SMTP_PORT</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_SMTP_USER" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SMTP_USER</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_SMTP_PWD" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SMTP_PWD</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_SMTP_EMAIL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SMTP_EMAIL</Value>
+    </Setting>
+    <Setting Name="NAME" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">MOLEQULE</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_SMTP_ENABLE_SSL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SMTP_ENABLE_SSL</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_APPLICATION_VERSION" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">APPLICATION_VERSION</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_SHOW_NULL_RECORDS" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SHOW_NULL_RECORDS</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_USE_DEFAULT_PRINTER" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">USE_DEFAULT_PRINTER</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_DEFAULT_PRINTER" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DEFAULT_PRINTER</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_DEFAULT_N_COPIES" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DEFAULT_N_COPIES</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_POSTGRESQL_VERSION" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">POSTGRESQL_VERSION</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_BACKUPS_HOUR" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">BACKUPS_HOUR</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_BACKUPS_LAST_DATE" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">BACKUPS_LAST_DATE</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_APP_CULTURE" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CULTURE</Value>
+    </Setting>
+    <Setting Name="COUNTIES_XML_FILE" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Countries.xml</Value>
+    </Setting>
+    <Setting Name="DB_NAME" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">MOLEQULE</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_ADMIN_EMAIL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ADMIN_EMAIL</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_ADMIN_CONTACT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ADMIN_CONTACT</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_CLIENTS_CONTACT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CLIENTS_CONTACT</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_SUPPORT_CONTACT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SUPPORT_CONTACT</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_CLIENTS_EMAIL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CLIENTS_EMAIL</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_SUPPORT_EMAIL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SUPPORT_EMAIL</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_SUPPORT_MOBILE_PHONE" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SUPPORT_MOBILE_PHONE</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_CLIENTS_MOBILE_PHONE" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CLIENTS_MOBILE_PHONE</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_ADMIN_MOBILE_PHONE" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ADMIN_MOBILE_PHONE</Value>
+    </Setting>
+    <Setting Name="API_URL_MONITOR" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/gwaihir/monitor/</Value>
+    </Setting>
+    <Setting Name="API_SERVICE_MONITOR" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">monitor.html</Value>
+    </Setting>
+    <Setting Name="API_ACTION_MONITOR" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">update</Value>
+    </Setting>
+    <Setting Name="SUPERUSER" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">moladmin</Value>
+    </Setting>
+    <Setting Name="SERVICES_USER" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">molservice</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_SMS_GATEWAY_NAME" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SMS_GATEWAY_NAME</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_SMS_GATEWAY_CODE" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SMS_GATEWAY_CODE</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_SMS_GATEWAY_USER" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SMS_GATEWAY_USER</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_SMS_GATEWAY_PWD" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SMS_GATEWAY_PWD</Value>
+    </Setting>
+    <Setting Name="SETTING_NAME_SMS_GATEWAY_ACCOUNT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SMS_GATEWAY_ACCOUNT</Value>
+    </Setting>
+    <Setting Name="SERVICES_PASSWORD" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">iQi_1998</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

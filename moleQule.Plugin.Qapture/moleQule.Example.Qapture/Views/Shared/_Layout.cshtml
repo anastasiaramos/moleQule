@@ -1,0 +1,65 @@
+﻿@using Resources
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Qapture Image Example</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+    </head>
+    <body>
+        <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                <nav style="margin-bottom:10px;">
+                    <a href="http://www.how-to-use-scanner-from-browser-webapp.com" target="_blank" data-toggle="modal">
+                        <img alt="Qapture Web Scan Plugin" class="preview" src="/Content/img/logo.png" />
+                    </a>
+                </nav>
+                </div>
+                <div class="float-right">
+                    <nav>
+                        <ul id="language">
+                            <li class="language"><a href="@Url.Action("Index", "Home", new { locale = "es-ES", requestUrl = @Request.Url })">Español</a></li>
+                            <li class="language"><a href="@Url.Action("Index", "Home", new { locale = "en-US", requestUrl = @Request.Url })">English</a></li>
+                        </ul>
+                    </nav>
+                    <nav>
+                        <ul id="menu">
+                            <li>@Html.ActionLink(@Labels.HOME_TITLE, "Edit", "Scan")</li>
+                            <li>@Html.ActionLink(@Labels.TUTORIALS_TITLE, "Tutorials", "Home")</li>
+                            <li>@Html.ActionLink(@Labels.CONTACT_TITLE, "Contact", "Home")</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div id="body">
+            <div style="text-align:center;">
+                <ul id="menu2">
+                    <li @if (ViewBag.ActiveItem == "BASIC"){ <text>class="active"</text> }>@Html.ActionLink(@Resources.Labels.BASIC_EXAMPLE, "BasicExample", "Scan")</li>
+                    <li @if (ViewBag.ActiveItem == "UPLOAD"){ <text>class="active"</text> }>@Html.ActionLink(@Resources.Labels.UPLOAD_EXAMPLE, "UploadExample", "Scan")</li>
+                </ul>
+            </div> 
+            <section class="content-wrapper clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <a href="http://iqingenieros.com" target="_blank" data-toggle="modal">
+                        <img alt="iQ Ingenieros" class="footer" src="/Content/img/iq_logo.gif" height="25px" width="25px"/>
+                    </a>
+                </div>
+                <div class="float-left footer">
+                    Qapture Web Scan Plugin 1.0.0 &copy; @DateTime.Now.Year - <a href="http://iqingenieros.com" class="footer">iQ Ingenieros</a>
+                </div>
+            </div>
+        </footer>
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

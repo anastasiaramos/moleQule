@@ -1,0 +1,601 @@
+﻿##|TYPE Template
+##|UNIQUEID 7b3bd6f2-e126-4c08-80b7-f3ac7255f2d5
+##|TITLE HijoSinHijos_ReadOnlyListBaseEx
+##|NAMESPACE dOOdads.C#
+##|SOURCE_TYPE Source
+##|OUTPUT_LANGUAGE C#
+##|COMMENTS_BEGIN
+From a Table, MS SQL, MS Access, Firebird, PostgreSQL, Oracle with aggregate support.
+##|COMMENTS_END
+##|GUI_ENGINE Microsoft Script
+##|GUI_LANGUAGE VBScript
+##|GUI_BEGIN
+Dim cmbDatabases
+Dim lstTables
+Dim chk
+
+Sub setup()
+
+	If context.Objects.ContainsKey("DnpUtils") Then
+		DnpUtils.ReadInputFromCache(context)
+	End if
+
+	ui.Title = "Generate C# dOOdads"
+	ui.Width  = 330
+	ui.Height = 480
+
+	' Grab default output path
+	Dim sOutputPath
+	sOutputPath = ""
+	If input.Contains("defaultOutputPath") Then 
+		sOutputPath = input.Item("defaultOutputPath")
+	End If
+
+	ui.AddLabel "lblPath", "Output file path: ",  "Select the output path."
+	ui.AddTextBox "txtPath", sOutputPath, "Select the Output Path."
+	ui.AddFilePicker "btnPath", "Select Path", "Select the Output Path.", "txtPath", true
+	
+	ui.AddLabel "lblNamespace", "Namespace: ",  "Provide your objects namespace."
+	ui.AddTextBox "txtNamespace", "Your.Namespace", "Provide your objects namespace."			
+
+	' List Databases in a ComboBox
+	ui.AddLabel "lblDatabases", "Select a database:", "Select a database in the dropdown below."
+	Set cmbDatabases = ui.AddComboBox("cmbDatabase", "Select a database.")
+
+	' List Tables in a listbox
+	ui.AddLabel "lblTables", "Select tables:", "Select tables from the listbox below."
+	Set lstTables = ui.AddListBox ("lstTables", "Select tables:")
+	'lstTables.IsMultiSelect = false
+	lstTables.Height = 120
+	
+	ui.AddLabel "lblAux", "Tabla Auxiliar", ""
+	Set chkAux = ui.AddCheckBox ("chkAux", "Tabla Auxiliar", false, "")
+	ui.Height = ui.Height + 40
+		
+	Set prefix = ui.AddCheckBox("prefix", "Prefix the 'File' with an underscore?", false, "If checked, the file on disk will begin with an underscore")
+	Set trimName = ui.AddCheckBox("trimName", "Trim spaces from output filename?", false, "If checked, the file on disk will have spaces trimmed from the name.")
+	
+	If MyMeta.DriverString = "FIREBIRD" Then
+		ui.Height = ui.Height + 20
+		Set chk = ui.AddCheckBox("ckDialect3", "DIALECT 3", false, "If checked, the stored procedure will use dialect 3 syntax")
+		chk.forecolor = "red"
+	End If
+
+	' Attach the onchange event to the cmbDatabases control.
+	setupDatabaseDropdown cmbDatabases
+	cmbDatabases.AttachEvent "onchange", "cmbDatabases_onchange"
+	
+	ui.ShowGUI = true
+
+End Sub
+
+Sub setupDatabaseDropdown(cmbDatabases)
+	cmbDatabases.BindData MyMeta.Databases
+
+	If Not MyMeta.DefaultDatabase Is Nothing Then
+		cmbDatabases.SelectedValue = MyMeta.DefaultDatabase.Name
+		bindTables cmbDatabases.SelectedValue
+	End If
+End Sub
+
+Sub bindTables(sDatabase)
+	Set db = MyMeta.Databases(sDatabase)
+	lstTables.BindData(db.Tables)
+End Sub
+
+' Event Handler
+Sub cmbDatabases_onchange(control)
+	Set cmbDatabases = ui.item("cmbDatabase")
+	bindTables cmbDatabases.SelectedText
+End Sub
+##|GUI_END
+##|BODY_MODE Markup
+##|BODY_ENGINE Microsoft Script
+##|BODY_LANGUAGE VBScript
+##|BODY_TAG_START <%
+##|BODY_TAG_END %>
+##|BODY_BEGIN
+<%
+'------------------------------------------------------------------------------
+' Copyright 2004, 2005 by MyGeneration Software
+' All Rights Reserved 
+'
+' Permission to use, copy, modify, and distribute this software and its 
+' documentation for any purpose and without fee is hereby granted, 
+' provided that the above copyright notice appear in all copies and that 
+' both that copyright notice and this permission notice appear in 
+' supporting documentation. 
+'
+' MYGENERATION SOFTWARE DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS 
+' SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY 
+' AND FITNESS, IN NO EVENT SHALL MYGENERATION SOFTWARE BE LIABLE FOR ANY 
+' SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES 
+' WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, 
+' WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER 
+' TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE 
+' OR PERFORMANCE OF THIS SOFTWARE. 
+'------------------------------------------------------------------------------
+' BusinessListBaseEx_PadreConHijos.vbgen
+' Last Update : 28/11/2008
+'------------------------------------------------------------------------------
+
+If context.Objects.ContainsKey("DnpUtils") Then
+	DnpUtils.SaveInputToCache(context)
+End if
+
+Dim bFirst
+Dim name
+Dim pname
+Dim objTable
+Dim objColumn
+Dim tableNames
+Dim language
+Dim databaseName
+Dim database
+Dim namespace
+Dim props
+Dim prefix
+Dim trimName
+
+Dim IDbCommand
+Dim IDataParameter
+Dim ParameterPrefix
+
+Dim dialect
+
+dialect = 1
+If input.Item("ckDialect3") Then
+	dialect = 3
+End If
+
+prefix = input.Item("prefix")
+trimName = input.Item("trimName")
+
+' Grab the namespace
+namespace = input.Item("txtNamespace")
+
+' Set the Language for our column data types
+
+' Grab the choices the user made in our UI Script (see Interface Code tab)
+Set tableNames = input.Item("lstTables")
+
+databaseName  = input.Item("cmbDatabase")
+Set database = MyMeta.Databases(databaseName)
+
+' Loop through the tables the user selected and generate the business entities
+For intLp = 0 To tableNames.Count - 1
+
+	Set objTable = database.Tables(tablenames.item(intLp))
+	Set props = objTable.Properties
+
+	Schema = objTable.Schema
+	if (Schema = "COMMON") Then
+		Schema = "CommonSchema"
+	else
+		Schema = "ActiveSchema.Code"
+	end if
+	
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' Now we have the table that we desire to build a Business Object From, let us begin.
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using System.ComponentModel;
+
+using Csla;
+using Csla.Validation;
+using CslaEx;
+
+using moleQule.Library;
+
+using <%= namespace %>.Resources;
+using System.Windows.Forms;
+using NHibernate;
+
+namespace <%= namespace %>
+{
+
+	/// <summary>
+	/// Read Only Child Collection of Business Objects
+	/// </summary>
+    [Serializable()]
+	public class <%= ToClassName(objTable.Alias) + "List" %> : <%= "ReadOnlyListBaseEx<" + ToClassName(objTable.Alias) + "List, " + ToClassName(objTable.Alias) + "Info>" %>
+	{
+		 
+		 
+		#region Factory Methods
+		
+		public override <%= ToProperty(objTable.Alias) %>Info GetItem (long oid) 
+		{ 
+			<%= ToProperty(objTable.Alias) %>Info item;
+			
+			try
+			{
+				item = KeyValueList[oid];
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(iQExceptionHandler.GetAllMessages(ex), Labels.ERROR,
+								MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+
+		private <%= ToClassName(objTable.Alias) %>List() { }
+		
+		private <%= ToClassName(objTable.Alias) %>List(IList<<%= ToClassName(objTable.Alias) %>> lista)
+		{
+            Fetch(lista);
+        }
+
+        private <%= ToClassName(objTable.Alias) %>List(IDataReader reader)
+		{
+			Fetch(reader);
+		}
+		
+		/// <summary>
+		/// Builds a <%= ToClassName(objTable.Alias) %>List
+		/// </summary>
+		/// <param name="list"></param>
+		/// <returns><%= ToClassName(objTable.Alias) %>List</returns>
+		public static <%= ToClassName(objTable.Alias) %>List GetList(bool childs)
+		{
+			CriteriaEx criteria = <%= ToClassName(objTable.Alias) %>.GetCriteria(<%= ToClassName(objTable.Alias) %>.OpenSession());
+            criteria.Childs = childs;
+			
+			<% 	if input.Item("chkAux") then %>
+            if (nHManager.Instance.UseDirectSQL)
+                criteria.Query = <%= ToClassName(objTable.Alias)+ GetLetraS(objTable.Alias) %>.SELECT_ORDERED(AppContext.CommonSchema, "Valor");
+            else
+                criteria.AddOrder("Valor", true);
+			<% 	else %>
+			criteria.Query = <%= ToClassName(objTable.Alias) %>List.SELECT(typeof(<%= ToClassName(objTable.Alias) %>), AppContext.<%= Schema %>);
+			<% 	end if %>
+
+			<%= ToClassName(objTable.Alias) %>List list = DataPortal.Fetch<%= "<" + ToClassName(objTable.Alias) + "List>" %>(criteria);
+
+            CloseSession(criteria.SessionCode);
+			return list;
+		}
+
+		/// <summary>
+		/// Builds a <%= ToClassName(objTable.Alias) %>List
+		/// </summary>
+		/// <param name="list"></param>
+		/// <returns><%= ToClassName(objTable.Alias) %>List</returns>
+		public static <%= ToClassName(objTable.Alias) %>List GetList()
+		{ 
+			return <%= ToClassName(objTable.Alias) %>List.GetList(true); 
+		}
+
+		/// <summary>
+        /// Devuelve una lista de todos los elementos
+        /// </summary>
+        /// <returns>Lista de elementos</returns>
+        public static <%= ToClassName(objTable.Alias) %>List GetList(CriteriaEx criteria)
+        {
+            return <%= ToClassName(objTable.Alias) %>List.RetrieveList(typeof(<%= ToClassName(objTable.Alias) %>), AppContext.<%= Schema %>, criteria);
+        }
+		
+		/// <summary>
+        /// Builds a <%= ToClassName(objTable.Alias) %>List from a IList<!--<<%= ToClassName(objTable.Alias) %>Info>-->
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns><%= ToClassName(objTable.Alias) %>List</returns>
+        public static <%= ToClassName(objTable.Alias) %>List GetChildList(IList<<%= ToClassName(objTable.Alias) %>Info> list)
+        {
+            <%= ToClassName(objTable.Alias) %>List flist = new <%= ToClassName(objTable.Alias) %>List();
+
+            if (list.Count > 0)
+            {
+                flist.IsReadOnly = false;
+
+                foreach (<%= ToClassName(objTable.Alias) %>Info item in list)
+                    flist.Add(item);
+
+                flist.IsReadOnly = true;
+            }
+
+            return flist;
+        }
+
+        /// <summary>
+        /// Builds a <%= ToClassName(objTable.Alias) %>List from IList<!--<<%= ToClassName(objTable.Alias) %>>-->
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns><%= ToClassName(objTable.Alias) %>List</returns>
+        public static <%= ToClassName(objTable.Alias) %>List GetChildList(IList<<%= ToClassName(objTable.Alias) %>> list) { return new <%= ToClassName(objTable.Alias) %>List(list); }
+
+        public static <%= ToClassName(objTable.Alias) %>List GetChildList(IDataReader reader) { return new <%= ToClassName(objTable.Alias) %>List(reader); }
+
+		<% if input.Item("chkAux") then %>
+		/// <summary>
+		/// Devuelve una lista ordenada de todos los elementos
+		/// </summary>
+		/// <param name="sortProperty">Campo de ordenación</param>
+		/// <param name="sortDirection">Sentido de ordenación</param>
+		/// <returns>Lista ordenada de elementos</returns>
+		public static SortedBindingList<%= "<" + ToClassName(objTable.Alias) + "Info>" %> GetSortedList(string sortProperty,
+																	ListSortDirection sortDirection)
+		{
+			SortedBindingList<%= "<" + ToClassName(objTable.Alias) + "Info>" %> sortedList =
+				new SortedBindingList<%= "<" + ToClassName(objTable.Alias) + "Info>" %>(GetList());
+			sortedList.ApplySort(sortProperty, sortDirection);
+			return sortedList;
+		}
+		<% end if %>
+		#endregion
+
+		#region Data Access
+		
+		// called to copy objects data from list
+        private void Fetch(IList<<%= ToClassName(objTable.Alias) %>> lista)
+        {
+            this.RaiseListChangedEvents = false;
+
+            IsReadOnly = false;
+
+            foreach (<%= ToClassName(objTable.Alias) %> item in lista)
+                this.Add(item.GetInfo());
+
+            IsReadOnly = true;
+
+            this.RaiseListChangedEvents = true;
+        }
+
+        // called to copy objects data from list
+        private void Fetch(IDataReader reader)
+        {
+            this.RaiseListChangedEvents = false;
+
+            IsReadOnly = false;
+
+            while (reader.Read())
+                this.Add(<%= ToClassName(objTable.Alias) %>.GetChild(reader).GetInfo());
+
+            IsReadOnly = true;
+
+            this.RaiseListChangedEvents = true;
+        }
+		
+		// called to retrieve data from db
+		protected override void Fetch(CriteriaEx criteria)
+		{
+			this.RaiseListChangedEvents = false;
+
+			SessionCode = criteria.SessionCode;
+			Childs = criteria.Childs;
+
+			try
+			{
+				if (nHMng.UseDirectSQL)
+				{
+					IDataReader reader = nHManager.Instance.SQLNativeSelect(criteria.Query, Session());
+
+					IsReadOnly = false;
+
+					while (reader.Read())
+					{
+						this.AddItem(<%= ToClassName(objTable.Alias) %>Info.Get(reader,Childs));
+					}
+
+					IsReadOnly = true;
+				}
+				else
+				{
+					IList list = criteria.List();
+
+					if (list.Count > 0)
+					{
+						IsReadOnly = false;
+
+						foreach (<%= ToClassName(objTable.Alias) %> item in list)
+							this.Add(item.GetInfo());
+
+						IsReadOnly = true;
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				throw new iQPersistentException(iQExceptionHandler.GetAllMessages(ex));
+			}
+
+			this.RaiseListChangedEvents = true;
+		}
+
+		#endregion
+
+	
+	}
+}
+
+<% 
+	' Save the output file for this Table
+	Dim filename
+	filename = input.item("txtPath")
+
+	Dim length
+	Dim pos
+	length = Len(filename)
+	pos = InStrRev(filename, "\") 
+
+	If Not pos = length Then
+		filename = filename & "\"
+	End If
+	
+	If prefix = True Then 
+		If trimName = True Then
+			filename = filename & "_" & ToClassName(TrimSpaces(objTable.Alias)) & "List.cs"
+		Else
+			filename = filename & "_" & ToClassName(objTable.Alias) & "List.cs"
+		End If
+	Else 
+		If trimName = True Then
+			filename = filename & ToClassName(objTable.Alias) & "List.cs"
+		Else
+			filename = filename & ToClassName(objTable.Alias) & "List.cs"
+		End If
+	End If
+
+	output.save filename, false
+	buffer = buffer & output.text
+	output.clear
+Next '  tableName
+	
+	output.write buffer
+ %>
+
+<% 
+
+Function GetLetraS (Nombre)
+	if not (LCase(Mid(Nombre, Len(Nombre), 1)) = "a" or _
+			LCase(Mid(Nombre, Len(Nombre), 1)) = "e" or _
+			LCase(Mid(Nombre, Len(Nombre), 1)) = "i" or _
+			LCase(Mid(Nombre, Len(Nombre), 1)) = "o" or _
+			LCase(Mid(Nombre, Len(Nombre), 1)) = "u") then
+		GetLetraS = "es"
+	else
+		GetLetraS = "s"
+	end if
+end function
+
+'===========================================================================
+' These are support routines called by the above scirpt
+'===========================================================================
+Function GetAlias(objColumn)
+	Dim name
+	name = TrimSpaces(objColumn.Alias)
+	GetAlias = UCase(Left(name, 1)) & Right(name, Len(name) -1)
+End Function
+
+Function GetName(objColumn)
+	Dim name
+	name = objColumn.Name
+	GetName = UCase(Left(name, 1)) & Right(name, Len(name) -1)
+End Function
+
+Function TrimSpaces(str)
+
+	Dim tname
+	Dim name
+	Dim char
+	Dim l
+
+	name = ""
+	tname = str
+	l = Len(tname)
+
+	For j = 1 To l
+		char = Mid(tname, j, 1)
+		If Not char = " " And Not Char = "." Then
+			name = name & char
+		End If
+	Next
+
+	TrimSpaces = name
+End Function
+
+Function GetDataType (tipo)
+	Dim retVal
+	Select Case tipo 
+		Case "varchar"
+			GetDataType = "string"
+		Case "text"
+			GetDataType = "string"
+		Case "date"
+			GetDataType = "DateTime"
+		Case "bool"
+			GetDataType = "bool"
+		Case "char"
+			GetDataType = "Char"
+		Case "date"
+			GetDataType = "DateTime"
+		Case "float4"
+			GetDataType = "float"
+		Case "float8"
+			GetDataType = "double"
+		Case "int2"
+			GetDataType = "short"
+		Case "int4"
+			GetDataType = "int"
+		Case "int8"
+			GetDataType = "long"
+		Case "numeric"
+			GetDataType = "Decimal"
+		Case "money"
+			GetDataType = "Decimal"
+		Case "time"
+			GetDataType = "DateTime"
+		Case "timestamp"
+			GetDataType = "DateTime"
+		Case "bigint"
+			GetDataType = "long"
+		Case "decimal"
+			GetDataType = "Decimal"
+		Case Else
+			GetDataType = ""
+	End Select
+End Function
+
+Function ToProperty (name)
+	
+	Dim tname
+	Dim str
+	Dim char
+	Dim l
+	
+	str = ""
+	tname = name
+	l = Len(tname)
+	upper = 1
+
+	For j = 1 To l			
+		char = Mid(tname, j, 1)
+		If (char = "_") Then 
+			upper = 1
+		Else
+			If (upper = 1) Then
+				str = str & UCase(char)
+				upper = 0
+			Else 
+				str = str & LCase(char)
+			End If
+		End If
+	Next
+	ToProperty = str
+	
+End Function
+
+Function ToClassName (name)
+	Dim tname
+	Dim str
+	Dim char
+	Dim l
+	
+	str = ""
+	tname = name
+	l = Len(tname)
+	ind = 1
+
+	For j = 1 To l			
+		char = Mid(tname, j, 1)
+		If (ind = 1) Then
+			char = UCase(char)
+		Else
+			char = LCase(char)
+		End If
+		str = str & char
+		If (char <> "_") Then 
+			ind = ind + 1
+		Else 
+			ind = 1
+		End If
+	Next
+	ToClassName = str
+	
+End Function
+
+%>
+##|BODY_END

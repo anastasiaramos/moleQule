@@ -1,0 +1,9 @@
+C:\VS Projects Git\moleQule\moleQule.ToolBox\bin\Debug\moleQule.ToolBox.exe
+C:\VS Projects Git\moleQule\moleQule.ToolBox\bin\Debug\moleQule.ToolBox.pdb
+C:\VS Projects Git\moleQule\moleQule.ToolBox\obj\Debug\moleQule.ToolBox.csprojResolveAssemblyReference.cache
+C:\VS Projects Git\moleQule\moleQule.ToolBox\obj\Debug\moleQule.ToolBox.hbmForm.resources
+C:\VS Projects Git\moleQule\moleQule.ToolBox\obj\Debug\moleQule.ToolBox.MainForm.resources
+C:\VS Projects Git\moleQule\moleQule.ToolBox\obj\Debug\moleQule.ToolBox.Properties.Resources.resources
+C:\VS Projects Git\moleQule\moleQule.ToolBox\obj\Debug\moleQule.ToolBox.csproj.GenerateResource.Cache
+C:\VS Projects Git\moleQule\moleQule.ToolBox\obj\Debug\moleQule.ToolBox.exe
+C:\VS Projects Git\moleQule\moleQule.ToolBox\obj\Debug\moleQule.ToolBox.pdb

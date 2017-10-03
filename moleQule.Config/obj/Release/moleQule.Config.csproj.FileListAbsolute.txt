@@ -1,0 +1,4 @@
+C:\VS Projects Git\moleQule\moleQule.Config\bin\molQonfig.exe
+C:\VS Projects Git\moleQule\moleQule.Config\bin\molQonfig.pdb
+C:\VS Projects Git\moleQule\moleQule.Config\obj\Release\molQonfig.exe
+C:\VS Projects Git\moleQule\moleQule.Config\obj\Release\molQonfig.pdb

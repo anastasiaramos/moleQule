@@ -1,0 +1,2027 @@
+﻿##|TYPE Template
+##|UNIQUEID 70c12c96-9231-44db-a10f-17ffc68b6f88
+##|TITLE BusinessBaseEx
+##|NAMESPACE moleQule.Library
+##|SOURCE_TYPE Source
+##|OUTPUT_LANGUAGE C#
+##|COMMENTS_BEGIN
+From a Table, MS SQL, MS Access, Firebird, PostgreSQL, Oracle with aggregate support.
+##|COMMENTS_END
+##|GUI_ENGINE Microsoft Script
+##|GUI_LANGUAGE VBScript
+##|GUI_BEGIN
+Dim cmbDatabases
+Dim lstTables
+Dim lstParents
+Dim lstChilds
+Dim txtNamespace
+Dim chk
+
+Sub setup()
+
+	If context.Objects.ContainsKey("DnpUtils") Then
+		DnpUtils.ReadInputFromCache(context)
+	End if
+
+	ui.Title = "C# moleQule BusinessBaseEx Template"
+	ui.Width  = 380
+	ui.Height = 780
+
+	' Grab default output path
+	Dim sOutputPath
+	sOutputPath = ""
+	If input.Contains("defaultOutputPath") Then 
+		sOutputPath = input.Item("defaultOutputPath")
+	End If
+
+	ui.AddLabel "lblPath", "Output file path: ",  "Select the output path."
+	ui.AddTextBox "txtPath", sOutputPath, "Select the Output Path."
+	ui.AddFilePicker "btnPath", "Select Path", "Select the Output Path.", "txtPath", true
+	
+    ' List Databases in a ComboBox
+ 	ui.AddLabel "lblDatabases", "Select a database:", "Select a database in the dropdown below."
+	Set cmbDatabases = ui.AddComboBox("cmbDatabase", "Select a database.")
+
+	ui.AddLabel "lblNamespace", "Module: ",  "Provide your objects module."
+	Set txtNamespace = ui.AddTextBox("txtNamespace", "Module", "Provide module's name")			
+
+	' List Tables in a listbox
+	ui.AddLabel "lblTables", "Select tables:", "Select tables from the listbox below."
+	Set lstTables = ui.AddListBox("lstTables", "Select tables:")
+	lstTables.Height = 100
+	
+	ui.AddLabel "lblParents", "Select parents:", "Select tables from the listbox below."
+	Set lstParents = ui.AddListBox("lstParents", "Select parents:")
+	lstParents.IsMultiSelect = true
+	lstParents.Height = 100
+	
+	ui.AddLabel "lblChilds", "Select childs:", "Select tables from the listbox below."
+	Set lstChilds = ui.AddListBox("lstChilds", "Select childs:")
+	lstTables.IsMultiSelect = true
+	lstChilds.Height = 100
+	
+	ui.AddLabel "lblSecure", "SecureItem: ",  "Provide your object secure item."
+	Set txtSecItem = ui.AddTextBox("txtSecItem", "SECUREITEM", "Provide your object secure item.")			
+
+	Set chkRoot = ui.AddCheckBox ("chkRoot", "Objeto ROOT", false, "")
+	Set chkAux = ui.AddCheckBox ("chkAux", "Tabla Auxiliar", false, "")
+	'Set prefix = ui.AddCheckBox("prefix", "Prefix the 'File' with an underscore?", false, "If checked, the file on disk will begin with an underscore")
+	'Set trimName = ui.AddCheckBox("trimName", "Trim spaces from output filename?", false, "If checked, the file on disk will have spaces trimmed from the name.")
+	
+	If MyMeta.DriverString = "FIREBIRD" Then
+		ui.Height = ui.Height + 20
+		Set chk = ui.AddCheckBox("ckDialect3", "DIALECT 3", false, "If checked, the stored procedure will use dialect 3 syntax")
+		chk.forecolor = "red"
+	End If
+	
+	' Attach the onchange event to the cmbDatabases control.
+	setupDatabaseDropdown cmbDatabases
+	cmbDatabases.AttachEvent "onchange", "cmbDatabases_onchange"
+
+	ui.ShowGUI = true
+
+End Sub
+
+Sub setupDatabaseDropdown(cmbDatabases)
+	cmbDatabases.BindData MyMeta.Databases
+
+	If Not MyMeta.DefaultDatabase Is Nothing Then
+		cmbDatabases.SelectedValue = MyMeta.DefaultDatabase.Name
+		bindTables cmbDatabases.SelectedValue
+	End If
+End Sub
+
+Sub bindTables(sDatabase)
+	Set db = MyMeta.Databases(sDatabase)
+	lstTables.BindData(db.Tables)
+	lstParents.BindData(db.Tables)
+	lstChilds.BindData(db.Tables)
+End Sub
+
+' Event Handler
+Sub cmbDatabases_onchange(control)
+	Set cmbDatabases = ui.item("cmbDatabase")
+	bindTables cmbDatabases.SelectedText
+End Sub
+
+Function UFirst(name)
+	Dim tname
+	Dim str
+	Dim char
+	Dim l
+
+	str =  UCase(Mid(name, 1, 1)) + LCase(Mid(name, 2))
+	
+	Ufirst = str
+	
+End Function
+##|GUI_END
+##|BODY_MODE Markup
+##|BODY_ENGINE Microsoft Script
+##|BODY_LANGUAGE VBScript
+##|BODY_TAG_START <%
+##|BODY_TAG_END %>
+##|BODY_BEGIN
+<%
+'------------------------------------------------------------------------------
+' Copyright 2004, 2005 by MyGeneration Software
+' All Rights Reserved 
+'
+' Permission to use, copy, modify, and distribute this software and its 
+' documentation for any purpose and without fee is hereby granted, 
+' provided that the above copyright notice appear in all copies and that 
+' both that copyright notice and this permission notice appear in 
+' supporting documentation. 
+'
+' MYGENERATION SOFTWARE DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS 
+' SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY 
+' AND FITNESS, IN NO EVENT SHALL MYGENERATION SOFTWARE BE LIABLE FOR ANY 
+' SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES 
+' WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, 
+' WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER 
+' TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE 
+' OR PERFORMANCE OF THIS SOFTWARE. 
+'------------------------------------------------------------------------------
+' BusinessBaseEx.vbgen
+' Created : 2010
+' Last Update : 20/12/2013
+'------------------------------------------------------------------------------
+
+If context.Objects.ContainsKey("DnpUtils") Then
+	DnpUtils.SaveInputToCache(context)
+End if
+
+Dim bFirst
+Dim name
+Dim pname
+Dim objTable
+Dim objColumn
+Dim tableNames
+Dim language
+Dim databaseName
+Dim database
+Dim namespace
+Dim props
+Dim prefix
+Dim trimName
+Dim ChildNames
+Dim ParentNames
+Dim Serial
+Dim Codigo
+Dim isRoot
+Dim isParent
+Dim isChild
+Dim isAux
+Dim secItem
+Dim objectName
+
+Dim IDbCommand
+Dim IDataParameter
+Dim ParameterPrefix
+
+Dim dialect
+
+dialect = 1
+If input.Item("ckDialect3") Then
+	dialect = 3
+End If
+
+prefix = input.Item("prefix")
+trimName = input.Item("trimName")
+noIsRoot = input.Item("noIsRoot")
+
+
+' Grab the namespace
+namespace = input.Item("txtNamespace")
+secItem = input.Item("txtSecItem")
+
+' Set the Language for our column data types
+
+' Grab the choices the user made in our UI Script (see Interface Code tab)
+Set TableNames = input.Item("lstTables")
+Set ParentNames = input.Item("lstParents")
+Set ChildNames = input.Item("lstChilds")
+
+databaseName  = input.Item("cmbDatabase")
+Set database = MyMeta.Databases(databaseName)
+
+' Loop through the tables the user selected and generate the business entities
+For intLp = 0 To TableNames.Count - 1
+
+	Set objTable = database.Tables(TableNames.item(intLp))
+	Set props = objTable.Properties
+	Serial = false
+	Codigo = false
+	Status = false
+
+	objectName = ToClassName(objTable.Alias)
+	lista = Plural(objectName)
+	
+	isRoot = input.Item("chkRoot")
+	isParent = (childNames.Count > 0)
+	isChild = (parentNames.Count > 0)
+	isAux = input.Item("chkAux")
+	
+	For each objColumn in objTable.Columns
+		if UCase(objColumn.Alias) = "SERIAL" then 
+			Serial = true
+		End If
+		if UCase(objColumn.Alias) = "CODIGO" then 
+			Codigo = true
+		End If
+		if UCase(objColumn.Alias) = "CODE" then 
+			Codigo = true
+		End If
+		if UCase(objColumn.Alias) = "ESTADO" then 
+			Status = true
+		End If
+		if UCase(objColumn.Alias) = "STATUS" then 
+			Status = true
+		End If
+
+	Next
+	
+	Foto = false
+	
+	For each objColumn in objTable.Columns
+		if UCase(objColumn.Alias) = "FOTO" then Foto = true	End If
+		if UCase(objColumn.Alias) = "LOGO" then Foto = true	End If
+	Next	
+	
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' Now we have the table that we desire to build a Business Object From, let us begin.
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+
+using Csla;
+using Csla.Validation;
+using NHibernate;
+using moleQule.Library;
+using moleQule.Library.Common;
+using moleQule.Library.CslaEx;
+
+namespace moleQule.Library.<%=namespace%>
+{
+	[Serializable()]
+	public class <%= objectName %>Record : RecordBase
+	{
+		#region Attributes
+<%For Each objColumn in objTable.Columns
+	If objColumn.Name <> "OID" Then
+		name = LCase(objColumn.Name)
+		tipo = GetDataType(objColumn.DataTypeName)
+		name = "_" & name%>
+		private <%=tipo & " " & name%><%
+		If (tipo = "string") Then%> = string.Empty<%End If
+		If (tipo = "bool") Then%> = false<%End If
+		%>;<%	
+		End If
+  Next%>
+  
+		#endregion
+		
+		#region Properties
+		
+		<% For each column in objTable.Columns 
+				If column.Name <> "OID" Then
+					name = LCase(column.Name)
+					tipo = GetDataType(column.DataTypeName)
+%>		public virtual <%=tipo%> <%=ToProperty(column.Name)%> { get { return _<%= name %>; } set { _<%= name %> = value; } }
+<%			End If
+			Next%>
+		#endregion
+		
+		#region Business Methods
+		
+		public <%= objectName %>Record(){}
+		
+		public virtual void CopyValues(IDataReader source)
+		{
+			if (source == null) return;
+			
+<%For Each objColumn in objTable.Columns
+	name = GetAlias(objColumn)
+	tipo = GetDataType(objColumn.DataTypeName)
+	If Name = "OID" Then
+		attr = ToProperty(name)
+	Else
+		attr = "_" & LCase(name)
+	End If
+				If (tipo = "long") Then
+					output.write "			" & attr & " = Format.DataReader.GetInt64(source, """ & name & """);" & vbCrLf 
+				End If
+				If (tipo = "int") Then
+					output.write "			" & attr & " = Format.DataReader.GetInt32(source, """ & name & """);" & vbCrLf 
+				End If
+				If (tipo = "float") Then
+					output.write "			" & attr & " = Format.DataReader.GetDecimal(source, """ & name & """);" & vbCrLf 
+				End If
+				If (tipo = "Decimal") Then
+					output.write "			" & attr & " = Format.DataReader.GetDecimal(source, """ & name & """);" & vbCrLf 
+				End If
+				If (tipo = "double") Then
+					output.write "			" & attr & " = Format.DataReader.GetDouble(source, """ & name & """);" & vbCrLf 
+				End If
+				If (tipo = "string") Then
+					output.write "			" & attr & " = Format.DataReader.GetString(source, """ & name & """);" & vbCrLf 
+				End If
+				If (tipo = "bool") Then
+					output.write "			" & attr & " = Format.DataReader.GetBool(source, """ & name & """);" & vbCrLf 
+				End If
+				If (tipo = "DateTime") Then
+					output.write "			" & attr & " = Format.DataReader.GetDateTime(source, """ & name & """);" & vbCrLf  
+				End If
+  Next%>
+		}		
+		public virtual void CopyValues(<%= objectName %>Record source)
+		{
+			if (source == null) return;
+<%For each column in objTable.Columns 
+	If column.Name = "OID" Then
+		name = ToProperty(column.Name)
+	Else
+		name = "_" & LCase(column.Name)
+	End If%>
+			<%=name%> = source.<%=ToProperty(name)%>;<%
+  Next%>
+		}
+		
+		#endregion	
+	}
+
+    [Serializable()]
+	public class <%=objectName%>Base 
+	{	 
+		#region Attributes
+		
+		private <%= objectName %>Record _record = new <%= objectName %>Record();
+		
+		#endregion
+		
+		#region Properties
+		
+		public <%= objectName %>Record Record { get { return _record; } }
+<%If Status Then %>
+		public EEstado EStatus { get { return (EEstado)_record.Status; } }
+		public string StatusLabel { get { return Library.Common.EnumText<EEstado>.GetLabel(EStatus); } }
+<%End If%>		
+		#endregion
+		
+		#region Business Methods
+		
+		internal void CopyValues(IDataReader source)
+		{
+			if (source == null) return;
+			
+			_record.CopyValues(source);
+		}		
+		public void CopyValues(<%=objectName%> source)
+		{
+			if (source == null) return;
+			
+			_record.CopyValues(source.Base.Record);
+		}
+		public void CopyValues(<%=objectName%>Info source)
+		{
+			if (source == null) return;
+			
+			_record.CopyValues(source.Base.Record);
+		}
+		
+		#endregion	
+	}
+		
+	/// <summary>
+	<%	If isRoot Then 
+			If isParent Then 
+	%>/// Editable Root Business Object With Editable Child Collection
+	<%
+			Else 
+	%>/// Editable Root Business Object
+	<%		End If
+		End If
+		If (isChild) Then 
+			If isParent Then 
+	%>/// Editable Child Business Object With Editable Child Collection
+	<%		Else 
+	%>/// Editable Child Business Object
+	<%		End If 
+		End If
+	%>/// </summary>	
+    [Serializable()]
+	public class <%= objectName %> : <%= "BusinessBaseEx<" + objectName + ">" %>
+	{	 
+		#region Attributes
+		
+		protected <%=objectName%>Base _base = new <%= objectName %>Base();
+		
+<%For each childName in ChildNames%>
+		private <%=Plural(ToClassName(childName))%> _<%=LCase(Plural(childName))%> = <%=Plural(ToClassName(childName))%>.NewChildList();<%
+  Next%>
+		#endregion
+		
+		#region Properties
+		
+		public <%=objectName%>Base Base { get { return _base; } }
+		
+<%		For Each objColumn in objTable.Columns
+			name = GetAlias(objColumn)
+			tipo = GetDataType(objColumn.DataTypeName)
+		If objColumn.Name <> "OID" Then 
+%>		public virtual <%=tipo%> <%=ToProperty(name)%>
+		{
+			[System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]
+			get
+			{
+				//CanReadProperty(true);
+				return _base.Record.<%=ToProperty(name)%>;
+			}
+            
+			[System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]
+			set
+			{
+				//CanWriteProperty(true);
+				<%	If (tipo = "string") Then %>
+				if (value == null) value = string.Empty;
+				<% 	End If %>
+				if (!_base.Record.<%= ToProperty(name) %>.Equals(value))
+				{
+					_base.Record.<%= ToProperty(name) %> = value;
+					PropertyHasChanged();
+				}
+			}
+		}
+<%		Else
+%>		public override <%=tipo%> <%=ToProperty(name)%>
+		{
+			[System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]
+			get
+			{
+				//CanReadProperty(true);
+				return _base.Record.Oid;
+			}
+            
+			[System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]
+			set
+			{
+				//CanWriteProperty(true);
+				if (!_base.Record.Oid.Equals(value))
+				{
+					_base.Record.Oid = value;
+					//PropertyHasChanged();
+				}
+			}
+		}
+<%		End If
+		Next 
+		For Each childName in ChildNames %>
+		public virtual <%=Plural(ToClassName(childName))%> <%=Plural(ToClassName(childName))%>
+		{
+			[System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]
+			get
+			{
+				//CanReadProperty(true);
+				return _<%=LCase(Plural(ChildName))%>;
+			}
+		}
+		<%Next%>	
+		<%If Status Then %>
+		//LINKED
+		public virtual EEstado EStatus { get { return _base.EStatus; } set { Status = (long)value; } }
+		public virtual string StatusLabel { get { return _base.StatusLabel; } }
+		<%End If%>
+		<%If (isParent) Then%>
+		/// <summary>
+        /// Indica si el objeto está validado
+        /// </summary>
+		/// <remarks>Para añadir una lista: && _lista.IsValid<remarks/>
+		public override bool IsValid
+		{
+			get { return base.IsValid<% for each childName in ChildNames %>
+						 && _<%=LCase(Plural(childName))%>.IsValid<% Next %> ; }
+		}
+		
+        /// <summary>
+        /// Indica si el objeto está "sucio" (se ha modificado) y se debe actualizar en la base de datos
+        /// </summary>
+		/// <remarks>Para añadir una lista: || _lista.IsDirty<remarks/>
+		public override bool IsDirty
+		{
+			get { return base.IsDirty<% for each childName in ChildNames %>
+						 || _<%=LCase(Plural(childName))%>.IsDirty<% Next %> ; }
+		}
+		<% End If %>
+		#endregion
+		
+		#region Business Methods
+		
+		public static <%=objectName%> CloneAsNew(<%=objectName%>Info source)
+		{
+			<%=objectName%> clon = <%=objectName%>.New();;
+			clon.Base.CopyValues(source);
+			
+			clon.Oid = (new Random()).Next();
+			<%If (Codigo) then %>
+			clon.GetNewCode();
+			<%End If %>
+			
+			clon.MarkNew();
+			
+			<%For Each childName in ChildNames %>
+			if (source.<%=Plural(ToClassName(childName))%> == null) source.LoadChilds(typeof(<%=Plural(ToClassName(childName))%>), false);
+			
+			foreach (<%=objectName%>Info item in source.<%=Plural(ToClassName(childName))%>)
+				clon.Lines.NewItem(clon, item);
+			
+			clon.<%=Plural(ToClassName(childName))%>.MarkAsNew();
+			<%Next%>
+			return clon;
+		}
+		
+		protected virtual void CopyFrom(<%= objectName %>Info source)
+		{
+			if (source == null) return;
+<%For Each objColumn in objTable.Columns
+				name = GetAlias(objColumn)%>
+			<%=ToProperty(name)%> = source.<%= ToProperty(name)%>;<%
+  Next%>
+		}
+		
+		<% 	If (Serial) then %>
+        public virtual void GetNewCode()
+        {
+            Serial = SerialInfo.GetNext(typeof(<%= objectName %>));
+            Code = Serial.ToString(Resources.Defaults.<%= UCase(objectName) %>_CODE_FORMAT);
+        }				
+		<%	End if %>	
+		#endregion
+		 
+	    #region Validation Rules
+
+		/// <summary>
+		/// Añade las reglas de validación necesarias para el objeto
+		/// </summary>
+		protected override void AddBusinessRules()
+		{
+			ValidationRules.AddRule(CheckValidation, "Oid");
+		}
+
+		private bool CheckValidation(object target, Csla.Validation.RuleArgs e)
+		{
+			<% 	If isAux Then %>
+			if (Valor == string.Empty)
+			{
+				e.Description = String.Format(Library.Resources.Messages.NO_VALUE_SELECTED, "Propiedad");
+				throw new iQValidationException(e.Description, string.Empty);
+			}	
+			<% 	Else %>			
+			<%	End If %>
+			//Propiedad
+			/*if (Propiedad <= 0)
+			{
+				e.Description = String.Format(Library.Resources.Messages.NO_VALUE_SELECTED, "Propiedad");
+				throw new iQValidationException(e.Description, string.Empty);
+			}*/
+
+			return true;
+		}	
+		 
+		#endregion
+		 
+		#region Autorization Rules
+		<%=	If not isAux Then 
+				secItem = UCase(secItem) 
+			Else
+				secItem = "AUXILIARES"	
+			End If %>		
+		public static bool CanAddObject()
+        {
+            return AutorizationRulesControler.CanAddObject(Resources.SecureItems.<%=secItem%>);
+        }
+        public static bool CanGetObject()
+        {
+            return AutorizationRulesControler.CanGetObject(Resources.SecureItems.<%=secItem%>);
+        }
+        public static bool CanDeleteObject()
+        {
+            return AutorizationRulesControler.CanDeleteObject(Resources.SecureItems.<%=secItem%>);
+        }
+        public static bool CanEditObject()
+        {
+            return AutorizationRulesControler.CanEditObject(Resources.SecureItems.<%=secItem%>);
+        }
+
+		public static void IsPosibleDelete(long oid)
+		{
+			QueryConditions conditions = new QueryConditions
+			{
+				<%=objectName%> = <%=objectName%>Info.New(oid),
+			};
+
+<%For each childName in ChildNames%>
+			<%=Plural(ToClassName(childName))%>List <%=LCase(Plural(childName))%> = <%=Plural(ToClassName(childName))%>List.GetList(conditions, false);
+
+			if (<%=LCase(Plural(childName))%>.Count > 0)
+				throw new iQException(Resources.Messages.ASSOCIATED__<%=UCase(childName)%>);<%
+				
+  Next%>
+		}
+		
+		#endregion
+		 
+		#region Common Factory Methods
+		 
+		/// <summary>
+		/// NO UTILIZAR DIRECTAMENTE, SE DEBE USAR LA FUNCION New o NewChild
+		/// Debería ser private para CSLA porque la creación requiere el uso de los Factory Methods,
+		/// pero debe ser protected por exigencia de NHibernate.
+		<% 	if isRoot then 
+		%>/// </summary>
+		protected <%=objectName%> () 
+		{
+			Oid = (long)(new Random()).Next();
+			EStatus = EEstado.Active;	
+		}
+		<% 	Else	%>/// Debe ser public para que funcionen los DataGridView
+		/// </summary>
+		<% 		If isAux Then 
+		%>public <%= objectName %> ()
+		{
+			MarkAsChild();
+			Oid = (long)(new Random()).Next();
+			<% 		If Codigo Then %>
+			Code = Oid.ToString(Resources.Defaults.DEFAULT_CODE_FORMAT);
+			<% 		End If %>
+			
+			//Si fuera necesario hay que inicializar las listas hijos aquí
+		<% 		Else 
+		%>protected <%= objectName %> ()
+		{
+			// Si se necesita constructor público para este objeto hay que añadir el MarkAsChild() debido a la interfaz Child
+			// y el código que está en el DataPortal_Create debería ir aquí
+		<%		End If %>
+		}
+		<% End If %>		
+		private <%= objectName %>(<%= objectName %> source, bool childs)
+        {
+			MarkAsChild();
+			Childs = childs;
+            Fetch(source);
+        }
+        private <%= objectName %>(int sessionCode, IDataReader source, bool childs)
+        {
+            MarkAsChild();	
+			Childs = childs;
+			SessionCode = sessionCode;
+            Fetch(source);
+        }
+
+		/// <summary>
+		/// Crea un nuevo objeto
+		/// </summary>
+		/// <returns>Nuevo objeto creado</returns>
+		/// La utiliza la BusinessListBaseEx correspondiente para crear nuevos elementos
+		public static <%= objectName %> NewChild() 
+		{
+			if (!CanAddObject())
+				throw new System.Security.SecurityException(Library.Resources.Messages.USER_NOT_ALLOWED);
+			
+			<%=objectName%> obj = DataPortal.Create<%= "<" & objectName & ">" %>(new CriteriaCs(-1));		
+			obj.MarkAsChild();
+            return obj;
+		}
+		
+		/// <summary>
+		/// Crea un objeto
+		/// </summary>
+		/// <param name="source"><%= objectName %> con los datos para el objeto</param>
+		/// <returns>Objeto creado</returns>
+		/// <remarks>
+		/// La utiliza la BusinessListBaseEx correspondiente para montar la lista
+		/// NO OBTIENE los hijos. Para ello utilice GetChild(<%= objectName %> source, bool childs)
+		/// <remarks/>
+		internal static <%= objectName %> GetChild(<%= objectName %> source) { return new <%= objectName %>(source, false); }
+		internal static <%= objectName %> GetChild(<%= objectName %> source, bool childs) { return new <%= objectName %>(source, childs); }
+        internal static <%= objectName %> GetChild(int sessionCode, IDataReader source) { return new <%= objectName %>(sessionCode, source, false); }
+        internal static <%= objectName %> GetChild(int sessionCode, IDataReader source, bool childs) { return new <%= objectName %>(sessionCode, source, childs); }
+
+		public virtual <%= objectName %>Info GetInfo (bool childs = true) { return new <%= objectName %>Info(this, childs); }
+		
+		#endregion
+		<% If isRoot Then %>
+		#region Root Factory Methods
+		
+		public static <%=objectName%> New(int sessionCode = -1)
+		{
+			if (!CanAddObject())
+				throw new System.Security.SecurityException(Library.Resources.Messages.USER_NOT_ALLOWED);
+			
+			<%=objectName%> obj = DataPortal.Create<%= "<" & objectName & ">" %>(new CriteriaCs(-1));
+			obj.SetSharedSession(sessionCode);
+			return obj;
+		}
+		
+		public new static <%=objectName%> Get(string query, bool childs, int sessionCode = -1)
+		{
+			if (!CanGetObject())
+				throw new System.Security.SecurityException(Library.Resources.Messages.USER_NOT_ALLOWED);
+
+			return BusinessBaseEx<<%=objectName%>>.Get(query, childs, -1);
+		}
+		
+		public static <%=objectName%> Get(long oid, bool childs = true) { return Get(SELECT(oid), childs); }
+		
+		
+		/// <summary>
+		/// Borrado inmediato, no cabe "undo"
+		/// (La función debe ser "estática")
+		/// </summary>
+		/// <param name="oid"></param>
+		public static void Delete(long oid)
+		{
+			if (!CanDeleteObject())
+				throw new System.Security.SecurityException(Library.Resources.Messages.USER_NOT_ALLOWED);
+			
+			IsPosibleDelete(oid);
+			
+			DataPortal.Delete(new CriteriaCs(oid));
+		}
+		
+		/// <summary>
+		/// Elimina todos los <%=objectName%>. 
+		/// Si no existe integridad referencial, hay que eliminar las listas hijo en esta función.
+		/// </summary>
+		public static void DeleteAll()
+		{
+			//Iniciamos la conexion y la transaccion
+			int sessCode = <%=objectName%>.OpenSession();
+			ISession sess = <%=objectName%>.Session(sessCode);
+			ITransaction trans = <%=objectName%>.BeginTransaction(sessCode);
+			
+			try
+			{	
+				sess.Delete("from <%=objectName%>");
+				trans.Commit();
+			}
+			catch (Exception ex)
+			{
+				if (trans != null) trans.Rollback();
+				throw new iQPersistentException(iQExceptionHandler.GetAllMessages(ex));
+			}
+			finally
+			{
+				<%=objectName%>.CloseSession(sessCode);
+			}
+		}
+		
+		/// <summary>
+		/// Guarda en la base de datos todos los cambios del objeto.
+		/// También guarda los cambios de los hijos si los tiene
+		/// </summary>
+		/// <returns>Objeto actualizado y con los flags reseteados</returns>
+		public override <%=objectName%> Save()
+		{
+			// Por la posible doble interfaz Root/Child
+			if (IsChild) throw new iQException(Library.Resources.Messages.CHILD_SAVE_NOT_ALLOWED);			
+		
+			if (IsDeleted && !CanDeleteObject())
+				throw new System.Security.SecurityException(Library.Resources.Messages.USER_NOT_ALLOWED);
+			else if (IsNew && !CanAddObject())
+				throw new System.Security.SecurityException(Library.Resources.Messages.USER_NOT_ALLOWED);
+			else if (!CanEditObject())
+				throw new System.Security.SecurityException(Library.Resources.Messages.USER_NOT_ALLOWED);
+
+			try
+			{
+				ValidationRules.CheckRules();
+			}
+			catch (iQValidationException ex)
+			{
+				iQExceptionHandler.TreatException(ex);
+				return this;
+			}
+
+			try
+			{	
+				base.Save();				
+<%For each childName in ChildNames%>
+				_<%=LCase(Plural(childName))%>.Update(this);<%
+  Next%>				
+				if (!SharedTransaction) Transaction().Commit();
+				return this;
+			}
+			catch (Exception ex)
+			{
+				if (Transaction() != null) Transaction().Rollback();
+				iQExceptionHandler.TreatException(ex);
+				return this;
+			}
+			finally
+			{
+				if (!SharedTransaction)
+				{
+					if (CloseSessions) CloseSession(); 
+					else BeginTransaction();
+				}
+			}
+		}
+				
+		#endregion
+		<% End if %>		
+		<% if isChild Then %>
+		#region Child Factory Methods
+		<%For each parentName in ParentNames%>
+		/// <summary>
+        /// NO UTILIZAR DIRECTAMENTE. LO UTILIZA LA FUNCION DE CREACION DE LA LISTA DEL PADRE
+        /// </summary>
+        private <%=objectName%>(<%=ToClassName(parentName)%> parent)
+        {
+            Oid<%=CropName(parentName)%> = parent.Oid;
+            MarkAsChild();
+        }
+		
+		/// <summary>
+		/// Crea un nuevo objeto hijo
+		/// </summary>
+		/// <param name="parent">Objeto padre</param>
+		/// <returns>Nuevo objeto creado</returns>
+		internal static <%=objectName%> NewChild(<%=ToClassName(parentName)%> parent)
+		{
+			if (!CanAddObject())
+				throw new System.Security.SecurityException(Library.Resources.Messages.USER_NOT_ALLOWED);
+
+			return new <%=objectName%>(parent);
+		}
+		<%Next%>		
+		/// <summary>
+        /// Borrado aplazado, es posible el undo 
+        /// (La función debe ser "no estática")
+        /// </summary>
+        public override void Delete()
+        {
+            if (!CanDeleteObject())
+                throw new System.Security.SecurityException(Library.Resources.Messages.USER_NOT_ALLOWED);
+
+            MarkDeleted();
+        }
+		<% If not isRoot Then %>
+		/// <summary>
+		/// No se debe utilizar esta función para guardar. Hace falta el padre, que
+		/// debe utilizar Insert o Update en sustitución de Save.
+		/// </summary>
+		/// <returns></returns>
+		public override <%=objectName%> Save()
+		{
+			throw new iQException(Library.Resources.Messages.CHILD_SAVE_NOT_ALLOWED);
+		}
+		<% End If %>
+		#endregion
+		<% End If %>
+		#region Common Data Access
+		
+		/// <summary>
+		/// Crea un objeto
+		/// </summary>
+		/// <param name="criteria">Criterios de consulta</param>
+		/// <remarks>La llama el DataPortal a partir del New o NewChild</remarks>		
+		[RunLocal()]
+		private void DataPortal_Create(CriteriaCs criteria)
+		{
+			<% If not (isRoot Or isChild) Then
+			%>Oid = (long)(new Random()).Next();			
+			<% If (Codigo) Then %>
+			Codigo = (0).ToString(Resources.Defaults.DEFAULT_CODE_FORMAT);
+			<% End if %>
+			<% 	For each childName in ChildNames %>
+			_<%=LCase(Plural(childName))%> = Library.<%=Plural(ToClassName(childName))%>.NewChildList();
+			<% 	Next %>
+			<%	Else %>
+			// El código va al constructor porque los DataGrid no llamana al DataPortal sino directamente al constructor
+			<% End If %>
+		}
+		
+		/// <summary>
+		/// Construye el objeto y se encarga de obtener los
+		/// hijos si los tiene y se solicitan
+		/// </summary>
+		/// <param name="source">Objeto fuente</param>
+		private void Fetch(<%= objectName %> source)
+		{
+			SessionCode = source.SessionCode;
+
+			_base.CopyValues(source);
+			<% If isParent Then 				
+			%>if (Childs)
+			{
+				if (nHMng.UseDirectSQL)
+				{
+<% For each childName in ChildNames%>
+					<%=ToClassName(childName)%>.DoLOCK(Session());
+					string query = <%=Plural(ToClassName(childName))%>.SELECT(this);
+					IDataReader reader = nHMng.SQLNativeSelect(query);
+					_<%=LCase(Plural(childName))%> = <%=Plural(ToClassName(childName))%>.GetChildList(SessionCode, reader);
+					<% Next 
+%>				}
+			}<% End If %> 
+
+			MarkOld();
+		}
+
+		/// <summary>
+		/// Construye el objeto y se encarga de obtener los
+		/// hijos si los tiene y se solicitan
+		/// </summary>
+		/// <param name="source">DataReader fuente</param>
+        private void Fetch(IDataReader source)
+        {
+			_base.CopyValues(source);
+
+			<%If isParent Then				
+			%>if (Childs)
+			{
+				if (nHMng.UseDirectSQL)
+				{
+					<%For each childName in ChildNames%>
+					<%=ToClassName(childName)%>.DoLOCK(Session());
+					string query = <%=Plural(ToClassName(childName))%>.SELECT(this);
+					IDataReader reader = nHMng.SQLNativeSelect(query);
+					_<%=LCase(Plural(childName)) %> = <%=Plural(ToClassName(childName))%>.GetChildList(SessionCode, reader);
+					<%Next%>
+				}
+
+			}<%End If%>   
+
+            MarkOld();
+        }
+
+		/// <summary>
+		/// Inserta el registro en la base de datos
+		/// </summary>
+		/// <param name="parent">Lista padre</param>
+		/// <remarks>La utiliza la BusinessListBaseEx correspondiente para insertar elementos<remarks/>
+		internal void Insert(<%=lista%> parent)
+		{
+			// if we're not dirty then don't update the database
+			if (!this.IsDirty) return;
+			
+			GetNewCode();
+		
+			ValidationRules.CheckRules();
+
+			if (!IsValid)
+				throw new iQValidationException(Library.Resources.Messages.GENERIC_VALIDATION_ERROR);
+
+			parent.Session().Save(Base.Record);
+			
+			MarkOld();
+		}
+	
+		/// <summary>
+		/// Actualiza el registro en la base de datos
+		/// </summary>
+		/// <param name="parent">Lista padre</param>
+		/// <remarks>La utiliza la BusinessListBaseEx correspondiente para actualizar elementos<remarks/>
+		internal void Update(<%=lista%> parent)
+		{
+			// if we're not dirty then don't update the database
+			if (!this.IsDirty) return;
+			
+			ValidationRules.CheckRules();
+
+			if (!IsValid)
+				throw new iQValidationException(Library.Resources.Messages.GENERIC_VALIDATION_ERROR);
+
+			SessionCode = parent.SessionCode;
+			<%=objectName%>Record obj = Session().Get<<%= objectName %>Record>(Oid);
+			obj.CopyValues(Base.Record);
+			Session().Update(obj);
+			
+			MarkOld();
+		}
+		
+		/// <summary>
+		/// Borra el registro de la base de datos
+		/// </summary>
+		/// <param name="parent">Lista padre</param>
+		/// <remarks>La utiliza la BusinessListBaseEx correspondiente para borrar elementos<remarks/>
+		internal void DeleteSelf(<%=lista%> parent)
+		{
+			// if we're not dirty then don't update the database
+			if (!this.IsDirty) return;
+
+			// if we're new then don't update the database
+			if (this.IsNew) return;
+
+			SessionCode = parent.SessionCode;
+			Session().Delete(Session().Get<%= "<" + objectName + "Record>" %>(Oid));
+		
+			MarkNew(); 
+		}
+
+		#endregion
+		<%If isRoot Then%>
+		#region Root Data Access
+		
+		/// <summary>
+		/// Obtiene un registro de la base de datos
+		/// </summary>
+		/// <param name="criteria">Criterios de consulta</param>
+		/// <remarks>Lo llama el DataPortal tras generar el objeto</remarks>
+		private void DataPortal_Fetch(CriteriaEx criteria)
+		{
+			try
+			{
+				Oid = 0;
+				SessionCode = criteria.SessionCode;
+				Childs = criteria.Childs;
+				
+				if (nHMng.UseDirectSQL)
+				{
+					//<%=objectName%>.DoLOCK(Session());
+					IDataReader reader = nHMng.SQLNativeSelect(criteria.Query, Session());
+					
+					if (reader.Read())
+						_base.CopyValues(reader);					
+					<%If isParent Then%>
+					if (Childs)
+					{
+						string query = string.Empty;
+					<%For each childName in ChildNames%>
+						//<%=ToClassName(childName)%>.DoLOCK(Session());
+						query = <%=Plural(ToClassName(childName))%>.SELECT(this);
+						reader = nHMng.SQLNativeSelect(query);
+						_<%=LCase(Plural(childName))%> = <%=Plural(ToClassName(childName))%>.GetChildList(SessionCode, reader);
+					<%Next%>			
+					}<%End If%>
+				}
+
+				MarkOld();
+			}
+            catch (Exception ex)
+            {
+                if (Transaction() != null) Transaction().Rollback();
+                iQExceptionHandler.TreatException(ex, new object[] { criteria.Query });
+            }
+		}
+		
+		/// <summary>
+		/// Inserta un elemento en la tabla
+		/// </summary>
+		/// <remarks>Lo llama el DataPortal cuando se llama al Save y el objeto isNew</remarks>
+		[Transactional(TransactionalTypes.Manual)]
+		protected override void DataPortal_Insert()
+		{
+			if (!SharedTransaction)
+			{
+				SessionCode = OpenSession();
+				BeginTransaction();
+			}			
+			<% If (Codigo) Then %>
+			GetNewCode();
+			<% End if %>
+			Session().Save(_base.Record);
+		}
+		
+		/// <summary>
+		/// Modifica un elemento en la tabla
+		/// </summary>
+		/// <remarks>Lo llama el DataPortal cuando se llama al Save y el objeto isDirty</remarks>
+		[Transactional(TransactionalTypes.Manual)]
+		protected override void DataPortal_Update()
+		{
+			if (!IsDirty) return;
+			
+			<%=objectName%>Record obj = Session().Get<%= "<" & objectName & "Record>" %>(Oid);
+			obj.CopyValues(Base.Record);
+			Session().Update(obj);
+			MarkOld();
+			
+		}
+		
+		/// <summary>
+		/// Borrado aplazado, no se ejecuta hasta que se llama al Save
+		/// </summary>
+		[Transactional(TransactionalTypes.Manual)]
+		protected override void DataPortal_DeleteSelf()
+		{
+			DataPortal_Delete(new CriteriaCs(Oid));
+		}
+		
+		/// <summary>
+		/// Elimina un elemento en la tabla
+		/// </summary>
+		/// <remarks>Lo llama el DataPortal</remarks>
+		[Transactional(TransactionalTypes.Manual)]
+		private void DataPortal_Delete(CriteriaCs criteria)
+		{
+			try
+			{
+				// Iniciamos la conexion y la transaccion
+				SessionCode = OpenSession();
+				BeginTransaction();
+					
+				//Si no hay integridad referencial, aquí se deben borrar las listas hijo
+				CriteriaEx criterio = GetCriteria();
+				criterio.AddOidSearch(criteria.Oid);
+				Session().Delete((<%=objectName%>Record)(criterio.UniqueResult()));
+				Transaction().Commit();
+			}
+			catch (Exception ex)
+			{
+				if (Transaction() != null) Transaction().Rollback();
+				throw new iQPersistentException(iQExceptionHandler.GetAllMessages(ex));
+			}
+			finally
+			{
+				CloseSession();
+			}
+		}		
+		
+		#endregion
+		<% End If %>
+		<% if isChild then 
+		%>#region Child Data Access
+
+		<% For each parentName in parentNames %>
+		/// <summary>
+		/// Inserta un registro en la base de datos
+		/// </summary>
+		/// <param name="parent">Objeto padre</param>
+		internal void Insert(<%=ToClassName(parentName)%> parent)
+		{
+			// if we're not dirty then don't update the database
+			if (!this.IsDirty) return;
+
+			//Debe obtener la sesion del padre pq el objeto es padre a su vez
+			SessionCode = parent.SessionCode;
+
+			Oid<%=CropName(parentName)%> = parent.Oid;	
+			<%If (Codigo) Then%>
+			GetNewCode();
+			<%End if %>
+			ValidationRules.CheckRules();
+			
+			if (!IsValid)
+				throw new iQValidationException(Library.Resources.Messages.GENERIC_VALIDATION_ERROR);
+
+			parent.Session().Save(_base.Record);			
+			<%	For each childName in ChildNames %>
+			_<%=LCase(Plural(ChildName))%>.Update(this);
+			<%	Next %>
+			MarkOld();
+		}
+
+		/// <summary>
+		/// Actualiza un registro en la base de datos
+		/// </summary>
+		/// <param name="parent">Objeto padre</param>
+		internal void Update(<%=ToClassName(parentName)%> parent)
+		{
+			// if we're not dirty then don't update the database
+			if (!this.IsDirty) return;
+
+			//Debe obtener la sesion del padre pq el objeto es padre a su vez
+			SessionCode = parent.SessionCode;
+
+			Oid<%=CropName(parentName)%> = parent.Oid;
+
+			ValidationRules.CheckRules();
+
+			if (!IsValid)
+				throw new iQValidationException(Library.Resources.Messages.GENERIC_VALIDATION_ERROR);
+
+			<%=objectName%>Record obj = parent.Session().Get<<%= objectName %>Record>(Oid);
+			obj.CopyValues(Base.Record);
+			parent.Session().Update(obj);
+			<%For each childName in ChildNames
+				Schema = dataBase.Tables(childName).Schema
+			%>
+			<%=LCase(Plural(childName))%>.Update(this);
+			<%Next%>
+			MarkOld();
+		}
+
+		/// <summary>
+		/// Borra un registro de la base de datos.
+		/// </summary>
+		/// <param name="parent">Objeto padre</param>
+		/// <remarks>Borrado inmediato<remarks/>
+		internal void DeleteSelf(<%=ToClassName(parentName)%> parent)
+		{
+			// if we're not dirty then don't update the database
+			if (!this.IsDirty) return;
+
+			// if we're new then don't update the database
+			if (this.IsNew) return;
+
+			SessionCode = parent.SessionCode;
+			Session().Delete(Session().Get<<%= objectName %>Record>(Oid));
+
+			MarkNew();
+		}
+		<%Next%>
+		#endregion
+		<%End If%>		
+        #region SQL
+
+		internal enum EQueryType { GENERAL = 0, CLUSTERED = 1 }
+		
+		internal static Dictionary<String, ForeignField> ForeignFields()
+        {
+            return new Dictionary<String, ForeignField>() {};
+        }
+		
+        public new static string SELECT(long oid) { return SELECT(oid, true); }
+		public static string SELECT(QueryConditions conditions) { return SELECT(conditions, true); }
+		<%If isChild Then
+		   For each parentName in parentNames%>
+		public static string SELECT(<%=ToClassName(parentName)%> item) 
+		{ 
+			Library.<%=namespace%>.QueryConditions conditions = new Library.<%=namespace%>.QueryConditions { <%=ToClassName(parentName)%> = item.GetInfo(false) };
+			return SELECT(conditions, false); 
+		}
+		<% Next%>
+		<%End If%>
+        internal static string SELECT_FIELDS(EQueryType queryType, QueryConditions conditions)
+        {            	
+            string query = @"
+			SELECT " + (long)queryType + @" AS ""QUERY_TYPE""";
+
+			switch (queryType)
+			{
+				case EQueryType.GENERAL:
+
+					query += @"
+						,<%=TableAlias(objectName)%>.*";
+
+					break;
+					
+                case EQueryType.CLUSTERED:
+                    query += @"
+						,DATE_TRUNC('" + conditions.Step.ToString() + @"', <%=TableAlias(objectName)%>.""DATE"") AS ""STEP""
+						,SUM(<%=TableAlias(objectName)%>.""TOTAL"") AS ""TOTAL""";
+
+					break;
+			}
+
+            return query;
+        }
+
+		internal static string JOIN(QueryConditions conditions)
+		{
+            string <%=LPrincipal(objectName)%> = nHManager.Instance.GetSQLTable(typeof(<%=objectName%>Record));
+
+			string query;
+
+            query = @"
+			FROM " + <%=LPrincipal(objectName)%> + @" AS <%=TableAlias(objectName)%>";
+				
+			return query + " " + conditions.ExtraJoin;
+		}
+		
+		internal static string WHERE(QueryConditions conditions)
+		{
+			if (conditions == null) return string.Empty;
+		
+			string query;
+
+            query = @" 
+			WHERE " + FilterMng.GET_FILTERS_SQL(conditions.Filters, "<%=TableAlias(objectName)%>", ForeignFields());
+				
+			query += @" 
+				AND (<%=TableAlias(objectName)%>.""DATE"" BETWEEN '" + conditions.FechaIniLabel + "' AND '" + conditions.FechaFinLabel + "')";
+ 
+			query += Common.EntityBase.STATUS_LIST_CONDITION(conditions.Status, "<%=TableAlias(objectName)%>");
+			query += Common.EntityBase.GET_IN_LIST_CONDITION(conditions.OidList, "<%=TableAlias(objectName)%>");
+			
+            if (conditions.<%=objectName%> != null)
+				query += @"
+					AND <%=UPrincipal(objectName)%>.""OID"" = " + conditions.<%=objectName%>.Oid;
+				
+			<%If isChild Then
+			   For each parentName in parentNames%>
+            if (conditions.<%=ToClassName(parentName)%> != null) 
+				query += @"
+					AND <%=TableAlias(objectName)%>.""OID_<%=UCase(parentName)%>"" = " + conditions.<%=parentName%>.Oid;
+            <%Next
+			End If%>
+			return query + " " + conditions.ExtraWhere;
+		}
+		
+	    internal static string SELECT(QueryConditions conditions, bool lockTable)
+        {
+			string query = string.Empty;
+		
+			if (conditions.Step != EStepGraph.None)
+			{
+				query =
+				SELECT_FIELDS(EQueryType.CLUSTERED, conditions) +
+				JOIN(conditions);
+			}
+			else
+			{
+				query =
+				SELECT_FIELDS(EQueryType.GENERAL, conditions) + 
+				JOIN(conditions) +
+				WHERE(conditions);
+			}
+
+            if (conditions != null) 
+			{
+				if (conditions.Step != EStepGraph.None)
+				{
+					query += @"
+					GROUP BY ""STEP""
+					ORDER BY ""STEP""";
+				}
+				else
+				{
+					query += ORDER(conditions.Orders, "<%=TableAlias(objectName)%>", ForeignFields());
+					query += LIMIT(conditions.PagingInfo);
+				}
+			}				
+
+			query += Common.EntityBase.LOCK("<%=TableAlias(objectName)%>", lockTable);
+
+            return query;
+        }
+		
+		public static string SELECT(CriteriaEx criteria, bool lockTable)
+		{
+			QueryConditions conditions = new QueryConditions
+			{
+				PagingInfo = criteria.PagingInfo,
+				Filters = criteria.Filters,
+				Orders = criteria.Orders
+			};
+			return SELECT(conditions, lockTable);
+		}
+		
+		internal static string SELECT(long oid, bool lockTable)
+        {			
+			return SELECT(new QueryConditions { <%=objectName%> = <%=objectName%>Info.New(oid) }, lockTable);
+        }
+		
+		#endregion
+	}
+}
+<% 
+' Save the output file for this Table
+SaveAs(".cs")
+
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' Buiding the EntityInfo.cs
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%>using System;
+using NHibernate.Mapping.ByCode;
+using NHibernate.Mapping.ByCode.Conformist;
+
+namespace moleQule.Library.<%=namespace%>
+{
+	[Serializable()]
+	public class <%=objectName%>Map : ClassMapping<<%=objectName%>Record>
+	{	
+		public <%=objectName %>Map()
+		{
+			Table("`<%=objTable.Alias%>`");
+			Lazy(true);	
+			
+			<%For Each objColumn in objTable.Columns
+				If objColumn.Name <> "OID" Then 
+			%>Property(x => x.<%=ToProperty(objColumn.Name)%>, map => { map.Column("`<%=objColumn.Alias%>`");<%If objColumn.IsNullable Then%> map.NotNullable(false);<%End If%><%If objColumn.CharacterMaxLength = 0 Then%> map.Length(32768);<%Else%><%If objColumn.CharacterMaxLength < 255 Then%> map.Length(255);<%Else%>	map.Length(<%=objColumn.CharacterMaxLength%>); <%End If%><%End If%> });
+			<%Else 
+			%>Id(x => x.Oid, map => { map.Generator(Generators.Sequence, gmap => gmap.Params(new { sequence = "`<%=objTable.Alias%>_OID_seq`" })); map.Column("`OID`"); });
+			<% End If 
+			 Next 
+%>		}
+	}
+}
+<% 
+' Save the output file for this Table
+SaveAs("Map.cs")
+
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' Buiding the EntityInfo.cs
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using System.ComponentModel;
+
+using Csla;
+using NHibernate;
+using moleQule.Library;
+using moleQule.Library.Common;
+using moleQule.Library.CslaEx;
+
+namespace moleQule.Library.<%= namespace %>
+{
+	/// <summary>
+	<% 	If (not isParent) Then 
+			if (isRoot) then 
+	%>/// ReadOnly Root Object
+	<% 		End if 
+	%>/// ReadOnly Child Object
+	<%	Else 
+			If (isRoot) then 
+	%>/// ReadOnly Root Object With Editable Child Collection
+	<% 		End if 
+	%>/// ReadOnly Child Object With Editable Child Collection
+	<%	End If 
+	%>/// </summary>
+	[Serializable()]
+	public class <%=objectName%>Info : ReadOnlyBaseEx<<%= objectName + "Info" %>, <%=objectName%>>
+	{	
+		#region Attributes
+
+		protected <%=objectName%>Base _base = new <%=objectName%>Base();
+
+		<%For each childName in childNames
+		%>protected <%=ToClassName(childName)%>List_<%=LCase(Plural(childName))%> = null;
+		<% Next %>
+		#endregion
+		
+		#region Properties
+		
+		public <%=objectName%>Base Base { get { return _base; } }
+		
+		<%For each column in objTable.Columns 
+			If column.Name <> "OID" Then
+					name = LCase(column.Name)
+					tipo = GetDataType(column.DataTypeName)
+		%>public <%=tipo%> <%=ToProperty(column.Name)%> { get { return _base.Record.<%=ToProperty(column.Name)%>; } }
+		<%	Else%>
+		public override long Oid { get { return _base.Record.Oid; } set { _base.Record.Oid = value; }}
+		<%End If
+		Next %>
+		<%	For each childName in childNames
+		%>public <%=ToClassName(childName)%>List <%=Plural(ToClassName(childName))%> { get { return _<%=LCase(Plural(childName))%>; } }
+		<%	Next 
+		If Status Then %>
+		//LINKED
+		public virtual EEstado EStatus { get { return _base.EStatus; } }
+		public virtual string StatusLabel { get { return _base.StatusLabel; } }
+		<%End If%>
+		
+		#endregion
+		
+		#region Business Methods
+						
+		public void CopyFrom(<%=objectName%> source) { _base.CopyValues(source); }
+			
+		#endregion		
+		
+		#region Common Factory Methods
+		
+		/// <summary>
+        /// Constructor
+        /// </summary>
+        /// <remarks>
+        ///  NO UTILIZAR DIRECTAMENTE. Object creation require use of factory methods
+        /// </remarks>
+		protected <%=objectName%>Info() { /* require use of factory methods */ }
+		private <%= objectName%>Info(int sessionCode, IDataReader reader, bool childs)
+		{
+			Childs = childs;
+			SessionCode = sessionCode;
+			Fetch(reader);
+		}
+		internal <%= objectName%>Info(<%=objectName%> item, bool childs)
+		{
+			_base.CopyValues(item);
+			
+			if (childs)
+			{
+				<% for each childName in childNames 
+				%>_<%=LCase(Plural(childName))%> = (item.<%=Plural(ToClassName(childName))%> != null) ? <%=ToClassName(childName)%>List.GetChildList(item.<%=Plural(ToClassName(childName))%>) : null;
+				<% next%>
+			}
+		}
+		
+		public static <%=objectName%>Info GetChild(int sessionCode, IDataReader reader, bool childs = false)
+        {
+			return new <%=objectName%>Info(sessionCode, reader, childs);
+		}
+		
+		public static <%=objectName%>Info New(long oid = 0) { return new <%=objectName%>Info(){ Oid = oid}; }
+		
+ 		#endregion
+		<%	If (isRoot) then %>
+		#region Root Factory Methods
+	
+		/// <summary>
+        /// Obtiene un <see cref="ReadOnlyBaseEx"/> de la base de datos
+        /// </summary>
+        /// <param name="oid">Oid del objeto</param>
+        /// <returns>Objeto <see cref="ReadOnlyBaseEx"/> construido a partir del registro</returns>
+		public static <%=objectName%>Info Get(long oid, bool childs = false) 
+		{ 
+            if (!<%=objectName%>.CanGetObject()) throw new System.Security.SecurityException(Library.Resources.Messages.USER_NOT_ALLOWED);
+			return Get(<%=objectName%>.SELECT(oid, false), childs); 
+		}
+		
+		#endregion
+		<% 	End if %>			
+		#region Common Data Access
+								
+		private void Fetch(IDataReader source)
+		{
+			try
+			{
+				_base.CopyValues(source);
+				<% if (ChildNames.Count() > 0) then %>
+				if (Childs)
+				{
+					string query = string.Empty;
+					IDataReader reader;
+					<% for each childName in childNames %>
+					query = <%=ToClassName(childName)%>List.SELECT(this);
+                    reader = nHMng.SQLNativeSelect(query, Session());
+                    _<%=LCase(Plural(childName))%> = <%= ToClassName(childName)%>List.GetChildList(SessionCode, reader);
+					<% next %>
+				}<% End If %>
+			}
+            catch (Exception ex) { throw ex; }
+		}
+		
+		#endregion
+		<%	If (isRoot) then %>
+		#region Root Data Access
+		 
+		private void DataPortal_Fetch(CriteriaEx criteria)
+		{
+			try
+			{
+				Oid = 0;
+				SessionCode = criteria.SessionCode;
+				Childs = criteria.Childs;
+				
+				if (nHMng.UseDirectSQL)
+				{
+					IDataReader reader = nHMng.SQLNativeSelect(criteria.Query, Session());
+		
+					if (reader.Read())
+						_base.CopyValues(reader);
+					<% if (isParent) then %>
+                    if (Childs)
+					{
+						string query = string.Empty;
+	                    <% for each childName in childNames %>
+						query = <%=ToClassName(childName)%>List.SELECT(this);
+                        reader = nHMng.SQLNativeSelect(query, Session());
+                        _<%=LCase(Plural(childName))%> = <%=ToClassName(childName)%>List.GetChildList(SessionCode, reader);
+						<% next %>
+                    }<% End If %>
+				}
+			}
+            catch (Exception ex) { iQExceptionHandler.TreatException(ex, new object[] { criteria.Query }); }
+		}
+		
+		#endregion
+		<% 	End if %>	
+	}
+}
+<% 
+' Save the output file for this Table
+SaveAs("Info.cs")
+
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' Buiding the EntityPrint.cs
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%>using System;
+using System.Collections.Generic;
+using System.Text;
+using System.IO;
+
+using Csla;
+using moleQule.Library;
+
+namespace moleQule.Library.<%= namespace %>
+{
+    [Serializable()]
+    public class <%=objectName%>Print : <%=objectName%>Info
+    {
+        #region Attributes & Properties
+			
+		#endregion
+		
+		#region Business Methods
+
+        protected void CopyValues(<%=objectName%>Info source)
+        {
+            if (source == null) return;
+
+			_base.CopyValues(source);
+			
+			<%	If Foto Then %>
+			if (Foto != string.Empty)
+            {
+                string path = Images.GetRootPath() + Paths.FOTO_<%=objectName%>S.Substring(2) + Foto;
+
+                // Cargamos la imagen en el buffer
+                if (File.Exists(path))
+                {
+                    //Declaramos fs para poder abrir la imagen.
+                    FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+
+                    // Declaramos un lector binario para pasar la imagen a bytes
+                    BinaryReader br = new BinaryReader(fs);
+                    _foto_<%=objectName%> = new byte[(int)fs.Length];
+                    br.Read(Foto<%=objectName%>, 0, (int)fs.Length);
+                    br.Close();
+                    fs.Close();
+                }
+            }
+			<%	End If %>
+        }
+
+        #endregion
+
+        #region Factory Methods
+
+        private <%=objectName%>Print() { /* require use of factory methods */ }
+
+        // called to load data from source
+        public static <%=objectName%>Print New(<%=objectName%>Info source)
+        {
+            <%=objectName%>Print item = new <%=objectName%>Print();
+            item.CopyValues(source);
+
+            return item;
+        }
+
+        #endregion
+
+    }
+}
+<% 
+
+SaveAs("Print.cs")
+
+if isRoot Then
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' Buiding the EntityReportMng.cs
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%>using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using CrystalDecisions.CrystalReports.Engine;
+
+using moleQule.Library;
+using moleQule.Library.Reports;
+
+namespace moleQule.Library.<%= namespace %>
+{
+    [Serializable()]
+    public class <%=objectName%>ReportMng : BaseReportMng
+    {
+	
+        #region Factory Methods
+
+        public <%=objectName%>ReportMng() {}
+
+        public <%=objectName%>ReportMng(ISchemaInfo empresa)
+            : this(empresa, string.Empty) { }
+
+        public <%=objectName%>ReportMng(ISchemaInfo empresa, string title)
+            : this(empresa, title, string.Empty) {}
+
+        public <%=objectName%>ReportMng(ISchemaInfo empresa, string title, string filter)
+            : base(empresa, title, filter) { }
+			
+        #endregion
+        
+        #region Style
+
+        /*private static void FormatReport(<%=objectName%>Rpt rpt, string logo)
+        {
+            string path = Images.GetRootPath() + "\\" + Resources.Paths.LOGO_EMPRESAS + logo;
+
+            if (File.Exists(path))
+            {
+                Image image = Image.FromFile(path);
+                int width = rpt.Section1.ReportObjects["Logo"].Width;
+                int height = rpt.Section1.ReportObjects["Logo"].Height;
+
+                rpt.Section1.ReportObjects["Logo"].Width = 15 * image.Width;
+                rpt.Section1.ReportObjects["Logo"].Height = 15 * image.Height;
+                rpt.Section1.ReportObjects["Logo"].Left += (width - 15 * image.Width) / 2;
+                rpt.Section1.ReportObjects["Logo"].Top += (height - 15 * image.Height) / 2;
+            }
+        }*/
+
+        #endregion
+
+        #region Business Methods <%=objectName%>
+		
+        public <%=objectName%>Rpt GetDetailReport(<%=objectName%>Info item)
+        {
+            if (item == null) return null;
+			
+            <%=objectName%>Rpt doc = new <%=objectName%>Rpt();
+            
+            List<<%=objectName%>Print> pList = new List<<%=objectName%>Print>();
+
+            pList.Add(<%=objectName%>Print.New(item));
+            doc.SetDataSource(pList);
+			doc.SetParameterValue("Empresa", Schema.Name);
+			
+			<% for each childName in childNames %>
+			List<<%=ToClassName(childName)%>Print> p<%=Plural(ToClassName(childName))%> = new List<<%=ToClassName(childName)%>Print>();
+            
+			foreach (<%=ToClassName(childName)%>Info child in item.<%=Plural(ToClassName(childName))%>)
+			{
+				p<%=Plural(childName)%>.Add(<%=ToClassName(childName)%>Print.New(child));
+			}
+
+			doc.Subreports["<%=ToClassName(childName)%>SubRpt"].SetDataSource(p<%=Plural(ToClassName(childName))%>);
+			<%	Next %>
+
+            //FormatReport(doc, empresa.Logo);
+
+            return doc;
+        }
+
+		public <%=objectName%>ListRpt GetListReport(<%=objectName%>List list)
+		{
+			if (list.Count == 0) return null;
+
+			<%=objectName%>ListRpt doc = new ClienteListRpt();
+
+			List<<%=objectName%>Print> pList = new List<<%=objectName%>Print>();
+			
+			foreach (<%=objectName%>Info item in list)
+			{
+				pList.Add(<%=objectName%>Print.New(item));;
+			}
+			
+			doc.SetDataSource(pList);
+			
+			FormatHeader(doc);
+
+			return doc;
+		}
+		
+        #endregion
+
+    }
+}
+<%
+
+SaveAs("ReportMng.cs")
+
+End If
+
+Next '  tableName
+
+output.write buffer
+
+Function SaveAs (name)
+	
+	' Save the output file for this Table
+	filename = input.item("txtPath")
+
+	length = Len(filename)
+	pos = InStrRev(filename, "\") 
+
+	If Not pos = length Then
+		filename = filename & "\"
+	End If
+	
+	If prefix = True Then 
+		If trimName = True Then
+			filename = filename & "_" & ToProperty(TrimSpaces(objTable.Alias)) & name
+		Else
+			filename = filename & "_" & objectName & name
+		End If
+	Else 
+		If trimName = True Then
+			filename = filename & objectName & name
+		Else
+			filename = filename & objectName & name
+		End If
+	End If
+
+	output.save filename, false
+	buffer = buffer & output.text
+	output.clear
+
+End Function	
+
+Function TableAlias(Nombre) 
+	TableAlias = UCase(Mid(Nombre, 1, 2))
+end function
+
+Function UPrincipal(Nombre) 
+	UPrincipal = UCase(Mid(Nombre, 1, 1))
+end function
+
+Function LPrincipal(Nombre) 
+	LPrincipal = LCase(Mid(Nombre, 1, 2))
+end function
+
+Function Plural(Nombre)
+	
+	Dim ultima
+	Dim penultima
+	
+	ultima = Mid(Nombre, Len(Nombre), 1)
+	
+	'Si acaba en Mayusculas
+	if (ultima = UCase(ultima)) then
+		penultima = Mid(Nombre, Len(Nombre)-1, 1)
+		if not (LCase(penultima) = "a" or _
+			LCase(penultima) = "e" or _
+			LCase(penultima) = "i" or _
+			LCase(penultima) = "o" or _
+			LCase(penultima) = "u") then
+			Plural = Mid(Nombre, 1, Len(Nombre) - 1) + "es" + ultima
+		else
+			Plural = Mid(Nombre, 1, Len(Nombre) - 1) + "s" + ultima
+		end if
+	else
+		if not (LCase(ultima) = "a" or _
+				LCase(ultima) = "e" or _
+				LCase(ultima) = "i" or _
+				LCase(ultima) = "o" or _
+				LCase(ultima) = "u") then
+			Plural = Nombre + "es"
+		else
+			Plural = Nombre + "s"
+		end if
+	end if
+
+end function
+
+'===========================================================================
+' These are support routines called by the above scirpt
+'===========================================================================
+Function GetAlias(objColumn)
+	Dim name
+	name = TrimSpaces(objColumn.Alias)
+	GetAlias = UCase(Left(name, 1)) & Right(name, Len(name) -1)
+End Function
+
+Function GetName(objColumn)
+	Dim name
+	name = objColumn.Name
+	GetName = UCase(Left(name, 1)) & Right(name, Len(name) -1)
+End Function
+
+Function TrimSpaces(str)
+
+	Dim tname
+	Dim name
+	Dim char
+	Dim l
+
+	name = ""
+	tname = str
+	l = Len(tname)
+
+	For j = 1 To l
+		char = Mid(tname, j, 1)
+		If Not char = " " And Not Char = "." Then
+			name = name & char
+		End If
+	Next
+
+	TrimSpaces = name
+End Function
+
+Function GetDataType (tipo)
+	Dim retVal
+	Select Case tipo 
+		Case "varchar"
+			GetDataType = "string"
+		Case "text"
+			GetDataType = "string"
+		Case "date"
+			GetDataType = "DateTime"
+		Case "bool"
+			GetDataType = "bool"
+		Case "char"
+			GetDataType = "Char"
+		Case "date"
+			GetDataType = "DateTime"
+		Case "float4"
+			GetDataType = "float"
+		Case "float8"
+			GetDataType = "double"
+		Case "int2"
+			GetDataType = "short"
+		Case "int4"
+			GetDataType = "int"
+		Case "int8"
+			GetDataType = "long"
+		Case "numeric"
+			GetDataType = "Decimal"
+		Case "money"
+			GetDataType = "Decimal"
+		Case "time"
+			GetDataType = "DateTime"
+		Case "timestamp"
+			GetDataType = "DateTime"
+		Case "bigint"
+			GetDataType = "long"
+		Case "decimal"
+			GetDataType = "Decimal"
+		Case Else
+			GetDataType = ""
+	End Select
+End Function
+
+Function ToProperty (name)
+	
+	Dim tname
+	Dim str
+	Dim char
+	Dim l
+	
+	str = ""
+	tname = TrimSpaces(name)
+	l = Len(tname)
+	upper = 1
+
+	For j = 1 To l			
+		char = Mid(tname, j, 1)
+		If (char = "_") Then 
+			upper = 1
+		Else
+			If (upper = 1) Then
+				str = str & UCase(char)
+				upper = 0
+			Else 
+				str = str & LCase(char)
+			End If
+		End If
+	Next
+	ToProperty = str
+	
+End Function
+
+Function ToClassName (name)
+	Dim tname
+	Dim str
+	Dim char
+	Dim l
+	
+	str = ""
+	tname = name
+	l = Len(tname)
+	j = 3
+
+	While j <= l
+		char = Mid(tname, j, 1)
+		If (char = "_") Then 
+			j = j + 1
+			char = Mid(tname, j, 1)
+		End If
+		str = str & char
+		j = j + 1 
+	Wend
+	
+	ToClassName = str
+	
+End Function
+
+Function CropName (name)
+	Dim tname
+	Dim str
+	Dim char
+	Dim l
+	Dim continue
+	
+	tname = ToClassName(name)
+	str = Mid(tname, 1, 1)
+	l = Len(tname)
+	j = 2
+	continue = true
+
+	While j <= l And continue
+		char = Mid(tname, j, 1)
+		If (char <> UCase(char) And char <> "_") Then 
+			char = Mid(tname, j, 1)
+			str = str & char
+		else
+			continue = false
+		End If
+		j = j + 1 
+	Wend
+	
+	CropName = str
+	
+End Function
+
+%>
+##|BODY_END

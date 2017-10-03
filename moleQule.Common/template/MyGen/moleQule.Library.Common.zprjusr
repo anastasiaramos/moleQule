@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project name="moleQule.Library.Common">
+  <modules>
+    <module name="Ayuda" />
+    <module name="AyudaPeriodo" />
+    <module name="Cargo" />
+    <module name="ContactoEmpresa" />
+    <module name="CuentaBancaria" />
+    <module name="CurrencyExchange" />
+    <module name="Empresa" />
+    <module name="Impuesto" />
+    <module name="IRPF" />
+    <module name="LineaRegistro" />
+    <module name="Monitor" />
+    <module name="Municipio" />
+    <module name="Pesaje" />
+    <module name="Registro" />
+    <module name="Relation" />
+    <module name="SubtipoFactura" />
+    <module name="TarjetaCredito" />
+    <module name="TPV" />
+  </modules>
+</project>

@@ -1,0 +1,150 @@
+﻿@using Resources;
+@{
+    ViewBag.ImgPath = "/Content/img";
+}
+
+<div id="basic-wizard" class="innerLR">
+<div id="wizard">
+    <div class="widget widget-heading-simple widget-body-gray">
+		<div class="widget-body"><p class="lead center margin-none padding-none"><h2><span>@Html.Raw(Labels.HOW_TO_USE_PLUGIN_TITLE)</span></h2></p></div>
+	</div>
+    <div class="wizard">
+	    <div class="widget widget-tabs widget-tabs-double widget-tabs-vertical row-fluid row-merge">		
+            <div class="widget-head span3">
+		        <ul>
+                    <li class="active"><a href="#tab1-1" class="glyphicons circle_ok" data-toggle="tab"><i></i><span class="strong">Before start. Preliminary considerations</span></a></li>
+			        <li><a href="#tab2-1" class="glyphicons circle_ok" data-toggle="tab"><i></i><span class="strong">Create the view</span></a></li>
+			        <li><a href="#tab3-1" class="glyphicons circle_ok" data-toggle="tab"><i></i><span class="strong">That's all. Scan your document</span></a></li>
+		        </ul>
+	        </div>
+            <br />
+            <!-- // Widget heading END -->			
+	        <div class="widget-body span9">
+		        <div class="tab-content">				
+                    <div class="tab-pane active" id="tab1-1">
+				        <div class="row-fluid panel">
+					        <div class="span12">
+						        <h4><strong>Preliminary considerations</strong></h4>
+						        <p>
+                                    This plug in is available for computers with <b>Microsoft Windows</b> installed only.<br />
+                                    <br />
+                                    The proposed example uses <b>JQuery Fineuploader</b> to save to disk the scanned image and show it.<br />
+                                    <br />
+                                    The sample code is an <b>ASP.NET 4.0</b> project developed in <b>Visual Studio 2010</b>. @*Download the project <a href="@Url.Content("~/Data/Resources/Qapture.Example.zip")"> here</a>.*@<br />
+                                    <br />
+                                    To use the examples you must <a href="#install-wizard" title=">@Html.Raw(Labels.HOW_TO_INSTALL_PLUGIN_TITLE)">install the plugin</a>.
+                                </p>
+					        </div>
+ 				        </div>
+			        </div>
+                    <br />
+                    <div class="tab-pane" id="tab2-1">
+                        <div class="row-fluid">
+                            <div class="span12">
+				                <h4><strong>Crea la vista</strong></h4>
+                                <p>
+                                    Add references to <i>Silverlight</i> libraries...<br />
+                                    <br />
+                                    <i>~\Views\Scan\ScanExampleBasic.cshtml</i>
+                                </p>
+                                <pre><code>        
+@{
+    string code = @"
+    <script src=""@Url.Content(""~/Scripts/shared/silverlight/silverlight.js"" type=""text/javascript""></script>
+    <script src=""@Url.Content(""~/Scripts/shared/silverlight/silverlight.error.js"" type=""text/javascript""></script>";
+    <text>@code</text>
+}
+                                </code></pre>
+                                <p>
+                                    ...the <i>img</i> tag with <b>id="scanner-screenshot"</b> where <i>Qapture</i> will insert the scanned image...<br />
+                                    <br />
+                                    <i>~\Views\Scan\ScanExampleBasic.cshtml</i>
+                                </p>
+                                <pre><code>
+@{
+    code = @"
+        <a href=""#passport"" data-toggle=""modal"">
+        <img id=""scanner-screenshot"" src=""\@Model.WebPath"" alt=""scanner-screenshot"" class=""preview"" /> 
+        </a>";
+    <text>@code</text>
+}
+                                </code></pre>
+                                <p>
+                                    ...the class <b>silverlight-capture</b> button which <b>onclick</b> event will be associated to the call to <i>Qapture</i>...<br />
+                                    <br />
+                                    <i>~\Views\Scan\ScanExampleBasic.cshtml</i>
+                                </p>
+                                <pre><code>        
+@{
+    code = @"
+        <input type=""button"" class=""btn btn-primary silverlight-capture"" value=""@ViewBag.Scan""/>";
+    <text>@code</text>
+}
+                                </code></pre>
+                                <p>
+                                    ...now add the code to the object that contains the plugin...<br />
+                                    <br />
+                                    <i>~\Views\Scan\ScanExample.cshtml</i>
+                                </p>
+                                <pre><code>        
+@{
+    code = @"
+    <div class=""silverlightControlHost captureImagen"" style=""height:100px; background:transparent; text-align:center;"">
+        <object id=""silverlightControlHost"" data=""data:application/x-silverlight-2,"" type=""application/x-silverlight-2"" width=""100%"" height=""100%"">
+        <param name=""source"" value=""/ClientBin/moleQule.Plugin.Qapture.xap""/>
+        <param name=""onError"" value=""onSilverlightError"" />
+        <param name=""background"" value=""white"" />
+        <param name=""minRuntimeVersion"" value=""5.0.61118.0"" />
+        <param name=""autoUpgrade"" value=""true"" />
+        <a href=""http://go.microsoft.com/fwlink/?LinkID=149156&v=5.0.61118.0"" style=""text-decoration:none"">
+            <img src=""http://go.microsoft.com/fwlink/?LinkId=161376"" alt=""Get Microsoft Silverlight"" style=""border-style:none""/>
+        </a>
+        </object><iframe id=""_sl_historyFrame"" style=""visibility:hidden;height:0px;width:0px;border:0px""></iframe>
+    </div>";
+    <text>@code</text>
+}
+                                </code></pre>
+				                <p>
+                                    ...and the javascript code that communicates with the plugin...<br />
+                                    <br />
+                                    <i>public Boolean Start(string barMessage, string serialNumber, int maxWidth, int maxHeight, bool debug);<br />
+                                    <i>(Parameters [maxWidth = 0: original width, maxHeight = 0: original height, debug = true: shows error info])</i> 
+                                    <br />
+                                    (Use 'Ygcc560952xsHqevneGmXp0NF8aOUp5C' seial code to use it in <b>localhost</b> or your serial number if you have purchased a licensed version)<br /></i>
+                                    <br />
+                                    <i>~\Views\Scan\ScanExampleBasic.cshtml</i>
+                                </p>
+                                <pre><code>
+@{
+    code = @"
+    <script type=""text/javascript"">
+        $(document).ready(function () {
+            $('.silverlight-capture').click(function (e) {
+                var control = document.getElementById('silverlightControlHost');
+                var button = $(this);
+                control.Content.Qapture.Start('@ViewBag.WaitingForScanning', 'Ygcc560952xsHqevneGmXp0NF8aOUp5C', 800, 800, true);
+            });
+        });
+    </script>";
+    <text>@code</text>
+}
+                                </code></pre>
+                           </div>
+                        </div>
+			        </div>
+			        <div class="tab-pane" id="tab3-1">
+                        <div class="row-fluid">
+                            <div class="span12">
+				                <h4><strong>That's all! Scan your documents</strong></h4>
+				                <p>
+                                     Now your application is able to connect to the clients scanner.<br />
+                                </p>
+                            </div>
+                        </div>
+			        </div>		
+		        </div>
+	        </div>
+        </div>
+    </div>
+</div>
+</div>

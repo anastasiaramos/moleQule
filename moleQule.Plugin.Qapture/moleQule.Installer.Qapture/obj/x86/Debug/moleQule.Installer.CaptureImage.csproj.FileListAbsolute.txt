@@ -1,0 +1,3 @@
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.CaptureImage\moleQule.Installer.CaptureImage\moleQule.Installer.CaptureImage\obj\x86\Debug\moleQule.Installer.CaptureImage.Properties.Resources.resources
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.CaptureImage\moleQule.Installer.CaptureImage\moleQule.Installer.CaptureImage\obj\x86\Debug\moleQule.Installer.CaptureImage.csproj.GenerateResource.Cache
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.CaptureImage\moleQule.Installer.CaptureImage\moleQule.Installer.CaptureImage\bin\Debug\moleQule.Installer.CaptureImage.exe.config

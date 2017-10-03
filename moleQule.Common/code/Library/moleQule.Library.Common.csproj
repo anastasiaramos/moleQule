@@ -1,0 +1,517 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <GenerateResourceNeverLockTypeAssemblies>true</GenerateResourceNeverLockTypeAssemblies>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BB5E684D-D75B-468B-A450-049A2F348A4D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>moleQule.Library.Common</RootNamespace>
+    <AssemblyName>moleQule.Library.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\IRYS\code\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Demo|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>true</CodeAnalysisFailOnMissingRules>
+    <DefineConstants>DEMO;</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Demo|x86'">
+    <OutputPath>bin\x86\Demo\</OutputPath>
+    <DefineConstants>DEMO;</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>true</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Staging|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisFailOnMissingRules>true</CodeAnalysisFailOnMissingRules>
+    <DefineConstants>STAGING;</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Staging|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Staging\</OutputPath>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="Csla">
+      <HintPath>..\..\..\..\External Libs\Csla.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\..\..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel">
+      <HintPath>..\..\..\..\External Libs\Office.Interop\2003\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>False</Private>
+      <HintPath>..\..\..\Facto\Codigo\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="moleQule.Library">
+      <HintPath>..\..\..\moleQule.Library\bin\moleQule.Library.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="moleQule.Library.Hipatia">
+      <HintPath>..\..\..\..\Hipatia\code\Library\bin\moleQule.Library.Hipatia.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\..\packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BO\Agent\IAgente.cs" />
+    <Compile Include="BO\CreditCard\CreditCard.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BO\CreditCard\CreditCardInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BO\CreditCard\CreditCardList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BO\CreditCard\CreditCardMap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BO\CreditCard\CreditCards.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BO\CreditCard\CreditCardStatement\CreditCardStatement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BO\CreditCard\CreditCardStatement\CreditCardStatementInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BO\CreditCard\CreditCardStatement\CreditCardStatementList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BO\CreditCard\CreditCardStatement\CreditCardStatementMap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BO\CreditCard\CreditCardStatement\CreditCardStatements.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BO\CreditCard\ITransactionPayment.cs" />
+    <Compile Include="BO\CreditCard\TarjetaCreditoPrint.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BO\CurrencyExchange\CurrencyExchange.cs" />
+    <Compile Include="BO\CurrencyExchange\CurrencyExchangeInfo.cs" />
+    <Compile Include="BO\CurrencyExchange\CurrencyExchangeList.cs" />
+    <Compile Include="BO\CurrencyExchange\CurrencyExchangeMap.cs" />
+    <Compile Include="BO\CurrencyExchange\CurrencyExchangePrint.cs" />
+    <Compile Include="BO\CurrencyExchange\CurrencyExchanges.cs" />
+    <Compile Include="BO\Grant\Ayuda.cs" />
+    <Compile Include="BO\Grant\AyudaInfo.cs" />
+    <Compile Include="BO\Grant\AyudaList.cs" />
+    <Compile Include="BO\Grant\AyudaPeriodo\AyudaPeriodo.cs" />
+    <Compile Include="BO\Grant\AyudaPeriodo\AyudaPeriodoInfo.cs" />
+    <Compile Include="BO\Grant\AyudaPeriodo\AyudaPeriodoList.cs" />
+    <Compile Include="BO\Grant\AyudaPeriodo\AyudaPeriodoPrint.cs" />
+    <Compile Include="BO\Grant\AyudaPeriodo\AyudaPeriodos.cs" />
+    <Compile Include="BO\Grant\AyudaPeriodo\AyudaPeriodoMap.cs" />
+    <Compile Include="BO\Grant\AyudaPrint.cs" />
+    <Compile Include="BO\Grant\Ayudas.cs" />
+    <Compile Include="BO\Grant\AyudaMap.cs" />
+    <Compile Include="BO\Cargo\Cargo.cs" />
+    <Compile Include="BO\Cargo\CargoInfo.cs" />
+    <Compile Include="BO\Cargo\CargoList.cs" />
+    <Compile Include="BO\Cargo\Cargos.cs" />
+    <Compile Include="BO\Cargo\CargoMap.cs" />
+    <Compile Include="BO\BankAccount\BankAccountMap.cs" />
+    <Compile Include="BO\Company\ContactoEmpresaMap.cs" />
+    <Compile Include="BO\Company\CompanyMap.cs" />
+    <Compile Include="BO\Registry\RegistryReportMng.cs" />
+    <Compile Include="BO\Tax\ImpuestoMap.cs" />
+    <Compile Include="BO\IRPF\IRPFMap.cs" />
+    <Compile Include="BO\IRPF\IRPF.cs" />
+    <Compile Include="BO\IRPF\IRPFInfo.cs" />
+    <Compile Include="BO\IRPF\IRPFList.cs" />
+    <Compile Include="BO\IRPF\IRPFPrint.cs" />
+    <Compile Include="BO\IRPF\IRPFs.cs" />
+    <Compile Include="BO\BankAccount\BankAccount.cs" />
+    <Compile Include="BO\BankAccount\BankAccountInfo.cs" />
+    <Compile Include="BO\BankAccount\BankAccountList.cs" />
+    <Compile Include="BO\BankAccount\BankAccountReportMng.cs" />
+    <Compile Include="BO\BankAccount\BankAccounts.cs" />
+    <Compile Include="BO\BankAccount\ITitular.cs" />
+    <Compile Include="BO\Company\ContactoEmpresa.cs" />
+    <Compile Include="BO\Company\ContactoEmpresaInfo.cs" />
+    <Compile Include="BO\Company\ContactoEmpresaList.cs" />
+    <Compile Include="BO\Company\ContactoEmpresas.cs" />
+    <Compile Include="BO\Company\Company.cs" />
+    <Compile Include="BO\Company\CompanyInfo.cs" />
+    <Compile Include="BO\Company\CompanyList.cs" />
+    <Compile Include="BO\Language\Idioma.cs" />
+    <Compile Include="BO\Language\IdiomaInfo.cs" />
+    <Compile Include="BO\Language\IdiomaList.cs" />
+    <Compile Include="BO\Language\Idiomas.cs" />
+    <Compile Include="BO\Tax\Impuesto.cs" />
+    <Compile Include="BO\Tax\ImpuestoInfo.cs" />
+    <Compile Include="BO\Tax\ImpuestoList.cs" />
+    <Compile Include="BO\Tax\ImpuestoPrint.cs" />
+    <Compile Include="BO\Tax\Impuestos.cs" />
+    <Compile Include="BO\Monitor\MonitorLine.cs" />
+    <Compile Include="BO\Monitor\MonitorLineInfo.cs" />
+    <Compile Include="BO\Monitor\MonitorLineList.cs" />
+    <Compile Include="BO\Monitor\MonitorLineMap.cs" />
+    <Compile Include="BO\Monitor\MonitorLines.cs" />
+    <Compile Include="BO\Monitor\MonitorMap.cs" />
+    <Compile Include="BO\Monitor\Monitor.cs" />
+    <Compile Include="BO\Monitor\MonitorInfo.cs" />
+    <Compile Include="BO\Monitor\MonitorList.cs" />
+    <Compile Include="BO\Monitor\MonitorPrint.cs" />
+    <Compile Include="BO\Monitor\Monitors.cs" />
+    <Compile Include="BO\Locality\MunicipioMap.cs" />
+    <Compile Include="BO\Locality\Municipio.cs" />
+    <Compile Include="BO\Locality\MunicipioInfo.cs" />
+    <Compile Include="BO\Locality\MunicipioList.cs" />
+    <Compile Include="BO\Locality\Municipios.cs" />
+    <Compile Include="BO\Pesaje\PesajeMap.cs" />
+    <Compile Include="BO\Pesaje\Pesaje.cs" />
+    <Compile Include="BO\Pesaje\PesajeInfo.cs" />
+    <Compile Include="BO\Pesaje\PesajeList.cs" />
+    <Compile Include="BO\Pesaje\PesajePrint.cs" />
+    <Compile Include="BO\Pesaje\Pesajes.cs" />
+    <Compile Include="BO\Registry\RegistryLine\LineaRegistroMap.cs" />
+    <Compile Include="BO\Registry\RegistroMap.cs" />
+    <Compile Include="BO\Registry\RegistryLine\IEntidadRegistro.cs" />
+    <Compile Include="BO\Registry\RegistryLine\LineaRegistro.cs" />
+    <Compile Include="BO\Registry\RegistryLine\LineaRegistroInfo.cs" />
+    <Compile Include="BO\Registry\RegistryLine\LineaRegistroList.cs" />
+    <Compile Include="BO\Registry\RegistryLine\RegistryLinePrint.cs" />
+    <Compile Include="BO\Registry\RegistryLine\RegistryLines.cs" />
+    <Compile Include="BO\Registry\Registro.cs" />
+    <Compile Include="BO\Registry\RegistroInfo.cs" />
+    <Compile Include="BO\Registry\RegistroList.cs" />
+    <Compile Include="BO\Registry\RegistryPrint.cs" />
+    <Compile Include="BO\Registry\Registries.cs" />
+    <Compile Include="BO\Relation\Relation.cs" />
+    <Compile Include="BO\Relation\RelationInfo.cs" />
+    <Compile Include="BO\Relation\RelationList.cs" />
+    <Compile Include="BO\Relation\RelationMap.cs" />
+    <Compile Include="BO\Relation\RelationPrint.cs" />
+    <Compile Include="BO\Relation\Relations.cs" />
+    <Compile Include="BO\InvoiceSubtype\SubtipoFacturaMap.cs" />
+    <Compile Include="BO\InvoiceSubtype\SubtipoFactura.cs" />
+    <Compile Include="BO\InvoiceSubtype\SubtipoFacturaInfo.cs" />
+    <Compile Include="BO\InvoiceSubtype\SubtipoFacturaList.cs" />
+    <Compile Include="BO\InvoiceSubtype\SubtipoFacturaPrint.cs" />
+    <Compile Include="BO\InvoiceSubtype\SubtipoFacturaReportMng.cs" />
+    <Compile Include="BO\InvoiceSubtype\SubtipoFacturas.cs" />
+    <Compile Include="BO\TPV\TPVMap.cs" />
+    <Compile Include="BO\TPV\TPVs.cs" />
+    <Compile Include="BO\TPV\TPV.cs" />
+    <Compile Include="BO\TPV\TPVInfo.cs" />
+    <Compile Include="BO\TPV\TPVList.cs" />
+    <Compile Include="BO\TPV\TPVPrint.cs" />
+    <Compile Include="ModuleController.cs" />
+    <Compile Include="ModulePrincipal.cs" />
+    <Compile Include="Modules\Hipatia\AgenteSelector.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\BankAccount\BankAccountListRpt.cs">
+      <DependentUpon>BankAccountListRpt.rpt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ImpuestoResumenRpt1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImpuestoResumenRpt.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\QRCodeRpt.cs">
+      <DependentUpon>QRCodeRpt.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\HeaderRpt.cs">
+      <DependentUpon>HeaderRpt.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Registry\RegistryListRpt.cs">
+      <DependentUpon>RegistryListRpt.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Registry\LineaRegistroFomentoListRpt.cs">
+      <DependentUpon>LineaRegistroFomentoListRpt.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Registry\LineaRegistroListRpt.cs">
+      <DependentUpon>LineaRegistroListRpt.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\ReportMng.cs" />
+    <Compile Include="Resources\Labels.en1.Designer.cs">
+      <DependentUpon>Labels.en.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Defaults.en.Designer.cs">
+      <DependentUpon>Defaults.en.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Defaults.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Defaults.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Labels.Designer.cs">
+      <DependentUpon>Labels.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\SecureItems.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SecureItems.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Enums.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Enums.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Messages.Designer.cs">
+      <DependentUpon>Messages.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Structs\Structs.cs" />
+    <Compile Include="Tools\IEntityBase.cs" />
+    <Compile Include="Tools\ScalesMng.cs" />
+    <Compile Include="Tools\SerialPortMng.cs" />
+    <Compile Include="Tools\ExcelExporter.cs" />
+    <Compile Include="Tools\HComboBoxSourceList.cs" />
+    <Compile Include="Tools\EntityBase.cs" />
+    <Compile Include="Tools\QRCodePrint.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\BankAccount\BankAccountListRpt.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>BankAccountListRpt.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ImpuestoResumenRpt.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ImpuestoResumenRpt1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Registry\RegistryListRpt.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RegistryListRpt.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Registry\LineaRegistroFomentoListRpt.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LineaRegistroFomentoListRpt.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Registry\LineaRegistroListRpt.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LineaRegistroListRpt.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Labels.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Labels.en1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Defaults.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Defaults.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Enums.en.resx" />
+    <EmbeddedResource Include="Resources\Messages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\QRCodeRpt.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>QRCodeRpt.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\HeaderRpt.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>HeaderRpt.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Defaults.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Defaults.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Labels.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Labels.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\SecureItems.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SecureItems.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Enums.resx">
+      <SubType>Designer</SubType>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Enums.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\RegistryPrint.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reports\Empresa.xml">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy ".\*" "..\..\..\packages\$(ProjectName)\$(PlatformName)\$(ConfigurationName)"  /Y /R /I /E</PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+</Project>

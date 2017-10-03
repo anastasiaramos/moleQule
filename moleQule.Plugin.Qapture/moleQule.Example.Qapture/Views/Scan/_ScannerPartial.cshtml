@@ -1,0 +1,30 @@
+﻿@using Resources
+@{
+    ViewBag.WaitingForScanning = Labels.WAITING;
+    ViewBag.ScanImageName = Labels.SCAN_IMAGE_NAME;
+}
+<script type="text/javascript">
+    function InitializeScan() {
+
+        $('.silverlight-capture').click(function (e) {
+            var control = document.getElementById('silverlightControlHost');
+            var button = $(this);
+            if (control.Content.Qapture.Start('@ViewBag.WaitingForScanning', 'Ygcc560952xsHqevneGmXp0NF8aOUp5C', 800, 800, true)) {
+                var scannerCanvas = document.querySelector('#scanner-canvas');
+                var image = document.querySelector('#scanner-screenshot');
+                var ctx = scannerCanvas.getContext('2d');
+                scannerCanvas.width = image.width;
+                scannerCanvas.height = image.height;
+                ctx.drawImage(image, 0, 0);
+                if (scannerCanvas.toBlob) {
+                    scannerCanvas.toBlob(
+                    function (blob) {
+                        $(button).closest('.fine-uploader-scan').fineUploader('addBlobs', { Blob: blob, blob: blob, name: '@ViewBag.ScanImageName' });
+                    },
+                    'image/jpeg'
+                    );
+                }
+            }
+        });
+    };
+</script>

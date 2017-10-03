@@ -1,0 +1,1361 @@
+﻿##|TYPE Template
+##|UNIQUEID e91e0086-3f62-4066-8c5b-f23ef165e532
+##|TITLE ManagerForms
+##|NAMESPACE moleQule.Face
+##|SOURCE_TYPE Source
+##|OUTPUT_LANGUAGE C#
+##|GUI_ENGINE Microsoft Script
+##|GUI_LANGUAGE VBScript
+##|GUI_BEGIN
+Dim cmbDatabases
+Dim lstTables
+Dim lstChilds
+Dim lstRelateds
+Dim txtNamespace
+
+Sub setup()
+
+	If context.Objects.ContainsKey("DnpUtils") Then
+		DnpUtils.ReadInputFromCache(context)
+	End if
+
+	ui.Title = "C# moleQule ManagerForms Template"
+	ui.Width  = 380
+	ui.Height = 800
+
+	' Grab default output path
+	Dim sOutputPath
+	sOutputPath = ""
+	If input.Contains("defaultOutputPath") Then 
+		sOutputPath = input.Item("defaultOutputPath")
+	End If
+
+	ui.AddLabel "lblPath", "Output file path: ",  "Select the output path."
+	ui.AddTextBox "txtPath", sOutputPath, "Select the Output Path."
+	ui.AddFilePicker "btnPath", "Select Path", "Select the Output Path.", "txtPath", true
+	
+	ui.AddLabel "lblNamespace", "Module: ",  "Provide your forms module."
+	Set txtNamespace = ui.AddTextBox("txtNamespace", "Project Name", "Provide your forms module")			
+
+	' List Databases in a ComboBox
+	ui.AddLabel "lblDatabases", "Select a database:", "Select a database in the dropdown below."
+	Set cmbDatabases = ui.AddComboBox("cmbDatabase", "Select a database.")
+
+	' List Tables in a listbox
+	ui.AddLabel "lblTables", "Select tables:", "Select tables from the listbox below."
+	Set lstTables = ui.AddListBox("lstTables", "Select tables:")
+	lstTables.Height = 200
+	
+	ui.AddLabel "lblChilds", "Select Childs:", "Select tables from the listbox below."
+	Set lstChilds = ui.AddListBox("lstChilds", "Select Childs:")
+	lstChilds.IsMultiSelect = true
+	lstChilds.Height = 100
+	
+	ui.AddLabel "lblRelateds", "Select Secondary Data:", "Select tables from the listbox below."
+	Set lstRelateds = ui.AddListBox("lstRelateds", "Select Secondary Data:")
+	lstRelateds.IsMultiSelect = true
+	lstRelateds.Height = 100
+	
+	If MyMeta.DriverString = "FIREBIRD" Then
+		ui.Height = ui.Height + 20
+		Set chk = ui.AddCheckBox("ckDialect3", "DIALECT 3", false, "If checked, the stored procedure will use dialect 3 syntax")
+		chk.forecolor = "red"
+	End If
+
+	' Attach the onchange event to the cmbDatabases control.
+	setupDatabaseDropdown cmbDatabases
+	cmbDatabases.AttachEvent "onchange", "cmbDatabases_onchange"
+	
+	ui.ShowGUI = true
+
+End Sub
+
+Sub setupDatabaseDropdown(cmbDatabases)
+	cmbDatabases.BindData MyMeta.Databases
+
+	If Not MyMeta.DefaultDatabase Is Nothing Then
+		cmbDatabases.SelectedValue = MyMeta.DefaultDatabase.Name
+		bindTables cmbDatabases.SelectedValue
+	End If
+End Sub
+
+Sub bindTables(sDatabase)
+	Set db = MyMeta.Databases(sDatabase)
+	lstTables.BindData(db.Tables)
+	lstChilds.BindData(db.Tables)
+	lstRelateds.BindData(db.Tables)
+	txtNamespace.Text = UFirst(cmbDatabases.SelectedValue)
+End Sub
+
+' Event Handler
+Sub cmbDatabases_onchange(control)
+	Set cmbDatabases = ui.item("cmbDatabase")
+	bindTables cmbDatabases.SelectedText
+	txtNamespace.Text = UFirst(cmbDatabases.SelectedValue)
+End Sub
+
+Function UFirst(name)
+	Dim tname
+	Dim str
+	Dim char
+	Dim l
+
+	str =  UCase(Mid(name, 1, 1)) + LCase(Mid(name, 2))
+	
+	Ufirst = str
+	
+End Function
+##|GUI_END
+##|BODY_MODE Markup
+##|BODY_ENGINE Microsoft Script
+##|BODY_LANGUAGE VBScript
+##|BODY_TAG_START <%
+##|BODY_TAG_END %>
+##|BODY_BEGIN
+<%'------------------------------------------------------------------------------
+' Copyright 2009, 2010 by iQ Ingenieros
+' All Rights Reserved 
+'
+' Permission to use, copy, modify, and distribute this software and its 
+' documentation for any purpose and without fee is hereby granted, 
+' provided that the above copyright notice appear in all copies and that 
+' both that copyright notice and this permission notice appear in 
+' supporting documentation. 
+'
+' MYGENERATION SOFTWARE DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS 
+' SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY 
+' AND FITNESS, IN NO EVENT SHALL MYGENERATION SOFTWARE BE LIABLE FOR ANY 
+' SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES 
+' WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, 
+' WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER 
+' TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE 
+' OR PERFORMANCE OF THIS SOFTWARE. 
+'------------------------------------------------------------------------------
+' ManagerForms.vbgen
+' Created : 2010
+' Last Update : 17/12/2013
+'------------------------------------------------------------------------------
+
+If context.Objects.ContainsKey("DnpUtils") Then
+	DnpUtils.SaveInputToCache(context)
+End if
+
+Dim bFirst
+Dim name
+Dim pname
+Dim objTable
+Dim objColumn
+Dim tableNames
+Dim language
+Dim databaseName
+Dim database
+Dim namespace
+Dim props
+Dim prefix
+Dim trimName
+Dim Foto
+Dim Codigo
+Dim ID
+Dim Nombre
+Dim isRelated
+Dim isParent
+Dim objectName
+
+Dim IDbCommand
+Dim IDataParameter
+Dim ParameterPrefix
+
+Dim dialect
+
+dialect = 1
+If input.Item("ckDialect3") Then
+	dialect = 3
+End If
+
+prefix = input.Item("prefix")
+trimName = input.Item("trimName")
+
+' Grab the namespace
+namespace = input.Item("txtNamespace")
+
+' Set the Language for our column data types
+
+' Grab the choices the user made in our UI Script (see Interface Code tab)
+Set TableNames = input.Item("lstTables")
+Set ChildNames = input.Item("lstChilds")
+Set SecNames = input.Item("lstRelateds")
+
+databaseName  = input.Item("cmbDatabase")
+Set database = MyMeta.Databases(databaseName)
+
+' Loop through the tables the user selected and generate the business entities
+For intLp = 0 To TableNames.Count - 1
+
+	Set objTable = database.Tables(TableNames.item(intLp))
+	Set props = objTable.Properties
+
+	objectName = ToClassName(objTable.Alias)
+	isParent = (ChildNames.Count > 0)
+	isRelated = (SecNames.Count > 0)
+	
+	Codigo = false
+	Foto = false
+	Nombre = false
+	ID = false
+	
+	For each objColumn in objTable.Columns
+		if UCase(objColumn.Alias) = "CODIGO" then Codigo = true	End If
+		if UCase(objColumn.Alias) = "FOTO" then Foto = true	End If
+		if UCase(objColumn.Alias) = "NOMBRE" then Nombre = true	End If
+		if UCase(objColumn.Alias) = "ID" then ID = true	End If
+	Next
+	
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' Now we have the table that we desire to build the code from, let us begin.
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' Buiding the EntityForm.cs
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%>using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+
+using moleQule.Face;
+using moleQule.Library;
+using moleQule.Library.<%=namespace %>;
+
+namespace moleQule.Face.<%=namespace %>
+{
+    public partial class <%=objectName%>Form : Skin01.ItemMngSkinForm
+    {
+
+        #region Attributes & Properties
+		
+        public const string ID = "<%=objectName%>Form";
+		public static Type Type { get { return typeof(<%=objectName%>Form); } }
+
+        protected override int BarSteps { get { return base.BarSteps + <%= SecNames.Count %>; } }
+		<%	For each table in SecNames 
+				If table <> UCase(table) then %>
+		<%=ToClassName(table)%>List _<%=LCase(Plural(table))%> = null;
+		<%		End If 
+			Next %>
+        public virtual <%=objectName%> Entity { get { return null; } set { } }
+        public virtual <%=objectName%>Info EntityInfo { get { return null; } }
+
+		<%	For each table in SecNames 
+				If table <> UCase(table) then %>
+		public virtual <%=ToClassName(table)%>Info Current<%=ToClassName(table)%>
+		{
+			get
+			{
+				return Datos_<%=Plural(table)%>.Current != null ? (<%= ToClassName(table)%>Info)(Datos_<%=Plural(table)%>.Current) : null;
+			}
+		}
+		<%		End If 
+			Next %>
+        #endregion
+
+        #region Factory Methods
+
+        public <%=objectName%>Form() 
+			: this(-1, null) { }
+
+		public <%=objectName%>Form(long oid, Form parent)
+			: this(oid, null, true, parent) { }
+
+		public <%=objectName%>Form(long oid, object[] parameters, bool isModal, Form parent)
+			: base(oid, parameters, isModal, parent)
+		{
+			InitializeComponent();
+		}
+		
+        #endregion
+
+        #region Style
+
+        /// <summary>Da formato a los controles del formulario
+        /// <returns>void</returns>
+        /// </summary>
+        public override void FormatControls()
+        {
+            base.FormatControls();
+        }
+
+		#endregion
+		
+		#region Source
+
+        /// <summary>
+        /// Asigna el objeto principal al origen de datos principal
+		/// y las listas hijas a los origenes de datos correspondientes
+        /// </summary>
+        protected override void RefreshMainData()
+        {
+			<%	If Foto Then 
+            %>Images.Show(EntityInfo.Foto, Principal.Fotos<%=objectName%>sPath, Logo_PictureBox);
+            PgMng.Grow();<%	
+			End If %>
+        }
+
+        /// <summary>
+        /// Asigna los datos a los origenes de datos secundarios
+        /// </summary>
+        public override void RefreshSecondaryData()
+		{
+			<%	For each table in SecNames 
+					If table = UCase(table) then
+			%><%=ToClassName(table)%>List <%=LCase(Plural(table))%> = <%=ToClassName(table)%>List.GetList(false);
+            Datos_<%=Plural(table)%>.DataSource = <%=LCase(Plural(table))%>;
+            //<%=ToClassName(table)%>_CB.Text = EntityInfo.<%=ToClassName(table)%>;
+            PgMng.Grow();
+			
+			<%		Else 
+			%>_<%=LCase(Plural(table))%> = <%= ToClassName(table)%>List.GetList(false);
+			Datos_<%=Plural(table)%>.DataSource = _<%=LCase(table)%>s;
+            PgMng.Grow();
+            //<%= Plural(table)%>_CB.SelectedItem = _<%= LCase(Plural(table))%>.GetItem(EntityInfo.Oid<%= ToClassName(table)%>);
+            PgMng.Grow();
+			
+			<%	End If 
+				Next %>
+        }
+		
+		#endregion
+
+        #region Validation & Format
+
+        #endregion
+
+        #region Print
+
+        //public override void PrintObject()
+        //{
+        //    <%=objectName%>ReportMng reportMng = new <%=objectName%>ReportMng(AppContext.ActiveSchema);
+        //    ReportViewer.SetReport(reportMng.GetReport(EntityInfo);
+        //    ReportViewer.ShowDialog();
+        //}
+
+        #endregion
+
+        #region Actions
+
+        #endregion
+
+        #region Events
+
+        private void Datos_DataSourceChanged(object sender, EventArgs e)
+        {
+            //SetDependentControlSource(ID_GB.Name);
+        }
+
+		<%	For each table in ChildNames %>
+		private void <%=Plural(table)%>_Grid_DataError(object sender, DataGridViewDataErrorEventArgs e) {}
+
+        private void <%=Plural(table)%>_Grid_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            SetUnlinkedGridValues(<%=Plural(table)%>_Grid.Name);
+        }
+		<%	Next %>
+        #endregion
+    }
+}
+<%
+' Save the output file for this Table
+SaveAs("Form.cs")
+
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' Buiding the EntityForm.Designer.cs
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%>namespace moleQule.Face.<%=namespace%>
+{
+    partial class <%=objectName%>Form
+    {
+        /// <summary>
+        /// Variable del diseñador requerida.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Limpiar los recursos que se estén utilizando.
+        /// </summary>
+        /// <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Código generado por el Diseñador de Windows Forms
+
+        /// <summary>
+        /// Método necesario para admitir el Diseñador. No se puede modificar
+        /// el contenido del método con el editor de código.
+        /// </summary>
+        private void InitializeComponent()
+        {
+		    this.components = new System.ComponentModel.Container();
+            <%	If isParent Then 
+			%>this.Ficha_TC = new System.Windows.Forms.TabControl();
+			this.General_TP = new System.Windows.Forms.TabPage();
+			<%	End If 
+				For each table in ChildNames 
+			%>this.<%=Plural(table)%>_TP = new System.Windows.Forms.TabPage();
+			this.Datos_<%=Plural(table)%> = new System.Windows.Forms.BindingSource(this.components);
+			this.<%=Plural(table)%>_Grid = new System.Windows.Forms.DataGridView();
+			<%	Next 
+				For each table in SecNames 
+			%>this.Datos_<%=Plural(table)%> = new System.Windows.Forms.BindingSource(this.components);
+			<%	Next %>
+			this.PanelesV.Panel2.SuspendLayout();
+            this.PanelesV.SuspendLayout();
+            this.Paneles2.Panel1.SuspendLayout();
+            this.Paneles2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Datos)).BeginInit();
+			<% 	If isParent Then %>
+            this.Ficha_TC.SuspendLayout();
+			this.General_TP.SuspendLayout();
+			<%	End If 
+				For each table in ChildNames 
+			%>((System.ComponentModel.ISupportInitialize)(this.<%=Plural(table)%>_Grid)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.Datos_<%=Plural(table)%>)).BeginInit();
+            this.<%=Plural(table)%>_TP.SuspendLayout();
+			<%	Next %>
+            this.SuspendLayout();
+            // 
+            // PanelesV
+            // 
+			<%	If isParent Then %>this.PanelesV.Panel1.Controls.Add(this.Ficha_TC);<%	End If %>
+            this.PanelesV.SplitterDistance = 226;
+            // 
+            // Submit_BT
+            // 
+            this.Submit_BT.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.Submit_BT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Submit_BT.Location = new System.Drawing.Point(252, 6);
+            // 
+            // Cancel_BT
+            // 
+            this.Cancel_BT.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.Cancel_BT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Cancel_BT.Location = new System.Drawing.Point(348, 6);
+            // 
+            // Paneles2
+            // 
+            // 
+            // Imprimir_Button
+            // 
+            this.Imprimir_Button.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.Imprimir_Button.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Imprimir_Button.Location = new System.Drawing.Point(156, 6);
+            // 
+            // Datos
+            // 
+			this.Datos.DataSource = typeof(moleQule.Library.<%=namespace%>.<%=objectName%>);
+            this.Datos.DataSourceChanged += new System.EventHandler(this.Datos_DataSourceChanged);
+			<%	For each table in ChildNames 
+			%>// 
+			// Datos_<%=Plural(table)%>
+			//
+			this.Datos_<%=Plural(table)%>.DataSource = typeof(moleQule.Library.<%=namespace%>.<%=ToClassName(table)%>List);
+			<%	Next 
+				For each table in SecNames 
+			%>// 
+			// Datos_<%=Plural(table)%>
+			//
+			this.Datos_<%=Plural(table)%>.DataSource = typeof(moleQule.Library.<%=namespace%>.<%=ToClassName(table)%>List);
+			<%	Next 
+				If isParent Then 
+			%>// 
+            // Ficha_TC
+            // 
+			this.Ficha_TC.Controls.Add(this.General_TP);
+			<%	For each table in ChildNames 
+			%>this.Ficha_TC.Controls.Add(this.<%=Plural(table)%>_TP);
+			<%	Next %>
+            this.Ficha_TC.Location = new System.Drawing.Point(11, 11);
+            this.Ficha_TC.Name = "Ficha_TC";
+            this.Ficha_TC.SelectedIndex = 0;
+            this.Ficha_TC.TabIndex = 0;	
+			// 
+            // General_TP
+            // 
+            this.General_TP.Location = new System.Drawing.Point(4, 22);
+            this.General_TP.Name = "General_TP";
+            this.General_TP.Padding = new System.Windows.Forms.Padding(3);
+            this.General_TP.TabIndex = 0;
+            this.General_TP.Text = "General";
+            this.General_TP.UseVisualStyleBackColor = true;
+			<%	End If 
+				For each table in ChildNames %>
+			// 
+            // <%=Plural(table)%>
+            // 
+			this.<%=Plural(table)%>_TP.Controls.Add(this.<%=Plural(table)%>_Grid);
+			this.<%=Plural(table)%>_TP.AutoScroll = true;
+            this.<%=Plural(table)%>_TP.Location = new System.Drawing.Point(4, 22);
+            this.<%=Plural(table)%>_TP.Name = "<%=Plural(table)%>_TP";
+            this.<%=Plural(table)%>_TP.Padding = new System.Windows.Forms.Padding(3);
+            this.<%=Plural(table)%>_TP.TabIndex = 0;
+            this.<%=Plural(table)%>_TP.Text = "<%=Plural(table)%>";
+            this.<%=Plural(table)%>_TP.UseVisualStyleBackColor = true;
+			<%	Next 
+				For each table in ChildNames %>
+			// 
+            // <%=Plural(table)%>_Grid
+            // 
+            this.<%=Plural(table)%>_Grid.AllowUserToAddRows = false;
+            this.<%=Plural(table)%>_Grid.AllowUserToOrderColumns = true;
+            this.<%=Plural(table)%>_Grid.AutoGenerateColumns = false;
+            this.<%=Plural(table)%>_Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.<%=Plural(table)%>_Grid.DataSource = this.Datos_<%=Plural(table)%>;
+            this.<%=Plural(table)%>_Grid.Location = new System.Drawing.Point(0, 0);
+			this.<%=Plural(table)%>_Grid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.<%=Plural(table)%>_Grid.Name = "<%=Plural(table)%>_Grid";
+            this.<%=Plural(table)%>_Grid.ReadOnly = true;
+            this.<%=Plural(table)%>_Grid.Size = new System.Drawing.Size(611, 484);
+            this.<%=Plural(table)%>_Grid.TabIndex = 3;
+            this.<%=Plural(table)%>_Grid.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.<%=Plural(table)%>_Grid_DataError);
+            this.<%=Plural(table)%>_Grid.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.<%=Plural(table)%>_Grid_DataBindingComplete);
+			<%	Next %>
+			// 
+            // <%=objectName%>Form
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
+            this.ClientSize = new System.Drawing.Size(592, 266);
+            this.HelpProvider.SetHelpNavigator(this, System.Windows.Forms.HelpNavigator.TopicId);
+            this.Name = "<%=objectName%>Form";
+            this.HelpProvider.SetShowHelp(this, true);
+            this.Text = "<%=objectName%>Form";
+            this.PanelesV.Panel2.ResumeLayout(false);
+            this.PanelesV.ResumeLayout(false);
+            this.Paneles2.Panel1.ResumeLayout(false);
+            this.Paneles2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Datos)).EndInit();
+			<% 	If isParent Then %>
+            this.Ficha_TC.ResumeLayout();
+			this.General_TP.ResumeLayout();
+			<%	End If 
+				For each table in ChildNames 
+			%>this.<%=Plural(table)%>_TP.ResumeLayout();
+			((System.ComponentModel.ISupportInitialize)(this.<%=Plural(table)%>_Grid)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.Datos_<%=Plural(table)%>)).EndInit();
+			<%	Next 
+				For each table in SecNames 
+			%>((System.ComponentModel.ISupportInitialize)(this.Datos_<%=Plural(table)%>)).EndInit();
+			<%	Next %>
+			this.ResumeLayout(false);
+        }
+
+        #endregion
+		
+		<% 	If isParent Then %>
+		protected System.Windows.Forms.TabControl Ficha_TC;
+        protected System.Windows.Forms.TabPage General_TP;
+        <%	End If 
+			For each table in ChildNames 
+		%>protected System.Windows.Forms.TabPage <%=Plural(table)%>_TP;
+		protected System.Windows.Forms.BindingSource Datos_<%=Plural(table)%>;
+		protected System.Windows.Forms.DataGridView <%=Plural(table)%>_Grid;
+		<%	Next 
+			For each table in SecNames
+		 %>protected System.Windows.Forms.BindingSource Datos_<%=Plural(table)%>;
+		<%	Next %>
+
+    }
+}
+<%
+' Save the output file for this Table
+SaveAs("Form.Designer.cs")
+
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' Buiding the EntityViewForm.cs
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%>using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+
+using moleQule.Face;
+using moleQule.Library;
+using moleQule.Library.<%= namespace %>;
+
+namespace moleQule.Face.<%= namespace %>
+{
+    public partial class <%=objectName%>ViewForm : <%=objectName%>Form
+    {
+        #region Attributes & Properties
+		
+        public new const string ID = "<%=objectName%>ViewForm";
+		public new static Type Type { get { return typeof(<%=objectName%>ViewForm); } }
+
+		protected override int BarSteps { get { return base.BarSteps + <%= 2 + ChildNames.Count %>; } }
+
+        /// <summary>
+        /// Se trata del objeto actual.
+        /// </summary>
+        private <%=objectName%>Info _entity;
+
+        public override <%=objectName%>Info EntityInfo { get { return _entity; } }
+
+		#endregion
+		
+        #region Factory Methods
+
+        public <%=objectName%>ViewForm(long oid, Form parent)
+            : base(oid, parent)
+        {
+            InitializeComponent();
+            SetFormData();
+            _mf_type = ManagerFormType.MFView;
+        }
+
+        protected override void GetFormSourceData(long oid)
+        {
+            _entity = <%=objectName%>Info.Get(oid, true);
+        }
+
+        #endregion
+
+        #region Style
+
+        /// <summary>Da formato visual a los Controles del formulario
+        /// <returns>void</returns>
+        /// </summary>
+        public override void FormatControls()
+        {
+            base.FormatControls();
+            SetReadOnlyControls(this.Controls);
+        }
+
+		#endregion
+		
+		#region Source
+		
+        /// <summary>
+        /// Asigna el objeto principal al origen de datos 
+        /// <returns>void</returns>
+        /// </summary>
+        protected override void RefreshMainData()
+        {
+            Datos.DataSource = _entity;
+            PgMng.Grow();
+
+			<%	For each table in ChildNames %>
+			Datos_<%=Plural(table)%>.DataSource = <%=ToClassName(table)%>List.SortList(_entity.<%=Plural(table)%>, CAMPOORDENACION, ListSortDirection.Ascending);
+            PgMng.Grow();
+			<%	Next %>
+			
+            base.RefreshMainData();
+        }
+		<%	If isParent Then %>
+        protected override void SetUnlinkedGridValues(string gridName)
+        {
+            /*switch (gridName)
+            {
+                <%	For each table in ChildNames %>
+				case "<%ToClassName(Plural(table))%>_Grid":
+                    {
+                        <%=ToClassName(table)%>List <%=LCase(table)%> = <%=ToClassName(table)%>List.GetList(false);
+                        foreach (DataGridViewRow row in <%=ToClassName(table)%>_Grid.Rows)
+                        {
+                            if (row.IsNewRow) continue;
+                            Alumno_ExamenInfo info = (Alumno_ExamenInfo)row.DataBoundItem;
+                            if (info != null)
+                            {
+                                <%=ToClassName(table)%>Info <%=LCase(table)%> = <%=LCase(Plural(table))%>.GetItem(info.Oid<%=ToClassName(table)%>);
+                                if (examen != null)
+                                    row.Cells[<%=ToClassName(table)%>.Name].Value = <%=LCase(table)%>.Titulo;
+                            }
+                        }
+
+                    } break;
+				<%	Next %>
+            }*/
+        }
+		<%	End If %>
+        #endregion
+
+        #region Print
+
+        #endregion
+
+        #region Actions
+
+        /// <summary>
+        /// Implementa Save_button_Click
+        /// </summary>
+        protected override void SaveAction() { _action_result = DialogResult.Cancel; }
+
+        #endregion
+
+        #region Events
+
+        #endregion
+    }
+}
+<%
+' Save the output file for this Table
+SaveAs("ViewForm.cs")
+
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' Buiding the EntityViewForm.Designer.cs
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%>namespace moleQule.Face.<%=namespace%>
+{
+    partial class <%=objectName%>ViewForm
+    {
+        /// <summary>
+        /// Variable del diseñador requerida.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Limpiar los recursos que se estén utilizando.
+        /// </summary>
+        /// <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Código generado por el Diseñador de Windows Forms
+
+        /// <summary>
+        /// Método necesario para admitir el Diseñador. No se puede modificar
+        /// el contenido del método con el editor de código.
+        /// </summary>
+        private void InitializeComponent()
+        {
+			this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+			// 
+            // <%=objectName%>ViewForm
+            // 
+            this.Name = "<%=objectName%>ViewForm";
+            this.Text = "<%=objectName%>ViewForm";
+            this.ResumeLayout(false);
+        }
+
+        #endregion
+	}
+}
+<%
+' Save the output file for this Table
+SaveAs("ViewForm.Designer.cs")
+
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' Buiding the EntityUIForm.cs
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%>using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+
+using moleQule.Face;
+using moleQule.Library;
+using moleQule.Library.<%=namespace%>;
+
+namespace moleQule.Face.<%=namespace%>
+{
+    public partial class <%=objectName%>UIForm : <%=objectName%>Form
+    {
+
+        #region Attributes & Properties
+		
+        public new const string ID = "<%=objectName%>UIForm";
+		public new static Type Type { get { return typeof(<%=objectName%>UIForm); } }
+
+		protected override int BarSteps { get { return base.BarSteps + <%=2 + ChildNames.Count%>; } }
+
+        /// <summary>
+        /// Se trata del objeto actual y que se va a editar.
+        /// </summary>
+        protected <%=objectName%> _entity;
+
+        public override <%=objectName%> Entity { get { return _entity; } set { _entity = value; } }
+        public override <%=objectName%>Info EntityInfo { get { return (_entity != null) ? _entity.GetInfo(false) : null; } }
+
+        #endregion
+
+        #region Factory Methods
+
+		public <%=objectName%>UIForm(long oid, Form parent)
+			: this(oid, null, true, parent) { }
+
+		public <%=objectName%>UIForm(Gasto entity, Form parent)
+            : this(-1, new object[1] { entity }, true, parent) {}
+
+		public <%=objectName%>UIForm(long oid, object[] parameters, bool isModal, Form parent)
+			: base(oid, parameters, isModal, parent)
+		{
+			InitializeComponent();
+		}
+
+        /// <summary>
+        /// Guarda en la bd el objeto actual
+        /// </summary>
+        protected override bool SaveObject()
+        {
+			this.Datos.RaiseListChangedEvents = false;
+
+			<%=objectName%> temp = _entity.Clone();
+			temp.ApplyEdit();
+
+			// do the save
+			try
+			{
+				_entity = temp.Save();
+				_entity.ApplyEdit();
+				<%	If Foto Then 
+				%>// Se modifica el nombre de la foto
+				if (_entity.Foto == "000000000.jpg")
+				{
+					Images.Rename(_entity.Foto, _entity.Oid.ToString("000") + ".jpg", Principal.Fotos<%=Plural(objectName)%>Path);
+					_entity.Foto = _entity.Oid.ToString("000") + ".jpg";
+					_entity.Save();
+				}
+				<%	End If %>
+
+				return true;
+			}
+			catch (Exception ex)
+			{
+				CleanCache();
+				PgMng.ShowInfoException(ex);
+				return false;
+			}
+			finally
+			{
+				this.Datos.RaiseListChangedEvents = true;
+			}
+        }
+
+        #endregion
+
+        #region Style
+
+        /// <summary>Da formato a los controles del formulario
+        /// <returns>void</returns>
+        /// </summary>
+        public override void FormatControls()
+        {
+            base.FormatControls();
+            ShowStatusBar(moleQule.Face.Resources.Messages.STATUS_GENERICO);
+        }
+
+		#endregion
+		
+		#region Source
+		
+        /// <summary>
+        /// Asigna el objeto principal al origen de datos principal
+		/// y las listas hijas a los origenes de datos correspondientes
+        /// </summary>
+        protected override void RefreshMainData()
+        {
+            Datos.DataSource = _entity;
+            PgMng.Grow();
+			<%	For each table in ChildNames %>
+			Datos_<%=Plural(table)%>.DataSource = <%=Plural(table)%>.SortList(_entity.<%=Plural(table)%>, CAMPOORDENACION, ListSortDirection.Ascending);
+            PgMng.Grow();
+			<%	Next %>			
+            base.RefreshMainData();
+        }
+		
+		/// <summary>
+        /// Asigna los datos de origen para controles que dependen de otros
+        /// </summary>
+        /// <param name="controlName"></param>
+        protected override void SetDependentControlSource(string controlName)
+        {
+            /*switch (controlName)
+            {
+                case "ID_GB":
+                    {
+                        NIF_RB.Checked = (EntityInfo.TipoId == (long)TipoId.NIF);
+                        NIE_RB.Checked = (EntityInfo.TipoId == (long)TipoId.NIE);
+                        DNI_RB.Checked = (EntityInfo.TipoId == (long)TipoId.DNI);
+
+                    } break;
+            }*/
+        }
+		<%	If isParent Then %>
+        protected override void SetUnlinkedGridValues(string gridName)
+        {
+            /*switch (gridName)
+            {
+                <%	For each table in ChildNames %>
+				case "<%ToClassName(Plural(table))%>_Grid":
+                    {
+                        <%=ToClassName(table)%>List <%=LCase(table)%> = <%=ToClassName(table)%>List.GetList(false);
+                        foreach (DataGridViewRow row in <%=ToClassName(table)%>_Grid.Rows)
+                        {
+                            if (row.IsNewRow) continue;
+                            Alumno_Examen info = (Alumno_Examen)row.DataBoundItem;
+                            if (info != null)
+                            {
+                                <%=ToClassName(table)%>Info <%=LCase(table)%> = <%=LCase(Plural(table))%>.GetItem(info.Oid<%=ToClassName(table)%>);
+                                if (examen != null)
+                                    row.Cells[<%=ToClassName(table)%>.Name].Value = <%=LCase(table)%>.Titulo;
+                            }
+                        }
+
+                    } break;
+				<%	Next %>
+            }*/
+        }
+		<%	End If %>
+		
+        #endregion
+
+        #region Validation & Format
+
+        /// <summary>
+        /// Valida datos de entrada
+        /// </summary>
+        protected override void ValidateInput()
+        {	<%	If ID Then %>                    
+            switch (_entity.TipoId)
+            {
+                case (long)ETipoID.CIF:
+                    Validator.ValidateCIF(ID_LB.Text, Codigo_TB.Text);
+                    break;
+
+                case (long)ETipoID.NIF:
+                case (long)ETipoID.DNI:
+                    Validator.ValidateNIF(ID_LB.Text, Codigo_TB.Text);
+                    break;
+
+                case (long)ETipoID.NIE:
+                    Validator.ValidateNIE(ID_LB.Text, Codigo_TB.Text);
+                    break;
+            }
+            <%	End If%>
+        }
+		
+        #endregion
+
+        #region Actions
+
+        /// <summary>
+        /// Implementa Save_button_Click
+        /// </summary>
+        protected override void SaveAction()
+        {	
+			_action_result = SaveObject() ? DialogResult.OK : DialogResult.Ignore;
+        }
+
+        #endregion
+
+        #region Events
+		
+		<%	For each table in SecNames %>
+		/*private void <%=objectName%>_CB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if ((<%=ToClassName(table)%>_CB.SelectedItem == null) || (<%=ToClassName(table)%>_CB.SelectedItem.ToString() == _entity.<%=ToClassName(table)%>)) return;
+            <%	If table = "MUNICIPIO" Then %>
+			_entity.<%=ToClassName(table)%> = ((<%=ToClassName(table)%>Info)<%=ToClassName(table)%>_CB.SelectedItem).Valor;
+			_entity.Provincia = ((MunicipioInfo)Municipio_CB.SelectedItem).Provincia;
+            _entity.CodPostal = ((MunicipioInfo)Municipio_CB.SelectedItem).CodPostal;
+            Provincia_TextBox.Text = _entity.Provincia;
+            CodPostal_TextBox.Text = _entity.CodPostal;
+			<%	Else %>
+			_entity.Oid<%=ToClassName(table)%> = ((<%=ToClassName(table)%>Info)<%=ToClassName(table)%>0_CB.SelectedItem).Oid;   
+			<%	End If %>
+        }
+
+        private void <%=objectName%>_CB_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode.Equals(Keys.Add) || e.KeyCode.Equals(Keys.Oemplus))
+            {
+                <%=objectName%>UIForm form = new <%=objectName%>UIForm(true);
+                form.ShowDialog();
+                <%=objectName%>_CB.ResetText();
+            }
+        }*/
+		<%	Next %>
+        #endregion
+    }
+}
+<% 
+' Save the output file for this Table
+SaveAs("UIForm.cs")
+
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' Buiding the EntityUIForm.Designer.cs
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%>namespace moleQule.Face.<%=namespace%>
+{
+    partial class <%=objectName%>UIForm
+    {
+        /// <summary>
+        /// Variable del diseñador requerida.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Limpiar los recursos que se estén utilizando.
+        /// </summary>
+        /// <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Código generado por el Diseñador de Windows Forms
+
+        /// <summary>
+        /// Método necesario para admitir el Diseñador. No se puede modificar
+        /// el contenido del método con el editor de código.
+        /// </summary>
+        private void InitializeComponent()
+        {
+			this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+			// 
+            // <%=objectName%>UIForm
+            // 
+            this.Name = "<%=objectName%>UIForm";
+            this.Text = "<%=objectName%>UIForm";
+            this.ResumeLayout(false);
+        }
+
+        #endregion
+	}
+}
+<% 
+' Save the output file for this Table
+SaveAs("UIForm.Designer.cs")
+
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' Buiding the EntityEditForm.cs
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%>using System;
+using System.Windows.Forms;
+
+using moleQule.Face;
+using moleQule.Library.<%= namespace %>;
+
+namespace moleQule.Face.<%= namespace %>
+{
+    public partial class <%=objectName%>EditForm : <%=objectName%>UIForm
+    {
+
+        #region Attributes & Properties
+		
+        public new const string ID = "<%=objectName%>EditForm";
+		public new static Type Type { get { return typeof(<%=objectName%>EditForm); } }
+
+		#endregion
+		
+        #region Factory Methods
+
+
+		public <%=objectName%>EditForm(long oid, Form parent)
+			: this(oid, new object[1] { null }, parent) {}
+
+		public vEditForm(<%=objectName%> entity, Form parent)
+			: this(-1, new object[1] { entity }, parent) {}
+
+		public <%=objectName%>EditForm(long oid, object[] parameters, Form parent)
+			: base(oid, parameters, true, parent)
+		{
+			InitializeComponent();
+			if (_entity != null) SetFormData();
+			_mf_type = ManagerFormType.MFEdit;
+		}
+
+		public override void DisposeForm()
+		{
+			if (_entity != null) _entity.CloseSession();
+			base.DisposeForm();
+		}
+
+		protected override void GetFormSourceData(long oid, object[] parameters)
+		{
+			_entity = <%=objectName%>.Get(oid);
+			_entity.BeginEdit();
+		}
+
+		protected override void GetFormSourceData(object[] parameters)
+		{
+			_entity = (<%=objectName%>)parameters[0];
+			_entity.BeginEdit();
+		}
+
+        #endregion
+    }
+}
+<% 
+' Save the output file for this Table
+SaveAs("EditForm.cs")
+
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' Buiding the EntityEditForm.Designer.cs
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%>namespace moleQule.Face.<%=namespace%>
+{
+    partial class <%=objectName%>EditForm
+    {
+        /// <summary>
+        /// Variable del diseñador requerida.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Limpiar los recursos que se estén utilizando.
+        /// </summary>
+        /// <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Código generado por el Diseñador de Windows Forms
+
+        /// <summary>
+        /// Método necesario para admitir el Diseñador. No se puede modificar
+        /// el contenido del método con el editor de código.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+			// 
+            // <%=objectName%>EditForm
+            // 
+            this.Name = "<%=objectName%>EditForm";
+            this.Text = "<%=objectName%>EditForm";
+            this.ResumeLayout(false);
+        }
+
+        #endregion
+	}
+}
+<% 
+' Save the output file for this Table
+SaveAs("EditForm.Designer.cs")
+
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' Buiding the EntityAddForm.cs
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%>using System;
+using System.Windows.Forms;
+
+using moleQule.Face;
+using moleQule.Library.<%=namespace%>;
+
+namespace moleQule.Face.<%=namespace%>
+{
+    public partial class <%=objectName%>AddForm : <%=objectName%>UIForm
+    {
+        #region Attributes & Properties
+		
+        public new const string ID = "<%=objectName%>AddForm";
+		public new static Type Type { get { return typeof(<%=objectName%>AddForm); } }
+
+		#endregion
+		
+        #region Factory Methods
+
+		public <%=objectName%>AddForm(Form parent)
+			: this((Gasto)null, parent) {}
+
+		public <%=objectName%>AddForm(Gasto entity, Form parent) 
+			: this(new object[1] { entity }, parent) {}
+
+		public <%=objectName%>AddForm(object[] parameters, Form parent)
+			: base(-1, parameters, true, parent)
+		{
+			InitializeComponent();
+			SetFormData();
+			_mf_type = ManagerFormType.MFAdd;
+		}		
+
+        protected override void GetFormSourceData(object[] parameters)
+        {
+			if (parameters[0] == null)
+			{
+				_entity = <%=objectName%>.New();
+				_entity.BeginEdit();
+			}
+			else
+			{
+				_entity = (<%=objectName%>)parameters[0];
+				_entity.BeginEdit();
+			}
+        }
+
+        #endregion
+    }
+}
+<% 
+' Save the output file for this Table
+SaveAs("AddForm.cs")
+
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' Buiding the EntityAddForm.Designer.cs
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%>namespace moleQule.Face.<%=namespace%>
+{
+    partial class <%=objectName%>AddForm
+    {
+        /// <summary>
+        /// Variable del diseñador requerida.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Limpiar los recursos que se estén utilizando.
+        /// </summary>
+        /// <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Código generado por el Diseñador de Windows Forms
+
+        /// <summary>
+        /// Método necesario para admitir el Diseñador. No se puede modificar
+        /// el contenido del método con el editor de código.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+			// 
+            // <%=objectName%>AddForm
+            // 
+            this.Name = "<%=objectName%>AddForm";
+            this.Text = "<%=objectName%>AddForm";
+            this.ResumeLayout(false);
+        }
+
+        #endregion
+	}
+}
+<%
+
+' Save the output file for this Table
+SaveAs("AddForm.Designer.cs")
+
+%>
+
+<%	Next '  tableName
+	
+	output.write buffer
+
+'===========================================================================
+' These are support routines called by the above scirpt
+'===========================================================================
+
+Function ToClassName (name)
+	Dim tname
+	Dim str
+	Dim char
+	Dim l
+	
+	str = ""
+	tname = name
+	l = Len(tname)
+	j = 3
+
+	'Si es auxiliar estará todo el nombre en mayúsculas
+	if (name = UCase(name)) Then
+		tname = UCase(Mid(name, 1, 1)) + LCase(Mid(name, 2))
+	Else
+		tname = UCase(Mid(name, 1, 1)) + Mid(name, 2)
+	End If
+	
+	While j <= l
+		char = Mid(tname, j, 1)
+		If (char = "_") Then 
+			j = j + 1
+			char = Mid(tname, j, 1)
+		End If
+		str = str & char
+		j = j + 1 
+	Wend
+	
+	ToClassName = str
+	
+End Function
+
+Function Plural (tabla)
+	
+	if not (LCase(Mid(tabla, Len(tabla), 1)) = "a" or _
+			LCase(Mid(tabla, Len(tabla), 1)) = "e" or _
+			LCase(Mid(tabla, Len(tabla), 1)) = "i" or _
+			LCase(Mid(tabla, Len(tabla), 1)) = "o" or _
+			LCase(Mid(tabla, Len(tabla), 1)) = "u") then
+		Plural = ToClassName(tabla) + "es"
+	else
+		Plural = ToClassName(tabla) + "s"
+	end if
+	
+End Function
+
+Function SaveAs (name)
+	
+	' Save the output file for this Table
+	filename = input.item("txtPath")
+
+	length = Len(filename)
+	pos = InStrRev(filename, "\") 
+
+	If Not pos = length Then
+		filename = filename & "\"
+	End If
+	
+	If prefix = True Then 
+		If trimName = True Then
+			filename = filename & "_" & ToProperty(TrimSpaces(objTable.Alias)) & name
+		Else
+			filename = filename & "_" & objectName & name
+		End If
+	Else 
+		If trimName = True Then
+			filename = filename & objectName & name
+		Else
+			filename = filename & objectName & name
+		End If
+	End If
+
+	output.save filename, false
+	buffer = buffer & output.text
+	output.clear
+
+End Function
+%>
+##|BODY_END

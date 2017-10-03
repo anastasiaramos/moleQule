@@ -1,0 +1,276 @@
+﻿SET search_path TO "0001";
+-- COMMON MODULE SCHEMA SCRIPT
+
+DROP TABLE IF EXISTS "CMBankAccount" CASCADE;
+CREATE TABLE "CMBankAccount" 
+( 
+	"OID" bigserial NOT NULL,
+	"VALOR" character varying(255) UNIQUE,
+	"SWIFT" character varying(255),
+    "OBSERVACIONES" text,
+    "CUENTA_CONTABLE" text,
+    "CUENTA_CONTABLE_GASTOS" text,
+    "SALDO_INICIAL" numeric(10,2) DEFAULT 0,
+    "ESTADO" bigint DEFAULT 10,
+    "OID_ASOCIADA" bigint DEFAULT 0,
+    "TIPO" bigint DEFAULT 1,
+    "ENTIDAD" character varying(255),
+    "FECHA_FIRMA" timestamp without time zone,
+    "DURACION_POLIZA" timestamp without time zone,
+    "COMISION" numeric(10,2),
+    "TIPO_INTERES" numeric(10,2),
+	"PAGO_GASTOS_INICIO" boolean DEFAULT FALSE,
+	"DIAS_CREDITO" bigint,
+	CONSTRAINT "PK_CMBankAccount" PRIMARY KEY ("OID")
+) WITHOUT OIDS;
+
+ALTER TABLE "CMBankAccount" OWNER TO moladmin;
+GRANT ALL ON TABLE "CMBankAccount" TO GROUP "MOLEQULE_ADMINISTRATOR";
+
+DROP TABLE IF EXISTS "CMCreditCard" CASCADE;
+CREATE TABLE "CMCreditCard" 
+( 
+	"OID" bigserial NOT NULL,
+	"OID_CUENTA_BANCARIA" bigint NOT NULL,
+    "NOMBRE" character varying(255),
+    "NUMERACION" character varying(255) UNIQUE,
+    "CUENTA_CONTABLE" character varying(255),
+    "OBSERVACIONES" text,
+    "TIPO" bigint DEFAULT 1,
+    "FORMA_PAGO" bigint DEFAULT 3,
+    "DIAS_PAGO" bigint DEFAULT 1,
+    "DIA_EXTRACTO" bigint DEFAULT 3,
+	CONSTRAINT "PK_CMCreditCard" PRIMARY KEY ("OID")
+) WITHOUT OIDS;
+
+ALTER TABLE "CMCreditCard" OWNER TO moladmin;
+GRANT ALL ON TABLE "CMCreditCard" TO GROUP "MOLEQULE_ADMINISTRATOR";
+
+DROP TABLE IF EXISTS "CMCreditCardStatement" CASCADE;
+CREATE TABLE "CMCreditCardStatement" 
+( 
+	"OID" bigserial NOT NULL,
+	"OID_CREDIT_CARD" bigint NOT NULL,
+	"FROM" timestamp without time zone,
+	"TILL" timestamp without time zone,
+	"DUE_DATE" timestamp without time zone,
+	"AMOUNT" numeric(10,2),
+	"COMMENTS" text,
+	CONSTRAINT "PK_CMCreditCardStatement" PRIMARY KEY ("OID")
+) WITHOUT OIDS;
+
+ALTER TABLE "CMCreditCardStatement" OWNER TO moladmin;
+GRANT ALL ON TABLE "CMCreditCardStatement" TO GROUP "MOLEQULE_ADMINISTRATOR";
+
+DROP TABLE IF EXISTS "CMGrant" CASCADE;
+CREATE TABLE "CMGrant" 
+( 
+	"OID" bigserial NOT NULL,
+	"SERIAL" bigint DEFAULT 0 NOT NULL,
+    "CODIGO" character varying(255),
+    "ESTADO" bigint DEFAULT 10,
+    "NOMBRE" character varying(255),
+    "CUENTA_CONTABLE" character varying(255),
+    "OBSERVACIONES" text,
+	CONSTRAINT "PK_CMGrant" PRIMARY KEY ("OID")
+) WITHOUT OIDS;
+
+ALTER TABLE "CMGrant" OWNER TO moladmin;
+GRANT ALL ON TABLE "CMGrant" TO GROUP "MOLEQULE_ADMINISTRATOR";
+
+DROP TABLE IF EXISTS "CMGrantPeriod" CASCADE;
+CREATE TABLE "CMGrantPeriod" 
+( 
+	"OID" bigserial NOT NULL,
+	"OID_AYUDA" bigint NOT NULL,
+    "ESTADO" bigint DEFAULT 10,
+    "TIPO_DESCUENTO" bigint DEFAULT 2,
+    "PORCENTAJE" numeric(10,2) DEFAULT 0,
+    "CANTIDAD" numeric(10,5) DEFAULT 0,
+    "FECHA_INI" timestamp without time zone,
+    "FECHA_FIN" timestamp without time zone,
+    "OBSERVACIONES" text,
+	CONSTRAINT "PK_CMGrantPeriod" PRIMARY KEY ("OID")
+) WITHOUT OIDS;
+
+ALTER TABLE "CMGrantPeriod" OWNER TO moladmin;
+GRANT ALL ON TABLE "CMGrantPeriod" TO GROUP "MOLEQULE_ADMINISTRATOR";
+
+DROP TABLE IF EXISTS "CMIrpf" CASCADE;
+CREATE TABLE "CMIrpf" 
+( 
+	"OID" bigserial NOT NULL,
+	"NOMBRE" character varying(255),
+    "PORCENTAJE" numeric(10,2) DEFAULT 0,
+    "OBSERVACIONES" text,
+	CONSTRAINT "PK_CMIrpf" PRIMARY KEY ("OID")
+) WITHOUT OIDS;
+
+ALTER TABLE "CMIrpf" OWNER TO moladmin;
+GRANT ALL ON TABLE "CMIrpf" TO GROUP "MOLEQULE_ADMINISTRATOR";
+
+DROP TABLE IF EXISTS "CMMonitor" CASCADE;
+CREATE TABLE "CMMonitor"
+(
+  "OID" bigserial,
+  "STATUS" bigint DEFAULT 0,
+  "COMPONENT_TYPE" bigint,
+  "COMPONENT_SERIAL" character varying(255),
+  "COMPONENT_NAME" character varying(255),
+  "COMPONENT_IP" character varying(255),
+  "COMPONENT_INTERVAL" bigint,
+  "COMPONENT_STATUS" bigint DEFAULT 0,
+  "ERROR_TYPE" bigint DEFAULT 0,
+  "ERROR_LEVEL" bigint DEFAULT 0,
+  "DESCRIPTION" text,
+  "LAST_UPDATE" timestamp without time zone,
+  "ERROR_COUNT" bigint DEFAULT 0,
+  "WARNING_COUNT" bigint DEFAULT 0,
+  "NOTIFY" boolean DEFAULT TRUE,
+  CONSTRAINT "PK_CMMonitor" PRIMARY KEY ("OID")
+)WITHOUT OIDS;
+
+ALTER TABLE "CMMonitor" OWNER TO moladmin;
+GRANT ALL ON TABLE "CMMonitor" TO GROUP "MOLEQULE_ADMINISTRATOR";
+
+DROP TABLE IF EXISTS "CMMonitorLine" CASCADE;
+CREATE TABLE "CMMonitorLine"
+(
+  "OID" bigserial,
+  "OID_MONITOR" bigint,
+  "DATE" timestamp without time zone,
+  "COMPONENT_IP" character varying(255),
+  "COMPONENT_INTERVAL" bigint,
+  "COMPONENT_STATUS" bigint DEFAULT 0,
+  "STATUS" bigint DEFAULT 0,
+  "ERROR_LEVEL" bigint DEFAULT 0,
+  "DESCRIPTION" text,  
+  CONSTRAINT "PK_CMMonitorLine" PRIMARY KEY ("OID")
+)WITHOUT OIDS;
+
+ALTER TABLE "CMMonitorLine" OWNER TO moladmin;
+GRANT ALL ON TABLE "CMMonitorLine" TO GROUP "MOLEQULE_ADMINISTRATOR";
+
+DROP TABLE IF EXISTS "CMRelation" CASCADE;
+CREATE TABLE "CMRelation"
+(
+  "OID" bigint,
+  "OID_PARENT" bigint DEFAULT 0,
+  "PARENT_TYPE" bigint,
+  "OID_CHILD" bigint,
+  "CHILD_TYPE" bigint,
+  CONSTRAINT "PK_CMRelation" PRIMARY KEY ("OID")
+)WITHOUT OIDS;
+
+ALTER TABLE "CMRelation" OWNER TO moladmin;
+GRANT ALL ON TABLE "CMRelation" TO GROUP "MOLEQULE_ADMINISTRATOR";
+
+DROP TABLE IF EXISTS "CMTax" CASCADE;
+CREATE TABLE "CMTax" 
+( 
+	"OID" bigserial NOT NULL,
+	"OID_SUBTIPO_FACTURA_EMITIDA" bigint NOT NULL DEFAULT 1,
+	"OID_SUBTIPO_FACTURA_RECIBIDA" bigint NOT NULL DEFAULT 10,
+	"NOMBRE" character varying(255) UNIQUE,
+    "PORCENTAJE" numeric(10,2) DEFAULT 0,
+    "CUENTA_CONTABLE_REPERCUTIDO" character varying(255),
+    "CUENTA_CONTABLE_SOPORTADO" character varying(255),
+    "OBSERVACIONES" text,
+	CONSTRAINT "PK_CMTax" PRIMARY KEY ("OID")
+) WITHOUT OIDS;
+
+ALTER TABLE "CMTax" OWNER TO moladmin;
+GRANT ALL ON TABLE "CMTax" TO GROUP "MOLEQULE_ADMINISTRATOR";
+
+DROP TABLE IF EXISTS "CMRegistry" CASCADE;
+CREATE TABLE "CMRegistry" 
+( 
+	"OID" bigserial NOT NULL,
+	"TIPO_REGISTRO" bigint,
+    "SERIAL" bigint DEFAULT 0 NOT NULL,
+    "CODIGO" character varying(255),
+    "ESTADO" bigint DEFAULT 1,
+    "NOMBRE" character varying(255),
+    "FECHA" timestamp without time zone,
+    "OBSERVACIONES" text,
+    "OID_USUARIO" bigint,
+	"TIPO_EXPORTACION" bigint,
+	CONSTRAINT "PK_CMRegistry" PRIMARY KEY ("OID")
+) WITHOUT OIDS;
+
+ALTER TABLE "CMRegistry" OWNER TO moladmin;
+GRANT ALL ON TABLE "CMRegistry" TO GROUP "MOLEQULE_ADMINISTRATOR";
+
+DROP TABLE IF EXISTS "CMRegistryLine" CASCADE;
+CREATE TABLE "CMRegistryLine" 
+( 
+	"OID" bigserial NOT NULL,
+	"OID_REGISTRO" bigint NOT NULL,
+    "OID_ENTIDAD" bigint NOT NULL,
+    "TIPO_ENTIDAD" bigint,
+    "SERIAL" bigint DEFAULT 0 NOT NULL,
+    "CODIGO" character varying(255),
+    "ESTADO" bigint DEFAULT 1,
+    "FECHA" timestamp without time zone,
+    "DESCRIPCION" text,
+    "OBSERVACIONES" text,
+    "ID_EXPORTACION" character varying(255),
+	CONSTRAINT "PK_CMRegistryLine" PRIMARY KEY ("OID")
+) WITHOUT OIDS;
+
+ALTER TABLE "CMRegistryLine" OWNER TO moladmin;
+GRANT ALL ON TABLE "CMRegistryLine" TO GROUP "MOLEQULE_ADMINISTRATOR";
+
+DROP TABLE IF EXISTS "CMTpv" CASCADE;
+CREATE TABLE "CMTpv" 
+( 
+	"OID" bigserial NOT NULL,
+	"OID_CUENTA_BANCARIA" bigint NOT NULL,
+    "NOMBRE" character varying(255) UNIQUE,
+    "CUENTA_CONTABLE" character varying(255),
+    "OBSERVACIONES" text,
+    "P_COMISION" numeric(10,2) DEFAULT 0,
+	CONSTRAINT "PK_CMTpv" PRIMARY KEY ("OID")
+) WITHOUT OIDS;
+
+ALTER TABLE "CMTpv" OWNER TO moladmin;
+GRANT ALL ON TABLE "CMTpv" TO GROUP "MOLEQULE_ADMINISTRATOR";
+
+DROP TABLE IF EXISTS "CMWeighing" CASCADE;
+CREATE TABLE "CMWeighing" 
+( 
+	"OID" bigserial NOT NULL,
+	"SERIAL" bigint,
+    "CODIGO" character varying(255),
+    "ESTADO" bigint DEFAULT 1,
+    "FECHA" timestamp without time zone,
+    "DESCRIPCION" text,
+    "BRUTO" numeric(10,2),
+    "NETO" numeric(10,2),
+    "TARA" numeric(10,2),
+    "OBSERVACIONES" text,	
+	CONSTRAINT "PK_CMWeighing" PRIMARY KEY ("OID")
+) WITHOUT OIDS;
+
+ALTER TABLE "CMWeighing" OWNER TO moladmin;
+GRANT ALL ON TABLE "CMWeighing" TO GROUP "MOLEQULE_ADMINISTRATOR";
+
+--Foreign keys
+
+ALTER TABLE ONLY "CMGrantPeriod"
+    ADD CONSTRAINT "FK_CMGrantPeriod_CMGrant" FOREIGN KEY ("OID_AYUDA") REFERENCES "CMGrant"("OID") ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE ONLY "CMMonitorLine"
+    ADD CONSTRAINT "FK_CMMonitorLine_CMMonitor" FOREIGN KEY ("OID_MONITOR") REFERENCES "CMMonitor"("OID") ON UPDATE CASCADE ON DELETE CASCADE;
+	
+ALTER TABLE ONLY "CMRegistryLine"
+    ADD CONSTRAINT "FK_CMRegistryLine_CMRegistry" FOREIGN KEY ("OID_REGISTRO") REFERENCES "CMRegistry"("OID") ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE ONLY "CMTpv"
+    ADD CONSTRAINT "FK_CMTpv_CMBankAccount" FOREIGN KEY ("OID_CUENTA_BANCARIA") REFERENCES "CMBankAccount"("OID") ON UPDATE CASCADE ON DELETE RESTRICT;
+
+ALTER TABLE ONLY "CMCreditCard"
+    ADD CONSTRAINT "FK_CMCreditCard_CMBankAccount" FOREIGN KEY ("OID_CUENTA_BANCARIA") REFERENCES "CMBankAccount"("OID") ON UPDATE CASCADE ON DELETE RESTRICT;
+
+ALTER TABLE ONLY "CMCreditCardStatement"
+    ADD CONSTRAINT "FK_CMCreditCardStatement_CMCreditCard" FOREIGN KEY ("OID_CREDIT_CARD") REFERENCES "CMCreditCard"("OID") ON UPDATE CASCADE ON DELETE RESTRICT;

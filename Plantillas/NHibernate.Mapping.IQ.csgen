@@ -1,0 +1,395 @@
+﻿##|TYPE Template
+##|UNIQUEID 48d7fe95-b49a-4aba-b708-eb16b3184ed7
+##|TITLE NHibernate Object Mapping
+##|NAMESPACE NHibernate
+##|SOURCE_TYPE Source
+##|OUTPUT_LANGUAGE C#
+##|COMMENTS_BEGIN
+Generate C# classes or hbm mapping files or both. Can use tables or views. Can specify "read-only". Can generate overridden Equals and GetHashCode methods.
+##|COMMENTS_END
+##|GUI_ENGINE .Net Script
+##|GUI_LANGUAGE C#
+##|GUI_BEGIN
+<%#REFERENCE System.Windows.Forms.dll %>
+<%#NAMESPACE System, System.Text, System.Collections, Zeus, Zeus.UserInterface, Zeus.DotNetScript %>
+
+public class GeneratedGui : DotNetScriptGui
+{
+	public GeneratedGui( ZeusGuiContext context ) : base( context ) {}
+
+	public override void Setup()
+	{
+		if ( !input.Contains( "chooseTables" ) || !input.Contains( "txtPath" ) ||
+				( !input.Contains( "chkClass" ) && !input.Contains( "chkNaming" ) ) )
+		{
+			ui.Title = "NHibernate Object Mapping";
+			ui.Width = 600;
+			ui.Height = 500;
+	
+			// Grab default output path
+			string sOutputPath = "";
+			
+			if( input.Contains( "defaultOutputPath" ) ) 
+			{
+				sOutputPath = input["defaultOutputPath"].ToString();
+			}
+
+			// Setup Folder selection input control.
+			GuiLabel label1 = ui.AddLabel( "label1", "Select the output path:", "Select the output path in the field below." );
+			label1.Width = 200;
+			GuiTextBox outputPath = ui.AddTextBox( "outputPath", sOutputPath, "Select the Output Path." );
+			outputPath.Width = 450;
+			GuiFilePicker selectPath = ui.AddFilePicker( "selectPath", "Select Path", "Select the Output Path.", "outputPath", true );
+			selectPath.Top = outputPath.Top;
+			selectPath.Width = 100;
+			selectPath.Left = outputPath.Left + outputPath.Width + 20;
+			
+			GuiLabel label2 = ui.AddLabel( "label2", "Namespace: ",  "Provide your objects namespace." );
+			label2.Width = 200;
+			GuiTextBox classNamespace = ui.AddTextBox( "namespace", "", "Provide your objects namespace." );				
+			classNamespace.Width = 200;
+			
+			GuiLabel esquema = ui.AddLabel( "schemaLabel", "Schema: ", "");
+			esquema.Width = 80;
+			esquema.Top = label2.Top;
+			esquema.Left = label2.Width + 40;
+			GuiTextBox schemaTextBox = ui.AddTextBox( "schema", "", "ed");
+			schemaTextBox.Width = 80;
+			schemaTextBox.Top = classNamespace.Top;
+			schemaTextBox.Left = classNamespace.Width + 40;
+			GuiCheckBox chkSchema = ui.AddCheckBox("chkSchema", "Use this schema", false, "Use this schema instead of that from the table");			
+			chkSchema.Left = classNamespace.Width + 40;
+             
+			// Setup Database selection combobox.
+			GuiLabel label4 = ui.AddLabel( "label4", "Select a database:", "Select a database in the dropdown below." );
+			label4.Width = 250;
+			GuiComboBox chooseDatabase = ui.AddComboBox( "chooseDatabase", "Select a database." );
+			chooseDatabase.Width = 250;
+			
+			// Setup Tables selection multi-select listbox.
+			GuiLabel label7 = ui.AddLabel( "label7", "Select tables:", "Select tables from the listbox below." );
+			//label7.Top = chkEqualsHashCode.Top + 20;
+			GuiListBox chooseTables = ui.AddListBox( "chooseTables", "Select tables." );
+			chooseTables.Height = 120;
+				
+			// Attach the onchange event to the cmbDatabases control.
+			setupDatabaseDropdown( chooseDatabase );
+			chooseDatabase.AttachEvent( "onchange", "chooseDatabase_onchange" );
+	
+			ui.ShowGui = true;
+		}
+		else 
+		{
+			ui.ShowGui = false;
+		}
+	}
+	
+	public void setupDatabaseDropdown( GuiComboBox Databases )
+	{
+		try 
+		{	
+			if( MyMeta.IsConnected )
+			{
+				Databases.BindData( MyMeta.Databases );
+				if( MyMeta.DefaultDatabase != null ) 
+				{
+					Databases.SelectedValue = MyMeta.DefaultDatabase.Alias;
+					bindTables( Databases.SelectedValue );
+					bindViews( Databases.SelectedValue );
+				}
+			}
+		}
+		catch
+		{
+		}
+	}
+	
+	public void bindTables( string sDatabase )
+	{
+		GuiListBox lstTables = ui["chooseTables"] as GuiListBox;
+		
+		try 
+		{	
+			IDatabase db = MyMeta.Databases[sDatabase];
+			lstTables.BindData( db.Tables );
+		}
+		catch
+		{
+		}
+	}
+	
+	public void bindViews( string sDatabase )
+	{
+		int count = 0;
+	
+		GuiListBox lstViews = ui["chooseViews"] as GuiListBox;
+		
+		try 
+		{	
+			IDatabase db = MyMeta.Databases[sDatabase];
+			lstViews.BindData( db.Views );
+		}
+		catch
+		{
+		}
+	}
+	
+	public void chooseDatabase_onchange( GuiComboBox control )
+	{
+		int count = 0;
+
+		GuiComboBox cmbDatabases = ui["chooseDatabase"] as GuiComboBox;
+	
+		bindTables( cmbDatabases.SelectedText );
+		bindViews( cmbDatabases.SelectedText );
+	}
+	
+}
+##|GUI_END
+##|BODY_MODE Markup
+##|BODY_ENGINE .Net Script
+##|BODY_LANGUAGE C#
+##|BODY_TAG_START <%
+##|BODY_TAG_END %>
+##|BODY_BEGIN
+<%#NAMESPACE System.IO, System.Text, System.Text.RegularExpressions, System.Globalization %><%
+public class GeneratedTemplate : DotNetScriptTemplate
+{
+	private ArrayList _selectedTables;
+	private string _dbName;
+	private string _tableName;
+	private string _className;
+	private string _exportPath;
+	private string _fileName;
+	private string _nameSpace;
+	private string _schema;
+	private bool _createXmlFiles;
+	private ITable _workingTable;
+	
+	public GeneratedTemplate( ZeusContext context ) : base( context ) {}
+	
+	public override void Render()
+	}
+		_dbName = input["chooseDatabase"].ToString();
+		_selectedTables = input["chooseTables"] as ArrayList;
+		_exportPath = input["outputPath"].ToString();
+		_nameSpace = input["namespace"].ToString();
+		_schema = input["schema"].ToString();
+		
+		foreach( string _newTable in _selectedTables )
+		{
+			_workingTable = MyMeta.Databases[_dbName].Tables[_newTable];
+			_tableName = _workingTable.Alias.Replace( " ", "" );
+			_className = _tableName;
+			GenerarFichero( _workingTable.Columns);
+		}
+		
+	}
+	private void GenerarFichero(IColumns Columns)
+	{
+%><?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.0"  assembly="<%output.write(_nameSpace);%>">
+	<class name="<%output.write(_nameSpace + "." + _className);%>" schema="`<%output.write(_schema);%>`"  table="`<%output.write(_tableName);%>`" lazy="true">
+<%
+		int cPK = 0;
+		foreach (IColumn c in Columns)
+		{
+			if (c.IsInPrimaryKey)
+			{
+				cPK++;
+				%>
+		<id name="<%= ToProperty(c.Name) %>" column="`<%output.write(c.Alias);%>`" type="<%output.write(GetDataType(c.DataTypeName));%>" <%unsaved_value(c);%>>
+			<generator class="sequence">				<param name="sequence">"<%output.write(_schema);%>"."<%output.write(_tableName + "_" + c.Alias + "_seq");%>"</param>			</generator>
+		</id><%
+			}
+		}
+		if (cPK == 0)
+		{
+			%>
+		<!-- could not find a primary key for this table/view. NHibernate requires an 'id' element, so you'll have to define one manually. -->
+			<%
+		}
+		if (cPK > 1)
+		{
+			%>
+		<!-- composite primary key support is touchy. View the documentation for syntax. -->	
+			<%
+		}
+		foreach (IColumn c in Columns)
+		{
+			if (!c.IsInPrimaryKey){%>
+		<property column="`<%output.write(c.Name);%>`"  type="<%output.write(GetDataType(c.DataTypeName));%>" name="<%output.write(ToProperty(c.Name));%>" <%
+			if (c.IsNullable)
+				output.write("not-null=\"false\" ");
+			if (c.LanguageType == "string")
+				if (c.CharacterMaxLength == 0)
+					output.write("length=\"32768\"");
+				else if (c.CharacterMaxLength < 255)
+					output.write("length=\"255\"");
+				else
+					output.write("length=\"" + c.CharacterMaxLength + "\"");%> /><%
+			}
+		}
+		%>
+	</class>
+</hibernate-mapping><%
+		_fileName = _className + ".hbm.xml";
+		if (_schema.ToUpper() == "COMMON")
+			output.save( Path.Combine( _exportPath + "/COMMON/", _fileName ), false );
+		else
+			output.save( Path.Combine( _exportPath + "/" + _schema + "/", _fileName ), false );
+		output.clear();
+	}
+	
+	private bool todoUpper (string s)
+	{
+		for (int i = 0; i < s.Length; i++)
+		{
+			if(!Char.IsUpper(s[i]))
+				return false;
+		}
+		return true;
+	}
+	
+	private string ToProperty (string s)
+	{	
+		int i, k;
+		char []c = new Char[s.Replace("_","").Length];
+		c[0] = s[0];
+		for (k = 1, i = 1; i < s.Length; i++)
+		{
+			if (Char.IsUpper(s[i]))
+			{
+				if (s[i-1] != '_')
+					c[k++] = Char.ToLower(s[i]);
+				else
+					c[k++] = s[i];
+			}else {
+				if (s[i] != '_')
+					c[k++] = s[i];
+			}
+		}
+		return new String(c);
+	}
+		
+	private string unsaved_value(IColumn c)
+	{
+		switch( ColumnToNHibernateType( c ) )
+	{
+			case "decimal":
+			case "float":
+			case "short":
+			case "int":
+			case "long":
+				return " unsaved-value=\"0\"";
+			default:
+				return "";
+		}
+	}
+	
+	private string ConvertNHibernate( string Type )
+	{
+		string retVal = Type;
+		
+		switch( Type )
+		{
+			case "bool":
+			case "boolean":
+				retVal = "Boolean";
+				break;
+			case "byte":
+				retVal = "Byte";
+				break;
+			case "sbyte":
+				retVal = "SByte";
+				break;
+			case "char":
+				retVal = "Char";
+				break;
+			case "decimal":
+				retVal = "Decimal";
+				break;
+			case "double":
+				retVal = "Double";
+				break;
+			case "float":
+				retVal = "Single";
+				break;
+			case "int":
+				retVal = "Int32";
+				break;
+			case "uint":
+				retVal = "UInt32";
+				break;
+			case "long":
+				retVal = "Int64";
+				break;
+			case "ulong":
+				retVal = "UInt64";
+				break;
+			case "short":
+				retVal = "Int16";
+				break;
+			case "ushort":
+				retVal = "UInt16";
+				break;
+			case "string":
+				retVal = "String";
+				break;
+		}
+		
+		return retVal;
+	}
+	
+	private string GetDataType (string Type)
+	{
+		string retVal = Type;
+		
+		switch (Type)
+		{
+			case "varchar":
+			case "text":
+				retVal = "String";
+				break;
+			case "int8":
+				retVal = "Int64";
+				break;
+			case "date":
+				retVal = "DateTime";
+				break;
+			case "bool":
+			case "boolean":
+				retVal = "Boolean";
+				break;
+		}
+		return retVal;
+	}
+		
+	
+	// nhibernate doesn't have these, so use the existing types
+	private string ColumnToNHibernateType( IColumn Column )
+	{
+		string retVal = Column.LanguageType;
+		switch( Column.LanguageType )
+		{
+			
+			case "sbyte":
+			case "byte":
+				retVal = "byte";
+				break;
+			case "uint":
+				retVal = "int";
+				break;
+			case "ulong":
+				retVal = "long";
+				break;
+			case "ushort":
+				retVal = "short";
+				break;
+		}
+		
+		return retVal;
+	}
+	
+}%>
+##|BODY_END

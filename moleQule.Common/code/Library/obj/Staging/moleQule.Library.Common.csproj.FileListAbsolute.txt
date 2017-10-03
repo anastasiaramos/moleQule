@@ -1,0 +1,17 @@
+C:\VS Projects Git\moleQule\moleQule.Common\code\Library\bin\moleQule.Library.Common.dll.config
+C:\VS Projects Git\moleQule\moleQule.Common\code\Library\bin\moleQule.Library.Common.dll
+C:\VS Projects Git\moleQule\moleQule.Common\code\Library\bin\moleQule.Library.Common.pdb
+C:\VS Projects Git\moleQule\moleQule.Common\code\Library\bin\en\moleQule.Library.Common.resources.dll
+C:\VS Projects Git\moleQule\moleQule.Common\code\Library\obj\Staging\moleQule.Library.Common.csprojResolveAssemblyReference.cache
+C:\VS Projects Git\moleQule\moleQule.Common\code\Library\obj\Staging\moleQule.Library.Common.Resources.Messages.resources
+C:\VS Projects Git\moleQule\moleQule.Common\code\Library\obj\Staging\moleQule.Library.Common.Resources.Defaults.resources
+C:\VS Projects Git\moleQule\moleQule.Common\code\Library\obj\Staging\moleQule.Library.Common.Resources.Labels.resources
+C:\VS Projects Git\moleQule\moleQule.Common\code\Library\obj\Staging\moleQule.Library.Common.Resources.SecureItems.resources
+C:\VS Projects Git\moleQule\moleQule.Common\code\Library\obj\Staging\moleQule.Library.Common.Resources.Enums.resources
+C:\VS Projects Git\moleQule\moleQule.Common\code\Library\obj\Staging\moleQule.Library.Common.Resources.Defaults.en.resources
+C:\VS Projects Git\moleQule\moleQule.Common\code\Library\obj\Staging\moleQule.Library.Common.Resources.Enums.en.resources
+C:\VS Projects Git\moleQule\moleQule.Common\code\Library\obj\Staging\moleQule.Library.Common.csproj.GenerateResource.Cache
+C:\VS Projects Git\moleQule\moleQule.Common\code\Library\obj\Staging\en\moleQule.Library.Common.resources.dll
+C:\VS Projects Git\moleQule\moleQule.Common\code\Library\obj\Staging\moleQule.Library.Common.dll
+C:\VS Projects Git\moleQule\moleQule.Common\code\Library\obj\Staging\moleQule.Library.Common.pdb
+C:\VS Projects Git\moleQule\moleQule.Common\code\Library\obj\Staging\moleQule.Library.Common.Resources.Labels.en.resources

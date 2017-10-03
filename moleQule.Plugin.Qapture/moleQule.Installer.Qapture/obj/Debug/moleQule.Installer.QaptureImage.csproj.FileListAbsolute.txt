@@ -1,0 +1,8 @@
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.QaptureImage\moleQule.Installer.QaptureImage\bin\Debug\QaptureImage.Installer.exe.config
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.QaptureImage\moleQule.Installer.QaptureImage\bin\Debug\QaptureImage.Installer.exe
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.QaptureImage\moleQule.Installer.QaptureImage\bin\Debug\QaptureImage.Installer.pdb
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.QaptureImage\moleQule.Installer.QaptureImage\obj\Debug\moleQule.Installer.QaptureImage.csprojResolveAssemblyReference.cache
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.QaptureImage\moleQule.Installer.QaptureImage\obj\Debug\moleQule.Installer.QaptureImage.Properties.Resources.resources
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.QaptureImage\moleQule.Installer.QaptureImage\obj\Debug\moleQule.Installer.QaptureImage.csproj.GenerateResource.Cache
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.QaptureImage\moleQule.Installer.QaptureImage\obj\Debug\QaptureImage.Installer.exe
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.QaptureImage\moleQule.Installer.QaptureImage\obj\Debug\QaptureImage.Installer.pdb

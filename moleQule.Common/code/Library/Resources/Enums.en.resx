@@ -1,0 +1,723 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="EEstado_Abierto" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="EEstado_Anulado" xml:space="preserve">
+    <value>Annulled</value>
+  </data>
+  <data name="EEstado_Closed" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="EEstado_Contabilizado" xml:space="preserve">
+    <value>Accounted</value>
+  </data>
+  <data name="EEstado_Emitido" xml:space="preserve">
+    <value>Issued</value>
+  </data>
+  <data name="EEstado_Exportado" xml:space="preserve">
+    <value>Exportado</value>
+  </data>
+  <data name="EEstado_Billed" xml:space="preserve">
+    <value>Billed</value>
+  </data>
+  <data name="EEstado_Pendiente" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="EEstado_PRINT_Abierto" xml:space="preserve">
+    <value>OPE</value>
+  </data>
+  <data name="EEstado_PRINT_Anulado" xml:space="preserve">
+    <value>ANU</value>
+  </data>
+  <data name="EEstado_PRINT_Closed" xml:space="preserve">
+    <value>CLO</value>
+  </data>
+  <data name="EEstado_PRINT_Contabilizado" xml:space="preserve">
+    <value>ACC</value>
+  </data>
+  <data name="EEstado_PRINT_Emitido" xml:space="preserve">
+    <value>ISS</value>
+  </data>
+  <data name="EEstado_PRINT_Exportado" xml:space="preserve">
+    <value>EXP</value>
+  </data>
+  <data name="EEstado_PRINT_Billed" xml:space="preserve">
+    <value>BIL</value>
+  </data>
+  <data name="EEstado_PRINT_Pendiente" xml:space="preserve">
+    <value>PEN</value>
+  </data>
+  <data name="EEstado_PRINT_Todos" xml:space="preserve">
+    <value>---</value>
+  </data>
+  <data name="EEstado_Todos" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="EIdioma_English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="EIdioma_Spanish" xml:space="preserve">
+    <value>Spanish</value>
+  </data>
+  <data name="EIdioma_Todos" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="ESexo_Hembra" xml:space="preserve">
+    <value>HEMBRA</value>
+  </data>
+  <data name="ESexo_Macho" xml:space="preserve">
+    <value>MACHO</value>
+  </data>
+  <data name="ETipoAgente_Alumno" xml:space="preserve">
+    <value>Pupil</value>
+  </data>
+  <data name="ETipoAgente_Instructor" xml:space="preserve">
+    <value>Instructor</value>
+  </data>
+  <data name="ETipoCuenta_ComercioExterior" xml:space="preserve">
+    <value>Comercio Exterior</value>
+  </data>
+  <data name="ETipoCuenta_CuentaCorriente" xml:space="preserve">
+    <value>Current Account</value>
+  </data>
+  <data name="ETipoCuenta_Todas" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="ETipoEntidad_Cobro" xml:space="preserve">
+    <value>Collection</value>
+  </data>
+  <data name="ETipoEntidad_FacturaEmitida" xml:space="preserve">
+    <value>Output Invoice</value>
+  </data>
+  <data name="ETipoEntidad_FacturaRecibida" xml:space="preserve">
+    <value>Input Invoice</value>
+  </data>
+  <data name="ETipoEntidad_Pago" xml:space="preserve">
+    <value>Payment</value>
+  </data>
+  <data name="ETipoEntidad_Todos" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="ETipoID_CIF" xml:space="preserve">
+    <value>CIF</value>
+  </data>
+  <data name="ETipoID_DNI" xml:space="preserve">
+    <value>DNI</value>
+  </data>
+  <data name="ETipoID_NIE" xml:space="preserve">
+    <value>NIE</value>
+  </data>
+  <data name="ETipoID_NIF" xml:space="preserve">
+    <value>NIF</value>
+  </data>
+  <data name="ETipoID_OTROS" xml:space="preserve">
+    <value>Others</value>
+  </data>
+  <data name="ETipoImpuesto_Defecto" xml:space="preserve">
+    <value>BY DEFAULT</value>
+  </data>
+  <data name="ETipoImpuesto_Definido" xml:space="preserve">
+    <value>Defined</value>
+  </data>
+  <data name="ETipoRegistro_Contabilidad" xml:space="preserve">
+    <value>Accounting</value>
+  </data>
+  <data name="ETipoRegistro_Notificacion" xml:space="preserve">
+    <value>Notification</value>
+  </data>
+  <data name="ETipoRegistro_Todos" xml:space="preserve">
+    <value>Todos</value>
+  </data>
+  <data name="ETipoTitular_Cliente" xml:space="preserve">
+    <value>Client</value>
+  </data>
+  <data name="ETipoTitular_Despachante" xml:space="preserve">
+    <value>Customs Agent</value>
+  </data>
+  <data name="ETipoTitular_Instructor" xml:space="preserve">
+    <value>Instructor</value>
+  </data>
+  <data name="ETipoTitular_Naviera" xml:space="preserve">
+    <value>Shipping Line</value>
+  </data>
+  <data name="ETipoTitular_Proveedor" xml:space="preserve">
+    <value>Supplier</value>
+  </data>
+  <data name="ETipoTitular_REA" xml:space="preserve">
+    <value>Cobro REA</value>
+  </data>
+  <data name="ETipoTitular_Todos" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="ETipoTitular_TransportistaOrigen" xml:space="preserve">
+    <value>Origin Transporter</value>
+  </data>
+  <data name="ETipoTitular_PRINT_Cliente" xml:space="preserve">
+    <value>CLI</value>
+  </data>
+  <data name="ETipoTitular_PRINT_Despachante" xml:space="preserve">
+    <value>DES</value>
+  </data>
+  <data name="ETipoTitular_PRINT_Instructor" xml:space="preserve">
+    <value>INS</value>
+  </data>
+  <data name="ETipoTitular_PRINT_Naviera" xml:space="preserve">
+    <value>NAV</value>
+  </data>
+  <data name="ETipoTitular_PRINT_Proveedor" xml:space="preserve">
+    <value>PRO</value>
+  </data>
+  <data name="ETipoTitular_PRINT_REA" xml:space="preserve">
+    <value>REA</value>
+  </data>
+  <data name="ETipoTitular_PRINT_Todos" xml:space="preserve">
+    <value>---</value>
+  </data>
+  <data name="ETipoTitular_PRINT_Transportista" xml:space="preserve">
+    <value>TRA</value>
+  </data>
+  <data name="EEstado_NoAnulado" xml:space="preserve">
+    <value>All (Not annulled)</value>
+  </data>
+  <data name="EEstado_PRINT_NoAnulado" xml:space="preserve">
+    <value>NAN</value>
+  </data>
+  <data name="ETipoTitular_Acreedor" xml:space="preserve">
+    <value>Creditor</value>
+  </data>
+  <data name="EModelo_Dummy" xml:space="preserve">
+    <value>Select an option</value>
+  </data>
+  <data name="EModelo_Modelo111" xml:space="preserve">
+    <value>Modelo 111 (AEAT)</value>
+  </data>
+  <data name="EModelo_Modelo347" xml:space="preserve">
+    <value>Modelo 347 (AEAT)</value>
+  </data>
+  <data name="EModelo_Modelo420" xml:space="preserve">
+    <value>Modelo 420 (Hacienda Canaria)</value>
+  </data>
+  <data name="EModelo_Modelo425" xml:space="preserve">
+    <value>Modelo 425 (Hacienda Canaria)</value>
+  </data>
+  <data name="EPeriodo_Anual" xml:space="preserve">
+    <value>Annual</value>
+  </data>
+  <data name="EPeriodo_Dummy" xml:space="preserve">
+    <value>Select an option</value>
+  </data>
+  <data name="EPeriodo_Periodo1T" xml:space="preserve">
+    <value>1T</value>
+  </data>
+  <data name="EPeriodo_Periodo2T" xml:space="preserve">
+    <value>2T</value>
+  </data>
+  <data name="EPeriodo_Periodo3T" xml:space="preserve">
+    <value>3T</value>
+  </data>
+  <data name="EPeriodo_Periodo4T" xml:space="preserve">
+    <value>4T</value>
+  </data>
+  <data name="EEstado_Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="EEstado_Baja" xml:space="preserve">
+    <value>Decline</value>
+  </data>
+  <data name="EEstado_PRINT_Active" xml:space="preserve">
+    <value>ACT</value>
+  </data>
+  <data name="EEstado_PRINT_Baja" xml:space="preserve">
+    <value>BAJ</value>
+  </data>
+  <data name="ETipoTitular_PRINT_Varios" xml:space="preserve">
+    <value>Several</value>
+  </data>
+  <data name="ETipoTitular_Varios" xml:space="preserve">
+    <value>Serveral</value>
+  </data>
+  <data name="ETipoTitular_Empleado" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="ETipoTitular_PRINT_Empleado" xml:space="preserve">
+    <value>EMP</value>
+  </data>
+  <data name="EEstado_Pagado" xml:space="preserve">
+    <value>Payed</value>
+  </data>
+  <data name="EEstado_PRINT_Pagado" xml:space="preserve">
+    <value>PAI</value>
+  </data>
+  <data name="EEstado_Aceptado" xml:space="preserve">
+    <value>Accepted</value>
+  </data>
+  <data name="EEstado_Desestimado" xml:space="preserve">
+    <value>Dismissed</value>
+  </data>
+  <data name="EEstado_EnSolicitud" xml:space="preserve">
+    <value>In Application Form</value>
+  </data>
+  <data name="EEstado_PRINT_Aceptado" xml:space="preserve">
+    <value>ACE</value>
+  </data>
+  <data name="EEstado_PRINT_Desestimado" xml:space="preserve">
+    <value>DES</value>
+  </data>
+  <data name="EEstado_PRINT_EnSolicitud" xml:space="preserve">
+    <value>INC</value>
+  </data>
+  <data name="EEstado_PRINT_Solicitado" xml:space="preserve">
+    <value>SOL</value>
+  </data>
+  <data name="EEstado_Solicitado" xml:space="preserve">
+    <value>Applied For</value>
+  </data>
+  <data name="ETipoEntidad_Gasto" xml:space="preserve">
+    <value>Spending</value>
+  </data>
+  <data name="ETipoEntidad_Nomina" xml:space="preserve">
+    <value>Payroll</value>
+  </data>
+  <data name="ETipoEntidad_LineaFomento" xml:space="preserve">
+    <value>Línea de Fomento</value>
+  </data>
+  <data name="ETipoRegistro_Fomento" xml:space="preserve">
+    <value>Fomento</value>
+  </data>
+  <data name="ETipoNotificacion_GastoPendiente" xml:space="preserve">
+    <value>Pending Spendings</value>
+  </data>
+  <data name="ETipoNotificacion_IngresoPendiente" xml:space="preserve">
+    <value>Ingresos Pendientes</value>
+  </data>
+  <data name="ETipoNotificacion_Gastos" xml:space="preserve">
+    <value>Spendings</value>
+  </data>
+  <data name="ETipoNotificacion_Ingresos" xml:space="preserve">
+    <value>Ingresos</value>
+  </data>
+  <data name="ETipoNotificacion_Existencias" xml:space="preserve">
+    <value>Stock</value>
+  </data>
+  <data name="ETipoNotificacion_FacturaRecibida" xml:space="preserve">
+    <value>Billed</value>
+  </data>
+  <data name="ETipoTarjeta_Credito" xml:space="preserve">
+    <value>Credit</value>
+  </data>
+  <data name="ETipoTarjeta_Debito" xml:space="preserve">
+    <value>Debit</value>
+  </data>
+  <data name="ETipoTarjeta_Varios" xml:space="preserve">
+    <value>Several</value>
+  </data>
+  <data name="ETipoCuenta_LineaCredito" xml:space="preserve">
+    <value>Credit Account</value>
+  </data>
+  <data name="EEstado_Oculto" xml:space="preserve">
+    <value>Hidden</value>
+  </data>
+  <data name="EEstado_PRINT_Oculto" xml:space="preserve">
+    <value>HID</value>
+  </data>
+  <data name="ETipoNotificacion_PagoVencido" xml:space="preserve">
+    <value>Pagos Vencidos</value>
+  </data>
+  <data name="ETipoNotificacion_PagoTarjetaVencido" xml:space="preserve">
+    <value>Tarjetas de Crédito</value>
+  </data>
+  <data name="ETipoNotificacion_CobroVencido" xml:space="preserve">
+    <value>Charging up </value>
+  </data>
+  <data name="EFormaPago_Contado" xml:space="preserve">
+    <value>Cash Down</value>
+  </data>
+  <data name="EFormaPago_Trimestral" xml:space="preserve">
+    <value>Quarterly</value>
+  </data>
+  <data name="EFormaPago_XDiasFechaFactura" xml:space="preserve">
+    <value>X Days (Invoice Date)</value>
+  </data>
+  <data name="EFormaPago_XDiasMes" xml:space="preserve">
+    <value>X Day (Next Month)</value>
+  </data>
+  <data name="EMedioPago_Cheque" xml:space="preserve">
+    <value>Bank Check</value>
+  </data>
+  <data name="EMedioPago_ComercioExterior" xml:space="preserve">
+    <value>Comercio Exterior</value>
+  </data>
+  <data name="EMedioPago_CompensacionFactura" xml:space="preserve">
+    <value>Compensation Bill</value>
+  </data>
+  <data name="EMedioPago_Domiciliacion" xml:space="preserve">
+    <value>Direct Debit</value>
+  </data>
+  <data name="EMedioPago_Efectivo" xml:space="preserve">
+    <value>Cash</value>
+  </data>
+  <data name="EMedioPago_Giro" xml:space="preserve">
+    <value>Banking Receipt</value>
+  </data>
+  <data name="EMedioPago_Ingreso" xml:space="preserve">
+    <value>Banking Income</value>
+  </data>
+  <data name="EMedioPago_NoEfectivo" xml:space="preserve">
+    <value>Excluir cobros en Efectivo</value>
+  </data>
+  <data name="EMedioPago_Pagare" xml:space="preserve">
+    <value>Pagaré</value>
+  </data>
+  <data name="EMedioPago_PRINT_Cheque" xml:space="preserve">
+    <value>TAL</value>
+  </data>
+  <data name="EMedioPago_PRINT_ComercioExterior" xml:space="preserve">
+    <value>CEX</value>
+  </data>
+  <data name="EMedioPago_PRINT_CompensacionFactura" xml:space="preserve">
+    <value>COF</value>
+  </data>
+  <data name="EMedioPago_PRINT_Domiciliacion" xml:space="preserve">
+    <value>DOM</value>
+  </data>
+  <data name="EMedioPago_PRINT_Efectivo" xml:space="preserve">
+    <value>EFE</value>
+  </data>
+  <data name="EMedioPago_PRINT_Giro" xml:space="preserve">
+    <value>REC</value>
+  </data>
+  <data name="EMedioPago_PRINT_Ingreso" xml:space="preserve">
+    <value>ING</value>
+  </data>
+  <data name="EMedioPago_PRINT_Pagare" xml:space="preserve">
+    <value>PAG</value>
+  </data>
+  <data name="EMedioPago_PRINT_Tarjeta" xml:space="preserve">
+    <value>TCR</value>
+  </data>
+  <data name="EMedioPago_PRINT_Todos" xml:space="preserve">
+    <value>--</value>
+  </data>
+  <data name="EMedioPago_PRINT_Transferencia" xml:space="preserve">
+    <value>TRF</value>
+  </data>
+  <data name="EMedioPago_Seleccione" xml:space="preserve">
+    <value>Select payment method</value>
+  </data>
+  <data name="EMedioPago_Tarjeta" xml:space="preserve">
+    <value>Credit Card</value>
+  </data>
+  <data name="EMedioPago_Todos" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="EMedioPago_Transferencia" xml:space="preserve">
+    <value>Bank Transfer</value>
+  </data>
+  <data name="EFormaPago_MesVencido" xml:space="preserve">
+    <value>Mes Vencido</value>
+  </data>
+  <data name="ETipoTarjeta_Todos" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="EMedioPago_NoTarjeta" xml:space="preserve">
+    <value>Distinto de Tarjeta de Crédito</value>
+  </data>
+  <data name="ETipoNotificacion_PagoBancoPendiente" xml:space="preserve">
+    <value>Pagos Pendientes Vto.</value>
+  </data>
+  <data name="EEstado_Cancelado" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+  <data name="EEstado_PRINT_Cancelado" xml:space="preserve">
+    <value>CAN</value>
+  </data>
+  <data name="EEstado_Alta" xml:space="preserve">
+    <value>Alta</value>
+  </data>
+  <data name="EEstado_PRINT_Alta" xml:space="preserve">
+    <value>ALT</value>
+  </data>
+  <data name="EEstado_Charged" xml:space="preserve">
+    <value>Charged</value>
+  </data>
+  <data name="EEstado_DudosoCobro" xml:space="preserve">
+    <value>Doubtful</value>
+  </data>
+  <data name="EEstado_PRINT_Charged" xml:space="preserve">
+    <value>CHA</value>
+  </data>
+  <data name="EEstado_PRINT_DudosoCobro" xml:space="preserve">
+    <value>DOU</value>
+  </data>
+  <data name="ETipoEntidad_Auditoria" xml:space="preserve">
+    <value>Auditoría</value>
+  </data>
+  <data name="ETipoNotificacion_DiscrepanciaAbierta" xml:space="preserve">
+    <value>Discrepancias Abiertas</value>
+  </data>
+  <data name="ETipoNotificacion_InformeNoGenerado" xml:space="preserve">
+    <value>Informe de Auditoría No Generado</value>
+  </data>
+  <data name="ETipoNotificacion_GastoEstimado" xml:space="preserve">
+    <value>Estimated Spendings</value>
+  </data>
+  <data name="ETipoDescuento_Porcentaje" xml:space="preserve">
+    <value>Por Porcentaje</value>
+  </data>
+  <data name="ETipoDescuento_Precio" xml:space="preserve">
+    <value>Por Precio</value>
+  </data>
+  <data name="ETipoEntidad_ExpedienteREA" xml:space="preserve">
+    <value>Expediente REA</value>
+  </data>
+  <data name="ETipoNotificacion_ComercioExterior" xml:space="preserve">
+    <value>Comercio Exterior</value>
+  </data>
+  <data name="ESerialDevice_K3Scales" xml:space="preserve">
+    <value>Báscula K3</value>
+  </data>
+  <data name="ETipoRegistro_Email" xml:space="preserve">
+    <value>e-mail</value>
+  </data>
+  <data name="ETipoEntidad_Cliente" xml:space="preserve">
+    <value>Client</value>
+  </data>
+  <data name="ETipoTitular_Partner" xml:space="preserve">
+    <value>Partner</value>
+  </data>
+  <data name="ETipoTitular_PRINT_Partner" xml:space="preserve">
+    <value>PAR</value>
+  </data>
+  <data name="EEstado_LockedOut" xml:space="preserve">
+    <value>Locked Out</value>
+  </data>
+  <data name="EEstado_Created" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="EEstado_Inactive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="EEstado_PRINT_LockedOut" xml:space="preserve">
+    <value>BLO</value>
+  </data>
+  <data name="EEstado_PRINT_Created" xml:space="preserve">
+    <value>CRE</value>
+  </data>
+  <data name="EEstado_PRINT_Inactive" xml:space="preserve">
+    <value>INA</value>
+  </data>
+  <data name="EEstado_Inconsistent" xml:space="preserve">
+    <value>Inconsistent</value>
+  </data>
+  <data name="EEstado_Paused" xml:space="preserve">
+    <value>Paused</value>
+  </data>
+  <data name="EEstado_Expired" xml:space="preserve">
+    <value>Expired</value>
+  </data>
+  <data name="EEstado_PRINT_Inconsistent" xml:space="preserve">
+    <value>INC</value>
+  </data>
+  <data name="EEstado_PRINT_Pausado" xml:space="preserve">
+    <value>PAU</value>
+  </data>
+  <data name="EEstado_PRINT_Expired" xml:space="preserve">
+    <value>EXP</value>
+  </data>
+  <data name="ETipoTitular_Fomento" xml:space="preserve">
+    <value>Fomento</value>
+  </data>
+  <data name="ETipoTitular_PRINT_Fomento" xml:space="preserve">
+    <value>FOM</value>
+  </data>
+  <data name="EEstado_Failed" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="EEstado_PRINT_Failed" xml:space="preserve">
+    <value>ERR</value>
+  </data>
+  <data name="EEstado_Released" xml:space="preserve">
+    <value>Released</value>
+  </data>
+  <data name="EEstado_PRINT_Released" xml:space="preserve">
+    <value>REL</value>
+  </data>
+  <data name="EEstado_Auditado" xml:space="preserve">
+    <value>Auditado</value>
+  </data>
+  <data name="EEstado_PRINT_Auditado" xml:space="preserve">
+    <value>AUD</value>
+  </data>
+  <data name="EEstado_Processed" xml:space="preserve">
+    <value>Processed</value>
+  </data>
+  <data name="ETipoEntidad_Traspaso" xml:space="preserve">
+    <value>Transfer</value>
+  </data>
+  <data name="ETipoExportacion_A3" xml:space="preserve">
+    <value>A3</value>
+  </data>
+  <data name="ETipoExportacion_ContaWin" xml:space="preserve">
+    <value>ContaWin</value>
+  </data>
+  <data name="ETipoExportacion_Tinfor" xml:space="preserve">
+    <value>Tinfor</value>
+  </data>
+  <data name="ETipoEntidad_Subscription" xml:space="preserve">
+    <value>Subscription</value>
+  </data>
+  <data name="ECurrency_All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="ECurrency_Dolar" xml:space="preserve">
+    <value>DOL</value>
+  </data>
+  <data name="ECurrency_Euro" xml:space="preserve">
+    <value>EUR</value>
+  </data>
+  <data name="ECurrency_Pound" xml:space="preserve">
+    <value>PND</value>
+  </data>
+  <data name="ECurrency_Dolar1" xml:space="preserve">
+    <value>$</value>
+  </data>
+  <data name="ECurrency_Euro1" xml:space="preserve">
+    <value>€</value>
+  </data>
+  <data name="ECurrency_Pound1" xml:space="preserve">
+    <value>£</value>
+  </data>
+  <data name="ETipoEntidad_Empleado" xml:space="preserve">
+    <value>Worker</value>
+  </data>
+  <data name="ETipoEntidad_Tool" xml:space="preserve">
+    <value>Tool</value>
+  </data>
+  <data name="ETipoEntidad_OutputDelivery" xml:space="preserve">
+    <value>Delivery</value>
+  </data>
+  <data name="ETipoTitular_TransportistaDestino" xml:space="preserve">
+    <value>Destination Transporter</value>
+  </data>
+  <data name="ETipoRegistro_CompanyExport" xml:space="preserve">
+    <value>Company Export</value>
+  </data>
+</root>

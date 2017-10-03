@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="Submit_BT.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 8.5pt, style=Bold</value>
+  </data>
+  <metadata name="ErrorMng_EP.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>139, 17</value>
+  </metadata>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Submit_BT.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="Submit_BT.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="Submit_BT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 2</value>
+  </data>
+  <metadata name="HelpProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Submit_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Submit_BT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 32</value>
+  </data>
+  <data name="Submit_BT.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;Submit_BT.Name" xml:space="preserve">
+    <value>Submit_BT</value>
+  </data>
+  <data name="&gt;&gt;Submit_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Submit_BT.Parent" xml:space="preserve">
+    <value>PanelesV.Panel2</value>
+  </data>
+  <data name="&gt;&gt;Submit_BT.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="Cancel_BT.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 8.5pt, style=Bold</value>
+  </data>
+  <data name="Cancel_BT.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="Cancel_BT.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="Cancel_BT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 2</value>
+  </data>
+  <data name="Cancel_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Cancel_BT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 32</value>
+  </data>
+  <data name="Cancel_BT.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;Cancel_BT.Name" xml:space="preserve">
+    <value>Cancel_BT</value>
+  </data>
+  <data name="&gt;&gt;Cancel_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Cancel_BT.Parent" xml:space="preserve">
+    <value>PanelesV.Panel2</value>
+  </data>
+  <data name="&gt;&gt;Cancel_BT.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="Source_GB.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;Source_GB.Name" xml:space="preserve">
+    <value>Source_GB</value>
+  </data>
+  <data name="&gt;&gt;Source_GB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Source_GB.Parent" xml:space="preserve">
+    <value>PanelesV.Panel1</value>
+  </data>
+  <data name="&gt;&gt;Source_GB.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="PanelesV.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="PanelesV.Panel1.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;PanelesV.Panel1.Name" xml:space="preserve">
+    <value>PanelesV.Panel1</value>
+  </data>
+  <data name="&gt;&gt;PanelesV.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;PanelesV.Panel1.Parent" xml:space="preserve">
+    <value>PanelesV</value>
+  </data>
+  <data name="&gt;&gt;PanelesV.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="Print_BT.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="Print_BT.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 8.5pt, style=Bold</value>
+  </data>
+  <data name="Print_BT.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="Print_BT.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="Print_BT.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Print_BT.Location" type="System.Drawing.Point, System.Drawing">
+    <value>255, 2</value>
+  </data>
+  <data name="Print_BT.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Print_BT.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 32</value>
+  </data>
+  <data name="Print_BT.TabIndex" type="System.Int32, mscorlib">
+    <value>209</value>
+  </data>
+  <data name="Print_BT.Text" xml:space="preserve">
+    <value>Vista &amp;Previa</value>
+  </data>
+  <data name="Print_BT.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="Print_BT.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;Print_BT.Name" xml:space="preserve">
+    <value>Print_BT</value>
+  </data>
+  <data name="&gt;&gt;Print_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Print_BT.Parent" xml:space="preserve">
+    <value>PanelesV.Panel2</value>
+  </data>
+  <data name="&gt;&gt;Print_BT.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="PanelesV.Panel2.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;PanelesV.Panel2.Name" xml:space="preserve">
+    <value>PanelesV.Panel2</value>
+  </data>
+  <data name="&gt;&gt;PanelesV.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;PanelesV.Panel2.Parent" xml:space="preserve">
+    <value>PanelesV</value>
+  </data>
+  <data name="&gt;&gt;PanelesV.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="PanelesV.Panel2MinSize" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="PanelesV.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="PanelesV.Size" type="System.Drawing.Size, System.Drawing">
+    <value>384, 266</value>
+  </data>
+  <data name="PanelesV.SplitterDistance" type="System.Int32, mscorlib">
+    <value>226</value>
+  </data>
+  <data name="&gt;&gt;PanelesV.Name" xml:space="preserve">
+    <value>PanelesV</value>
+  </data>
+  <data name="&gt;&gt;PanelesV.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;PanelesV.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;PanelesV.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="SaveFile_SFD.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>261, 17</value>
+  </metadata>
+  <data name="&gt;&gt;Animation.Name" xml:space="preserve">
+    <value>Animation</value>
+  </data>
+  <data name="&gt;&gt;Animation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Animation.Parent" xml:space="preserve">
+    <value>Progress_Panel</value>
+  </data>
+  <data name="&gt;&gt;Animation.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;CancelBkJob_BT.Name" xml:space="preserve">
+    <value>CancelBkJob_BT</value>
+  </data>
+  <data name="&gt;&gt;CancelBkJob_BT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CancelBkJob_BT.Parent" xml:space="preserve">
+    <value>Progress_Panel</value>
+  </data>
+  <data name="&gt;&gt;CancelBkJob_BT.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;ProgressMsg_LB.Name" xml:space="preserve">
+    <value>ProgressMsg_LB</value>
+  </data>
+  <data name="&gt;&gt;ProgressMsg_LB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ProgressMsg_LB.Parent" xml:space="preserve">
+    <value>Progress_Panel</value>
+  </data>
+  <data name="&gt;&gt;ProgressMsg_LB.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;Title_LB.Name" xml:space="preserve">
+    <value>Title_LB</value>
+  </data>
+  <data name="&gt;&gt;Title_LB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Title_LB.Parent" xml:space="preserve">
+    <value>Progress_Panel</value>
+  </data>
+  <data name="&gt;&gt;Title_LB.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="Progress_Panel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>-12, 24</value>
+  </data>
+  <data name="&gt;&gt;Progress_Panel.Name" xml:space="preserve">
+    <value>Progress_Panel</value>
+  </data>
+  <data name="&gt;&gt;Progress_Panel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Progress_Panel.Parent" xml:space="preserve">
+    <value>ProgressBK_Panel</value>
+  </data>
+  <data name="&gt;&gt;Progress_Panel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="ProgressBK_Panel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>384, 266</value>
+  </data>
+  <data name="&gt;&gt;ProgressBK_Panel.Name" xml:space="preserve">
+    <value>ProgressBK_Panel</value>
+  </data>
+  <data name="&gt;&gt;ProgressBK_Panel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ProgressBK_Panel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ProgressBK_Panel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="ProgressInfo_PB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 184</value>
+  </data>
+  <data name="&gt;&gt;ProgressInfo_PB.Name" xml:space="preserve">
+    <value>ProgressInfo_PB</value>
+  </data>
+  <data name="&gt;&gt;ProgressInfo_PB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ProgressBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ProgressInfo_PB.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ProgressInfo_PB.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="Progress_PB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 99</value>
+  </data>
+  <data name="&gt;&gt;Progress_PB.Name" xml:space="preserve">
+    <value>Progress_PB</value>
+  </data>
+  <data name="&gt;&gt;Progress_PB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Progress_PB.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Progress_PB.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>384, 266</value>
+  </data>
+  <data name="$this.HelpNavigator" type="System.Windows.Forms.HelpNavigator, System.Windows.Forms">
+    <value>TopicId</value>
+  </data>
+  <data name="$this.ShowHelp" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;SaveFile_SFD.Name" xml:space="preserve">
+    <value>SaveFile_SFD</value>
+  </data>
+  <data name="&gt;&gt;SaveFile_SFD.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ErrorMng_EP.Name" xml:space="preserve">
+    <value>ErrorMng_EP</value>
+  </data>
+  <data name="&gt;&gt;ErrorMng_EP.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ErrorProvider, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;HelpProvider.Name" xml:space="preserve">
+    <value>HelpProvider</value>
+  </data>
+  <data name="&gt;&gt;HelpProvider.Type" xml:space="preserve">
+    <value>System.Windows.Forms.HelpProvider, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>ActionSkinForm</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>moleQule.Face.ActionBaseForm, moleQule.Face, Version=2.5.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+</root>

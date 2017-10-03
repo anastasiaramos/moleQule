@@ -1,0 +1,751 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <GenerateResourceNeverLockTypeAssemblies>true</GenerateResourceNeverLockTypeAssemblies>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{415C60B4-4A22-4E61-8854-201580A4974C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>moleQule.Face.Common</RootNamespace>
+    <AssemblyName>moleQule.Face.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>RELEASE;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Demo|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <DefineConstants>DEMO;</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>true</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>RELEASE;</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Demo|x86'">
+    <OutputPath>bin\x86\Demo\</OutputPath>
+    <DefineConstants>DEMO;</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Staging|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>STAGING;</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Staging|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Staging\</OutputPath>
+    <DefineConstants>RELEASE;</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Dialogs\InputDateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\InputDateForm.Designer.cs">
+      <DependentUpon>InputDateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SelectEnumInputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SelectEnumInputForm.Designer.cs">
+      <DependentUpon>SelectEnumInputForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\InputDecimalForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\InputDecimalForm.Designer.cs">
+      <DependentUpon>InputDecimalForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SelectInputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SelectInputForm.Designer.cs">
+      <DependentUpon>SelectInputForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMng.cs" />
+    <Compile Include="Forms\Auxiliares\CargoUIForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Auxiliares\CargoUIForm.designer.cs">
+      <DependentUpon>CargoUIForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Ayuda\AyudaMngForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Ayuda\AyudaMngForm.Designer.cs">
+      <DependentUpon>AyudaMngForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Ayuda\AyudaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Ayuda\AyudaForm.Designer.cs">
+      <DependentUpon>AyudaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Ayuda\AyudaSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Ayuda\AyudaSelectForm.Designer.cs">
+      <DependentUpon>AyudaSelectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Ayuda\AyudaUIForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Ayuda\AyudaUIForm.Designer.cs">
+      <DependentUpon>AyudaUIForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Ayuda\AyudaEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Ayuda\AyudaEditForm.Designer.cs">
+      <DependentUpon>AyudaEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Ayuda\AyudaAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Ayuda\AyudaAddForm.Designer.cs">
+      <DependentUpon>AyudaAddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Ayuda\AyudaViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Ayuda\AyudaViewForm.Designer.cs">
+      <DependentUpon>AyudaViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BankAccount\BankAccountAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BankAccount\BankAccountAddForm.Designer.cs">
+      <DependentUpon>BankAccountAddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BankAccount\BankAccountEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BankAccount\BankAccountEditForm.Designer.cs">
+      <DependentUpon>BankAccountEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BankAccount\BankAccountForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BankAccount\BankAccountForm.Designer.cs">
+      <DependentUpon>BankAccountForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BankAccount\BankAccountMngForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BankAccount\BankAccountMngForm.Designer.cs">
+      <DependentUpon>BankAccountMngForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BankAccount\BankAccountSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BankAccount\BankAccountSelectForm.Designer.cs">
+      <DependentUpon>BankAccountSelectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BankAccount\BankAccountUIForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BankAccount\BankAccountUIForm.Designer.cs">
+      <DependentUpon>BankAccountUIForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BankAccount\BankAccountViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BankAccount\BankAccountViewForm.Designer.cs">
+      <DependentUpon>BankAccountViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Company\CompanySelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Company\CompanySelectForm.Designer.cs">
+      <DependentUpon>CompanySelectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Company\CompanyAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Company\CompanyAddForm.designer.cs">
+      <DependentUpon>CompanyAddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Company\CompanyEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Company\CompanyEditForm.designer.cs">
+      <DependentUpon>CompanyEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Company\CompanyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Company\CompanyForm.designer.cs">
+      <DependentUpon>CompanyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Company\CompanyMngForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Company\CompanyMngForm.Designer.cs">
+      <DependentUpon>CompanyMngForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Company\CompanyUIForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Company\CompanyUIForm.designer.cs">
+      <DependentUpon>CompanyUIForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Company\CompanyViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Company\CompanyViewForm.designer.cs">
+      <DependentUpon>CompanyViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CreditCard\CreditCardSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreditCard\CreditCardSelectForm.Designer.cs">
+      <DependentUpon>CreditCardSelectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CreditCard\CreditCardUIForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreditCard\CreditCardUIForm.Designer.cs">
+      <DependentUpon>CreditCardUIForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CurrencyExchange\CurrencyExchangeSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CurrencyExchange\CurrencyExchangeSelectForm.Designer.cs">
+      <DependentUpon>CurrencyExchangeSelectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CurrencyExchange\CurrencyExchangeUIForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CurrencyExchange\CurrencyExchangeUIForm.Designer.cs">
+      <DependentUpon>CurrencyExchangeUIForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Tax\ImpuestoSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Tax\ImpuestoSelectForm.Designer.cs">
+      <DependentUpon>ImpuestoSelectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Tax\ImpuestoUIForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Tax\ImpuestoUIForm.Designer.cs">
+      <DependentUpon>ImpuestoUIForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Tax\SubtipoFacturaSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Tax\SubtipoFacturaSelectForm.Designer.cs">
+      <DependentUpon>SubtipoFacturaSelectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Tax\SubtipoFacturaUIForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Tax\SubtipoFacturaUIForm.Designer.cs">
+      <DependentUpon>SubtipoFacturaUIForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\IRPF\IRPFSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\IRPF\IRPFSelectForm.Designer.cs">
+      <DependentUpon>IRPFSelectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\IRPF\IRPFUIForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\IRPF\IRPFUIForm.Designer.cs">
+      <DependentUpon>IRPFUIForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Notification\NotificationBaseMngForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Notification\NotificationBaseMngForm.Designer.cs">
+      <DependentUpon>NotificationBaseMngForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Pesaje\PesajeMngForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Pesaje\PesajeMngForm.Designer.cs">
+      <DependentUpon>PesajeMngForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Pesaje\PesajeSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Pesaje\PesajeSelectForm.Designer.cs">
+      <DependentUpon>PesajeSelectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Registry\LineaRegistroMngForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Registry\LineaRegistroMngForm.Designer.cs">
+      <DependentUpon>LineaRegistroMngForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Registry\RegistroAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Registry\RegistroAddForm.Designer.cs">
+      <DependentUpon>RegistroAddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Registry\RegistroEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Registry\RegistroEditForm.Designer.cs">
+      <DependentUpon>RegistroEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Registry\RegistroForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Registry\RegistroForm.Designer.cs">
+      <DependentUpon>RegistroForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Registry\RegistroMngForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Registry\RegistroMngForm.Designer.cs">
+      <DependentUpon>RegistroMngForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Registry\RegistroSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Registry\RegistroSelectForm.Designer.cs">
+      <DependentUpon>RegistroSelectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Registry\RegistroUIForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Registry\RegistroUIForm.Designer.cs">
+      <DependentUpon>RegistroUIForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Registry\RegistroViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Registry\RegistroViewForm.Designer.cs">
+      <DependentUpon>RegistroViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Locality\MunicipioAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Locality\MunicipioAddForm.Designer.cs">
+      <DependentUpon>MunicipioAddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Locality\MunicipioEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Locality\MunicipioEditForm.Designer.cs">
+      <DependentUpon>MunicipioEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Locality\MunicipioForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Locality\MunicipioForm.Designer.cs">
+      <DependentUpon>MunicipioForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Locality\MunicipioMngForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Locality\MunicipioMngForm.Designer.cs">
+      <DependentUpon>MunicipioMngForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Locality\MunicipioSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Locality\MunicipioSelectForm.Designer.cs">
+      <DependentUpon>MunicipioSelectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Locality\MunicipioUIForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Locality\MunicipioUIForm.Designer.cs">
+      <DependentUpon>MunicipioUIForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Locality\MunicipioViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Locality\MunicipioViewForm.Designer.cs">
+      <DependentUpon>MunicipioViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TPV\TPVSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TPV\TPVSelectForm.Designer.cs">
+      <DependentUpon>TPVSelectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TPV\TPVUIForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TPV\TPVUIForm.Designer.cs">
+      <DependentUpon>TPVUIForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Tree\TreeBaseMngForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Tree\TreeBaseMngForm.Designer.cs">
+      <DependentUpon>TreeBaseMngForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Labels.en.Designer.cs">
+      <DependentUpon>Labels.en.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Messages.Designer.cs">
+      <DependentUpon>Messages.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Labels.Designer.cs">
+      <DependentUpon>Labels.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Tools\ControlTools.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Dialogs\InputDateForm.resx">
+      <DependentUpon>InputDateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SelectEnumInputForm.resx">
+      <DependentUpon>SelectEnumInputForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\InputDecimalForm.resx">
+      <DependentUpon>InputDecimalForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SelectInputForm.resx">
+      <DependentUpon>SelectInputForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Auxiliares\CargoUIForm.resx">
+      <DependentUpon>CargoUIForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Ayuda\AyudaMngForm.resx">
+      <DependentUpon>AyudaMngForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Ayuda\AyudaForm.resx">
+      <DependentUpon>AyudaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Ayuda\AyudaUIForm.resx">
+      <DependentUpon>AyudaUIForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Ayuda\AyudaEditForm.resx">
+      <DependentUpon>AyudaEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Ayuda\AyudaAddForm.resx">
+      <DependentUpon>AyudaAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Ayuda\AyudaViewForm.resx">
+      <DependentUpon>AyudaViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BankAccount\BankAccountAddForm.resx">
+      <DependentUpon>BankAccountAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BankAccount\BankAccountEditForm.resx">
+      <DependentUpon>BankAccountEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BankAccount\BankAccountForm.resx">
+      <DependentUpon>BankAccountForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BankAccount\BankAccountMngForm.en.resx">
+      <DependentUpon>BankAccountMngForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BankAccount\BankAccountMngForm.resx">
+      <DependentUpon>BankAccountMngForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BankAccount\BankAccountUIForm.resx">
+      <DependentUpon>BankAccountUIForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Company\CompanyAddForm.resx">
+      <DependentUpon>CompanyAddForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Company\CompanyEditForm.resx">
+      <DependentUpon>CompanyEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Company\CompanyForm.resx">
+      <DependentUpon>CompanyForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Company\CompanyMngForm.resx">
+      <DependentUpon>CompanyMngForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Company\CompanyUIForm.resx">
+      <DependentUpon>CompanyUIForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Company\CompanyViewForm.resx">
+      <DependentUpon>CompanyViewForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CreditCard\CreditCardUIForm.resx">
+      <DependentUpon>CreditCardUIForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CurrencyExchange\CurrencyExchangeUIForm.resx">
+      <DependentUpon>CurrencyExchangeUIForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Tax\ImpuestoUIForm.resx">
+      <DependentUpon>ImpuestoUIForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Tax\SubtipoFacturaUIForm.resx">
+      <DependentUpon>SubtipoFacturaUIForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\IRPF\IRPFSelectForm.resx">
+      <DependentUpon>IRPFSelectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\IRPF\IRPFUIForm.resx">
+      <DependentUpon>IRPFUIForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Notification\NotificationBaseMngForm.resx">
+      <DependentUpon>NotificationBaseMngForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Pesaje\PesajeMngForm.resx">
+      <DependentUpon>PesajeMngForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Registry\LineaRegistroMngForm.resx">
+      <DependentUpon>LineaRegistroMngForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Registry\RegistroAddForm.resx">
+      <DependentUpon>RegistroAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Registry\RegistroEditForm.resx">
+      <DependentUpon>RegistroEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Registry\RegistroForm.resx">
+      <DependentUpon>RegistroForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Registry\RegistroMngForm.resx">
+      <DependentUpon>RegistroMngForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Locality\MunicipioAddForm.resx">
+      <DependentUpon>MunicipioAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Locality\MunicipioEditForm.resx">
+      <DependentUpon>MunicipioEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Locality\MunicipioForm.resx">
+      <DependentUpon>MunicipioForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Locality\MunicipioMngForm.resx">
+      <DependentUpon>MunicipioMngForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Locality\MunicipioViewForm.resx">
+      <DependentUpon>MunicipioViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Registry\RegistroViewForm.resx">
+      <DependentUpon>RegistroViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TPV\TPVUIForm.resx">
+      <DependentUpon>TPVUIForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Tree\TreeBaseMngForm.resx">
+      <DependentUpon>TreeBaseMngForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Labels.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Labels.en.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Labels.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Labels.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="moleQule.Library.Common.TipoImpuestoA3.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\close_16.png" />
+    <None Include="Resources\add.ico" />
+    <None Include="Resources\change_state.ico" />
+    <None Include="Resources\delete.ico" />
+    <None Include="Resources\apunte_bancario.ico" />
+    <None Include="Resources\traspaso_bancario.ico" />
+    <None Include="Resources\mail.ico" />
+    <Content Include="Tools\FlowchartService1.xamlx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine">
+      <HintPath>c:\program files\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource">
+      <HintPath>c:\program files\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.ReportSource.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared">
+      <HintPath>c:\program files\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Csla">
+      <HintPath>..\..\..\..\External Libs\Csla.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\..\..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Infralution.Localization">
+      <HintPath>..\..\..\..\External Libs\Infralution.Localization\bin\Infralution.Localization.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="moleQule.Face">
+      <HintPath>..\..\..\moleQule.Face\bin\moleQule.Face.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="moleQule.Face.Hipatia">
+      <HintPath>..\..\..\..\Hipatia\code\Face\bin\moleQule.Face.Hipatia.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="moleQule.Library">
+      <HintPath>..\..\..\moleQule.Library\bin\moleQule.Library.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="moleQule.Library.Common">
+      <HintPath>..\Library\bin\moleQule.Library.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="moleQule.Library.Hipatia">
+      <HintPath>..\..\..\..\Hipatia\code\Library\bin\moleQule.Library.Hipatia.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\..\packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\..\..\packages\Npgsql.2.0.12.1\lib\net40\Npgsql.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy ".\*" "..\..\..\packages\$(ProjectName)\$(PlatformName)\$(ConfigurationName)"  /Y /R /I /E</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,117 @@
+﻿@using Resources;
+@{
+    ViewBag.ImgPath = "/Content/img";
+}
+
+<div id="install-wizard" class="innerLR">
+<div id="wizard">
+    <div class="widget widget-heading-simple widget-body-gray">
+		<div class="widget-body"><p class="lead center margin-none padding-none"><h2><span>@Html.Raw(Labels.HOW_TO_INSTALL_PLUGIN_TITLE)</span></h2></p></div>
+	</div>
+    <div class="wizard">
+	    <div class="widget widget-tabs widget-tabs-double widget-tabs-vertical row-fluid row-merge">		
+            <div class="widget-head span3">
+		        <ul>
+                    <li class="active"><a href="#tab1-1" class="glyphicons circle_ok" data-toggle="tab"><i></i><span class="strong">Before start. Preliminary considerations</span></a></li>
+			        <li><a href="#tab2-1" class="glyphicons circle_ok" data-toggle="tab"><i></i><span class="strong">Step 1. Install Silverlight</span></a></li>
+			        <li><a href="#tab3-1" class="glyphicons circle_ok" data-toggle="tab"><i></i><span class="strong">Step 2. Enable <i>Qapture</i> plug-in to run inside your browser</span></a></li>
+			        <li><a href="#tab4-1" class="glyphicons circle_ok" data-toggle="tab"><i></i><span class="strong">That's all. Scan your document</span></a></li>
+		        </ul>
+	        </div>
+            <br />
+            <!-- // Widget heading END -->			
+	        <div class="widget-body span9">
+		        <div class="tab-content">				
+                    <div class="tab-pane active" id="tab1-1">
+				        <div class="row-fluid panel">
+					        <div class="span12">
+						        <h4><strong>Preliminary considerations</strong></h4>
+						        <p>
+                                    This plug in is available for computers with <b>Microsoft Windows</b> installed only.
+                                </p>
+					        </div>
+ 				        </div>
+			        </div>
+                    <br />
+			        <div class="tab-pane" id="tab2-1">
+				        <div class="row-fluid">
+					        <div class="span12">
+						        <h4><strong>Install Silverlight</strong></h4>
+						        <p>
+                                Install the <b>Microsoft Silverlight</b> plug in when your browser prompted. If it does not, <a href="http://go.microsoft.com/fwlink?linkid=149156">click here</a>.<br />                        
+                                <br />                     
+                                More info about the plug-in <a href="http://www.microsoft.com/getsilverlight" target="_blank">here</a>.
+                                </p>
+					        </div>                            
+				        </div>
+                        <div class="row-fluid">
+                            <div class="span6 text-center">
+                                <a href="http://go.microsoft.com/fwlink?linkid=149156"><img src="@ViewBag.ImgPath/plugin1-logoSilverlight.png" alt="Instalar plug-in - Paso 1" /></a>
+                            </div>
+                        </div>
+			        </div>
+                    <br />
+			        <div class="tab-pane" id="tab3-1">
+				        <div class="row-fluid">
+					        <div class="span12">
+						        <h4><strong>Enable <i>Qapture</i> plug-in to run inside the browser</strong></h4>
+						        <p>
+                                    Now you need to allow our scan plug-in to run inside the browser.<br />
+                                    <br />
+                                    Please, download, unzip and execute this <a href="@Url.Content("~/Data/Resources/Qapture.Installer.zip")">installer.</a><br />
+                                    <br />
+                                    If you prefer to do it manually follow these steps:
+                                </p>
+                                <ul>
+                                    <li>Check if your Windows is 32 or 64 bits. To do this click on the right mouse button on the <b>Computer</b>
+                                        menu in Windows and select <b>Properties</b>. You have the information in <b>System Type</b>.
+                                    </li>
+                                    <li>
+                                        Configure the computer by setting the following registry key:
+                                        <ul>
+                                            <li>Go to your Windows registry typing "regedit" in the Home search textbox and push ENTER.</li>
+                                            <li>Browse to the appropiate registry folder.
+                                                <ul>
+                                                    <li>Key path for 32-bit computers: <b>HKEY_LOCAL_MACHINE\Software\Microsoft\Silverlight\</b></li>
+                                                    <li>Key path for 62-bit computers: <b>HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Silverlight\</b></li>
+                                                </ul>
+                                            </li>
+                                            <li>Set the value of the key <b>AllowElevatedTrustAppsInBrowser</b> to <b>0x00000001</b>.
+                                                <ul>
+                                                    <li>Valid Values:
+                                                        <ul>
+                                                            <li>Disabled - <b>0x00000000</b></li>
+                                                            <li>Enabled - <b>0x00000001</b></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>Ensure that you do not set conflicting registry keys <b>AllowInstallOfElevatedTrustApps</b> and <b>AllowLaunchOfElevatedTrustApps</b>. If any of them exists must be set to <b>0x00000001</b>.</li>
+                                    <li>Install this <a href="@Url.Content("~/Data/Resources/Qapture_TemporaryKey.cer")">certificate</a> to <b>Trusted Publishers</b> and to <b>Trusted Root Certification Authorities store</b>.</li>
+                                </ul>
+                                <p>
+                                    <br />
+                                    More info <a href="http://msdn.microsoft.com/es-es/library/gg192793(v=vs.95).aspx" target="_blank">here</a>.
+                                </p>
+					        </div>
+				        </div>
+			        </div>
+                    <br />
+			        <div class="tab-pane" id="tab4-1">
+				        <div class="row-fluid">
+                            <div class="span12">
+				                <h4><strong>Ready! Scan your document</strong></h4>
+				                <p>
+                                     You can scan your documents.<br />
+                                </p>
+                            </div>
+                        </div>
+			        </div>			
+		        </div>
+	        </div>
+        </div>
+    </div>
+</div>
+</div>

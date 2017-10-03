@@ -1,0 +1,825 @@
+﻿##|TYPE Template
+##|UNIQUEID 81930106-8f7c-4ffa-b426-7f148f8b2565
+##|TITLE HijoSinHijos_BusinessListBaseEx
+##|NAMESPACE dOOdads.C#
+##|SOURCE_TYPE Source
+##|OUTPUT_LANGUAGE C#
+##|COMMENTS_BEGIN
+From a Table, MS SQL, MS Access, Firebird, PostgreSQL, Oracle with aggregate support.
+##|COMMENTS_END
+##|GUI_ENGINE Microsoft Script
+##|GUI_LANGUAGE VBScript
+##|GUI_BEGIN
+Dim cmbDatabases
+Dim lstTables
+Dim chk
+Dim lstParents
+
+Sub setup()
+
+	If context.Objects.ContainsKey("DnpUtils") Then
+		DnpUtils.ReadInputFromCache(context)
+	End if
+
+	ui.Title = "Generate C# dOOdads"
+	ui.Width  = 330
+	ui.Height = 640
+
+	' Grab default output path
+	Dim sOutputPath
+	sOutputPath = ""
+	If input.Contains("defaultOutputPath") Then 
+		sOutputPath = input.Item("defaultOutputPath")
+	End If
+
+	ui.AddLabel "lblPath", "Output file path: ",  "Select the output path."
+	ui.AddTextBox "txtPath", sOutputPath, "Select the Output Path."
+	ui.AddFilePicker "btnPath", "Select Path", "Select the Output Path.", "txtPath", true
+	
+	ui.AddLabel "lblNamespace", "Namespace: ",  "Provide your objects namespace."
+	ui.AddTextBox "txtNamespace", "Your.Namespace", "Provide your objects namespace."			
+
+	' List Databases in a ComboBox
+	ui.AddLabel "lblDatabases", "Select a database:", "Select a database in the dropdown below."
+	Set cmbDatabases = ui.AddComboBox("cmbDatabase", "Select a database.")
+
+	' List Tables in a listbox
+	ui.AddLabel "lblTables", "Select tables:", "Select tables from the listbox below."
+	Set lstTables = ui.AddListBox ("lstTables", "Select tables:")
+	'lstTables.IsMultiSelect = false
+	lstTables.Height = 120
+	
+	ui.AddLabel "lblParent", "Select parents:", "Select tables from the listbox below."
+	Set lstParents = ui.AddListBox ("lstParents", "Select parents:")
+	lstParents.IsMultiSelect = true
+	lstParents.Height = 120
+	
+	Set chkAux = ui.AddCheckBox ("chkAux", "Tabla Auxiliar", false, "")
+	ui.Height = ui.Height + 40
+
+	Set prefix = ui.AddCheckBox("prefix", "Prefix the 'File' with an underscore?", false, "If checked, the file on disk will begin with an underscore")
+	Set trimName = ui.AddCheckBox("trimName", "Trim spaces from output filename?", false, "If checked, the file on disk will have spaces trimmed from the name.")
+	
+	If MyMeta.DriverString = "FIREBIRD" Then
+		ui.Height = ui.Height + 20
+		Set chk = ui.AddCheckBox("ckDialect3", "DIALECT 3", false, "If checked, the stored procedure will use dialect 3 syntax")
+		chk.forecolor = "red"
+	End If
+
+	' Attach the onchange event to the cmbDatabases control.
+	setupDatabaseDropdown cmbDatabases
+	cmbDatabases.AttachEvent "onchange", "cmbDatabases_onchange"
+	
+	ui.ShowGUI = true
+
+End Sub
+
+Sub setupDatabaseDropdown(cmbDatabases)
+	cmbDatabases.BindData MyMeta.Databases
+
+	If Not MyMeta.DefaultDatabase Is Nothing Then
+		cmbDatabases.SelectedValue = MyMeta.DefaultDatabase.Name
+		bindTables cmbDatabases.SelectedValue
+	End If
+End Sub
+
+Sub bindTables(sDatabase)
+	Set db = MyMeta.Databases(sDatabase)
+	lstTables.BindData(db.Tables)
+	lstParents.BindData(db.Tables)
+End Sub
+
+' Event Handler
+Sub cmbDatabases_onchange(control)
+	Set cmbDatabases = ui.item("cmbDatabase")
+	bindTables cmbDatabases.SelectedText
+End Sub
+##|GUI_END
+##|BODY_MODE Markup
+##|BODY_ENGINE Microsoft Script
+##|BODY_LANGUAGE VBScript
+##|BODY_TAG_START <%
+##|BODY_TAG_END %>
+##|BODY_BEGIN
+<%
+'------------------------------------------------------------------------------
+' Copyright 2004, 2005 by MyGeneration Software
+' All Rights Reserved 
+'
+' Permission to use, copy, modify, and distribute this software and its 
+' documentation for any purpose and without fee is hereby granted, 
+' provided that the above copyright notice appear in all copies and that 
+' both that copyright notice and this permission notice appear in 
+' supporting documentation. 
+'
+' MYGENERATION SOFTWARE DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS 
+' SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY 
+' AND FITNESS, IN NO EVENT SHALL MYGENERATION SOFTWARE BE LIABLE FOR ANY 
+' SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES 
+' WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, 
+' WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER 
+' TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE 
+' OR PERFORMANCE OF THIS SOFTWARE. 
+'------------------------------------------------------------------------------
+' BusinessBaseEx_Child.vbgen
+' Last Update : 28/11/2008
+'------------------------------------------------------------------------------
+
+If context.Objects.ContainsKey("DnpUtils") Then
+	DnpUtils.SaveInputToCache(context)
+End if
+
+Dim bFirst
+Dim name
+Dim pname
+Dim objTable
+Dim objColumn
+Dim tableNames
+Dim language
+Dim databaseName
+Dim database
+Dim namespace
+Dim props
+Dim prefix
+Dim trimName
+dim auxiliar
+
+Dim IDbCommand
+Dim IDataParameter
+Dim ParameterPrefix
+
+Dim dialect
+
+dialect = 1
+If input.Item("ckDialect3") Then
+	dialect = 3
+End If
+
+prefix = input.Item("prefix")
+trimName = input.Item("trimName")
+
+IDbCommand    = GetIDbCommand()
+IDataParameter = GetIDataParameter()
+ParameterPrefix = GetParameterPrefix()
+
+' Grab the namespace
+namespace = input.Item("txtNamespace")
+
+' Set the Language for our column data types
+
+' Grab the choices the user made in our UI Script (see Interface Code tab)
+Set tableNames = input.Item("lstTables")
+Set parentNames = input.Item("lstParents")
+
+databaseName  = input.Item("cmbDatabase")
+Set database = MyMeta.Databases(databaseName)
+
+' Loop through the tables the user selected and generate the business entities
+For intLp = 0 To tableNames.Count - 1
+
+	Set objTable = database.Tables(tablenames.item(intLp))
+	Set props = objTable.Properties
+	
+	Schema = objTable.Schema
+	if (Schema = "COMMON") Then
+		Schema = "CommonSchema"
+	else
+		Schema = "ActiveSchema.Code"
+	end if
+	
+	if input.Item("chkAux") then
+		SiAuxiliar parentNames, objTable, "AUXILIARES", Schema, namespace
+	else
+		NoAuxiliar parentNames, objTable, UCase(objTable.Alias), Schema, namespace
+	end if
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' Now we have the table that we desire to build a Business Object From, let us begin.
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	' Save the output file for this Table
+	Dim filename
+	filename = input.item("txtPath")
+
+	Dim length
+	Dim pos
+	length = Len(filename)
+	pos = InStrRev(filename, "\") 
+
+	If Not pos = length Then
+		filename = filename & "\"
+	End If
+	
+	If prefix = True Then 
+		If trimName = True Then
+			filename = filename & "_" & ToClassName(objTable.Alias) & GetLetraS(objTable.Alias) & ".cs"
+		Else
+			filename = filename & "_" & ToClassName(objTable.Alias) & GetLetraS(objTable.Alias) & ".cs"
+		End If
+	Else 
+		If trimName = True Then
+			filename = filename & ToClassName(objTable.Alias) & GetLetraS(objTable.Alias) & ".cs"
+		Else
+			filename = filename & ToClassName(objTable.Alias) & GetLetraS(objTable.Alias) & ".cs"
+		End If
+	End If
+
+	output.save filename, false
+	buffer = buffer & output.text
+	output.clear
+Next '  tableName
+	
+	output.write buffer
+
+%>
+<%
+sub NoAuxiliar (parentNames, objTable, auxiliar, Schema, namespace)
+%>
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using System.ComponentModel;
+
+using Csla;
+using CslaEx;
+
+using moleQule.Library;
+
+using NHibernate;
+
+namespace <%= namespace %>
+{
+    /// <summary>
+    /// Editable Child Collection of Businees Objects Without Child Collection
+    /// </summary>
+    [Serializable()]
+    public class <%= ToClassName(objTable.Alias)+ GetLetraS(objTable.Alias) %> : BusinessListBaseEx<<%= ToClassName(objTable.Alias)+ GetLetraS(objTable.Alias) %>, <%= ToClassName(objTable.Alias) %>>
+    {
+
+        #region Business Methods
+
+		<% for each parentName in parentNames %>
+		/// <summary>
+        /// Crea e inserta un nuevo elemento en la lista
+        /// </summary>
+        /// <param name="parent">Objeto padre</param>
+        /// <returns>Nuevo elemento creado</returns>
+        public <%= ToClassName(objTable.Alias) %> NewItem(<%= ToClassName(parentName) %> parent)
+        {
+            this.Add(<%= ToClassName(objTable.Alias) %>.NewChild(parent));
+            return this[Count - 1];
+        }
+		<% next %>
+		
+        #endregion
+
+        #region Factory Methods
+
+        /// <summary>
+        /// NO UTILIZAR DIRECTAMENTE, SE DEBE USAR LA FUNCION NewChildList
+        /// </summary>
+        private <%= ToClassName(objTable.Alias)+ GetLetraS(objTable.Alias) %>()
+			: <%= ToClassName(objTable.Alias)+ GetLetraS(objTable.Alias) %>(true)
+        {
+        }
+		
+        /// <summary>
+        /// NO UTILIZAR DIRECTAMENTE, SE DEBE USAR LA FUNCION NewChildList
+        /// </summary>
+		/// <param name="get_childs">Indica si se desea que se obtengan los datos de los hijos de los elementos de la lista</param>
+        private <%= ToClassName(objTable.Alias)+ GetLetraS(objTable.Alias) %>(bool get_childs)
+        {
+            MarkAsChild();
+			Childs = get_childs;
+        }
+
+        /// <summary>
+        /// NO UTILIZAR DIRECTAMENTE, SE DEBE USAR LA FUNCION NewGetList
+        /// </summary>
+		/// <param name="lista">Lista contenedora de los elementos</param>
+		/// <param name="get_childs">Indica si se desea que se obtengan los datos de los hijos de los elementos de la lista</param>
+        private <%= ToClassName(objTable.Alias)+ GetLetraS(objTable.Alias) %>(IList<<%= ToClassName(objTable.Alias) %>> lista, bool get_childs)
+        {
+            MarkAsChild();
+			Childs = get_childs;
+            Fetch(lista);
+        }
+
+        /// <summary>
+        /// NO UTILIZAR DIRECTAMENTE, SE DEBE USAR LA FUNCION NewGetList
+        /// </summary>
+		/// <param name="reader">DataReader contenedor de los elementos</param>
+		/// <param name="get_childs">Indica si se desea que se obtengan los datos de los hijos de los elementos de la lista</param>
+        private <%= ToClassName(objTable.Alias)+ GetLetraS(objTable.Alias) %>(IDataReader reader, bool get_childs)
+        {
+			MarkAsChild();
+            Childs = get_childs;
+            Fetch(reader);
+        }
+
+        /// <summary>
+        /// Crea una nueva lista
+        /// </summary>
+        /// <returns>Lista vacía</returns>
+        public static <%= ToClassName(objTable.Alias)+ GetLetraS(objTable.Alias) %> NewChildList() { return new <%= ToClassName(objTable.Alias)+ GetLetraS(objTable.Alias) %>(); }
+
+        /// <summary>
+        /// Obtiene una lista a partir de un IList
+        /// La utiliza el Fetch con nHibernate
+        /// </summary>
+        /// <param name="lista">Lista contenedora de los elementos</param>
+        /// <returns>Copia de la lista pasada</returns>
+        public static <%= ToClassName(objTable.Alias)+ GetLetraS(objTable.Alias) %> GetChildList(IList<<%= ToClassName(objTable.Alias) %>> lista) { return new <%= ToClassName(objTable.Alias)+ GetLetraS(objTable.Alias) %>(lista, true); }
+
+        /// <summary>
+        /// Obtiene una lista a partir de un IList
+        /// La utiliza el Fetch con nHibernate
+        /// </summary>
+        /// <param name="lista">Lista contenedora de los elementos</param>
+		/// <param name="get_childs">Indica si se desea que se obtengan los datos de los hijos de los elementos de la lista</param>
+        /// <returns>Copia de la lista pasada</returns>
+        public static <%= ToClassName(objTable.Alias)+ GetLetraS(objTable.Alias) %> GetChildList(IList<<%= ToClassName(objTable.Alias) %>> lista, bool get_childs) { return new <%= ToClassName(objTable.Alias)+ GetLetraS(objTable.Alias) %>(lista, get_childs); }
+
+        /// <summary>
+        /// Obtiene una lista a partir de un DataReader
+        /// La utiliza el Fetch con useDirectSQL
+        /// </summary>
+        /// <param name="lista">DataReader contenedor de los elementos</param>
+        /// <returns>Lista con los objetos copia de los que contiene el DataReader</returns>
+        public static <%= ToClassName(objTable.Alias)+ GetLetraS(objTable.Alias) %> GetChildList(IDataReader reader) { return GetChildList(reader, true); }
+
+        /// <summary>
+        /// Obtiene una lista a partir de un DataReader
+        /// La utiliza el Fetch con useDirectSQL
+        /// </summary>
+        /// <param name="reader">DataReader contenedor de los elementos</param>
+		/// <param name="get_childs">Indica si se desea que se obtengan los datos de los hijos de los elementos de la lista</param>
+        /// <returns>Lista con los objetos copia de los que contiene el DataReader</returns>
+        public static <%= ToClassName(objTable.Alias)+ GetLetraS(objTable.Alias) %> GetChildList(IDataReader reader, bool get_childs) { return GetChildList(reader, get_childs); }
+
+        #endregion
+
+        #region Child Data Access
+
+        // called to copy objects data from list
+        private void Fetch(IList<<%= ToClassName(objTable.Alias) %>> lista)
+        {
+            this.RaiseListChangedEvents = false;
+
+            foreach (<%= ToClassName(objTable.Alias) %> item in lista)
+                this.AddItem(<%= ToClassName(objTable.Alias) %>.GetChild(item));
+
+            this.RaiseListChangedEvents = true;
+        }
+
+        private void Fetch(IDataReader reader)
+        {
+            this.RaiseListChangedEvents = false;
+
+            while (reader.Read())
+                this.AddItem(<%= ToClassName(objTable.Alias) %>.GetChild(reader));
+
+            this.RaiseListChangedEvents = true;
+        }
+
+		<% for each parentName in parentNames %>
+        internal void Update(<%= ToClassName(parentName) %> parent)
+        {
+            this.RaiseListChangedEvents = false;
+
+            // update (thus deleting) any deleted child objects
+            foreach (<%= ToClassName(objTable.Alias) %> obj in DeletedList)
+                obj.DeleteSelf(parent);
+
+            // now that they are deleted, remove them from memory too
+            DeletedList.Clear();
+
+            // add/update any current child objects
+            foreach (<%= ToClassName(objTable.Alias) %> obj in this)
+            {
+                if (obj.IsNew)
+                    obj.Insert(parent);
+                else
+                    obj.Update(parent);
+            }
+			
+            this.RaiseListChangedEvents = true;
+        }
+		<% next %>
+
+        #endregion
+
+    }
+}
+<% end sub
+
+
+Function GetLetraS (Nombre)
+	if not (LCase(Mid(Nombre, Len(Nombre), 1)) = "a" or _
+			LCase(Mid(Nombre, Len(Nombre), 1)) = "e" or _
+			LCase(Mid(Nombre, Len(Nombre), 1)) = "i" or _
+			LCase(Mid(Nombre, Len(Nombre), 1)) = "o" or _
+			LCase(Mid(Nombre, Len(Nombre), 1)) = "u") then
+		GetLetraS = "es"
+	else
+		GetLetraS = "s"
+	end if
+end function
+'===========================================================================
+' These are support routines called by the above scirpt
+'===========================================================================
+Function GetAlias(objColumn)
+	Dim name
+	name = TrimSpaces(objColumn.Alias)
+	GetAlias = UCase(Left(name, 1)) & Right(name, Len(name) -1)
+End Function
+
+Function GetName(objColumn)
+	Dim name
+	name = objColumn.Name
+	GetName = UCase(Left(name, 1)) & Right(name, Len(name) -1)
+End Function
+
+Function IsOutParameter(objColumn, props, isInsert) 
+	Dim isOut
+	isOut = false
+
+	If (isInsert AND objColumn.IsAutoKey) Or objColumn.IsComputed Then	
+		isOut = true
+	End If
+	
+   ' We also must check this, this is not an Else to the above If
+   ' This is how can also indicate indicate Sequenced Columns
+	If Not isOut AND props.Count > 0  Then
+		If isInsert Then
+			If props.ContainsKey("SEQ:I:" & objColumn.Name) Or _
+			   props.ContainsKey("GEN:I:" & objColumn.Name) Or _
+			   props.ContainsKey("GEN:I:T:" & objColumn.Name) Then
+				isOut = true
+			End If
+		Else
+			If props.ContainsKey("SEQ:U:" & objColumn.Name) Or _
+			   props.ContainsKey("GEN:U:" & objColumn.Name) Or _
+			   props.ContainsKey("GEN:U:T:" & objColumn.Name) Then
+				isOut = true
+			End If
+		End If
+	End If
+	
+	IsOutParameter = isOut
+End Function
+
+Function TrimSpaces(str)
+
+	Dim tname
+	Dim name
+	Dim char
+	Dim l
+
+	name = ""
+	tname = str
+	l = Len(tname)
+
+	For j = 1 To l
+		char = Mid(tname, j, 1)
+		If Not char = " " And Not Char = "." Then
+			name = name & char
+		End If
+	Next
+
+	TrimSpaces = name
+End Function
+
+Function GetIDataParameter
+
+	Select Case MyMeta.DbTarget 
+		Case "OleDb"
+			GetIDataParameter = "OleDbParameter"
+		Case "SqlClient"
+			GetIDataParameter = "SqlParameter"
+		Case "OracleClient"
+			GetIDataParameter = "OracleParameter"
+		Case "FirebirdSql"
+			GetIDataParameter = "FbParameter"
+		Case "Npgsql"
+			GetIDataParameter = "NpgsqlParameter"	
+		Case "Advantage.Net"
+			GetIDataParameter = "AdsParameter"		
+	End Select
+
+End Function
+
+Function GetParameterPrefix
+
+	Select Case MyMeta.DbTarget 
+		Case "OleDb"
+			GetParameterPrefix = "@"
+		Case "SqlClient"
+			GetParameterPrefix = "@"
+		Case "OracleClient"
+			GetParameterPrefix = "p_"
+		Case "FirebirdSql"
+			GetParameterPrefix = "@"
+		Case "Npgsql"
+			GetParameterPrefix = ""		
+		Case "Advantage.Net"
+			GetParameterPrefix = ""			
+	End Select
+
+End Function
+
+Function GetIDbCommand
+
+	Select Case MyMeta.DbTarget 
+		Case "OleDb"
+			GetIDbCommand = "OleDbCommand"
+		Case "SqlClient"
+			GetIDbCommand = "SqlCommand"
+		Case "OracleClient"
+			GetIDbCommand = "OracleCommand"	
+		Case "FirebirdSql"
+			GetIDbCommand = "FbCommand"	
+		Case "Npgsql"
+			GetIDbCommand = "NpgsqlCommand"		
+		Case "Advantage.Net"
+			GetIDbCommand = "AdsCommand"
+	End Select
+
+End Function
+
+Function GetDataNameSpace
+
+	Select Case MyMeta.DbTarget 
+		Case "OleDb"
+			GetDataNameSpace = "System.Data.OleDb"
+		Case "SqlClient"
+			GetDataNameSpace = "System.Data.SqlClient"
+		Case "OracleClient"	
+			GetDataNameSpace = "System.Data.OracleClient"
+		Case "FirebirdSql"	
+			GetDataNameSpace = "FirebirdSql.Data.Firebird"
+		Case "Npgsql"
+			GetDataNameSpace = "Npgsql"
+		Case "Advantage.Net"
+			GetDataNameSpace = "Advantage.Data.Provider"		
+	End Select
+
+End Function
+
+Function GetDataType (tipo)
+	Dim retVal
+	Select Case tipo 
+		Case "varchar"
+			GetDataType = "string"
+		Case "text"
+			GetDataType = "string"
+		Case "date"
+			GetDataType = "DateTime"
+		Case "bool"
+			GetDataType = "bool"
+		Case "char"
+			GetDataType = "Char"
+		Case "date"
+			GetDataType = "DateTime"
+		Case "float4"
+			GetDataType = "float"
+		Case "float8"
+			GetDataType = "double"
+		Case "int2"
+			GetDataType = "short"
+		Case "int4"
+			GetDataType = "int"
+		Case "int8"
+			GetDataType = "long"
+		Case "numeric"
+			GetDataType = "Decimal"
+		Case "money"
+			GetDataType = "Decimal"
+		Case "time"
+			GetDataType = "DateTime"
+		Case "timestamp"
+			GetDataType = "DateTime"
+		Case "bigint"
+			GetDataType = "long"
+		Case "decimal"
+			GetDataType = "Decimal"
+		Case Else
+			GetDataType = ""
+	End Select
+End Function
+
+Function ToProperty (name)
+	
+	Dim tname
+	Dim str
+	Dim char
+	Dim l
+	
+	str = ""
+	tname = name
+	l = Len(tname)
+	upper = 1
+
+	For j = 1 To l			
+		char = Mid(tname, j, 1)
+		If (char = "_") Then 
+			upper = 1
+		Else
+			If (upper = 1) Then
+				str = str & UCase(char)
+				upper = 0
+			Else 
+				str = str & LCase(char)
+			End If
+		End If
+	Next
+	ToProperty = str
+	
+End Function
+
+Function ToClassName (name)
+	Dim tname
+	Dim str
+	Dim char
+	Dim l
+	
+	str = ""
+	tname = name
+	l = Len(tname)
+	ind = 1
+
+	For j = 1 To l			
+		char = Mid(tname, j, 1)
+		If (ind = 1) Then
+			char = UCase(char)
+		Else
+			char = LCase(char)
+		End If
+		str = str & char
+		If (char <> "_") Then 
+			ind = ind + 1
+		Else 
+			ind = 1
+		End If
+	Next
+	ToClassName = str
+	
+End Function
+
+Function CreateProcedureName(objTable, suffix)
+
+	Dim bFirst
+    Dim str 
+	
+	bFirst = true
+	
+	Select Case MyMeta.DbTarget 
+		Case "OleDb"
+			Select Case suffix
+				Case "L"
+					str = "LoadAll"
+				Case "K"
+					str = "LoadByPrimaryKey"
+				Case "U"
+					str ="Update"
+				Case "I"
+					str = "Insert"
+				Case "D"
+					str = "Delete"
+			End Select		
+			CreateProcedureName = """["" + this.SchemaStoredProcedure + ""proc_" & objTable.Name &  str & "]"""		
+		Case "SqlClient"	
+			Select Case suffix
+				Case "L"
+					str = "LoadAll"
+				Case "K"
+					str = "LoadByPrimaryKey"
+				Case "U"
+					str ="Update"
+				Case "I"
+					str = "Insert"
+				Case "D"
+					str = "Delete"
+			End Select
+			CreateProcedureName = """["" + this.SchemaStoredProcedure + ""proc_" & objTable.Name &  str & "]"""		
+		Case "OracleClient"	
+			CreateProcedureName = "this.SchemaStoredProcedure + " + """P" & suffix & "_" & objTable.Name & """"
+		Case "FirebirdSql"	
+			Select Case suffix
+				Case "L"
+					CreateProcedureName = FirebirdSP(false, "PL_" + objTable.Name, false, 0)				
+				Case "K"
+					CreateProcedureName = FirebirdSP(false, "PK_" + objTable.Name, false, 0)
+				Case "U"
+					CreateProcedureName = FirebirdSP(true, "PU_" + objTable.Name, true, 0)				
+				Case "I"
+					CreateProcedureName = FirebirdSP(true, "PI_" + objTable.Name, true, 0)				
+				Case "D"
+					CreateProcedureName = FirebirdSP(true, "PD_" + objTable.Name, true, objTable.PrimaryKeys.Count)				
+			End Select
+		Case "Npgsql"	
+			Select Case suffix
+				Case "L"
+					str = "_load_all"
+				Case "K"
+					str = "_load_by_primarykey"
+				Case "U"
+					str = "_update"
+				Case "I"
+					str = "_insert"
+				Case "D"
+					str = "_delete"
+			End Select
+			CreateProcedureName = "this.SchemaStoredProcedure + """ & objTable.Name & str & """"			
+		Case "Advantage.Net"	
+			Select Case suffix
+				Case "L"
+					str = "LoadAll"
+				Case "K"
+					str = "LoadByPrimaryKey"
+				Case "U"
+					str ="Update"
+				Case "I"
+					str = "Insert"
+				Case "D"
+					str = "Delete"
+			End Select
+			CreateProcedureName = """["" + this.SchemaStoredProcedure + ""proc_" & objTable.Name &  str & "]"""						
+	End Select
+
+End Function
+
+'==================================================================
+' This function accounts for Firebird Dialects and Driver Versions
+'==================================================================
+Function FirebirdSP(execPrefix, strName, withParams, hardCodedParamCount)
+
+    Dim bFirst
+    Dim strText
+	
+	bFirst = true
+	
+	If execPrefix = true Then
+		strText = """EXECUTE PROCEDURE "
+	Else
+		strText = """"	
+	End If
+	
+    If dialect = 3 Then
+		strText = strText + UCase(strName) 
+	Else
+		strText = strText + strName
+	End If
+	
+	If withParams = true Then
+	
+		strText = strText + " ("
+		
+		If hardCodedParamCount > 0 Then
+			For i = 1 To hardCodedParamCount
+				If Not bFirst Then
+					strText = strText + ","
+				End If
+				bFirst = false
+				strText = strText + "?"			
+			Next 
+			strText = strText + ")"""			
+		Else
+			For Each objColumn in objTable.Columns
+				If Not bFirst Then
+					strText = strText + ","
+				End If
+				bFirst = false
+				strText = strText + "?"
+			Next 
+			strText = strText + ")"""
+		End If
+		
+	Else
+		strText = strText + """"
+	End If
+
+	FirebirdSP = strText
+	
+End Function
+
+Function GetBaseClass
+
+	Select Case MyMeta.DbTarget 
+		Case "OleDb"
+			GetBaseClass = "OleDbEntity"
+		Case "SqlClient"
+			GetBaseClass = "SqlClientEntity"
+		Case "OracleClient"	
+			GetBaseClass = "OracleClientEntity"
+		Case "FirebirdSql"	
+			GetBaseClass = "FirebirdSqlEntity"
+		Case "Npgsql"
+			GetBaseClass = "PostgreSqlEntity"
+		Case "Advantage.Net"
+			GetBaseClass = "AdvantageSqlEntity"			
+	End Select
+	
+End Function
+
+%>
+##|BODY_END

@@ -1,0 +1,9 @@
+/* UPDATE 3.2.0.0*/
+
+SET SEARCH_PATH = "COMMON";
+
+ALTER TABLE "Empresa" ADD COLUMN "P_IRPF" decimal(10,2);
+
+SET SEARCH_PATH = "0001";
+
+

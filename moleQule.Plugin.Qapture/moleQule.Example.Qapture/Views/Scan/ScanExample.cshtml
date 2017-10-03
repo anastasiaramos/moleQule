@@ -1,0 +1,41 @@
+﻿@using moleQule.Example.Qapture.Models
+@using moleQule.Example.Qapture.App_GlobalResources
+@model moleQule.Example.Qapture.Models.DocumentViewModel
+
+<script src="@Url.Content("~/Scripts/silverlight.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/silverlight.error.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/canvas-to-blob.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.fineuploader-3.7.1.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm("Edit", "Scan")) {
+    @Html.AntiForgeryToken()
+    <div class="container-fluid">
+        <div class="row-fluid col-full-wrap">
+            <div class="span12 col-full line">
+                <div class="clearfix panel-right">
+                    <div class="row-fluid col-full-wrap">
+                        <div class="span12 document text-center">
+                            @Html.Partial("_ImagePartial", Model)            
+                        </div>
+                    </div>
+                    <img id="scanner-screenshot" src="" style="display:none;" alt="scanner-screenshot">
+                    <canvas id="scanner-canvas" style="display:none;"></canvas>
+                    <div class="silverlightControlHost captureImagen">
+                        <object id="silverlightControlHost" data="data:application/x-silverlight-2," type="application/x-silverlight-2" width="300" height="100%">
+		                    <param name="source" value="/ClientBin/moleQule.Plugin.Qapture.xap"/>
+		                    <param name="onError" value="onSilverlightError" />
+		                    <param name="background" value="white" />
+		                    <param name="minRuntimeVersion" value="5.0.61118.0" />
+		                    <param name="autoUpgrade" value="true" />
+		                    <a href="http://go.microsoft.com/fwlink/?LinkID=149156&v=5.0.61118.0" style="text-decoration:none">
+ 			                    <img src="http://go.microsoft.com/fwlink/?LinkId=161376" alt="Get Microsoft Silverlight" style="border-style:none"/>
+		                    </a>
+	                    </object><iframe id="_sl_historyFrame" style="visibility:hidden;height:0px;width:0px;border:0px"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@Html.Partial("_FineUploaderPartial")
+@Html.Partial("_ScannerPartial")

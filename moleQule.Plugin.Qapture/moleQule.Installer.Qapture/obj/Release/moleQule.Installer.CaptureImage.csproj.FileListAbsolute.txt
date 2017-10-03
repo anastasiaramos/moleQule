@@ -1,0 +1,7 @@
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.CaptureImage\moleQule.Installer.CaptureImage\obj\Release\moleQule.Installer.CaptureImage.Properties.Resources.resources
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.CaptureImage\moleQule.Installer.CaptureImage\obj\Release\moleQule.Installer.CaptureImage.csproj.GenerateResource.Cache
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.CaptureImage\moleQule.Installer.CaptureImage\bin\Release\QaptureImage.Installer.exe.config
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.CaptureImage\moleQule.Installer.CaptureImage\bin\Release\QaptureImage.Installer.exe
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.CaptureImage\moleQule.Installer.CaptureImage\bin\Release\QaptureImage.Installer.pdb
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.CaptureImage\moleQule.Installer.CaptureImage\obj\Release\QaptureImage.Installer.exe
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.CaptureImage\moleQule.Installer.CaptureImage\obj\Release\QaptureImage.Installer.pdb

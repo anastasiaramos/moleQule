@@ -1,0 +1,16 @@
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.QaptureImage\moleQule.Installer.QaptureImage\obj\Release\moleQule.Installer.Qapture.csproj.GenerateResource.Cache
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.QaptureImage\moleQule.Installer.QaptureImage\bin\Release\Qapture.Installer.exe.config
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.QaptureImage\moleQule.Installer.QaptureImage\bin\Release\Qapture.Installer.exe
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.QaptureImage\moleQule.Installer.QaptureImage\bin\Release\Qapture.Installer.pdb
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.QaptureImage\moleQule.Installer.QaptureImage\obj\Release\Qapture.Installer.exe
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.QaptureImage\moleQule.Installer.QaptureImage\obj\Release\Qapture.Installer.pdb
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.QaptureImage\moleQule.Installer.QaptureImage\obj\Release\moleQule.Installer.Qapture.Properties.Resources.resources
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.QaptureImage\moleQule.Installer.QaptureImage\obj\Release\moleQule.Installer.Qapture.csprojResolveAssemblyReference.cache
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.Qapture\moleQule.Installer.Qapture\bin\Release\Qapture.Installer.exe.config
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.Qapture\moleQule.Installer.Qapture\bin\Release\Qapture.Installer.exe
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.Qapture\moleQule.Installer.Qapture\bin\Release\Qapture.Installer.pdb
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.Qapture\moleQule.Installer.Qapture\obj\Release\moleQule.Installer.Qapture.Properties.Resources.resources
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.Qapture\moleQule.Installer.Qapture\obj\Release\moleQule.Installer.Qapture.csproj.GenerateResource.Cache
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.Qapture\moleQule.Installer.Qapture\obj\Release\Qapture.Installer.exe
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.Qapture\moleQule.Installer.Qapture\obj\Release\Qapture.Installer.pdb
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.Qapture\moleQule.Installer.Qapture\obj\Release\moleQule.Installer.Qapture.csprojResolveAssemblyReference.cache

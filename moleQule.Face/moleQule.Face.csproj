@@ -1,0 +1,1120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <GenerateResourceNeverLockTypeAssemblies>true</GenerateResourceNeverLockTypeAssemblies>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0E6AC892-4ABD-40EC-A08B-8413303526E9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>moleQule.Face</RootNamespace>
+    <AssemblyName>moleQule.Face</AssemblyName>
+    <ApplicationIcon>molequle_face.ico</ApplicationIcon>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Staging|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <DefineConstants>STAGING;</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Demo|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>true</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Staging|x86' ">
+    <OutputPath>bin\x86\Preproduccion\</OutputPath>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>true</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Demo|x86'">
+    <OutputPath>bin\x86\Demo\</OutputPath>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="Csla, Version=2.0.3.0, Culture=neutral, PublicKeyToken=93be5fdc093e4c30, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\External Libs\Csla.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\..\Cattle\code\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Infralution.Localization">
+      <HintPath>..\..\External Libs\Infralution.Localization\bin\Infralution.Localization.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="moleQule.Library, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\moleQule.Library\bin\moleQule.Library.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\packages\Npgsql.2.0.12.1\lib\net40\Npgsql.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controls\mQDateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\DateTimePickerCell.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\NumericTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\mQMenuStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\mQMenuStrip.Designer.cs">
+      <DependentUpon>mQMenuStrip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMngBase.cs" />
+    <Compile Include="Forms\Base Forms\ChartBaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Base Forms\ChartBaseForm.Designer.cs">
+      <DependentUpon>ChartBaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Base Forms\ChildListMngBaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Base Forms\ChildListMngBaseForm.Designer.cs">
+      <DependentUpon>ChildListMngBaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Base Forms\ItemMngBaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Base Forms\ItemMngBaseForm.Designer.cs">
+      <DependentUpon>ItemMngBaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Base Forms\ListMngBaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Base Forms\ListMngBaseForm.Designer.cs">
+      <DependentUpon>ListMngBaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Base Forms\LoginBaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Base Forms\LoginBaseForm.Designer.cs">
+      <DependentUpon>LoginBaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BaseForm.Designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Labels.en.Designer.cs">
+      <DependentUpon>Labels.en.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Skins\Skin01\ImageViewSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin01\ImageViewSkinForm.Designer.cs">
+      <DependentUpon>ImageViewSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin01\ItemMngSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin01\ItemMngSkinForm.Designer.cs">
+      <DependentUpon>ItemMngSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin02\EntityMngSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin02\EntityMngSkinForm.Designer.cs">
+      <DependentUpon>EntityMngSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin02\ListMngSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin02\ListMngSkinForm.Designer.cs">
+      <DependentUpon>ListMngSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin02\LoginSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin02\LoginSkinForm.Designer.cs">
+      <DependentUpon>LoginSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin02\SchemaLMngSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin02\SchemaLMngSkinForm.Designer.cs">
+      <DependentUpon>SchemaLMngSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin08\ActionSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin08\ActionSkinForm.Designer.cs">
+      <DependentUpon>ActionSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin06\ListMngSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin06\ListMngSkinForm.Designer.cs">
+      <DependentUpon>ListMngSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin04\ChartSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin04\ChartSkinForm.Designer.cs">
+      <DependentUpon>ChartSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin04\SchemaMngSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin04\SchemaMngSkinForm.Designer.cs">
+      <DependentUpon>SchemaMngSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin04\EntityMngSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin04\EntityMngSkinForm.Designer.cs">
+      <DependentUpon>EntityMngSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin04\ItemMngSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin04\ItemMngSkinForm.Designer.cs">
+      <DependentUpon>ItemMngSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin04\ReportSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin04\ReportSkinForm.Designer.cs">
+      <DependentUpon>ReportSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin04\TreeMngSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin04\TreeMngSkinForm.Designer.cs">
+      <DependentUpon>TreeMngSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin05\ChartSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin05\ChartSkinForm.Designer.cs">
+      <DependentUpon>ChartSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin05\EntityMngSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin05\EntityMngSkinForm.Designer.cs">
+      <DependentUpon>EntityMngSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin06\SchemaMngSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin06\SchemaMngSkinForm.Designer.cs">
+      <DependentUpon>SchemaMngSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin06\EntityMngSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin06\EntityMngSkinForm.Designer.cs">
+      <DependentUpon>EntityMngSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Base Forms\SchemaMngBaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Base Forms\SchemaMngBaseForm.Designer.cs">
+      <DependentUpon>SchemaMngBaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ChildForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ChildForm.Designer.cs">
+      <DependentUpon>ChildForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Base Forms\ActionBaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Base Forms\ActionBaseForm.Designer.cs">
+      <DependentUpon>ActionBaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Base Forms\EntityMngBaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Base Forms\EntityMngBaseForm.Designer.cs">
+      <DependentUpon>EntityMngBaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EntityDriverForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EntityDriverForm.Designer.cs">
+      <DependentUpon>EntityDriverForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Deprecated\EntityMngForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Deprecated\EntityMngForm.Designer.cs">
+      <DependentUpon>EntityMngForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Base Forms\ImageViewBaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Base Forms\ImageViewBaseForm.Designer.cs">
+      <DependentUpon>ImageViewBaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Base Forms\InputBaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Base Forms\InputBaseForm.Designer.cs">
+      <DependentUpon>InputBaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Deprecated\LocalizeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Deprecated\LocalizeForm.Designer.cs">
+      <DependentUpon>LocalizeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ManagerForm.Designer.cs">
+      <DependentUpon>ManagerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Base Forms\PrintSelectBaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Base Forms\PrintSelectBaseForm.Designer.cs">
+      <DependentUpon>PrintSelectBaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Base Forms\ReportSelectBaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Base Forms\ReportSelectBaseForm.Designer.cs">
+      <DependentUpon>ReportSelectBaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Base Forms\SelectBaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Base Forms\SelectBaseForm.Designer.cs">
+      <DependentUpon>SelectBaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin01\ActionSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin01\ActionSkinForm.Designer.cs">
+      <DependentUpon>ActionSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin01\EntityLMngSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin01\EntityLMngSkinForm.Designer.cs">
+      <DependentUpon>EntityLMngSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin01\LocalizeSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin01\LocalizeSkinForm.Designer.cs">
+      <DependentUpon>LocalizeSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin01\EntityMngSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin01\EntityMngSkinForm.Designer.cs">
+      <DependentUpon>EntityMngSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin01\InputSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin01\InputSkinForm.Designer.cs">
+      <DependentUpon>InputSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin01\LibrarySkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin01\LibrarySkinForm.Designer.cs">
+      <DependentUpon>LibrarySkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin01\ChildListMngSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin01\ChildListMngSkinForm.Designer.cs">
+      <DependentUpon>ChildListMngSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin01\ListMngSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin01\ListMngSkinForm.Designer.cs">
+      <DependentUpon>ListMngSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin01\PrintSelectSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin01\PrintSelectSkinForm.Designer.cs">
+      <DependentUpon>PrintSelectSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin01\ReportSelectSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin01\ReportSelectSkinForm.Designer.cs">
+      <DependentUpon>ReportSelectSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin01\SelectSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin01\SelectSkinForm.Designer.cs">
+      <DependentUpon>SelectSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin02\EntityLMngSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin02\EntityLMngSkinForm.Designer.cs">
+      <DependentUpon>EntityLMngSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin02\LibrarySkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin02\LibrarySkinForm.Designer.cs">
+      <DependentUpon>LibrarySkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin02\PrintSelectSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin02\PrintSelectSkinForm.Designer.cs">
+      <DependentUpon>PrintSelectSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin02\SelectSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin02\SelectSkinForm.Designer.cs">
+      <DependentUpon>SelectSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin03\EntityMngSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin03\EntityMngSkinForm.Designer.cs">
+      <DependentUpon>EntityMngSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainBaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainBaseForm.Designer.cs">
+      <DependentUpon>MainBaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Consts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Consts.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Labels.Designer.cs">
+      <DependentUpon>Labels.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Messages.Designer.cs">
+      <DependentUpon>Messages.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Paths.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Paths.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin07\EntityMngSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin07\EntityMngSkinForm.Designer.cs">
+      <DependentUpon>EntityMngSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Skins\Skin08\EntityMngSkinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Skins\Skin08\EntityMngSkinForm.Designer.cs">
+      <DependentUpon>EntityMngSkinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Structs\Structs.cs" />
+    <Compile Include="System\Schema\SchemaMngForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="System\Schema\SchemaMngForm.Designer.cs">
+      <DependentUpon>SchemaMngForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="System\User\UserPaswordAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="System\User\UserPaswordAddForm.Designer.cs">
+      <DependentUpon>UserPaswordAddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="System\User\UserPasswordEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="System\User\UserPasswordEditForm.Designer.cs">
+      <DependentUpon>UserPasswordEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="System\User\UserPasswordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="System\User\UserPasswordForm.Designer.cs">
+      <DependentUpon>UserPasswordForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="System\User\UserMngForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="System\User\UserMngForm.Designer.cs">
+      <DependentUpon>UserMngForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="System\User\UserSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="System\User\UserSelectForm.Designer.cs">
+      <DependentUpon>UserSelectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="System\User\UsersUIForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="System\User\UsersUIForm.Designer.cs">
+      <DependentUpon>UsersUIForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\ChangeUserUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\ChangeUserUpdate.Designer.cs">
+      <DependentUpon>ChangeUserUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\ChartMng.cs" />
+    <Compile Include="Tools\ControlsMng.cs" />
+    <Compile Include="Tools\ControlTools.cs" />
+    <Compile Include="Tools\DataSourceList.cs" />
+    <Compile Include="Tools\Globals.cs" />
+    <Compile Include="Tools\NewsBaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\NewsBaseForm.Designer.cs">
+      <DependentUpon>NewsBaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\ProgressInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\ProgressInfoForm.Designer.cs">
+      <DependentUpon>ProgressInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\ProgressInfoMng.cs" />
+    <Compile Include="Tools\RestoreInputBaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\RestoreInputBaseForm.Designer.cs">
+      <DependentUpon>RestoreInputBaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\SettingsBaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\SettingsBaseForm.designer.cs">
+      <DependentUpon>SettingsBaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\StatusBusy.cs" />
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\mQMenuStrip.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>mQMenuStrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Base Forms\ChartBaseForm.resx">
+      <DependentUpon>ChartBaseForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Base Forms\ChildListMngBaseForm.resx">
+      <DependentUpon>ChildListMngBaseForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Base Forms\ItemMngBaseForm.en.resx">
+      <DependentUpon>ItemMngBaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Base Forms\ItemMngBaseForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ItemMngBaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Base Forms\ListMngBaseForm.resx">
+      <DependentUpon>ListMngBaseForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Base Forms\LoginBaseForm.resx">
+      <DependentUpon>LoginBaseForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BaseForm.en.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ChildForm.en.resx">
+      <DependentUpon>ChildForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainBaseForm.en.resx">
+      <DependentUpon>MainBaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Labels.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Labels.en.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin01\ActionSkinForm.en.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ActionSkinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin01\ChildListMngSkinForm.en.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ChildListMngSkinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin01\ImageViewSkinForm.resx">
+      <DependentUpon>ImageViewSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin01\InputSkinForm.en.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>InputSkinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin01\ItemMngSkinForm.en.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ItemMngSkinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin01\ItemMngSkinForm.resx">
+      <DependentUpon>ItemMngSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin01\ListMngSkinForm.en.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ListMngSkinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin02\EntityLMngSkinForm.en.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EntityLMngSkinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin02\EntityLMngSkinForm.es.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EntityLMngSkinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin02\EntityMngSkinForm.resx">
+      <DependentUpon>EntityMngSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin02\LibrarySkinForm.en.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LibrarySkinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin02\ListMngSkinForm.en.resx">
+      <DependentUpon>ListMngSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin02\ListMngSkinForm.resx">
+      <DependentUpon>ListMngSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin02\LoginSkinForm.en.resx">
+      <DependentUpon>LoginSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin02\LoginSkinForm.resx">
+      <DependentUpon>LoginSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin02\SchemaLMngSkinForm.resx">
+      <DependentUpon>SchemaLMngSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin03\EntityMngSkinForm.en.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EntityMngSkinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin08\ActionSkinForm.en.resx">
+      <DependentUpon>ActionSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin08\ActionSkinForm.resx">
+      <DependentUpon>ActionSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin06\ListMngSkinForm.en.resx">
+      <DependentUpon>ListMngSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin06\ListMngSkinForm.resx">
+      <DependentUpon>ListMngSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin04\ChartSkinForm.resx">
+      <DependentUpon>ChartSkinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin04\SchemaMngSkinForm.en.resx">
+      <DependentUpon>SchemaMngSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin04\SchemaMngSkinForm.resx">
+      <DependentUpon>SchemaMngSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin04\EntityMngSkinForm.en.resx">
+      <DependentUpon>EntityMngSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin04\EntityMngSkinForm.resx">
+      <DependentUpon>EntityMngSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin04\ItemMngSkinForm.en.resx">
+      <DependentUpon>ItemMngSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin04\ItemMngSkinForm.resx">
+      <DependentUpon>ItemMngSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin04\ReportSkinForm.en.resx">
+      <DependentUpon>ReportSkinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin04\ReportSkinForm.resx">
+      <DependentUpon>ReportSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin04\TreeMngSkinForm.en.resx">
+      <DependentUpon>TreeMngSkinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin04\TreeMngSkinForm.resx">
+      <DependentUpon>TreeMngSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin05\ChartSkinForm.resx">
+      <DependentUpon>ChartSkinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin05\EntityMngSkinForm.en.resx">
+      <DependentUpon>EntityMngSkinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin05\EntityMngSkinForm.es.resx">
+      <DependentUpon>EntityMngSkinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin05\EntityMngSkinForm.resx">
+      <DependentUpon>EntityMngSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Base Forms\SchemaMngBaseForm.resx">
+      <DependentUpon>SchemaMngBaseForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ChildForm.resx">
+      <DependentUpon>ChildForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Base Forms\ActionBaseForm.resx">
+      <DependentUpon>ActionBaseForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Base Forms\EntityMngBaseForm.resx">
+      <DependentUpon>EntityMngBaseForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EntityDriverForm.resx">
+      <DependentUpon>EntityDriverForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Deprecated\EntityMngForm.resx">
+      <DependentUpon>EntityMngForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Base Forms\ImageViewBaseForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ImageViewBaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Base Forms\InputBaseForm.resx">
+      <DependentUpon>InputBaseForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Deprecated\LocalizeForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LocalizeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ManagerForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Base Forms\PrintSelectBaseForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PrintSelectBaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Base Forms\ReportSelectBaseForm.resx">
+      <DependentUpon>ReportSelectBaseForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Base Forms\SelectBaseForm.resx">
+      <DependentUpon>SelectBaseForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin01\ActionSkinForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ActionSkinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin01\EntityLMngSkinForm.resx">
+      <DependentUpon>EntityLMngSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin01\LocalizeSkinForm.resx">
+      <DependentUpon>LocalizeSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin01\EntityMngSkinForm.resx">
+      <DependentUpon>EntityMngSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin01\InputSkinForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>InputSkinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin01\LibrarySkinForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LibrarySkinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin01\ChildListMngSkinForm.resx">
+      <DependentUpon>ChildListMngSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin01\ListMngSkinForm.resx">
+      <DependentUpon>ListMngSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin01\PrintSelectSkinForm.resx">
+      <DependentUpon>PrintSelectSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin01\ReportSelectSkinForm.resx">
+      <DependentUpon>ReportSelectSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin01\SelectSkinForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SelectSkinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin02\EntityLMngSkinForm.resx">
+      <DependentUpon>EntityLMngSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin02\LibrarySkinForm.resx">
+      <DependentUpon>LibrarySkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin02\PrintSelectSkinForm.resx">
+      <DependentUpon>PrintSelectSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin02\SelectSkinForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SelectSkinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin03\EntityMngSkinForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EntityMngSkinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainBaseForm.resx">
+      <DependentUpon>MainBaseForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Consts.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Consts.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Labels.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Labels.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Messages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Paths.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Paths.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin06\SchemaMngSkinForm.en.resx">
+      <DependentUpon>SchemaMngSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin06\SchemaMngSkinForm.es.resx">
+      <DependentUpon>SchemaMngSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin06\SchemaMngSkinForm.resx">
+      <DependentUpon>SchemaMngSkinForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin06\EntityMngSkinForm.resx">
+      <DependentUpon>EntityMngSkinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin07\EntityMngSkinForm.resx">
+      <DependentUpon>EntityMngSkinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Skins\Skin08\EntityMngSkinForm.resx">
+      <DependentUpon>EntityMngSkinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="System\Schema\SchemaMngForm.resx">
+      <DependentUpon>SchemaMngForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="System\User\UserPasswordEditForm.en.resx">
+      <DependentUpon>UserPasswordEditForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="System\User\UserPasswordForm.en.resx">
+      <DependentUpon>UserPasswordForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="System\User\UserPaswordAddForm.resx">
+      <DependentUpon>UserPaswordAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="System\User\UserPasswordEditForm.resx">
+      <DependentUpon>UserPasswordEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="System\User\UserPasswordForm.resx">
+      <DependentUpon>UserPasswordForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="System\User\UserMngForm.resx">
+      <DependentUpon>UserMngForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="System\User\UsersUIForm.en.resx">
+      <DependentUpon>UsersUIForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="System\User\UsersUIForm.resx">
+      <DependentUpon>UsersUIForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\ChangeUserUpdate.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ChangeUserUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\NewsBaseForm.resx">
+      <DependentUpon>NewsBaseForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\ProgressInfoForm.resx">
+      <DependentUpon>ProgressInfoForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\RestoreInputBaseForm.resx">
+      <DependentUpon>RestoreInputBaseForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\SettingsBaseForm.en.resx">
+      <DependentUpon>SettingsBaseForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\SettingsBaseForm.resx">
+      <DependentUpon>SettingsBaseForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="moleQule.config" />
+    <None Include="Class Diagrams\Forms.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="molequle_face.ico" />
+    <None Include="Resources\print_24.png" />
+    <None Include="packages.config" />
+    <None Include="Recursos\accept_24.png" />
+    <None Include="Recursos\cancel_24.png" />
+    <None Include="Resources\docs_24.png" />
+    <Content Include="Resources\loading3.gif" />
+    <None Include="Resources\United-Kingdom.ico" />
+    <None Include="Resources\Spain.ico" />
+    <None Include="Resources\document_into.ico" />
+    <None Include="Resources\null1.ico" />
+    <None Include="Resources\null.ico" />
+    <None Include="Resources\emitido_16.png" />
+    <None Include="Resources\cerrado.ico" />
+    <None Include="Resources\emitido.ico" />
+    <None Include="Resources\printQR.ico" />
+    <None Include="Resources\emailLink_16.png" />
+    <None Include="Resources\emailFile_16.png" />
+    <None Include="Resources\printPdf_16.png" />
+    <None Include="Resources\printDetail.ico" />
+    <None Include="Resources\printDetail_16.png" />
+    <None Include="Resources\liberar_16.png" />
+    <None Include="Properties\DataSources\FilterList.datasource" />
+    <None Include="Resources\lock_16.png" />
+    <None Include="Resources\advSearchOff_16.png" />
+    <None Include="Resources\advSearchOn_16.png" />
+    <None Include="Resources\avdSearchOff.ico" />
+    <None Include="Resources\advSearchOn.ico" />
+    <None Include="Properties\DataSources\FilterItem.datasource" />
+    <None Include="Resources\adv_search.ico" />
+    <None Include="Resources\lock.ico" />
+    <None Include="Resources\liberar.ico" />
+    <None Include="Resources\copy.ico" />
+    <None Include="Resources\refresh.png" />
+    <None Include="Resources\filterOff_48.png" />
+    <None Include="Resources\all.ico" />
+    <None Include="Resources\default.ico" />
+    <None Include="Resources\filter_off_16.png" />
+    <None Include="Resources\filter_on_16.png" />
+    <None Include="Resources\mozilla_blu.gif" />
+    <None Include="Resources\Aceptar.ico" />
+    <None Include="Resources\close_16.png" />
+    <None Include="Resources\find_16.png" />
+    <None Include="Resources\print_16.png" />
+    <None Include="Resources\duplicar_16.png" />
+    <None Include="Resources\delete_16.png" />
+    <None Include="Resources\edit_16.png" />
+    <None Include="Resources\view_16.png" />
+    <None Include="Resources\add_16.png" />
+    <None Include="Resources\error.ico" />
+    <None Include="Resources\Find.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>xcopy ".\*" "..\..\packages\$(ProjectName)\$(PlatformName)\$(ConfigurationName)"  /Y /R /I /E</PostBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+</Project>

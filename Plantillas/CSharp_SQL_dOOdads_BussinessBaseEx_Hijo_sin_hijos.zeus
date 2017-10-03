@@ -1,0 +1,996 @@
+﻿##|TYPE Template
+##|UNIQUEID 2c2d5889-b6aa-4e1b-a709-3d1ef1488ed1
+##|TITLE HijoSinHijos_BusinessBaseEx
+##|NAMESPACE dOOdads.C#
+##|SOURCE_TYPE Source
+##|OUTPUT_LANGUAGE C#
+##|COMMENTS_BEGIN
+From a Table, MS SQL, MS Access, Firebird, PostgreSQL, Oracle with aggregate support.
+##|COMMENTS_END
+##|GUI_ENGINE Microsoft Script
+##|GUI_LANGUAGE VBScript
+##|GUI_BEGIN
+Dim cmbDatabases
+Dim lstTables
+Dim lstParents
+Dim chk
+
+Sub setup()
+
+	If context.Objects.ContainsKey("DnpUtils") Then
+		DnpUtils.ReadInputFromCache(context)
+	End if
+
+	ui.Title = "Generate C# dOOdads"
+	ui.Width  = 330
+	ui.Height = 640
+
+	' Grab default output path
+	Dim sOutputPath
+	sOutputPath = ""
+	If input.Contains("defaultOutputPath") Then 
+		sOutputPath = input.Item("defaultOutputPath")
+	End If
+
+	ui.AddLabel "lblPath", "Output file path: ",  "Select the output path."
+	ui.AddTextBox "txtPath", sOutputPath, "Select the Output Path."
+	ui.AddFilePicker "btnPath", "Select Path", "Select the Output Path.", "txtPath", true
+	
+	ui.AddLabel "lblNamespace", "Namespace: ",  "Provide your objects namespace."
+	ui.AddTextBox "txtNamespace", "Your.Namespace", "Provide your objects namespace."			
+
+	' List Databases in a ComboBox
+	ui.AddLabel "lblDatabases", "Select a database:", "Select a database in the dropdown below."
+	Set cmbDatabases = ui.AddComboBox("cmbDatabase", "Select a database.")
+
+	' List Tables in a listbox
+	ui.AddLabel "lblTables", "Select tables:", "Select tables from the listbox below."
+	Set lstTables = ui.AddListBox ("lstTables", "Select tables:")
+	'lstTables.IsMultiSelect = false
+	lstTables.Height = 120
+	
+	ui.AddLabel "lblParent", "Select parents:", "Select tables from the listbox below."
+	Set lstParents = ui.AddListBox ("lstParents", "Select parents:")
+	lstParents.IsMultiSelect = true
+	lstParents.Height = 120
+	
+	Set chkAux = ui.AddCheckBox ("chkAux", "Tabla Auxiliar", false, "")
+	ui.Height = ui.Height + 40
+
+	Set prefix = ui.AddCheckBox("prefix", "Prefix the 'File' with an underscore?", false, "If checked, the file on disk will begin with an underscore")
+	Set trimName = ui.AddCheckBox("trimName", "Trim spaces from output filename?", false, "If checked, the file on disk will have spaces trimmed from the name.")
+	
+	If MyMeta.DriverString = "FIREBIRD" Then
+		ui.Height = ui.Height + 20
+		Set chk = ui.AddCheckBox("ckDialect3", "DIALECT 3", false, "If checked, the stored procedure will use dialect 3 syntax")
+		chk.forecolor = "red"
+	End If
+
+	' Attach the onchange event to the cmbDatabases control.
+	setupDatabaseDropdown cmbDatabases
+	cmbDatabases.AttachEvent "onchange", "cmbDatabases_onchange"
+	
+	ui.ShowGUI = true
+
+End Sub
+
+Sub setupDatabaseDropdown(cmbDatabases)
+	cmbDatabases.BindData MyMeta.Databases
+
+	If Not MyMeta.DefaultDatabase Is Nothing Then
+		cmbDatabases.SelectedValue = MyMeta.DefaultDatabase.Name
+		bindTables cmbDatabases.SelectedValue
+	End If
+End Sub
+
+Sub bindTables(sDatabase)
+	Set db = MyMeta.Databases(sDatabase)
+	lstTables.BindData(db.Tables)
+	lstParents.BindData(db.Tables)
+End Sub
+
+' Event Handler
+Sub cmbDatabases_onchange(control)
+	Set cmbDatabases = ui.item("cmbDatabase")
+	bindTables cmbDatabases.SelectedText
+End Sub
+##|GUI_END
+##|BODY_MODE Markup
+##|BODY_ENGINE Microsoft Script
+##|BODY_LANGUAGE VBScript
+##|BODY_TAG_START <%
+##|BODY_TAG_END %>
+##|BODY_BEGIN
+<%
+'------------------------------------------------------------------------------
+' Copyright 2004, 2005 by MyGeneration Software
+' All Rights Reserved 
+'
+' Permission to use, copy, modify, and distribute this software and its 
+' documentation for any purpose and without fee is hereby granted, 
+' provided that the above copyright notice appear in all copies and that 
+' both that copyright notice and this permission notice appear in 
+' supporting documentation. 
+'
+' MYGENERATION SOFTWARE DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS 
+' SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY 
+' AND FITNESS, IN NO EVENT SHALL MYGENERATION SOFTWARE BE LIABLE FOR ANY 
+' SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES 
+' WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, 
+' WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER 
+' TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE 
+' OR PERFORMANCE OF THIS SOFTWARE. 
+'------------------------------------------------------------------------------
+' BusinessBaseEx_HijoSinHijos.vbgen
+' Last Update : 28/11/2008
+'------------------------------------------------------------------------------
+
+If context.Objects.ContainsKey("DnpUtils") Then
+	DnpUtils.SaveInputToCache(context)
+End if
+
+Dim bFirst
+Dim name
+Dim pname
+Dim objTable
+Dim objColumn
+Dim tableNames
+Dim language
+Dim databaseName
+Dim database
+Dim namespace
+Dim props
+Dim prefix
+Dim trimName
+Dim auxiliar
+
+Dim IDbCommand
+Dim IDataParameter
+Dim ParameterPrefix
+
+Dim dialect
+
+dialect = 1
+If input.Item("ckDialect3") Then
+	dialect = 3
+End If
+
+prefix = input.Item("prefix")
+trimName = input.Item("trimName")
+
+IDbCommand    = GetIDbCommand()
+IDataParameter = GetIDataParameter()
+ParameterPrefix = GetParameterPrefix()
+
+' Grab the namespace
+namespace = input.Item("txtNamespace")
+
+' Set the Language for our column data types
+
+' Grab the choices the user made in our UI Script (see Interface Code tab)
+Set tableNames = input.Item("lstTables")
+Set parentNames = input.Item("lstParents")
+
+databaseName  = input.Item("cmbDatabase")
+Set database = MyMeta.Databases(databaseName)
+
+' Loop through the tables the user selected and generate the business entities
+For intLp = 0 To tableNames.Count - 1
+
+	Set objTable = database.Tables(tablenames.item(intLp))
+	Set props = objTable.Properties
+	
+	Schema = objTable.Schema
+	if (Schema = "COMMON") Then
+		Schema = "CommonSchema"
+	else
+		Schema = "ActiveSchema.Code"
+	end if
+	
+	if input.Item("chkAux") then
+		auxiliar = "AUXILIARES"
+	else
+		auxiliar = UCase(ToClassName(objTable.Alias))
+	end if
+
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+' Now we have the table that we desire to build a Business Object From, let us begin.
+'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using System.ComponentModel;
+
+using Csla;
+using Csla.Validation;
+using CslaEx;
+
+using moleQule.Library;
+
+using NHibernate;
+
+namespace <%= namespace %>
+{
+
+	/// <summary>
+	/// Editable Child Business Object
+	/// </summary>
+    [Serializable()]
+	public class <%= ToClassName(objTable.Alias) %> : <%= "BusinessBaseEx<" + ToClassName(objTable.Alias) + ">" %>
+	{
+	
+	    #region Business Methods
+		 <% 
+			 For Each objColumn in objTable.Columns
+				name = LCase(objColumn.Name)
+				If (name <> "oid") Then
+					if (InStr(name, "oid") = 1) then
+						tipo = "long"
+					else
+						tipo = GetDataType(objColumn.DataTypeName)
+					end if
+					name = "_" & name %>
+		private <%= tipo & " " & name %><%
+					If (tipo = "string") Then
+					%> = string.Empty<%
+					End If
+					If (tipo = "bool") Then 
+					%> = false<%
+					End If
+					%>;<%
+				End If
+			Next 
+			  
+			For Each objColumn in objTable.Columns
+				name = GetAlias(objColumn)
+				If (name <> "OID") Then
+					tipo = GetDataType(objColumn.DataTypeName)%>
+					
+		public virtual <%= tipo %> <%= ToProperty(name) %>
+		{
+			
+			[System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]
+			get
+			{
+				CanReadProperty(true);
+				return _<%= LCase(name) %>;
+            }
+			[System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.NoInlining)]
+			set
+			{
+				CanWriteProperty(true);
+				<%
+				If (tipo = "string") Then 
+				%>if (value == null) value = string.Empty;
+				<%
+				End If
+				%>if (!_<%= LCase(name) %>.Equals(value))
+				{
+					_<%= LCase(name) %> = value;
+					PropertyHasChanged();
+				}
+			}
+		}
+		<%		End If
+			Next %>
+
+		public void CopyFrom (<%= ToProperty(objTable.Alias) %> source)
+		{
+			CopyValues(source);
+		}
+		
+		public void CopyFrom (<%= ToProperty(objTable.Alias) %>Info source)
+		{
+			if (source == null) return;
+			<%
+			For Each objColumn in objTable.Columns
+				name = GetAlias(objColumn)
+				attr = "_" & LCase(name)
+			%><%= attr %> = source.<%= ToProperty(name) %>;
+			<%
+			Next
+			%>
+		}
+
+		/// <summary>
+		/// Copia los atributos del objeto
+		/// </summary>
+		/// <param name="source">Objeto origen</param>
+		protected override void CopyValues (<%= ToClassName(objTable.Alias) %> source)
+		{
+			if (source == null) return;
+			<%
+			For Each objColumn in objTable.Columns
+				name = GetAlias(objColumn)
+				attr = "_" & LCase(name)
+			%><%= attr %> = source.<%= ToProperty(name) %>;
+			<%
+			Next
+			%>
+		}
+		
+		/// <summary>
+		/// Copia los atributos del objeto
+		/// </summary>
+		/// <param name="source">Objeto origen</param>
+		protected override void CopyValues(IDataReader source)
+		{
+			if (source == null) return;
+			<%
+			For Each objColumn in objTable.Columns
+				name = GetAlias(objColumn)
+				tipo = GetDataType(objColumn.DataTypeName)
+				attr = "_" & LCase(name)
+				If (tipo = "long") Then
+					output.write "			" & attr & " = DBNull.Value.Equals(source[""" & name & """]) ? 0 : Convert.ToInt32(source[""" & name & """]);" & vbCrLf 
+				End If
+				If (tipo = "string") Then
+					output.write "			" & attr & " = DBNull.Value.Equals(source[""" & name & """]) ? string.Empty : source[""" & name & """].ToString();" & vbCrLf 
+				End If
+				If (tipo = "bool") Then
+					output.write "			" & attr & " = DBNull.Value.Equals(source[""" & name & """]) ? false : Convert.ToBoolean(source[""" & name & """]);" & vbCrLf 
+				End If
+				If (tipo = "DateTime") Then
+					output.write "			" & attr & " = DBNull.Value.Equals(source[""" & name & """]) ? DateTime.MinValue : Convert.ToDateTime(source[""" & name & """]);" & vbCrLf 
+				End If
+			Next
+			%>
+		}
+
+		protected override object GetIdValue() { return _oid; }
+				
+			
+		#endregion
+		 
+	    #region Validation Rules
+		 
+		//región a rellenar si hay campos requeridos o claves ajenas
+		<% if input.Item("chkAux") then %>
+		protected override void AddBusinessRules()
+        {	
+			ValidationRules.AddRule(CommonRules.StringRequired, "Valor");
+			
+			//Agregar otras reglas de validación
+        }
+		<% else %>
+		//Descomentar en caso de existir reglas de validación
+		/*protected override void AddBusinessRules()
+        {	
+			//Agregar reglas de validación
+        }*/
+		<% end if %>
+		#endregion
+		 
+		#region Authorization Rules
+		 
+		public static bool CanAddObject()
+		{
+			return ApplicationContextEx.User.CanWriteObject(Resources.ElementosSeguros.<%= auxiliar %>);
+		}
+		
+		public static bool CanGetObject()
+		{
+			return ApplicationContextEx.User.CanReadObject(Resources.ElementosSeguros.<%= auxiliar %>);
+		}
+		
+		public static bool CanDeleteObject()
+		{
+			return ApplicationContextEx.User.CanWriteObject(Resources.ElementosSeguros.<%= auxiliar %>);
+		}
+		
+		public static bool CanEditObject()
+		{
+			return ApplicationContextEx.User.CanWriteObject(Resources.ElementosSeguros.<%= auxiliar %>);
+		}
+		 
+		#endregion
+		 
+		#region Factory Methods
+		 
+		/// <summary>
+		/// NO UTILIZAR DIRECTAMENTE, SE DEBE USAR LA FUNCION NewChild
+		/// Debería ser private para CSLA porque la creación requiere el uso de los Factory Methods,
+		/// pero debe ser protected por exigencia de NHibernate
+		/// y public para que funcionen los DataGridView
+		/// </summary>
+		public <%= ToClassName(objTable.Alias) %>() 
+		{ 
+			MarkAsChild();
+			Random r = new Random();
+			_oid = (long)r.Next();
+			//Rellenar si hay más campos que deban ser inicializados aquí
+		}	
+		
+		private <%= ToClassName(objTable.Alias) %>(<%= ToClassName(objTable.Alias) %> source)
+		{
+			MarkAsChild();
+			Fetch(source);
+		}
+		
+		private <%= ToClassName(objTable.Alias) %>(IDataReader reader)
+		{
+			MarkAsChild();
+			Fetch(reader);
+		}
+		
+		//Por cada padre que tenga la clase
+		public static <%= ToClassName(objTable.Alias) %> NewChild()
+		{
+			if (!CanAddObject())
+				throw new System.Security.SecurityException(
+					Resources.Messages.USER_NOT_ALLOWED);
+			
+			return new <%= ToClassName(objTable.Alias) %>();
+		}
+		<% for each parentName in parentNames %>
+		public static <%= ToClassName(objTable.Alias) %> NewChild(<%= ToClassName(parentName) %> parent)
+		{
+			if (!CanAddObject())
+				throw new System.Security.SecurityException(
+					Resources.Messages.USER_NOT_ALLOWED);
+			
+			<%= ToClassName(objTable.Alias) %> obj = new <%= ToClassName(objTable.Alias) %>();
+			obj.Oid<%= ToClassName(parentName) %> = parent.Oid;
+			
+			return obj;
+		}
+		<% next %>
+		
+		internal static <%= ToClassName(objTable.Alias) %> GetChild(<%= ToClassName(objTable.Alias) %> source)
+		{
+			return new <%= ToClassName(objTable.Alias) %>(source);
+		}
+		
+		internal static <%= ToClassName(objTable.Alias) %> GetChild(IDataReader reader)
+		{
+			return new <%= ToClassName(objTable.Alias) %>(reader);
+		}
+		
+		public virtual <%= ToClassName(objTable.Alias) %>Info GetInfo()
+		{
+			if (!CanGetObject())
+				throw new System.Security.SecurityException(
+				  Resources.Messages.USER_NOT_ALLOWED);
+			
+			return new <%= ToClassName(objTable.Alias) %>Info(this);
+		}
+			
+		/// <summary>
+		/// Borrado aplazado, es posible el undo 
+		/// (La función debe ser "no estática")
+		/// </summary>
+		public override void Delete()
+		{
+			if (!CanDeleteObject())
+				throw new System.Security.SecurityException(
+					Resources.Messages.USER_NOT_ALLOWED);			
+				
+			MarkDeleted();
+		}
+		
+		/// <summary>
+		/// No se debe utilizar esta función para guardar. Hace falta el padre.
+		/// Utilizar Insert o Update en sustitución de Save.
+		/// </summary>
+		/// <returns></returns>
+		public override <%= ToClassName(objTable.Alias) %> Save()
+		{
+			throw new iQException(Resources.Messages.CHILD_SAVE_NOT_ALLOWED);
+		}
+		
+			
+		#endregion
+		 
+		#region Child Data Access
+		 
+		private void Fetch(<%= ToClassName(objTable.Alias) %> source)
+		{
+			CopyValues(source);
+			MarkOld();
+		}
+		
+		private void Fetch(IDataReader reader)
+		{
+			CopyValues(reader);
+			MarkOld();
+		}
+		<% for each parentName in parentNames %>
+		internal void Insert(<%= ToClassName(parentName) %> parent)
+		{
+			// if we're not dirty then don't update the database
+			if (!this.IsDirty) return;
+			
+			this.Oid<%= ToProperty(parentName) %> = parent.Oid;
+			
+			try
+			{	
+				ValidationRules.CheckRules();
+
+                if (!IsValid)
+                    throw new iQValidationException(Resources.Messages.GENERIC_VALIDATION_ERROR);
+				
+				parent.Session().Save(this);
+			}
+			catch (Exception ex)
+			{
+				throw new iQPersistentException(iQExceptionHandler.GetAllMessages(ex));
+			}
+			
+			MarkOld();
+		}
+
+		internal void Update(<%= ToClassName(parentName) %> parent)
+		{
+			// if we're not dirty then don't update the database
+			if (!this.IsDirty) return;
+			
+			this.Oid<%= ToProperty(parentName) %> = parent.Oid; 
+			
+			try
+			{
+				ValidationRules.CheckRules();
+
+                if (!IsValid)
+                    throw new iQValidationException(Resources.Messages.GENERIC_VALIDATION_ERROR);
+				
+				SessionCode = parent.SessionCode;
+				<%= ToClassName(objTable.Alias) %> obj = Session().Get<%= "<" + ToClassName(objTable.Alias) + ">" %>(Oid);
+				obj.CopyValues(this);
+				Session().Update(obj);
+			}
+			catch (Exception ex)
+			{
+				throw new iQPersistentException(iQExceptionHandler.GetAllMessages(ex));
+			}
+			
+			MarkOld();
+		}
+
+		internal void DeleteSelf(<%= ToClassName(parentName) %> parent)
+		{
+			// if we're not dirty then don't update the database
+			if (!this.IsDirty) return;
+
+			// if we're new then don't update the database
+			if (this.IsNew) return;
+			
+			try
+			{
+				SessionCode = parent.SessionCode;
+				Session().Delete(Session().Get<%= "<" + ToClassName(objTable.Alias) + ">" %>(Oid));
+			}
+			catch (Exception ex)
+			{
+				throw new iQPersistentException(iQExceptionHandler.GetAllMessages(ex));
+			}
+		
+			MarkNew(); 
+		}
+		<% next %>
+		<% if input.Item("chkAux") then %>
+		internal void Insert(<%= ToClassName(objTable.Alias) %>s parent)
+		{
+			// if we're not dirty then don't update the database
+			if (!this.IsDirty) return;
+			
+			try
+			{	
+				ValidationRules.CheckRules();
+
+                if (!IsValid)
+                    throw new iQValidationException(Resources.Messages.GENERIC_VALIDATION_ERROR);
+
+				parent.Session().Save(this);
+			}
+			catch (Exception ex)
+			{
+				throw new iQPersistentException(iQExceptionHandler.GetAllMessages(ex));
+			}
+			
+			MarkOld();
+		}
+
+		internal void Update(<%= ToClassName(objTable.Alias) %>s parent)
+		{
+			// if we're not dirty then don't update the database
+			if (!this.IsDirty) return;
+			
+			try
+			{
+				ValidationRules.CheckRules();
+
+                if (!IsValid)
+                    throw new iQValidationException(Resources.Messages.GENERIC_VALIDATION_ERROR);
+
+				SessionCode = parent.SessionCode;
+				<%= ToClassName(objTable.Alias) %> obj = Session().Get<%= "<" + ToClassName(objTable.Alias) + ">" %>(Oid);
+				obj.CopyValues(this);
+				Session().Update(obj);
+			}
+			catch (Exception ex)
+			{
+				throw new iQPersistentException(iQExceptionHandler.GetAllMessages(ex));
+			}
+			
+			MarkOld();
+		}
+
+		internal void DeleteSelf(<%= ToClassName(objTable.Alias) %>s parent)
+		{
+			// if we're not dirty then don't update the database
+			if (!this.IsDirty) return;
+
+			// if we're new then don't update the database
+			if (this.IsNew) return;
+			
+			try
+			{
+				SessionCode = parent.SessionCode;
+				Session().Delete(Session().Get<%= "<" + ToClassName(objTable.Alias) + ">" %>(Oid));
+			}
+			catch (Exception ex)
+			{
+				throw new iQPersistentException(iQExceptionHandler.GetAllMessages(ex));
+			}
+		
+			MarkNew(); 
+		}
+		<% end if %>
+		#endregion
+	
+	}
+}
+
+<% 
+	' Save the output file for this Table
+	Dim filename
+	filename = input.item("txtPath")
+
+	Dim length
+	Dim pos
+	length = Len(filename)
+	pos = InStrRev(filename, "\") 
+
+	If Not pos = length Then
+		filename = filename & "\"
+	End If
+	
+	If prefix = True Then 
+		If trimName = True Then
+			filename = filename & "_" & ToClassName(objTable.Alias) & ".cs"
+		Else
+			filename = filename & "_" & ToClassName(objTable.Alias) & ".cs"
+		End If
+	Else 
+		If trimName = True Then
+			filename = filename & ToClassName(objTable.Alias) & ".cs"
+		Else
+			filename = filename & ToClassName(objTable.Alias) & ".cs"
+		End If
+	End If
+
+	output.save filename, false
+	buffer = buffer & output.text
+	output.clear
+Next '  tableName
+	
+	output.write buffer
+ %>
+
+<% 
+'===========================================================================
+' These are support routines called by the above scirpt
+'===========================================================================
+Function GetAlias(objColumn)
+	Dim name
+	name = TrimSpaces(objColumn.Alias)
+	GetAlias = UCase(Left(name, 1)) & Right(name, Len(name) -1)
+End Function
+
+Function GetName(objColumn)
+	Dim name
+	name = objColumn.Name
+	GetName = UCase(Left(name, 1)) & Right(name, Len(name) -1)
+End Function
+
+Function IsOutParameter(objColumn, props, isInsert) 
+	Dim isOut
+	isOut = false
+
+	If (isInsert AND objColumn.IsAutoKey) Or objColumn.IsComputed Then	
+		isOut = true
+	End If
+	
+   ' We also must check this, this is not an Else to the above If
+   ' This is how can also indicate indicate Sequenced Columns
+	If Not isOut AND props.Count > 0  Then
+		If isInsert Then
+			If props.ContainsKey("SEQ:I:" & objColumn.Name) Or _
+			   props.ContainsKey("GEN:I:" & objColumn.Name) Or _
+			   props.ContainsKey("GEN:I:T:" & objColumn.Name) Then
+				isOut = true
+			End If
+		Else
+			If props.ContainsKey("SEQ:U:" & objColumn.Name) Or _
+			   props.ContainsKey("GEN:U:" & objColumn.Name) Or _
+			   props.ContainsKey("GEN:U:T:" & objColumn.Name) Then
+				isOut = true
+			End If
+		End If
+	End If
+	
+	IsOutParameter = isOut
+End Function
+
+Function TrimSpaces(str)
+
+	Dim tname
+	Dim name
+	Dim char
+	Dim l
+
+	name = ""
+	tname = str
+	l = Len(tname)
+
+	For j = 1 To l
+		char = Mid(tname, j, 1)
+		If Not char = " " And Not Char = "." Then
+			name = name & char
+		End If
+	Next
+
+	TrimSpaces = name
+End Function
+
+Function GetIDataParameter
+
+	Select Case MyMeta.DbTarget 
+		Case "OleDb"
+			GetIDataParameter = "OleDbParameter"
+		Case "SqlClient"
+			GetIDataParameter = "SqlParameter"
+		Case "OracleClient"
+			GetIDataParameter = "OracleParameter"
+		Case "FirebirdSql"
+			GetIDataParameter = "FbParameter"
+		Case "Npgsql"
+			GetIDataParameter = "NpgsqlParameter"	
+		Case "Advantage.Net"
+			GetIDataParameter = "AdsParameter"		
+	End Select
+
+End Function
+
+Function GetParameterPrefix
+
+	Select Case MyMeta.DbTarget 
+		Case "OleDb"
+			GetParameterPrefix = "@"
+		Case "SqlClient"
+			GetParameterPrefix = "@"
+		Case "OracleClient"
+			GetParameterPrefix = "p_"
+		Case "FirebirdSql"
+			GetParameterPrefix = "@"
+		Case "Npgsql"
+			GetParameterPrefix = ""		
+		Case "Advantage.Net"
+			GetParameterPrefix = ""			
+	End Select
+
+End Function
+
+Function GetDataType (tipo)
+	Dim retVal
+	Select Case tipo 
+		Case "varchar"
+			GetDataType = "string"
+		Case "text"
+			GetDataType = "string"
+		Case "date"
+			GetDataType = "DateTime"
+		Case "bool"
+			GetDataType = "bool"
+		Case "char"
+			GetDataType = "Char"
+		Case "date"
+			GetDataType = "DateTime"
+		Case "float4"
+			GetDataType = "float"
+		Case "float8"
+			GetDataType = "double"
+		Case "int2"
+			GetDataType = "short"
+		Case "int4"
+			GetDataType = "int"
+		Case "int8"
+			GetDataType = "long"
+		Case "numeric"
+			GetDataType = "Decimal"
+		Case "money"
+			GetDataType = "Decimal"
+		Case "time"
+			GetDataType = "DateTime"
+		Case "timestamp"
+			GetDataType = "DateTime"
+		Case "bigint"
+			GetDataType = "long"
+		Case "decimal"
+			GetDataType = "Decimal"
+		Case Else
+			GetDataType = ""
+	End Select
+End Function
+Function GetIDbCommand
+
+	Select Case MyMeta.DbTarget 
+		Case "OleDb"
+			GetIDbCommand = "OleDbCommand"
+		Case "SqlClient"
+			GetIDbCommand = "SqlCommand"
+		Case "OracleClient"
+			GetIDbCommand = "OracleCommand"	
+		Case "FirebirdSql"
+			GetIDbCommand = "FbCommand"	
+		Case "Npgsql"
+			GetIDbCommand = "NpgsqlCommand"		
+		Case "Advantage.Net"
+			GetIDbCommand = "AdsCommand"
+	End Select
+
+End Function
+
+Function GetDataNameSpace
+
+	Select Case MyMeta.DbTarget 
+		Case "OleDb"
+			GetDataNameSpace = "System.Data.OleDb"
+		Case "SqlClient"
+			GetDataNameSpace = "System.Data.SqlClient"
+		Case "OracleClient"	
+			GetDataNameSpace = "System.Data.OracleClient"
+		Case "FirebirdSql"	
+			GetDataNameSpace = "FirebirdSql.Data.Firebird"
+		Case "Npgsql"
+			GetDataNameSpace = "Npgsql"
+		Case "Advantage.Net"
+			GetDataNameSpace = "Advantage.Data.Provider"		
+	End Select
+
+End Function
+
+Function ToProperty (name)
+	
+	Dim tname
+	Dim str
+	Dim char
+	Dim l
+	
+	str = ""
+	tname = name
+	l = Len(tname)
+	upper = 1
+
+	For j = 1 To l			
+		char = Mid(tname, j, 1)
+		If (char = "_") Then 
+			upper = 1
+		Else
+			If (upper = 1) Then
+				str = str & UCase(char)
+				upper = 0
+			Else 
+				str = str & LCase(char)
+			End If
+		End If
+	Next
+	ToProperty = str
+	
+End Function
+
+Function ToClassName (name)
+	Dim tname
+	Dim str
+	Dim char
+	Dim l
+	
+	str = ""
+	tname = name
+	l = Len(tname)
+	ind = 1
+
+	For j = 1 To l			
+		char = Mid(tname, j, 1)
+		If (ind = 1) Then
+			char = UCase(char)
+		Else
+			char = LCase(char)
+		End If
+		str = str & char
+		If (char <> "_") Then 
+			ind = ind + 1
+		Else 
+			ind = 1
+		End If
+	Next
+	ToClassName = str
+	
+End Function
+
+'==================================================================
+' This function accounts for Firebird Dialects and Driver Versions
+'==================================================================
+Function FirebirdSP(execPrefix, strName, withParams, hardCodedParamCount)
+
+    Dim bFirst
+    Dim strText
+	
+	bFirst = true
+	
+	If execPrefix = true Then
+		strText = """EXECUTE PROCEDURE "
+	Else
+		strText = """"	
+	End If
+	
+    If dialect = 3 Then
+		strText = strText + UCase(strName) 
+	Else
+		strText = strText + strName
+	End If
+	
+	If withParams = true Then
+	
+		strText = strText + " ("
+		
+		If hardCodedParamCount > 0 Then
+			For i = 1 To hardCodedParamCount
+				If Not bFirst Then
+					strText = strText + ","
+				End If
+				bFirst = false
+				strText = strText + "?"			
+			Next 
+			strText = strText + ")"""			
+		Else
+			For Each objColumn in objTable.Columns
+				If Not bFirst Then
+					strText = strText + ","
+				End If
+				bFirst = false
+				strText = strText + "?"
+			Next 
+			strText = strText + ")"""
+		End If
+		
+	Else
+		strText = strText + """"
+	End If
+
+	FirebirdSP = strText
+	
+End Function
+
+Function GetBaseClass
+
+	Select Case MyMeta.DbTarget 
+		Case "OleDb"
+			GetBaseClass = "OleDbEntity"
+		Case "SqlClient"
+			GetBaseClass = "SqlClientEntity"
+		Case "OracleClient"	
+			GetBaseClass = "OracleClientEntity"
+		Case "FirebirdSql"	
+			GetBaseClass = "FirebirdSqlEntity"
+		Case "Npgsql"
+			GetBaseClass = "PostgreSqlEntity"
+		Case "Advantage.Net"
+			GetBaseClass = "AdvantageSqlEntity"			
+	End Select
+	
+End Function
+
+%>
+##|BODY_END

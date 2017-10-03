@@ -1,0 +1,15 @@
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.CaptureImage\moleQule.Installer.CaptureImage\bin\Release\QaptureImage.Installer.exe.config
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.CaptureImage\moleQule.Installer.CaptureImage\bin\Release\QaptureImage.Installer.exe
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.CaptureImage\moleQule.Installer.CaptureImage\bin\Release\QaptureImage.Installer.pdb
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.CaptureImage\moleQule.Installer.CaptureImage\obj\Release\moleQule.Installer.QaptureImage.Properties.Resources.resources
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.CaptureImage\moleQule.Installer.CaptureImage\obj\Release\moleQule.Installer.QaptureImage.csproj.GenerateResource.Cache
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.CaptureImage\moleQule.Installer.CaptureImage\obj\Release\QaptureImage.Installer.exe
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.CaptureImage\moleQule.Installer.CaptureImage\obj\Release\QaptureImage.Installer.pdb
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.QaptureImage\moleQule.Installer.QaptureImage\bin\Release\QaptureImage.Installer.exe.config
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.QaptureImage\moleQule.Installer.QaptureImage\bin\Release\QaptureImage.Installer.exe
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.QaptureImage\moleQule.Installer.QaptureImage\bin\Release\QaptureImage.Installer.pdb
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.QaptureImage\moleQule.Installer.QaptureImage\obj\Release\moleQule.Installer.QaptureImage.Properties.Resources.resources
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.QaptureImage\moleQule.Installer.QaptureImage\obj\Release\moleQule.Installer.QaptureImage.csproj.GenerateResource.Cache
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.QaptureImage\moleQule.Installer.QaptureImage\obj\Release\QaptureImage.Installer.exe
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.QaptureImage\moleQule.Installer.QaptureImage\obj\Release\QaptureImage.Installer.pdb
+D:\Proyectos\GitRepo\moleQule\moleQule.Plugin.QaptureImage\moleQule.Installer.QaptureImage\obj\Release\moleQule.Installer.QaptureImage.csprojResolveAssemblyReference.cache

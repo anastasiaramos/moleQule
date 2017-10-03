@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BACKUP_APP_NOT_FOUND" xml:space="preserve">
+    <value>No se ha encontrado la aplicación de creación de copias de seguridad.</value>
+  </data>
+  <data name="BACKUP_ERROR" xml:space="preserve">
+    <value>Error al generar la copia de seguridad.</value>
+  </data>
+  <data name="CHANGE_PASSWORD" xml:space="preserve">
+    <value>No ha sido posible cambiar su contraseña
+Compruebe que ha escrito correctamente su contraseña actual</value>
+  </data>
+  <data name="CHANGE_PIN" xml:space="preserve">
+    <value>No ha sido posible cambiar su código pin
+Compruebe que ha escrito correctamente su pin actual</value>
+  </data>
+  <data name="CLOSE_SESSION_ERROR" xml:space="preserve">
+    <value>Error intentando cerrar una sesión.</value>
+  </data>
+  <data name="COLUMN_NOT_FOUND" xml:space="preserve">
+    <value>No se ha encontrado la propiedad "{0}" en el tipo "{1}"</value>
+  </data>
+  <data name="DB_RECOVERY" xml:space="preserve">
+    <value>No ha sido posible obtener los datos desde el servidor de datos.</value>
+  </data>
+  <data name="DEBUG_MSG" xml:space="preserve">
+    <value>---------------------- DEBUG INFO  --------------------
+{0}</value>
+  </data>
+  <data name="DEFAULT_SCHEMA_NOT_FOUND" xml:space="preserve">
+    <value>ERROR CRITICO: No se ha definido el esquema de datos por defecto</value>
+  </data>
+  <data name="DUPLICATE_CODE" xml:space="preserve">
+    <value>El código {0} no es válido. Existe otro registro con el mismo código.</value>
+  </data>
+  <data name="DUPLICATE_KEY" xml:space="preserve">
+    <value>Uno de los registros insertados provocaría valores duplicados en la tabla.</value>
+  </data>
+  <data name="EMAIL_NOT_AVAILABLE" xml:space="preserve">
+    <value>Este email no está disponible</value>
+  </data>
+  <data name="FIELD_NOT_FOUND" xml:space="preserve">
+    <value>No se ha encontrado el campo {0} en la consulta ejecutada.</value>
+  </data>
+  <data name="FTP_200" xml:space="preserve">
+    <value>Descarga completada. A continuación se procederá a la actualización de la aplicación.</value>
+  </data>
+  <data name="FTP_550" xml:space="preserve">
+    <value>No existen actualizaciones disponibles.</value>
+  </data>
+  <data name="FTP_GENERICO" xml:space="preserve">
+    <value>Error en la conexión al servidor FTP.</value>
+  </data>
+  <data name="GENERIC_ADO" xml:space="preserve">
+    <value>No se ha definido mensaje de error asociado para el código de error "{0}" devuelto por nHibernate.</value>
+  </data>
+  <data name="GENERIC_VALIDATION_FAIL" xml:space="preserve">
+    <value>Error en los datos del formulario.
+
+Los campos marcados con * necesitan un valor.</value>
+  </data>
+  <data name="INFO_EXCEPTION_MESSAGE" xml:space="preserve">
+    <value>Excepción informativa</value>
+  </data>
+  <data name="INSERT" xml:space="preserve">
+    <value>Error al insertar el objeto con ID = {1} del tipo {0}</value>
+  </data>
+  <data name="INVALID_CODE" xml:space="preserve">
+    <value>El código {0} tiene un formato no válido. Debe ser un número.</value>
+  </data>
+  <data name="INVALID_FORMAT" xml:space="preserve">
+    <value>El campo "{0}" contiene datos no válidos.</value>
+  </data>
+  <data name="INVALID_SESSION_NUMBER" xml:space="preserve">
+    <value>Número de sesión no válido.</value>
+  </data>
+  <data name="ITEM_NOT_FOUND" xml:space="preserve">
+    <value>Elemento no encontrado</value>
+  </data>
+  <data name="LOCKED_ROW" xml:space="preserve">
+    <value>Imposible acceder en modo escritura al elemento seleccionado.
+Otro usuario está modificándolo en este momento.</value>
+  </data>
+  <data name="LOGIN_ERROR" xml:space="preserve">
+    <value>Ha ocurrido un error al iniciar sesión. Por favor, inténtelo pasados unos minutos. Si el error persiste póngase en contacto con el servicio de atención al cliente.</value>
+  </data>
+  <data name="LOGIN_FAILED" xml:space="preserve">
+    <value>Nombre de usuario o contraseña incorrectos. Asegúrate de que has escrito bien tus datos de acceso y que no tienes el bloqueo de mayúsculas activado.</value>
+  </data>
+  <data name="LOG_MESSAGE" xml:space="preserve">
+    <value>DESCRIPTION: {0}
+MORE INFO: {1}</value>
+  </data>
+  <data name="NOT_FOUND_CONNECTION_PARAM" xml:space="preserve">
+    <value>La cadena de conexión a la base de datos no contiene el parámetro "{0}"</value>
+  </data>
+  <data name="NO_CRYSTAL_REPORTS" xml:space="preserve">
+    <value>No se ha encontrado ninguna versión de Crystal Reports instalada en su equipo. Esto provocará un error en las funciones de impresión y exportación a PDF.</value>
+  </data>
+  <data name="NO_OPERATION" xml:space="preserve">
+    <value>No ha sido posible finalizar con éxito la operación.
+</value>
+  </data>
+  <data name="NO_SERVER_PATH" xml:space="preserve">
+    <value>No se ha encontrado la entrada de registro {0}. Esto impide gestionar las imágenes y otros recursos compartidos. Por favor, cree la entrada del registro para indicar a la aplicación donde se encuentra instalada la versión de {1} que actúa de servidor.</value>
+  </data>
+  <data name="OFFICE_INIT" xml:space="preserve">
+    <value>Error al inicializar {0}</value>
+  </data>
+  <data name="OFFICE_NOT_INSTALLED" xml:space="preserve">
+    <value>No se ha encontrado una versión válida de {0} instalado en el sistema</value>
+  </data>
+  <data name="OPERATION_NOT_VALID" xml:space="preserve">
+    <value>Acción no permitida</value>
+  </data>
+  <data name="PARAMETER_INVALID_TYPE" xml:space="preserve">
+    <value>Párametro {0} de tipo inválido. Tipo {1} esperado.</value>
+  </data>
+  <data name="PARAMETER_NOT_FOUND" xml:space="preserve">
+    <value>El parámetro {0} no se ha encontrado</value>
+  </data>
+  <data name="PASSWORD_NOT_MATCH" xml:space="preserve">
+    <value>Las contraseñas no coinciden</value>
+  </data>
+  <data name="PIN_NOT_MATCH" xml:space="preserve">
+    <value>Las códigos pin no coinciden</value>
+  </data>
+  <data name="PRINCIPALBASE_NOT_INICIALIZATED" xml:space="preserve">
+    <value>Intenta acceder a la clase PrincipalBase sin haberla incializado previamente</value>
+  </data>
+  <data name="REG32_ENTRY_NOT_FOUND" xml:space="preserve">
+    <value>No se ha encontrado la entrada de registro de Windows '{0}'</value>
+  </data>
+  <data name="REG32_KEY_FOUND" xml:space="preserve">
+    <value>REGISTRY KEY '{0}' FOUND</value>
+  </data>
+  <data name="REG32_KEY_NOT_FOUND" xml:space="preserve">
+    <value>REGISTRY KEY '{0}' NOT FOUND</value>
+  </data>
+  <data name="REG32_POSTGRE_VERSION_ENTRY_NOT_FOUND" xml:space="preserve">
+    <value>No se ha encontrado la entrada de registro de PostgreSQL para la versión {0}</value>
+  </data>
+  <data name="RESTORE_APP_NOT_FOUND" xml:space="preserve">
+    <value>No se ha encontrado la aplicación de restauración de copias de seguridad.</value>
+  </data>
+  <data name="RULES_CHECK" xml:space="preserve">
+    <value>Se ha detectado una variable con valor nulo. Revise las reglas de validación de propiedades del objeto.</value>
+  </data>
+  <data name="SCHEMA_NOT_FOUND" xml:space="preserve">
+    <value>ERROR CRITICO: No se ha encontrado el esquema de datos {0}</value>
+  </data>
+  <data name="SERVER_NOT_FOUND" xml:space="preserve">
+    <value>Imposible conectar con el servidor de datos. Es posible que haya problemas de conectividad en su equipo o que el servidor no esté disponible.</value>
+  </data>
+  <data name="SESSION_EXCEPTION" xml:space="preserve">
+    <value>La sesión nº {0} del tipo {1} no existe</value>
+  </data>
+  <data name="SMTP_SETTINGS" xml:space="preserve">
+    <value>Revise los datos de configuración del servidor SMTP en Opciones</value>
+  </data>
+  <data name="SUPERUSER_DELETE" xml:space="preserve">
+    <value>Imposible borrar un usario SUPERUSER</value>
+  </data>
+  <data name="SYNTAX_ERROR" xml:space="preserve">
+    <value>Error de sintaxis en la consulta SQL.
+QUERY: {0}</value>
+  </data>
+  <data name="UNDEFINED_TABLE" xml:space="preserve">
+    <value>La tabla o alias contenida en la sentencia no existe en la base de datos</value>
+  </data>
+  <data name="UPDATE" xml:space="preserve">
+    <value>Error al editar el objeto con OID = {1} del tipo {0}</value>
+  </data>
+  <data name="UPDATE_FILE_NOT_FOUND" xml:space="preserve">
+    <value>No se ha encontrado ningún fichero de actualización</value>
+  </data>
+  <data name="USERNAME_NOT_AVAILABLE" xml:space="preserve">
+    <value>Este nombre de usuario no está disponible</value>
+  </data>
+  <data name="USER_LOCKED" xml:space="preserve">
+    <value>Usuario {0} no autorizado. Su usuario ha sido bloqueado. 
+Contacte con el administrador.</value>
+  </data>
+  <data name="USER_LOGGED" xml:space="preserve">
+    <value>No es posible acceder al sistema con este usuario. El usuario {0} ha iniciado una sesión en el sistema previamente.</value>
+  </data>
+  <data name="USER_NOT_FOUND" xml:space="preserve">
+    <value>Usuario no encontrado</value>
+  </data>
+  <data name="VALIDATION_FAIL" xml:space="preserve">
+    <value>El valor del campo {0} no es válido</value>
+  </data>
+</root>

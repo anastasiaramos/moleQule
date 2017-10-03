@@ -1,0 +1,286 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Qapture Web Scan Plugin</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Qapture Web Scan Plugin">
+        <meta name="keywords" content="Qapture Web Scan Plugin">
+        <meta name="author" content="iQ Ingenieros">
+		
+        <link rel="icon" href="./Content/themes/qapture/img/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="./Content/themes/qapture/img/favicon.ico" type="image/x-icon" />    
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+        <!-- Main Theme Stylesheet :: CSS -->
+        <link href="./Content/themes/qapture/css/style.css" rel="stylesheet"/>
+		<link href="./Content/themes/qapture/css/style-responsive.css" rel="stylesheet"/>
+		<link href="./Content/themes/qapture/css/prettify.css" rel="stylesheet"/>
+		<link href="./Content/themes/qapture/css/tm_docs.css" rel="stylesheet"/>
+		<link href="./Content/themes/qapture/css/bootstrap-formhelpers-countries.flags.css" rel="stylesheet"/>
+		<link href="./Content/themes/qapture/css/fineuploader.css" rel="stylesheet"/>
+
+        <link href="./Content/shared/fonts/glyphicons/css/glyphicons.css" rel="stylesheet"/>
+
+        
+		<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+		<!--[if lt IE 9]>
+		  <script src="/scripts/html5shiv.js"></script>
+		<![endif]-->
+
+        <script src="./Scripts/shared/jquery-1.9.1.js"></script>
+
+    </head> 
+
+    <body data-spy="scroll" data-target=".bs-docs-sidebar" class="tm-add">
+        <div class="navbar navbar-inverse navbar-fixed-top" id="advanced">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#nav-collapse">
+                <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar">
+                </span>
+            </button>
+            <a class="brand" href="./">Qapture Web Scan Plugin</a>
+            <div id="nav-collapse" class="nav-collapse collapse">
+                <ul class="nav">
+                    
+<li class="language"><a href="./index.html"><i class="icon-flag-ES"></i></a></li>
+<li class="language"><a href="./index-en.html"><i class="icon-flag-GB"></i></a></li>
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <header>
+        
+<div class="container">
+    <div class="navbar navbar_">
+        <div class="clearfix navbar-inline">
+            
+<h1 class="brand"><a href="./"><img src="./Content/themes/qapture/img/logo-es.png" alt="Logo" /></a></h1>
+
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#mainMenu">
+                <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+            <div id="mainMenu" class="nav-collapse nav-collapse_ collapse">
+                <ul class="nav">
+                    <li ><a class="btn tm_style_5" href="./index.html">Inicio</a></li>
+                    <li  class="active" ><a class="btn tm_style_5" href="./index.html">Demo</a></li>
+                    <li ><a class="btn tm_style_5" href="http://www.how-to-use-scanner-from-browser-webapp.com/Home/Tutorials">Tutoriales</a></li>
+                    <li ><a class="btn tm_style_5" href="http://www.how-to-use-scanner-from-browser-webapp.com/QaptureAccount/Licensing">Comprar</a></li>
+                    <li  ><a class="btn tm_style_5" href="http://www.how-to-use-scanner-from-browser-webapp.com/Home/Contact">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+        </header>
+        
+        
+            <div id="content" class="extra-content">
+                <div class="container">
+                    
+                    
+                    <div class="separator"></div>
+					
+<script src="./Scripts/shared/silverlight.js"></script>
+<script src="./Scripts/shared/silverlight.error.js"></script>
+
+<script src="./Scripts/shared/canvas-to-blob.min.js" type="text/javascript"></script>
+<script src="./Scripts/shared/jquery.fineuploader-3.7.1.js" type="text/javascript"></script>
+
+<form action="/Scan/Demo" method="post"><input name="__RequestVerificationToken" type="hidden" value="eU9YtfI9rCuyD4cyufWUppjwQpSU_wGIgCVKP5-BYpDU8Z-pZoM8O6CreXFYYN1BUmoRlY0pvD0SLKhM53FNYEmaZaqHJtmlpZ5GeX4rekXv3jvLy2C-3Y2EF42rs0eTjTRSxz8HlAbVEAmvxdF-vR0LXx-bXN4KVyBA_9Rm_M81" />    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12 col-full">
+                <div class="clearfix">
+                    <div class="row-fluid">
+                        <div class="span12 document text-center">
+                            
+
+<div class="form">
+    <input data-val="true" data-val-number="El campo Oid debe ser un número." data-val-required="El campo Oid es obligatorio." id="Oid" name="Oid" type="hidden" value="1" />    
+    <div class="control-group">
+        <div class="thumbnail widget-thumbnail">
+            <a href="#passport" data-toggle="modal">
+                <img alt="Name" class="preview" style="width:auto; height:300px;" src="./Data/NoImage.png?" + 21/11/2013 17:04:21/>
+            </a>
+	        <div class="caption canvas">
+		        <h4></h4>
+		        <p>Utiliza el bot&#243;n para escanear. Debes instalar Qapture previamente, pulsa el bot&#243;n ayuda y sigue nuestro sencillo tutorial de instalaci&#243;n.</p>
+                <div class="fine-uploader fine-uploader-scan"></div>
+	        </div>
+        </div>
+    </div>
+    <div class="separator line bottom"></div>	
+    <div id="passport" class="modal hide fade">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3></h3>
+          </div>
+        <div class="modal-body">
+            <img alt="Name" src="./Data/NoImage.png" />
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        FineUploader('fine-uploader-scan',
+                    '<input type="button" class="btn btn-primary silverlight-capture" value="Escanear"/>' +
+                    '<a href="http://www.how-to-use-scanner-from-browser-webapp.com/Home/Tutorials/%23install-wizard" id="showWizard" target="_blank"><span class="btn btn-default btn-icon glyphicons circle_info"><i></i>Tutoriales</span></a>',
+                    "_DemoPartial");
+        InitializeScan();
+    });
+</script>
+
+
+
+
+            
+                        </div>
+                    </div>
+                    <img id="scanner-screenshot" src="" style="display:none;" alt="scanner-screenshot">
+                    <canvas id="scanner-canvas" style="display:none;"></canvas>
+                    <div class="silverlightControlHost captureImagen">
+                        <object id="silverlightControlHost" data="data:application/x-silverlight-2," type="application/x-silverlight-2" width="190" height="100%">
+		                    <param name="source" value="./ClientBin/moleQule.Plugin.Qapture.xap"/>
+		                    <param name="onError" value="onSilverlightError" />
+		                    <param name="background" value="white" />
+		                    <param name="minRuntimeVersion" value="5.0.61118.0" />
+		                    <param name="autoUpgrade" value="true" />
+		                    <a href="http://go.microsoft.com/fwlink/?LinkID=149156&v=5.0.61118.0" style="text-decoration:none">
+ 			                    <img src="http://go.microsoft.com/fwlink/?LinkId=161376" alt="Get Microsoft Silverlight" style="border-style:none"/>
+		                    </a>
+	                    </object><iframe id="_sl_historyFrame" style="visibility:hidden;height:0px;width:0px;border:0px"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">    
+    function FineUploader(fineUploaderClass, extraButtons, partialView) {
+        $('.' + fineUploaderClass).fineUploader({
+            request: {
+                endpoint: './Endpoint-es.php'
+            },
+            text: {
+                uploadButton: '',
+                cancelButton: 'Cancelar',
+                retryButton: 'Reintentar',
+                failUpload: 'Fallo en la subida',
+                waitingForResponse: 'Subiendo'
+            },
+            messages: {
+                typeError: "{file} tiene una extensi&#243;n no v&#225;lida. Extensi&#243;n(es) v&#225;lidas: {extensions}.",
+                sizeError: "{file} es demasiado grande, el tama&#241;o m&#225;ximo del archivo es {sizeLimit}."
+            },
+            validation: {
+                allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+                sizeLimit: 20971520
+            },
+            template: '<div class="qq-uploader">' +
+                      '<pre class="qq-upload-drop-area span4"><span>{dragZoneText}</span></pre>' +
+                      '<div class="qq-upload-button btn btn-inverse" style="width:0px;display:none;"></div>' +
+                      extraButtons +
+                      '<span class="qq-drop-processing"><span></span><span class="qq-drop-processing-spinner"></span></span>' +
+                      '<ul class="qq-upload-list" style="margin-top: 10px; margin-left: 0px; text-align: center;"></ul>' +
+                    '</div>',
+            fileTemplate: '<li>' +
+                    '<div class="qq-progress-bar"></div>' +
+                    '<span class="qq-upload-spinner"></span>' +
+                    '<span class="qq-upload-finished"></span>' +
+                    '<span class="qq-upload-file"></span>' +
+                    '<span class="qq-upload-size"></span>' +
+                    '<a class="qq-upload-cancel" href="#">{cancelButtonText}</a>' +
+                    '<a class="qq-upload-retry" href="#">{retryButtonText}</a>' +
+                    '<span class="qq-upload-status-text">{statusText}</span>' +
+                    '</li>',
+            classes: {
+                success: 'alert alert-success',
+                fail: 'alert alert-error'
+            },
+            debug: true
+        });
+
+        $('.' + fineUploaderClass)
+            .on('complete', function (event, id, name, response) {
+                $(this).closest('.form').replaceWith(response.html);
+            })
+            .on('submit', function (event, id, filename) {
+                $(this).fineUploader('setParams', { partialView: partialView });
+            });
+    };
+</script>
+
+
+<script type="text/javascript">
+    function InitializeScan() {
+        $('.silverlight-capture').click(function (e) {
+            var control = document.getElementById('silverlightControlHost');
+            var button = $(this);
+            if (control.Content.Qapture.Start('Escaneando. Por favor espere...', 'Ygcc560952xsHqevneGmXp0NF8aOUp5C', true)) {
+                var scannerCanvas = document.querySelector('#scanner-canvas');
+                var image = document.querySelector('#scanner-screenshot');
+                var ctx = scannerCanvas.getContext('2d');
+                scannerCanvas.width = image.width;
+                scannerCanvas.height = image.height;
+                ctx.drawImage(image, 0, 0);
+                if (scannerCanvas.toBlob) {
+                    scannerCanvas.toBlob(
+                    function (blob) {
+                        $(button).closest('.fine-uploader-scan').fineUploader('addBlobs', { Blob: blob, blob: blob, name: 'scanned-image.jpeg' });
+                    },
+                    'image/jpeg'
+                    );
+                }
+            }
+        });
+    };
+</script>
+
+                </div>
+            </div>
+        <footer>
+            <div class="container clearfix">
+    <div class="pull-right">
+        <div class="list-soc clearfix">
+            <a href="https://twitter.com/iqingenieros"><img alt="" src="./Content/themes/qapture/img/soc-icon2.png"></a>
+            <a href="https://www.facebook.com/iqingenieros"><img alt="" src="./Content/themes/qapture/img/soc-icon3.png"></a>
+        </div>
+    </div>
+    <div class="privacy">
+        
+<img src="./Content/themes/qapture/img/logo-footer-es.png" alt="">
+
+        iQ Ingenieros &copy; 2013 | <a href="http://www.how-to-use-scanner-from-browser-webapp.com/Home/Contact">Contacto</a>
+        <!-- {%FOOTER_LINK} -->
+    </div>
+</div>
+        </footer>  
+		
+        <script src="./Scripts/shared/jquery.unobtrusive-ajax.js"></script>
+<script src="./Scripts/shared/jquery.validate.js"></script>
+<script src="./Scripts/shared/jquery.validate.unobtrusive-custom-for-bootstrap.js"></script>
+<script src="./Scripts/shared/jquery.validate.unobtrusive.js"></script>
+
+        <script src="./Scripts/shared/bootstrap.js"></script>
+<script src="/Areas/admin/Scripts/shared/bootstrap/extend/twitter-bootstrap-wizard/jquery.bootstrap.wizard.js"></script>
+
+        <script src="./Scripts/themes/base/prettify.js"></script>
+<script src="./Scripts/themes/base/holder.js"></script>
+<script src="./Scripts/themes/base/application.js"></script>
+<script src="./Scripts/themes/base/jquery.cookie.js"></script>
+<script src="./Scripts/themes/base/superfish.js"></script>
+<script src="./Scripts/themes/base/jquery.mobilemenu.js"></script>
+<script src="./Scripts/themes/base/jquery.easing.1.3.js"></script>
+<script src="./Scripts/themes/base/jquery.tweet.js"></script>
+<script src="./Scripts/themes/base/molSearches.js"></script>
+
+        
+    </body>
+</html>

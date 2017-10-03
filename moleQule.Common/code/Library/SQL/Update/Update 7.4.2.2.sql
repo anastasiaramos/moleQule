@@ -1,0 +1,9 @@
+/* UPDATE 7.4.2.2*/
+
+SET SEARCH_PATH = "COMMON";
+
+UPDATE "Variable" SET "VALUE" = '7.4.2.2' WHERE "NAME" = 'COMMON_DB_VERSION';
+
+SET SEARCH_PATH = "0001";
+
+ALTER TABLE "CMBankAccount" ADD COLUMN "SWIFT" character varying(255);

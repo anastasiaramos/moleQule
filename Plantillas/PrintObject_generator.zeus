@@ -1,0 +1,251 @@
+﻿##|TYPE Template
+##|UNIQUEID c5e03fd3-3e73-420d-8a2d-a4fb8a0395f8
+##|TITLE PrintObject
+##|NAMESPACE dOOdads.C#
+##|SOURCE_TYPE Source
+##|OUTPUT_LANGUAGE C#
+##|GUI_ENGINE .Net Script
+##|GUI_LANGUAGE C#
+##|GUI_BEGIN
+<%#REFERENCE System.Windows.Forms.dll %>
+<%#NAMESPACE System, System.Text, System.Collections, Zeus, Zeus.UserInterface, Zeus.DotNetScript %>
+
+public class GeneratedGui : DotNetScriptGui
+{
+	public GeneratedGui( ZeusGuiContext context ) : base( context ) {}
+
+	public override void Setup()
+	{
+		if ( !input.Contains( "chooseTables" ) )
+		{
+			ui.Title = "TIPOENTIDAD Insert generation";
+			ui.Width = 600;
+			ui.Height = 400;
+	
+			// Grab default output path
+			string sOutputPath = "";
+			
+			if( input.Contains( "defaultOutputPath" ) ) 
+			{
+				sOutputPath = input["defaultOutputPath"].ToString();
+			}
+
+			// Setup Folder selection input control.
+			GuiLabel label1 = ui.AddLabel( "label1", "Select the output path:", "Select the output path in the field below." );
+			label1.Width = 200;
+			GuiTextBox outputPath = ui.AddTextBox( "outputPath", sOutputPath, "Select the Output Path." );
+			outputPath.Width = 450;
+			GuiFilePicker selectPath = ui.AddFilePicker( "selectPath", "Select Path", "Select the Output Path.", "outputPath", true );
+			selectPath.Top = outputPath.Top;
+			selectPath.Width = 100;
+			selectPath.Left = outputPath.Left + outputPath.Width + 20;
+			
+			GuiLabel label2 = ui.AddLabel( "label2", "Namespace: ",  "Provide your objects namespace." );
+			label2.Width = 200;
+			GuiTextBox classNamespace = ui.AddTextBox( "classNamespace", "", "Provide your objects namespace." );				
+			classNamespace.Width = 200;
+			
+			// Setup Database selection combobox.
+			GuiLabel label4 = ui.AddLabel( "label4", "Select a database:", "Select a database in the dropdown below." );
+			label4.Width = 250;
+			GuiComboBox chooseDatabase = ui.AddComboBox( "chooseDatabase", "Select a database." );
+			chooseDatabase.Width = 250;
+			
+			// Setup Tables selection multi-select listbox.
+			GuiLabel label7 = ui.AddLabel( "label7", "Select tables:", "Select tables from the listbox below." );
+			//label7.Top = chkEqualsHashCode.Top + 20;
+			GuiListBox chooseTables = ui.AddListBox( "chooseTables", "Select tables." );
+			chooseTables.Height = 120;
+				
+			// Attach the onchange event to the cmbDatabases control.
+			setupDatabaseDropdown( chooseDatabase );
+			chooseDatabase.AttachEvent( "onchange", "chooseDatabase_onchange" );
+	
+			ui.ShowGui = true;
+		}
+		else 
+		{
+			ui.ShowGui = false;
+		}
+	}
+	
+	public void setupDatabaseDropdown( GuiComboBox Databases )
+	{
+		try 
+		{	
+			if( MyMeta.IsConnected )
+			{
+				Databases.BindData( MyMeta.Databases );
+				if( MyMeta.DefaultDatabase != null ) 
+				{
+					Databases.SelectedValue = MyMeta.DefaultDatabase.Alias;
+					bindTables( Databases.SelectedValue );
+					bindViews( Databases.SelectedValue );
+				}
+			}
+		}
+		catch
+		{
+		}
+	}
+	
+	public void bindTables( string sDatabase )
+	{
+		GuiListBox lstTables = ui["chooseTables"] as GuiListBox;
+		
+		try 
+		{	
+			IDatabase db = MyMeta.Databases[sDatabase];
+			lstTables.BindData( db.Tables );
+		}
+		catch
+		{
+		}
+	}
+	
+	public void bindViews( string sDatabase )
+	{
+		int count = 0;
+	
+		GuiListBox lstViews = ui["chooseViews"] as GuiListBox;
+		
+		try 
+		{	
+			IDatabase db = MyMeta.Databases[sDatabase];
+			lstViews.BindData( db.Views );
+		}
+		catch
+		{
+		}
+	}
+	
+	public void chooseDatabase_onchange( GuiComboBox control )
+	{
+		int count = 0;
+
+		GuiComboBox cmbDatabases = ui["chooseDatabase"] as GuiComboBox;
+	
+		bindTables( cmbDatabases.SelectedText );
+		bindViews( cmbDatabases.SelectedText );
+	}
+	
+}
+##|GUI_END
+##|BODY_MODE Markup
+##|BODY_ENGINE .Net Script
+##|BODY_LANGUAGE C#
+##|BODY_TAG_START <%
+##|BODY_TAG_END %>
+##|BODY_BEGIN
+<%public class GeneratedTemplate : DotNetScriptTemplate
+{
+	private ArrayList _selectedTables;
+	private string _dbName;
+	private string _tableName;
+	private string _className;
+	private string _exportPath;
+	private string _fileName;
+	private string _nameSpace;
+	private string _schema;
+	private bool _createXmlFiles;
+	private ITable _workingTable;
+	
+	public GeneratedTemplate(ZeusContext context) : base(context) {}
+	
+	public override void Render()
+	{
+		_dbName = input["chooseDatabase"].ToString();
+		_selectedTables = input["chooseTables"] as ArrayList;
+		_exportPath = input["outputPath"].ToString();
+		_nameSpace = input["classNamespace"].ToString();
+		foreach( string _newTable in _selectedTables )
+		{
+			_workingTable = MyMeta.Databases[_dbName].Tables[_newTable];
+			_tableName = _workingTable.Alias.Replace( " ", "" );
+%>using System;
+using System.Collections;
+using System.Collections.Generic;
+
+using Csla;
+using CslaEx;
+
+namespace <%= _nameSpace %>
+{
+    [Serializable()]
+    public class <%= _tableName %>Print : <%= _tableName %>Info
+    {
+              
+        #region Business Methods
+
+        /// <summary>
+        /// Copia los atributos del objeto
+        /// </summary>
+        /// <param name="source">Objeto origen</param>
+        protected void CopyValues(<%= _tableName %>Info source)
+        {
+            if (source == null) return;
+
+			<% foreach (IColumn obj in _workingTable.Columns)
+			{
+				%>
+			_<%= obj.Name.ToLower() %> = source.<%= ToProperty(obj.Name) %>;<%
+			}
+				%>
+        }
+
+        #endregion
+
+        #region Factory Methods
+
+        private <%= _tableName %>Print() { /* require use of factory methods */ }
+
+        // called to load data from source
+        public static <%= _tableName %>Print New(<%= _tableName %>Info source)
+        {
+            <%= _tableName %>Print item = new <%= _tableName %>Print();
+            item.CopyValues(<%= _tableName %>);
+
+            return item;
+        }
+
+        #endregion
+
+    }
+}
+		<%
+	}
+}
+string ToProperty (string name)
+{
+	
+	string tname, str;
+	char c;
+	long l;
+	
+	str = "";
+	l = name.Length;
+	int upper = 1;
+
+	for(int j = 0; j < l; j++)
+	{
+		c = name[j];
+		if (c.Equals('_'))
+		{
+			upper = 1;
+			continue;
+		}
+		
+		if (upper == 1)
+		{
+			str += c.ToString().ToUpper();
+			upper = 0;
+		}
+		else
+			str += c.ToString().ToLower();
+	}
+	return str;	
+}
+
+}
+%>
+##|BODY_END
