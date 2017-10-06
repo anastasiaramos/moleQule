@@ -31,3 +31,20 @@ C:\Users\Anastasia\Documents\VS Projects Git\moleQule\moleQule.Common\code\Libra
 C:\Users\Anastasia\Documents\VS Projects Git\moleQule\moleQule.Common\code\Library\obj\x86\Release\moleQule.Library.Common.dll
 C:\Users\Anastasia\Documents\VS Projects Git\moleQule\moleQule.Common\code\Library\obj\x86\Release\moleQule.Library.Common.pdb
 C:\Users\Anastasia\Documents\VS Projects Git\moleQule\moleQule.Common\code\Library\obj\x86\Release\moleQule.Library.Common.csprojResolveAssemblyReference.cache
+C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Common\code\Library\bin\x86\Release\moleQule.Library.Common.dll.config
+C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Common\code\Library\bin\x86\Release\moleQule.Library.Common.dll
+C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Common\code\Library\bin\x86\Release\moleQule.Library.Common.pdb
+C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Common\code\Library\bin\x86\Release\en\moleQule.Library.Common.resources.dll
+C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Common\code\Library\obj\x86\Release\moleQule.Library.Common.csprojResolveAssemblyReference.cache
+C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Common\code\Library\obj\x86\Release\moleQule.Library.Common.Resources.Messages.resources
+C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Common\code\Library\obj\x86\Release\moleQule.Library.Common.Resources.Defaults.resources
+C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Common\code\Library\obj\x86\Release\moleQule.Library.Common.Resources.Labels.resources
+C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Common\code\Library\obj\x86\Release\moleQule.Library.Common.Resources.SecureItems.resources
+C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Common\code\Library\obj\x86\Release\moleQule.Library.Common.Resources.Enums.resources
+C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Common\code\Library\obj\x86\Release\moleQule.Library.Common.Resources.Labels.en.resources
+C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Common\code\Library\obj\x86\Release\moleQule.Library.Common.Resources.Defaults.en.resources
+C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Common\code\Library\obj\x86\Release\moleQule.Library.Common.Resources.Enums.en.resources
+C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Common\code\Library\obj\x86\Release\moleQule.Library.Common.csproj.GenerateResource.Cache
+C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Common\code\Library\obj\x86\Release\en\moleQule.Library.Common.resources.dll
+C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Common\code\Library\obj\x86\Release\moleQule.Library.Common.dll
+C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Common\code\Library\obj\x86\Release\moleQule.Library.Common.pdb
