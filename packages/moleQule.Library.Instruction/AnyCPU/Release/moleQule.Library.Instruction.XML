@@ -592,6 +592,12 @@
             <param name="get_childs">retrieving the childs</param>
             <returns></returns>
         </member>
+        <member name="M:moleQule.Library.Instruction.PreguntaList.GetPreguntasDisponiblesTema(System.Int64,System.Boolean,System.DateTime,System.Int64)">
+            <summary>
+            Retrieve the complete list from db
+            </summary>
+            <returns>PreguntaList</returns>
+        </member>
         <member name="M:moleQule.Library.Instruction.PreguntaList.GetPreguntasTema(System.Int64,System.Boolean)">
             <summary>
             Retrieve the complete list from db
@@ -2747,7 +2753,7 @@
             </summary>
             <returns>PlantillaExamenList</returns>
         </member>
-        <member name="M:moleQule.Library.Instruction.PlantillaExamenList.GetListByModulo(System.Int64)">
+        <member name="M:moleQule.Library.Instruction.PlantillaExamenList.GetListByModulo(System.Int64,System.Boolean)">
             <summary>
             Retrieve the complete list from db
             </summary>
@@ -5096,7 +5102,7 @@
             <param name="get_childs">retrieving the childs</param>
             <returns></returns>
         </member>
-        <member name="M:moleQule.Library.Instruction.PlantillaExamenes.GetModuloList(System.Int64)">
+        <member name="M:moleQule.Library.Instruction.PlantillaExamenes.GetModuloList(System.Int64,System.Boolean)">
             <summary>
             Retrieve the complete list from db
             </summary>
@@ -7260,6 +7266,57 @@
             <param name="entity">Tipo de Entidad</param>
             <returns>Objeto <see cref="!:ReadOnlyBaseEx"/>Construido a partir del registro</returns>
         </member>
+        <member name="T:moleQule.Library.Instruction.Resources.Paths">
+            <summary>
+              Clase de recurso con establecimiento inflexible de tipos, para buscar cadenas traducidas, etc.
+            </summary>
+        </member>
+        <member name="P:moleQule.Library.Instruction.Resources.Paths.ResourceManager">
+            <summary>
+              Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
+            </summary>
+        </member>
+        <member name="P:moleQule.Library.Instruction.Resources.Paths.Culture">
+            <summary>
+              Reemplaza la propiedad CurrentUICulture del subproceso actual para todas las
+              búsquedas de recursos mediante esta clase de recurso con establecimiento inflexible de tipos.
+            </summary>
+        </member>
+        <member name="P:moleQule.Library.Instruction.Resources.Paths.FOTO_ALUMNOS">
+            <summary>
+              Busca una cadena traducida similar a Fotos\Alumnos\.
+            </summary>
+        </member>
+        <member name="P:moleQule.Library.Instruction.Resources.Paths.FOTO_INSTRUCTORES">
+            <summary>
+              Busca una cadena traducida similar a Fotos\Instructores\.
+            </summary>
+        </member>
+        <member name="P:moleQule.Library.Instruction.Resources.Paths.FOTO_PREGUNTAS">
+            <summary>
+              Busca una cadena traducida similar a Fotos\Preguntas\.
+            </summary>
+        </member>
+        <member name="P:moleQule.Library.Instruction.Resources.Paths.FOTO_PREGUNTAS_EXAMENES">
+            <summary>
+              Busca una cadena traducida similar a Fotos\PreguntasExamen\.
+            </summary>
+        </member>
+        <member name="P:moleQule.Library.Instruction.Resources.Paths.MODELO_PREGUNTAS">
+            <summary>
+              Busca una cadena traducida similar a Fotos\Preguntas\.
+            </summary>
+        </member>
+        <member name="P:moleQule.Library.Instruction.Resources.Paths.MODELO_PREGUNTAS_EXAMENES">
+            <summary>
+              Busca una cadena traducida similar a Fotos\PreguntasExamen\.
+            </summary>
+        </member>
+        <member name="P:moleQule.Library.Instruction.Resources.Paths.RESOURCES_ROOT">
+            <summary>
+              Busca una cadena traducida similar a Fotos\PreguntasExamen\.
+            </summary>
+        </member>
         <member name="T:moleQule.Library.Instruction.RegistroDisponibilidad">
             <summary>
             Editable Root Business Object With Editable Child Collection
@@ -8579,57 +8636,6 @@
             Construye el SELECT de la lista
             </summary>       
             <returns></returns>
-        </member>
-        <member name="T:moleQule.Library.Instruction.Resources.Paths">
-            <summary>
-              Clase de recurso con establecimiento inflexible de tipos, para buscar cadenas traducidas, etc.
-            </summary>
-        </member>
-        <member name="P:moleQule.Library.Instruction.Resources.Paths.ResourceManager">
-            <summary>
-              Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
-            </summary>
-        </member>
-        <member name="P:moleQule.Library.Instruction.Resources.Paths.Culture">
-            <summary>
-              Reemplaza la propiedad CurrentUICulture del subproceso actual para todas las
-              búsquedas de recursos mediante esta clase de recurso con establecimiento inflexible de tipos.
-            </summary>
-        </member>
-        <member name="P:moleQule.Library.Instruction.Resources.Paths.FOTO_ALUMNOS">
-            <summary>
-              Busca una cadena traducida similar a Fotos\Alumnos\.
-            </summary>
-        </member>
-        <member name="P:moleQule.Library.Instruction.Resources.Paths.FOTO_INSTRUCTORES">
-            <summary>
-              Busca una cadena traducida similar a Fotos\Instructores\.
-            </summary>
-        </member>
-        <member name="P:moleQule.Library.Instruction.Resources.Paths.FOTO_PREGUNTAS">
-            <summary>
-              Busca una cadena traducida similar a Fotos\Preguntas\.
-            </summary>
-        </member>
-        <member name="P:moleQule.Library.Instruction.Resources.Paths.FOTO_PREGUNTAS_EXAMENES">
-            <summary>
-              Busca una cadena traducida similar a Fotos\PreguntasExamen\.
-            </summary>
-        </member>
-        <member name="P:moleQule.Library.Instruction.Resources.Paths.MODELO_PREGUNTAS">
-            <summary>
-              Busca una cadena traducida similar a Fotos\Preguntas\.
-            </summary>
-        </member>
-        <member name="P:moleQule.Library.Instruction.Resources.Paths.MODELO_PREGUNTAS_EXAMENES">
-            <summary>
-              Busca una cadena traducida similar a Fotos\PreguntasExamen\.
-            </summary>
-        </member>
-        <member name="P:moleQule.Library.Instruction.Resources.Paths.RESOURCES_ROOT">
-            <summary>
-              Busca una cadena traducida similar a Fotos\PreguntasExamen\.
-            </summary>
         </member>
     </members>
 </doc>

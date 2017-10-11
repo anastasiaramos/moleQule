@@ -592,12 +592,6 @@
             <param name="get_childs">retrieving the childs</param>
             <returns></returns>
         </member>
-        <member name="M:moleQule.Library.Instruction.PreguntaList.GetPreguntasDisponiblesTema(System.Int64,System.Boolean,System.DateTime,System.Int64)">
-            <summary>
-            Retrieve the complete list from db
-            </summary>
-            <returns>PreguntaList</returns>
-        </member>
         <member name="M:moleQule.Library.Instruction.PreguntaList.GetPreguntasTema(System.Int64,System.Boolean)">
             <summary>
             Retrieve the complete list from db
@@ -2753,7 +2747,7 @@
             </summary>
             <returns>PlantillaExamenList</returns>
         </member>
-        <member name="M:moleQule.Library.Instruction.PlantillaExamenList.GetListByModulo(System.Int64,System.Boolean)">
+        <member name="M:moleQule.Library.Instruction.PlantillaExamenList.GetListByModulo(System.Int64)">
             <summary>
             Retrieve the complete list from db
             </summary>
@@ -5102,7 +5096,7 @@
             <param name="get_childs">retrieving the childs</param>
             <returns></returns>
         </member>
-        <member name="M:moleQule.Library.Instruction.PlantillaExamenes.GetModuloList(System.Int64,System.Boolean)">
+        <member name="M:moleQule.Library.Instruction.PlantillaExamenes.GetModuloList(System.Int64)">
             <summary>
             Retrieve the complete list from db
             </summary>

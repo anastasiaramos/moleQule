@@ -8637,5 +8637,11 @@
             </summary>       
             <returns></returns>
         </member>
+        <member name="M:moleQule.Library.Instruction.ResumenPreguntasPrint.CopyValues(moleQule.Library.Instruction.PreguntaInfo,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Copia los atributos del objeto
+            </summary>
+            <param name="source">Objeto origen</param>
+        </member>
     </members>
 </doc>

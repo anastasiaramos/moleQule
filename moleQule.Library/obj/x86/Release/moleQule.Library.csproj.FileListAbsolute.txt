@@ -23,7 +23,6 @@ C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Library\bin\moleQule
 C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Library\bin\moleQule.Library.dll
 C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Library\bin\moleQule.Library.pdb
 C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Library\bin\en\moleQule.Library.resources.dll
-C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Library\obj\x86\Release\moleQule.Library.csprojResolveAssemblyReference.cache
 C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Library\obj\x86\Release\moleQule.Library.Reports.CRViewer.resources
 C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Library\obj\x86\Release\moleQule.Library.Resources.SecureItems.resources
 C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Library\obj\x86\Release\moleQule.Library.Resources.Labels.resources
