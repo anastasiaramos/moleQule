@@ -5926,7 +5926,7 @@
             <param name="n_horas"></param>
             <returns></returns>
         </member>
-        <member name="M:moleQule.Library.Instruction.CronogramaController.LaboratorioLibre(System.Int32,System.Int64,moleQule.Library.Instruction.ListaSesiones,System.Int64)">
+        <member name="M:moleQule.Library.Instruction.CronogramaController.LaboratorioLibre(System.Int32,System.Int64,moleQule.Library.Instruction.ListaSesiones)">
             <summary>
             Función que comprueba que se pueda realizar una práctica en una sesión determinada 
             en función del campo Incompatible de la clase práctica

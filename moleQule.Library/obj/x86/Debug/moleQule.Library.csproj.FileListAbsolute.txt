@@ -41,3 +41,4 @@ C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Library\obj\x86\Debu
 C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Library\obj\x86\Debug\en\moleQule.Library.resources.dll
 C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Library\obj\x86\Debug\moleQule.Library.dll
 C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Library\obj\x86\Debug\moleQule.Library.pdb
+C:\Users\Anastasia\Documents\Git Projects\moleQule\moleQule.Library\obj\x86\Debug\moleQule.Library.csprojResolveAssemblyReference.cache
