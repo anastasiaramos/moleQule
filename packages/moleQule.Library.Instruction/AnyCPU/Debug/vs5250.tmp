@@ -649,12 +649,6 @@
             <param name="get_childs">retrieving the childs</param>
             <returns></returns>
         </member>
-        <member name="M:moleQule.Library.Instruction.PreguntaList.GetPreguntasDisponiblesModulo(System.Int64,System.Boolean,System.DateTime,System.Int64)">
-            <summary>
-            Retrieve the complete list from db
-            </summary>
-            <returns>PreguntaList</returns>
-        </member>
         <member name="M:moleQule.Library.Instruction.PreguntaList.GetPreguntasDisponiblesTema(System.Int64,System.Boolean,System.DateTime,System.Int64)">
             <summary>
             Retrieve the complete list from db
@@ -2461,7 +2455,7 @@
             <param name="oid_instructor"></param>
             <returns></returns>
         </member>
-        <member name="M:moleQule.Library.Instruction.HorarioController.LaboratorioLibre(System.Int32,System.Int64,System.Int32)">
+        <member name="M:moleQule.Library.Instruction.HorarioController.LaboratorioLibre(System.Int32,System.Int64)">
             <summary>
             Función que comprueba que se pueda realizar una práctica en una sesión determinada 
             en función del campo Incompatible de la clase práctica
@@ -8601,6 +8595,37 @@
             (La función debe ser "no estática")
             </summary>
         </member>
+        <member name="T:moleQule.Library.Instruction.IncidenciaCronograma">
+            <summary>
+            Editable Root Business Object
+            </summary>	
+        </member>
+        <member name="M:moleQule.Library.Instruction.IncidenciaCronograma.#ctor">
+            <summary>
+            NO UTILIZAR DIRECTAMENTE, SE DEBE USAR LA FUNCION NewChild
+            Debería ser private para CSLA porque la creación requiere el uso de los factory methods,
+            pero debe ser protected por exigencia de NHibernate
+            y public para que funcionen los DataGridView
+            </summary>
+        </member>
+        <member name="M:moleQule.Library.Instruction.IncidenciaCronograma.Delete(System.Int64)">
+            <summary>
+            Borrado inmediato, no cabe "undo"
+            (La función debe ser "estática")
+            </summary>
+            <param name="oid"></param>
+        </member>
+        <member name="M:moleQule.Library.Instruction.IncidenciaCronograma.DeleteAll">
+            <summary>
+            Elimina todas los IncidenciaCronogramas
+            </summary>
+        </member>
+        <member name="M:moleQule.Library.Instruction.IncidenciaCronograma.Delete">
+            <summary>
+            Borrado aplazado, es posible el undo 
+            (La función debe ser "no estática")
+            </summary>
+        </member>
         <member name="T:moleQule.Library.Instruction.IncidenciaCronogramaInfo">
             <summary>
             ReadOnly Child Business Object with ReadOnly Childs
@@ -8633,37 +8658,6 @@
             </summary>
             <param name="reader"></param>
             <returns></returns>
-        </member>
-        <member name="T:moleQule.Library.Instruction.IncidenciaCronograma">
-            <summary>
-            Editable Root Business Object
-            </summary>	
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaCronograma.#ctor">
-            <summary>
-            NO UTILIZAR DIRECTAMENTE, SE DEBE USAR LA FUNCION NewChild
-            Debería ser private para CSLA porque la creación requiere el uso de los factory methods,
-            pero debe ser protected por exigencia de NHibernate
-            y public para que funcionen los DataGridView
-            </summary>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaCronograma.Delete(System.Int64)">
-            <summary>
-            Borrado inmediato, no cabe "undo"
-            (La función debe ser "estática")
-            </summary>
-            <param name="oid"></param>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaCronograma.DeleteAll">
-            <summary>
-            Elimina todas los IncidenciaCronogramas
-            </summary>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaCronograma.Delete">
-            <summary>
-            Borrado aplazado, es posible el undo 
-            (La función debe ser "no estática")
-            </summary>
         </member>
         <member name="M:moleQule.Library.Instruction.CronogramaPrint.CopyValues(moleQule.Library.Instruction.CronogramaInfo,moleQule.Library.Common.CompanyInfo,moleQule.Library.Instruction.PlanEstudiosInfo,moleQule.Library.Instruction.PromocionInfo)">
             <summary>

@@ -649,7 +649,7 @@
             <param name="get_childs">retrieving the childs</param>
             <returns></returns>
         </member>
-        <member name="M:moleQule.Library.Instruction.PreguntaList.GetPreguntasDisponiblesModulo(System.Int64,System.Boolean,System.DateTime,System.Int64)">
+        <member name="M:moleQule.Library.Instruction.PreguntaList.GetPreguntasDisponiblesTema(System.Boolean,System.DateTime,System.Int64)">
             <summary>
             Retrieve the complete list from db
             </summary>

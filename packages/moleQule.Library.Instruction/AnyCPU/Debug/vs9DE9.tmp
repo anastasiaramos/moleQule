@@ -159,63 +159,6 @@
             </summary>
             <param name="source">DataReader fuente</param>
         </member>
-        <member name="T:moleQule.Library.Instruction.InformePreguntasList">
-            <summary>
-            ReadOnly Root Collection of Business Objects With Child Collection
-            </summary>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePreguntasList.GetList(System.String)">
-            <summary>
-            Retrieve the complete list from db
-            </summary>
-            <param name="get_childs">retrieving the childs</param>
-            <returns></returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePreguntasList.GetList">
-            <summary>
-            Retrieve the complete list from db
-            </summary>
-            <param name="get_childs">retrieving the childs</param>
-            <returns></returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePreguntasList.GetList(moleQule.Library.CslaEx.CriteriaEx)">
-            <summary>
-            Devuelve una lista de todos los elementos
-            </summary>
-            <returns>Lista de elementos</returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePreguntasList.GetList(System.Collections.Generic.IList{moleQule.Library.Instruction.InformePreguntasInfo})">
-            <summary>
-            Builds a InformePreguntasList from a IList<!--<InformePreguntasInfo>-->.
-            Doesnt retrieve child data from DB.
-            </summary>
-            <param name="list"></param>
-            <returns></returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePreguntasList.GetSortedList(System.String,System.ComponentModel.ListSortDirection)">
-            <summary>
-            Devuelve una lista ordenada de todos los elementos
-            </summary>
-            <param name="sortProperty">Campo de ordenación</param>
-            <param name="sortDirection">Sentido de ordenación</param>
-            <returns>Lista ordenada de elementos</returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePreguntasList.GetSortedList(System.String,System.ComponentModel.ListSortDirection,System.Boolean)">
-            <summary>
-            Devuelve una lista ordenada de todos los elementos y sus hijos
-            </summary>
-            <param name="sortProperty">Campo de ordenación</param>
-            <param name="sortDirection">Sentido de ordenación</param>
-            <param name="childs">Traer hijos</param>
-            <returns>Lista ordenada de elementos</returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePreguntasList.GetList(System.Collections.Generic.IList{moleQule.Library.Instruction.InformePreguntas})">
-            <summary>
-            Builds a InformePreguntasList from a IList<!--<InformePreguntas>-->
-            </summary>
-            <param name="list"></param>
-            <returns>InformePreguntasList</returns>
-        </member>
         <member name="T:moleQule.Library.Instruction.Sesion_PromocionList">
             <summary>
             ReadOnly Root Collection of Business Objects With Child Collection
@@ -648,12 +591,6 @@
             </summary>
             <param name="get_childs">retrieving the childs</param>
             <returns></returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.PreguntaList.GetPreguntasDisponiblesModulo(System.Int64,System.Boolean,System.DateTime,System.Int64)">
-            <summary>
-            Retrieve the complete list from db
-            </summary>
-            <returns>PreguntaList</returns>
         </member>
         <member name="M:moleQule.Library.Instruction.PreguntaList.GetPreguntasDisponiblesTema(System.Int64,System.Boolean,System.DateTime,System.Int64)">
             <summary>
@@ -1247,51 +1184,6 @@
             <returns></returns>
         </member>
         <member name="M:moleQule.Library.Instruction.FaltaAlumnoInfo.Get(System.Data.IDataReader,System.Boolean)">
-            <summary>
-            Copia los datos al objeto desde un IDataReader 
-            </summary>
-            <param name="reader"></param>
-            <returns></returns>
-        </member>
-        <member name="T:moleQule.Library.Instruction.InformePreguntasInfo">
-            <summary>
-            ReadOnly Root Business Object with ReadOnly Childs
-            </summary>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePreguntasInfo.CopyValues(moleQule.Library.Instruction.InformePreguntas)">
-            <summary>
-            Copia los atributos del objeto
-            </summary>
-            <param name="source">Objeto origen</param>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePreguntasInfo.CopyValues(System.Data.IDataReader)">
-            <summary>
-            Copia los atributos del objeto
-            </summary>
-            <param name="source">Objeto origen</param>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePreguntasInfo.#ctor(moleQule.Library.Instruction.InformePreguntas)">
-            <summary>
-            Contructor de AreaInfo a partir de un Area
-            No copia los hijos
-            </summary>
-            <param name="item"></param>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePreguntasInfo.Get(System.Int64)">
-            <summary>
-            Devuelve un AreaInfo tras consultar la base de datos
-            </summary>
-            <param name="oid"></param>
-            <returns></returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePreguntasInfo.Get(System.Int64,System.Boolean)">
-            <summary>
-            Devuelve un AreaInfo tras consultar la base de datos
-            </summary>
-            <param name="oid"></param>
-            <returns></returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePreguntasInfo.Get(System.Data.IDataReader,System.Boolean)">
             <summary>
             Copia los datos al objeto desde un IDataReader 
             </summary>
@@ -1963,18 +1855,6 @@
             Editable Child Collection
             </summary>
         </member>
-        <member name="T:moleQule.Library.Instruction.IncidenciasCronogramas">
-            <summary>
-            Editable Child Collection
-            </summary>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciasCronogramas.SELECT_SESIONES_PLAN(System.Int64)">
-            <summary>
-            Construye la tabla 
-            Devuelve lista de sesiones de un cronograma determinado
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:moleQule.Library.Instruction.ClasePracticaList">
             <summary>
             Read Only Child Collection of Business Objects
@@ -2461,7 +2341,7 @@
             <param name="oid_instructor"></param>
             <returns></returns>
         </member>
-        <member name="M:moleQule.Library.Instruction.HorarioController.LaboratorioLibre(System.Int32,System.Int64,System.Int32)">
+        <member name="M:moleQule.Library.Instruction.HorarioController.LaboratorioLibre(System.Int32,System.Int64)">
             <summary>
             Función que comprueba que se pueda realizar una práctica en una sesión determinada 
             en función del campo Incompatible de la clase práctica
@@ -3997,63 +3877,6 @@
             <param name="reader"></param>
             <returns></returns>
         </member>
-        <member name="T:moleQule.Library.Instruction.InformePlantillaList">
-            <summary>
-            ReadOnly Root Collection of Business Objects With Child Collection
-            </summary>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePlantillaList.GetList(System.Int64)">
-            <summary>
-            Retrieve the complete list from db
-            </summary>
-            <param name="get_childs">retrieving the childs</param>
-            <returns></returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePlantillaList.GetList">
-            <summary>
-            Retrieve the complete list from db
-            </summary>
-            <param name="get_childs">retrieving the childs</param>
-            <returns></returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePlantillaList.GetList(moleQule.Library.CslaEx.CriteriaEx)">
-            <summary>
-            Devuelve una lista de todos los elementos
-            </summary>
-            <returns>Lista de elementos</returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePlantillaList.GetList(System.Collections.Generic.IList{moleQule.Library.Instruction.InformePlantillaInfo})">
-            <summary>
-            Builds a InformePlantillaList from a IList<!--<InformePlantillaInfo>-->.
-            Doesnt retrieve child data from DB.
-            </summary>
-            <param name="list"></param>
-            <returns></returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePlantillaList.GetSortedList(System.String,System.ComponentModel.ListSortDirection)">
-            <summary>
-            Devuelve una lista ordenada de todos los elementos
-            </summary>
-            <param name="sortProperty">Campo de ordenación</param>
-            <param name="sortDirection">Sentido de ordenación</param>
-            <returns>Lista ordenada de elementos</returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePlantillaList.GetSortedList(System.String,System.ComponentModel.ListSortDirection,System.Boolean)">
-            <summary>
-            Devuelve una lista ordenada de todos los elementos y sus hijos
-            </summary>
-            <param name="sortProperty">Campo de ordenación</param>
-            <param name="sortDirection">Sentido de ordenación</param>
-            <param name="childs">Traer hijos</param>
-            <returns>Lista ordenada de elementos</returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePlantillaList.GetList(System.Collections.Generic.IList{moleQule.Library.Instruction.InformePlantilla})">
-            <summary>
-            Builds a InformePlantillaList from a IList<!--<InformePlantilla>-->
-            </summary>
-            <param name="list"></param>
-            <returns>InformePlantillaList</returns>
-        </member>
         <member name="T:moleQule.Library.Instruction.Sesiones_Promociones">
             <summary>
             Editable Child Business Object
@@ -4649,73 +4472,6 @@
             <returns>SesionCronograma</returns>
         </member>
         <member name="M:moleQule.Library.Instruction.SesionCronogramaList.GetSortedList(System.String,System.ComponentModel.ListSortDirection)">
-            <summary>
-            Devuelve una lista ordenada de todos los elementos
-            </summary>
-            <param name="sortProperty">Campo de ordenación</param>
-            <param name="sortDirection">Sentido de ordenación</param>
-            <returns>Lista ordenada de elementos</returns>
-        </member>
-        <member name="T:moleQule.Library.Instruction.IncidenciaSesionCronogramaList">
-            <summary>
-            Read Only Child Collection of Business Objects
-            </summary>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaSesionCronogramaList.GetChildList(System.Boolean)">
-            <summary>
-            Retrieve the complete list from db
-            </summary>
-            <param name="get_childs">retrieving the childs</param>
-            <returns>RedList</returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaSesionCronogramaList.GetChildList(System.Collections.Generic.IList{moleQule.Library.Instruction.IncidenciaSesionCronogramaInfo})">
-            <summary>
-            Builds a IncidenciaSesionCronogramaList from a IList<!--<IncidenciaSesionCronogramaInfo>-->
-            </summary>
-            <param name="list"></param>
-            <returns>IncidenciaSesionCronogramaList</returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaSesionCronogramaList.GetChildList(System.Collections.Generic.IList{moleQule.Library.Instruction.IncidenciaSesionCronograma})">
-            <summary>
-            Builds a IncidenciaSesionCronogramaList from IList<!--<IncidenciaSesionCronograma>-->
-            </summary>
-            <param name="list"></param>
-            <returns>IncidenciaSesionCronogramaList</returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaSesionCronogramaList.GetList(System.Boolean)">
-            <summary>
-            Retrieve the complete list from db
-            </summary>
-            <returns>IncidenciaSesionCronogramaList</returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaSesionCronogramaList.GetList">
-            <summary>
-            Retrieve the complete list from db
-            </summary>
-            <returns>IncidenciaSesionCronogramaList</returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaSesionCronogramaList.GetList(moleQule.Library.CslaEx.CriteriaEx)">
-            <summary>
-            Devuelve una lista de todos los elementos
-            </summary>
-            <returns>Lista de elementos</returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaSesionCronogramaList.GetList(System.Collections.Generic.IList{moleQule.Library.Instruction.IncidenciaSesionCronogramaInfo})">
-            <summary>
-            Builds a IncidenciaSesionCronogramaList from a IList<!--<IncidenciaSesionCronogramaInfo>-->
-            Doesn`t retrieve child data from DB.
-            </summary>
-            <param name="list"></param>
-            <returns>IncidenciaSesionCronogramaList</returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaSesionCronogramaList.GetList(System.Collections.Generic.IList{moleQule.Library.Instruction.IncidenciaSesionCronograma})">
-            <summary>
-            Builds a IncidenciaSesionCronogramaList from a IList<!--<IncidenciaSesionCronograma>-->
-            </summary>
-            <param name="list"></param>
-            <returns>IncidenciaSesionCronograma</returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaSesionCronogramaList.GetSortedList(System.String,System.ComponentModel.ListSortDirection)">
             <summary>
             Devuelve una lista ordenada de todos los elementos
             </summary>
@@ -5334,143 +5090,6 @@
             </summary>
             <param name="source">DataReader fuente</param>
         </member>
-        <member name="T:moleQule.Library.Instruction.InformePlantillaInfo">
-            <summary>
-            ReadOnly Root Business Object with ReadOnly Childs
-            </summary>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePlantillaInfo.CopyValues(moleQule.Library.Instruction.InformePlantilla)">
-            <summary>
-            Copia los atributos del objeto
-            </summary>
-            <param name="source">Objeto origen</param>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePlantillaInfo.CopyValues(System.Data.IDataReader)">
-            <summary>
-            Copia los atributos del objeto
-            </summary>
-            <param name="source">Objeto origen</param>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePlantillaInfo.#ctor(moleQule.Library.Instruction.InformePlantilla)">
-            <summary>
-            Contructor de AreaInfo a partir de un Area
-            No copia los hijos
-            </summary>
-            <param name="item"></param>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePlantillaInfo.Get(System.Int64)">
-            <summary>
-            Devuelve un AreaInfo tras consultar la base de datos
-            </summary>
-            <param name="oid"></param>
-            <returns></returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePlantillaInfo.Get(System.Int64,System.Boolean)">
-            <summary>
-            Devuelve un AreaInfo tras consultar la base de datos
-            </summary>
-            <param name="oid"></param>
-            <returns></returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePlantillaInfo.Get(System.Data.IDataReader,System.Boolean)">
-            <summary>
-            Copia los datos al objeto desde un IDataReader 
-            </summary>
-            <param name="reader"></param>
-            <returns></returns>
-        </member>
-        <member name="T:moleQule.Library.Instruction.InformePlantilla">
-            <summary>
-            Editable Root Business Object With Editable Child Collection
-            </summary>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePlantilla.CloneAsNew">
-            <summary>
-            Clona la entidad y sus subentidades y las marca como nuevas
-            </summary>
-            <returns>Una entidad clon</returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePlantilla.CopyValues(moleQule.Library.Instruction.InformePlantilla)">
-            <summary>
-            Copia los atributos del objeto
-            </summary>
-            <param name="source">Objeto origen</param>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePlantilla.CopyValues(System.Data.IDataReader)">
-            <summary>
-            Copia los atributos del objeto
-            </summary>
-            <param name="source">Objeto origen</param>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePlantilla.Delete(System.Int64)">
-            <summary>
-            Borrado inmediato, no cabe "undo"
-            (La función debe ser "estática")
-            </summary>
-            <param name="oid"></param>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePlantilla.DeleteAll">
-            <summary>
-            Elimina todos los Area. 
-            Si no existe integridad referencial, hay que eliminar las listas hijo en esta función.
-            </summary>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePlantilla.#ctor">
-            <summary>
-            NO UTILIZAR DIRECTAMENTE, SE DEBE USAR LA FUNCION New o NewChild
-            Debería ser private para CSLA porque la creación requiere el uso de los Factory Methods,
-            pero debe ser protected por exigencia de NHibernate.
-            </summary>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePlantilla.#ctor(moleQule.Library.Instruction.InformePlantilla,System.Boolean)">
-            <summary>
-            NO UTILIZAR DIRECTAMENTE. LAS UTILIZAN LAS FUNCIONES DE CREACION DE LISTAS
-            </summary>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePlantilla.#ctor(System.Data.IDataReader,System.Boolean)">
-            <summary>
-            NO UTILIZAR DIRECTAMENTE. LAS UTILIZAN LAS FUNCIONES DE CREACION DE LISTAS
-            </summary>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePlantilla.NewChild">
-            <summary>
-            Crea un nuevo objeto
-            </summary>
-            <returns>Nuevo objeto creado</returns>
-            La utiliza la BusinessListBaseEx correspondiente para crear nuevos elementos
-        </member>
-        <!-- Badly formed XML comment ignored for member "M:moleQule.Library.Instruction.InformePlantilla.GetChild(moleQule.Library.Instruction.InformePlantilla)" -->
-        <!-- Badly formed XML comment ignored for member "M:moleQule.Library.Instruction.InformePlantilla.GetChild(moleQule.Library.Instruction.InformePlantilla,System.Boolean)" -->
-        <!-- Badly formed XML comment ignored for member "M:moleQule.Library.Instruction.InformePlantilla.GetChild(System.Data.IDataReader)" -->
-        <!-- Badly formed XML comment ignored for member "M:moleQule.Library.Instruction.InformePlantilla.GetChild(System.Data.IDataReader,System.Boolean)" -->
-        <member name="M:moleQule.Library.Instruction.InformePlantilla.GetInfo">
-            <summary>
-            Construye y devuelve un objeto de solo lectura copia de si mismo.
-            También copia los datos de los hijos del objeto.
-            </summary>
-            <returns>Réplica de solo lectura del objeto</returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePlantilla.GetInfo(System.Boolean)">
-            <summary>
-            Construye y devuelve un objeto de solo lectura copia de si mismo.
-            </summary>
-            <param name="get_childs">Flag para solicitar que se copien los hijos</param>
-            <returns>Réplica de solo lectura del objeto</returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePlantilla.Fetch(moleQule.Library.Instruction.InformePlantilla)">
-            <summary>
-            Construye el objeto y se encarga de obtener los
-            hijos si los tiene y se solicitan
-            </summary>
-            <param name="source">Objeto fuente</param>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePlantilla.Fetch(System.Data.IDataReader)">
-            <summary>
-            Construye el objeto y se encarga de obtener los
-            hijos si los tiene y se solicitan
-            </summary>
-            <param name="source">DataReader fuente</param>
-        </member>
         <member name="T:moleQule.Library.Instruction.PlantillaExamenes">
             <summary>
             Editable Child Collection
@@ -5566,32 +5185,6 @@
             <summary>
             Editable Child Collection
             </summary>
-        </member>
-        <member name="T:moleQule.Library.Instruction.IncidenciaSesionCronogramaInfo">
-            <summary>
-            ReadOnly Child Business Object with ReadOnly Childs
-            </summary>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaSesionCronogramaInfo.Get(System.Int64)">
-            <summary>
-            Devuelve un ClienteInfo tras consultar la base de datos
-            </summary>
-            <param name="oid"></param>
-            <returns></returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaSesionCronogramaInfo.Get(System.Int64,System.Boolean)">
-            <summary>
-            Devuelve un ClienteInfo tras consultar la base de datos
-            </summary>
-            <param name="oid"></param>
-            <returns></returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaSesionCronogramaInfo.Get(System.Data.IDataReader,System.Boolean)">
-            <summary>
-            Copia los datos al objeto desde un IDataReader 
-            </summary>
-            <param name="reader"></param>
-            <returns></returns>
         </member>
         <member name="T:moleQule.Library.Instruction.Cronograma">
             <summary>
@@ -6009,11 +5602,6 @@
             </summary>
             <param name="reader"></param>
             <returns></returns>
-        </member>
-        <member name="T:moleQule.Library.Instruction.IncidenciaSesionesCronogramas">
-            <summary>
-            Editable Child Collection
-            </summary>
         </member>
         <member name="T:moleQule.Library.Instruction.ModuloInfo">
             <summary>
@@ -7589,66 +7177,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:moleQule.Library.Instruction.IncidenciaCronogramaList">
-            <summary>
-            Read Only Child Collection of Business Objects
-            </summary>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaCronogramaList.GetChildList(System.Collections.Generic.IList{moleQule.Library.Instruction.IncidenciaCronogramaInfo})">
-            <summary>
-            Builds a IncidenciaCronogramaList from a IList<!--<IncidenciaCronogramaInfo>-->
-            </summary>
-            <param name="list"></param>
-            <returns>IncidenciaCronogramaList</returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaCronogramaList.GetChildList(System.Collections.Generic.IList{moleQule.Library.Instruction.IncidenciaCronograma})">
-            <summary>
-            Builds a IncidenciaCronogramaList from IList<!--<IncidenciaCronograma>-->
-            </summary>
-            <param name="list"></param>
-            <returns>IncidenciaCronogramaList</returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaCronogramaList.GetList(System.Boolean)">
-            <summary>
-            Retrieve the complete list from db
-            </summary>
-            <returns>IncidenciaCronogramaList</returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaCronogramaList.GetList">
-            <summary>
-            Retrieve the complete list from db
-            </summary>
-            <returns>IncidenciaCronogramaList</returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaCronogramaList.GetList(moleQule.Library.CslaEx.CriteriaEx)">
-            <summary>
-            Devuelve una lista de todos los elementos
-            </summary>
-            <returns>Lista de elementos</returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaCronogramaList.GetList(System.Collections.Generic.IList{moleQule.Library.Instruction.IncidenciaCronogramaInfo})">
-            <summary>
-            Builds a IncidenciaCronogramaList from a IList<!--<IncidenciaCronogramaInfo>-->
-            Doesn`t retrieve child data from DB.
-            </summary>
-            <param name="list"></param>
-            <returns>IncidenciaCronogramaList</returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaCronogramaList.GetList(System.Collections.Generic.IList{moleQule.Library.Instruction.IncidenciaCronograma})">
-            <summary>
-            Builds a IncidenciaCronogramaList from a IList<!--<IncidenciaCronograma>-->
-            </summary>
-            <param name="list"></param>
-            <returns>IncidenciaCronograma</returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaCronogramaList.GetSortedList(System.String,System.ComponentModel.ListSortDirection)">
-            <summary>
-            Devuelve una lista ordenada de todos los elementos
-            </summary>
-            <param name="sortProperty">Campo de ordenación</param>
-            <param name="sortDirection">Sentido de ordenación</param>
-            <returns>Lista ordenada de elementos</returns>
-        </member>
         <member name="T:moleQule.Library.Instruction.Pregunta_ExamenList">
             <summary>
             ReadOnly Root Collection of Business Objects With Child Collection
@@ -8338,98 +7866,6 @@
               Looks up a localized string similar to 412.
             </summary>
         </member>
-        <member name="T:moleQule.Library.Instruction.InformePreguntas">
-            <summary>
-            Editable Root Business Object With Editable Child Collection
-            </summary>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePreguntas.CloneAsNew">
-            <summary>
-            Clona la entidad y sus subentidades y las marca como nuevas
-            </summary>
-            <returns>Una entidad clon</returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePreguntas.CopyValues(moleQule.Library.Instruction.InformePreguntas)">
-            <summary>
-            Copia los atributos del objeto
-            </summary>
-            <param name="source">Objeto origen</param>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePreguntas.CopyValues(System.Data.IDataReader)">
-            <summary>
-            Copia los atributos del objeto
-            </summary>
-            <param name="source">Objeto origen</param>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePreguntas.Delete(System.Int64)">
-            <summary>
-            Borrado inmediato, no cabe "undo"
-            (La función debe ser "estática")
-            </summary>
-            <param name="oid"></param>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePreguntas.DeleteAll">
-            <summary>
-            Elimina todos los Area. 
-            Si no existe integridad referencial, hay que eliminar las listas hijo en esta función.
-            </summary>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePreguntas.#ctor">
-            <summary>
-            NO UTILIZAR DIRECTAMENTE, SE DEBE USAR LA FUNCION New o NewChild
-            Debería ser private para CSLA porque la creación requiere el uso de los Factory Methods,
-            pero debe ser protected por exigencia de NHibernate.
-            </summary>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePreguntas.#ctor(moleQule.Library.Instruction.InformePreguntas,System.Boolean)">
-            <summary>
-            NO UTILIZAR DIRECTAMENTE. LAS UTILIZAN LAS FUNCIONES DE CREACION DE LISTAS
-            </summary>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePreguntas.#ctor(System.Data.IDataReader,System.Boolean)">
-            <summary>
-            NO UTILIZAR DIRECTAMENTE. LAS UTILIZAN LAS FUNCIONES DE CREACION DE LISTAS
-            </summary>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePreguntas.NewChild">
-            <summary>
-            Crea un nuevo objeto
-            </summary>
-            <returns>Nuevo objeto creado</returns>
-            La utiliza la BusinessListBaseEx correspondiente para crear nuevos elementos
-        </member>
-        <!-- Badly formed XML comment ignored for member "M:moleQule.Library.Instruction.InformePreguntas.GetChild(moleQule.Library.Instruction.InformePreguntas)" -->
-        <!-- Badly formed XML comment ignored for member "M:moleQule.Library.Instruction.InformePreguntas.GetChild(moleQule.Library.Instruction.InformePreguntas,System.Boolean)" -->
-        <!-- Badly formed XML comment ignored for member "M:moleQule.Library.Instruction.InformePreguntas.GetChild(System.Data.IDataReader)" -->
-        <!-- Badly formed XML comment ignored for member "M:moleQule.Library.Instruction.InformePreguntas.GetChild(System.Data.IDataReader,System.Boolean)" -->
-        <member name="M:moleQule.Library.Instruction.InformePreguntas.GetInfo">
-            <summary>
-            Construye y devuelve un objeto de solo lectura copia de si mismo.
-            También copia los datos de los hijos del objeto.
-            </summary>
-            <returns>Réplica de solo lectura del objeto</returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePreguntas.GetInfo(System.Boolean)">
-            <summary>
-            Construye y devuelve un objeto de solo lectura copia de si mismo.
-            </summary>
-            <param name="get_childs">Flag para solicitar que se copien los hijos</param>
-            <returns>Réplica de solo lectura del objeto</returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePreguntas.Fetch(moleQule.Library.Instruction.InformePreguntas)">
-            <summary>
-            Construye el objeto y se encarga de obtener los
-            hijos si los tiene y se solicitan
-            </summary>
-            <param name="source">Objeto fuente</param>
-        </member>
-        <member name="M:moleQule.Library.Instruction.InformePreguntas.Fetch(System.Data.IDataReader)">
-            <summary>
-            Construye el objeto y se encarga de obtener los
-            hijos si los tiene y se solicitan
-            </summary>
-            <param name="source">DataReader fuente</param>
-        </member>
         <member name="T:moleQule.Library.Instruction.ClaseGenerica">
             <summary>
             Editable Root Business Object With Editable Child Collection
@@ -8569,101 +8005,6 @@
             <param name="schema"></param>
             <param name="sesion"></param>
             <returns></returns>
-        </member>
-        <member name="T:moleQule.Library.Instruction.IncidenciaSesionCronograma">
-            <summary>
-            Editable Root Business Object
-            </summary>	
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaSesionCronograma.#ctor">
-            <summary>
-            NO UTILIZAR DIRECTAMENTE, SE DEBE USAR LA FUNCION NewChild
-            Debería ser private para CSLA porque la creación requiere el uso de los factory methods,
-            pero debe ser protected por exigencia de NHibernate
-            y public para que funcionen los DataGridView
-            </summary>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaSesionCronograma.Delete(System.Int64)">
-            <summary>
-            Borrado inmediato, no cabe "undo"
-            (La función debe ser "estática")
-            </summary>
-            <param name="oid"></param>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaSesionCronograma.DeleteAll">
-            <summary>
-            Elimina todas los IncidenciaSesionCronogramas
-            </summary>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaSesionCronograma.Delete">
-            <summary>
-            Borrado aplazado, es posible el undo 
-            (La función debe ser "no estática")
-            </summary>
-        </member>
-        <member name="T:moleQule.Library.Instruction.IncidenciaCronogramaInfo">
-            <summary>
-            ReadOnly Child Business Object with ReadOnly Childs
-            </summary>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaCronogramaInfo.Get(System.Int64)">
-            <summary>
-            Devuelve un ClienteInfo tras consultar la base de datos
-            </summary>
-            <param name="oid"></param>
-            <returns></returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaCronogramaInfo.Get(System.Int64,System.Boolean)">
-            <summary>
-            Devuelve un ClienteInfo tras consultar la base de datos
-            </summary>
-            <param name="oid"></param>
-            <returns></returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaCronogramaInfo.Get(System.Data.IDataReader)">
-            <summary>
-            Copia los datos al objeto desde un IDataReader 
-            </summary>
-            <param name="reader"></param>
-            <returns></returns>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaCronogramaInfo.Get(System.Data.IDataReader,System.Boolean)">
-            <summary>
-            Copia los datos al objeto desde un IDataReader 
-            </summary>
-            <param name="reader"></param>
-            <returns></returns>
-        </member>
-        <member name="T:moleQule.Library.Instruction.IncidenciaCronograma">
-            <summary>
-            Editable Root Business Object
-            </summary>	
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaCronograma.#ctor">
-            <summary>
-            NO UTILIZAR DIRECTAMENTE, SE DEBE USAR LA FUNCION NewChild
-            Debería ser private para CSLA porque la creación requiere el uso de los factory methods,
-            pero debe ser protected por exigencia de NHibernate
-            y public para que funcionen los DataGridView
-            </summary>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaCronograma.Delete(System.Int64)">
-            <summary>
-            Borrado inmediato, no cabe "undo"
-            (La función debe ser "estática")
-            </summary>
-            <param name="oid"></param>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaCronograma.DeleteAll">
-            <summary>
-            Elimina todas los IncidenciaCronogramas
-            </summary>
-        </member>
-        <member name="M:moleQule.Library.Instruction.IncidenciaCronograma.Delete">
-            <summary>
-            Borrado aplazado, es posible el undo 
-            (La función debe ser "no estática")
-            </summary>
         </member>
         <member name="M:moleQule.Library.Instruction.CronogramaPrint.CopyValues(moleQule.Library.Instruction.CronogramaInfo,moleQule.Library.Common.CompanyInfo,moleQule.Library.Instruction.PlanEstudiosInfo,moleQule.Library.Instruction.PromocionInfo)">
             <summary>
@@ -9294,6 +8635,143 @@
             <summary>
             Construye el SELECT de la lista
             </summary>       
+            <returns></returns>
+        </member>
+        <member name="T:moleQule.Library.Instruction.InformePlantilla">
+            <summary>
+            Editable Root Business Object With Editable Child Collection
+            </summary>
+        </member>
+        <member name="M:moleQule.Library.Instruction.InformePlantilla.CloneAsNew">
+            <summary>
+            Clona la entidad y sus subentidades y las marca como nuevas
+            </summary>
+            <returns>Una entidad clon</returns>
+        </member>
+        <member name="M:moleQule.Library.Instruction.InformePlantilla.CopyValues(moleQule.Library.Instruction.InformePlantilla)">
+            <summary>
+            Copia los atributos del objeto
+            </summary>
+            <param name="source">Objeto origen</param>
+        </member>
+        <member name="M:moleQule.Library.Instruction.InformePlantilla.CopyValues(System.Data.IDataReader)">
+            <summary>
+            Copia los atributos del objeto
+            </summary>
+            <param name="source">Objeto origen</param>
+        </member>
+        <member name="M:moleQule.Library.Instruction.InformePlantilla.Delete(System.Int64)">
+            <summary>
+            Borrado inmediato, no cabe "undo"
+            (La función debe ser "estática")
+            </summary>
+            <param name="oid"></param>
+        </member>
+        <member name="M:moleQule.Library.Instruction.InformePlantilla.DeleteAll">
+            <summary>
+            Elimina todos los Area. 
+            Si no existe integridad referencial, hay que eliminar las listas hijo en esta función.
+            </summary>
+        </member>
+        <member name="M:moleQule.Library.Instruction.InformePlantilla.#ctor">
+            <summary>
+            NO UTILIZAR DIRECTAMENTE, SE DEBE USAR LA FUNCION New o NewChild
+            Debería ser private para CSLA porque la creación requiere el uso de los Factory Methods,
+            pero debe ser protected por exigencia de NHibernate.
+            </summary>
+        </member>
+        <member name="M:moleQule.Library.Instruction.InformePlantilla.#ctor(moleQule.Library.Instruction.InformePlantilla,System.Boolean)">
+            <summary>
+            NO UTILIZAR DIRECTAMENTE. LAS UTILIZAN LAS FUNCIONES DE CREACION DE LISTAS
+            </summary>
+        </member>
+        <member name="M:moleQule.Library.Instruction.InformePlantilla.#ctor(System.Data.IDataReader,System.Boolean)">
+            <summary>
+            NO UTILIZAR DIRECTAMENTE. LAS UTILIZAN LAS FUNCIONES DE CREACION DE LISTAS
+            </summary>
+        </member>
+        <member name="M:moleQule.Library.Instruction.InformePlantilla.NewChild">
+            <summary>
+            Crea un nuevo objeto
+            </summary>
+            <returns>Nuevo objeto creado</returns>
+            La utiliza la BusinessListBaseEx correspondiente para crear nuevos elementos
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:moleQule.Library.Instruction.InformePlantilla.GetChild(moleQule.Library.Instruction.InformePlantilla)" -->
+        <!-- Badly formed XML comment ignored for member "M:moleQule.Library.Instruction.InformePlantilla.GetChild(moleQule.Library.Instruction.InformePlantilla,System.Boolean)" -->
+        <!-- Badly formed XML comment ignored for member "M:moleQule.Library.Instruction.InformePlantilla.GetChild(System.Data.IDataReader)" -->
+        <!-- Badly formed XML comment ignored for member "M:moleQule.Library.Instruction.InformePlantilla.GetChild(System.Data.IDataReader,System.Boolean)" -->
+        <member name="M:moleQule.Library.Instruction.InformePlantilla.GetInfo">
+            <summary>
+            Construye y devuelve un objeto de solo lectura copia de si mismo.
+            También copia los datos de los hijos del objeto.
+            </summary>
+            <returns>Réplica de solo lectura del objeto</returns>
+        </member>
+        <member name="M:moleQule.Library.Instruction.InformePlantilla.GetInfo(System.Boolean)">
+            <summary>
+            Construye y devuelve un objeto de solo lectura copia de si mismo.
+            </summary>
+            <param name="get_childs">Flag para solicitar que se copien los hijos</param>
+            <returns>Réplica de solo lectura del objeto</returns>
+        </member>
+        <member name="M:moleQule.Library.Instruction.InformePlantilla.Fetch(moleQule.Library.Instruction.InformePlantilla)">
+            <summary>
+            Construye el objeto y se encarga de obtener los
+            hijos si los tiene y se solicitan
+            </summary>
+            <param name="source">Objeto fuente</param>
+        </member>
+        <member name="M:moleQule.Library.Instruction.InformePlantilla.Fetch(System.Data.IDataReader)">
+            <summary>
+            Construye el objeto y se encarga de obtener los
+            hijos si los tiene y se solicitan
+            </summary>
+            <param name="source">DataReader fuente</param>
+        </member>
+        <member name="T:moleQule.Library.Instruction.InformePlantillaInfo">
+            <summary>
+            ReadOnly Root Business Object with ReadOnly Childs
+            </summary>
+        </member>
+        <member name="M:moleQule.Library.Instruction.InformePlantillaInfo.CopyValues(moleQule.Library.Instruction.InformePlantilla)">
+            <summary>
+            Copia los atributos del objeto
+            </summary>
+            <param name="source">Objeto origen</param>
+        </member>
+        <member name="M:moleQule.Library.Instruction.InformePlantillaInfo.CopyValues(System.Data.IDataReader)">
+            <summary>
+            Copia los atributos del objeto
+            </summary>
+            <param name="source">Objeto origen</param>
+        </member>
+        <member name="M:moleQule.Library.Instruction.InformePlantillaInfo.#ctor(moleQule.Library.Instruction.InformePlantilla)">
+            <summary>
+            Contructor de AreaInfo a partir de un Area
+            No copia los hijos
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:moleQule.Library.Instruction.InformePlantillaInfo.Get(System.Int64)">
+            <summary>
+            Devuelve un AreaInfo tras consultar la base de datos
+            </summary>
+            <param name="oid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:moleQule.Library.Instruction.InformePlantillaInfo.Get(System.Int64,System.Boolean)">
+            <summary>
+            Devuelve un AreaInfo tras consultar la base de datos
+            </summary>
+            <param name="oid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:moleQule.Library.Instruction.InformePlantillaInfo.Get(System.Data.IDataReader,System.Boolean)">
+            <summary>
+            Copia los datos al objeto desde un IDataReader 
+            </summary>
+            <param name="reader"></param>
             <returns></returns>
         </member>
     </members>

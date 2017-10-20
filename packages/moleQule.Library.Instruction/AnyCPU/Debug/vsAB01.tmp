@@ -649,12 +649,6 @@
             <param name="get_childs">retrieving the childs</param>
             <returns></returns>
         </member>
-        <member name="M:moleQule.Library.Instruction.PreguntaList.GetPreguntasDisponiblesModulo(System.Int64,System.Boolean,System.DateTime,System.Int64)">
-            <summary>
-            Retrieve the complete list from db
-            </summary>
-            <returns>PreguntaList</returns>
-        </member>
         <member name="M:moleQule.Library.Instruction.PreguntaList.GetPreguntasDisponiblesTema(System.Int64,System.Boolean,System.DateTime,System.Int64)">
             <summary>
             Retrieve the complete list from db
@@ -2461,7 +2455,7 @@
             <param name="oid_instructor"></param>
             <returns></returns>
         </member>
-        <member name="M:moleQule.Library.Instruction.HorarioController.LaboratorioLibre(System.Int32,System.Int64,System.Int32)">
+        <member name="M:moleQule.Library.Instruction.HorarioController.LaboratorioLibre(System.Int32,System.Int64)">
             <summary>
             Función que comprueba que se pueda realizar una práctica en una sesión determinada 
             en función del campo Incompatible de la clase práctica
